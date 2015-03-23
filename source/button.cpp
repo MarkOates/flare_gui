@@ -143,6 +143,7 @@ void FGUIButton::on_mouse_enter()
 	motion.animate(&placement.scale.x, placement.scale.x, 1.1, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
 	motion.animate(&placement.scale.y, placement.scale.y, 1.1, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
 
+	al_play_sample(gimmie_samples()->auto_get("ui_hover.wav"), 0.2, 0.5, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 }
 
 

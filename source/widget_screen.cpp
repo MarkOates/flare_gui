@@ -38,6 +38,8 @@ void FGUIScreen::primary_timer_func()
 
 	if (clear_to_background_color) al_clear_to_color(color::mix(color::hex("3a3c47"), focused_outline_color, 0.2));
 
+	if (true) al_draw_bitmap(bitmaps["veddy_nice.png"], 0, 0, NULL);
+
 	if (use_joystick_as_mouse)
 	{
 		if (af::joystick)

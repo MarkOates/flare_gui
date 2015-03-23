@@ -16,6 +16,7 @@ class FGUIParent;
 class FGUIScreen;
 class Motion;
 class FontBin;
+class SampleBin;
 
 
 /*
@@ -91,6 +92,7 @@ public:
 	FGUIScreen *gimmie_super_screen();
 	Motion *gimmie_motion();
 	FontBin *gimmie_fonts();
+	SampleBin *gimmie_samples();
 
 
 	// ordering

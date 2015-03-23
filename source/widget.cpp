@@ -126,6 +126,13 @@ FontBin *FGUIWidget::gimmie_fonts()
 
 
 
+SampleBin *FGUIWidget::gimmie_samples()
+{
+	return &gimmie_super_screen()->samples;
+}
+
+
+
 
 void FGUIWidget::bring_to_front()
 {

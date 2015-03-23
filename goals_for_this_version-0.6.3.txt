@@ -1,3 +1,13 @@
+
+- goals from 0.6.2, and...
+
+- remove boost dependency in text_box.cpp
+
+
+
+
+// note: the following comments below are goals from the previous version (0.6.2)
+
 the constructor of FGUIButton needs to have the ALLEGRO_FONT parameter removed.  Get it from the parent (somehow)
 
 Make a FGUITextButton (text only)... maybe it inherits FGUIButton or something.

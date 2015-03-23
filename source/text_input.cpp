@@ -75,13 +75,13 @@ void FGUITextInput::insert_text(std::string text)
 }
 
 
-
+#include <algorithm>
 std::string FGUITextInput::get_selection()
 {
 	if (selection_active())
 	{
-		int min_pos = min(cursor_pos, cursor_end);
-		int max_pos = max(cursor_pos, cursor_end);
+		int min_pos = std::min(cursor_pos, cursor_end);
+		int max_pos = std::max(cursor_pos, cursor_end);
 		return text.substr(min_pos, max_pos-min_pos);
 	}
 	return "";
@@ -101,7 +101,7 @@ void FGUITextInput::_insert_text(const char *str)
 
 void FGUITextInput::clear_selection()
 {
-	int cursor_min = min(cursor_pos, cursor_end);
+	int cursor_min = std::min(cursor_pos, cursor_end);
 	_handle_erase();
 	cursor_pos = cursor_min;
 	cursor_end = cursor_min;

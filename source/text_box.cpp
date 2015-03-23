@@ -72,7 +72,7 @@ void FGUITextBox::create_word_width_pairs(std::string text, ALLEGRO_FONT *font)
 
 		//std::
 
-		for (int i=0; i<lines.size(); i++)
+		for (unsigned i=0; i<lines.size(); i++)
 		{
 			std::vector<std::string> words_in_this_line;
 			boost::split(words_in_this_line, lines[i], boost::is_any_of(" ")); ////// TODO:

@@ -59,8 +59,8 @@ void FGUITextArea::Cursor::move_anchor_to_cursor() { _anchor_pos = head_pos; }
 
 int FGUITextArea::Cursor::pos() { return head_pos; }
 int FGUITextArea::Cursor::anchor_pos() { return _anchor_pos; }
-int FGUITextArea::Cursor::get_start() { return min(head_pos, _anchor_pos); }
-int FGUITextArea::Cursor::get_end() { return max(head_pos, _anchor_pos); }
+int FGUITextArea::Cursor::get_start() { return std::min(head_pos, _anchor_pos); }
+int FGUITextArea::Cursor::get_end() { return std::max(head_pos, _anchor_pos); }
 int FGUITextArea::Cursor::get_selection_length() { return get_end() - get_start(); }
 
 void FGUITextArea::Cursor::set_anchor_down() { anchor_down = true; }
@@ -118,7 +118,7 @@ void FGUITextArea::move_cursor_to_next_of(std::string chars)
 
 void FGUITextArea::move_cursor_to_previous_not_of(std::string chars)
 {
-	int cursor_pos = full_text.find_last_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'\"", max(0, cursor.pos()-1));
+	int cursor_pos = full_text.find_last_not_of("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'\"", std::max(0, cursor.pos()-1));
 	if (cursor_pos == std::string::npos) { cursor_pos = 0; }
 	cursor.move_to(cursor_pos);
 }
