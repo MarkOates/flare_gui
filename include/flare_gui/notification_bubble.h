@@ -1,0 +1,90 @@
+#ifndef FGUI_NOTIFICATION_BUBBLE_HEADER
+#define FGUI_NOTIFICATION_BUBBLE_HEADER
+
+
+
+#include <allegro_flare/allegro_flare.h>
+#include <allegro_flare/color.h>
+
+#include <flare_gui/widget.h>
+#include <flare_gui/widget_parent.h>
+#include <flare_gui/collision_box.h>
+
+#include <allegro5/allegro_font.h>
+#include <allegro5/allegro_primitives.h>
+
+
+class FGUINotificationBubble : public FGUIWidget
+{
+private:
+	std::string text;
+	bool paused;
+	float spawn_time, lifespan;
+	float opacity;
+	ALLEGRO_FONT *font;
+public:
+	FGUINotificationBubble(FGUIParent *parent, std::string text, float x=300, float y=200)
+		: FGUIWidget(parent, new FGUICollisionBox(x, y, 280, 90))
+		, text(text)
+		, font((*gimmie_fonts())["DroidSerif.ttf 20"])
+		, spawn_time(af::time_now)
+		, lifespan(4.0)
+		, paused(false)
+		, opacity(0)
+	{
+		attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUINotificationBubble");
+		attr.set("id", "NotificationBubble" + tostring(widget_count));
+
+		gimmie_motion()->cmove_to(&this->opacity, 1.0, 0.5);
+
+		this->collision_area->placement.align.x = 1.0;
+		this->collision_area->placement.align.y = 1.0;
+	}
+
+	~FGUINotificationBubble()
+	{
+		gimmie_motion()->clear_animations_on(&this->opacity);
+	}
+
+	void on_timer()
+	{
+		if (paused || delete_me) return;
+
+		text = "life: " + tostring(af::time_now - spawn_time);
+		if ((af::time_now - spawn_time) > lifespan)
+		{
+			delete_me = true;
+			gimmie_motion()->cmove_to(&this->opacity, 0, 0.6);
+		}
+	}
+
+	void on_mouse_enter()
+	{
+		paused = true;
+		gimmie_motion()->cmove_to(&this->opacity, 1.0, 0.5);
+		text = "Hi! :)";
+	}
+
+	void on_mouse_leave()
+	{
+		paused = false;
+		spawn_time  = af::time_now;
+	}
+
+	void on_draw()
+	{
+		//if (!delete_me)
+		//{
+			al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 6, 6, color::hex("#fce566", opacity));
+			al_draw_text(font, color::hex("645710", opacity), 23, 20, 0, text.c_str());
+		//}
+	}
+};
+
+
+
+
+
+
+
+#endif
