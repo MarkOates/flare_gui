@@ -5,7 +5,6 @@
 
 #include <flare_gui/text_box.h>
 #include <flare_gui/collision_box.h>
-#include <boost/algorithm/string.hpp>
 
 #include <allegro_flare/useful.h> // just for tostring, meh
 
@@ -34,6 +33,7 @@ FGUITextBox::FGUITextBox(FGUIParent *parent, ALLEGRO_FONT *font, std::string tex
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, width, height))
 	, font(font)
 	, text(text)
+	, text_color(color::black)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUITextBox");
 	attr.set("id", "TextBox" + tostring(widget_count));
@@ -45,6 +45,39 @@ FGUITextBox::FGUITextBox(FGUIParent *parent, ALLEGRO_FONT *font, std::string tex
 
 
 
+
+
+
+
+
+
+
+std::vector<std::string> split_if_any_delim(std::string text, std::string delims)
+{
+	std::vector<std::string> result;
+
+	size_t last_found_pos = 0;
+	size_t found_pos = 0;
+
+	found_pos=text.find_first_of(delims,0);
+	while (found_pos!=std::string::npos)
+	{
+		result.push_back(text.substr(last_found_pos, found_pos-last_found_pos));
+		last_found_pos = found_pos+1;
+		found_pos=text.find_first_of(delims,found_pos+1);
+	}
+
+	result.push_back(text.substr(last_found_pos)); // grab the last token
+
+	return result;
+}
+
+
+
+
+
+
+
 #include <allegro_flare/useful_php.h>
 
 void FGUITextBox::create_word_width_pairs(std::string text, ALLEGRO_FONT *font)
@@ -52,16 +85,6 @@ void FGUITextBox::create_word_width_pairs(std::string text, ALLEGRO_FONT *font)
 	lines_of_word_width_pairs.clear();
 
 
-	std::vector<std::string> word;
-
-
-
-
-	boost::split(word, text, boost::is_any_of("\t \n\r")); ////// TODO:
-															///// NOTE NOTE NOTE!!1
-														   ////// THIS is the ONLY occourance of a boost function in
-															///// flare_gui, requiring the inclusion of boost
-															///// it should be replaced with an inhouse function
 
 
 
@@ -70,17 +93,13 @@ void FGUITextBox::create_word_width_pairs(std::string text, ALLEGRO_FONT *font)
 		lines = php::explode("\n", text);
 		std::vector<std::string> final_token_list;
 
-		//std::
+
 
 		for (unsigned i=0; i<lines.size(); i++)
 		{
 			std::vector<std::string> words_in_this_line;
-			boost::split(words_in_this_line, lines[i], boost::is_any_of(" ")); ////// TODO:
-																///// NOTE NOTE NOTE!!1
-															   ////// THIS is the ONLY occourance of a boost function in
-																///// flare_gui, requiring the inclusion of boost
-																///// it should be replaced with an inhouse function
-			///final_word_width_list.(words_in_this_line);
+			words_in_this_line = split_if_any_delim(lines[i], "\t \n\r");
+
 			final_token_list.insert(final_token_list.end(), words_in_this_line.begin(), words_in_this_line.end());
 			final_token_list.push_back("\n");
 		}
@@ -94,16 +113,6 @@ void FGUITextBox::create_word_width_pairs(std::string text, ALLEGRO_FONT *font)
 	}
 	lines_of_word_width_pairs.push_back(_word_width_pairs);
 
-
-
-	return;
-
-	std::vector<word_width_pair> word_width_pairs;
-	for (int i=0; i<(int)word.size(); i++)
-	{
-		word_width_pairs.push_back(word_width_pair(word[i], al_get_text_width(font, word[i].c_str())));
-	}
-	lines_of_word_width_pairs.push_back(word_width_pairs);
 }
 
 
@@ -139,6 +148,12 @@ void FGUITextBox::on_draw()
 	float line_height = al_get_font_line_height(font);
 
 	std::vector<word_width_pair> word_width_pairs = lines_of_word_width_pairs[0];
+
+
+	//al_draw_text(font, color::black, 100, 100, 0, "This is just a test");
+
+
+	//al_get_text_dimensions(font, 
 
 	for (int i=0; i<(int)word_width_pairs.size(); i++)
 	{
