@@ -50,7 +50,7 @@ public:
 	{
 		if (paused || delete_me) return;
 
-		text = "life: " + tostring(af::time_now - spawn_time);
+		//text = "life: " + tostring(af::time_now - spawn_time);
 		if ((af::time_now - spawn_time) > lifespan)
 		{
 			delete_me = true;
@@ -62,7 +62,7 @@ public:
 	{
 		paused = true;
 		gimmie_motion()->cmove_to(&this->opacity, 1.0, 0.5);
-		text = "Hi! :)";
+		//text = "Hi! :)";
 	}
 
 	void on_mouse_leave()
