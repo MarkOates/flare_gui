@@ -26,7 +26,7 @@ public:
 	FGUINotificationBubble(FGUIParent *parent, std::string text, float x=300, float y=200)
 		: FGUIWidget(parent, new FGUICollisionBox(x, y, 280, 90))
 		, text(text)
-		, font((*gimmie_fonts())["DroidSerif.ttf 20"])
+		, font(af::fonts["DroidSerif.ttf 20"])
 		, spawn_time(af::time_now)
 		, lifespan(4.0)
 		, paused(false)
@@ -35,7 +35,7 @@ public:
 		attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUINotificationBubble");
 		attr.set("id", "NotificationBubble" + tostring(widget_count));
 
-		gimmie_motion()->cmove_to(&this->opacity, 1.0, 0.5);
+		af::motion.cmove_to(&this->opacity, 1.0, 0.5);
 
 		this->collision_area->placement.align.x = 1.0;
 		this->collision_area->placement.align.y = 1.0;
@@ -43,7 +43,7 @@ public:
 
 	~FGUINotificationBubble()
 	{
-		gimmie_motion()->clear_animations_on(&this->opacity);
+		af::motion.clear_animations_on(&this->opacity);
 	}
 
 	void on_timer()
@@ -54,14 +54,14 @@ public:
 		if ((af::time_now - spawn_time) > lifespan)
 		{
 			delete_me = true;
-			gimmie_motion()->cmove_to(&this->opacity, 0, 0.6);
+			af::motion.cmove_to(&this->opacity, 0, 0.6);
 		}
 	}
 
 	void on_mouse_enter()
 	{
 		paused = true;
-		gimmie_motion()->cmove_to(&this->opacity, 1.0, 0.5);
+		af::motion.cmove_to(&this->opacity, 1.0, 0.5);
 		//text = "Hi! :)";
 	}
 

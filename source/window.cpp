@@ -1,6 +1,11 @@
 
 
 
+
+#include <allegro5/allegro_primitives.h>
+#include <allegro_flare/allegro_flare.h>
+
+
 #include <flare_gui/window.h>
 
 
@@ -9,8 +14,6 @@
 
 #include <flare_gui/widget.h>
 #include <flare_gui/collision_box.h>
-#include <allegro_flare/color.h>
-#include <allegro5/allegro_primitives.h>
 
 #include <allegro_flare/useful.h> // just for tostring
 
@@ -74,7 +77,7 @@ void FGUIWindow::on_draw()
 	al_draw_line(3.5, 1, placement.size.x-3.5, 1, color::color(color::white, 0.3), 1);
 
 	// draw the shaded bitmap
-	draw_stretched_bitmap(3, 3, placement.size.x-6, placement.size.y-6, (gimmie_super_screen()->bitmaps)["shade_down.png"], 0, color::color(color::white, 0.2));
+	draw_stretched_bitmap(3, 3, placement.size.x-6, placement.size.y-6, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
 
 
 	//al_draw_filled_rounded_rectangle(0, 0, placement.size.x, placement.size.y, 3, 3, background_color);

@@ -144,7 +144,7 @@ void FGUITextBox::on_draw()
 	float x_cursor = 0;
 	float y_cursor = 0;
 	float next_x = 0;
-	float width = gimmie_placement()->size.x;
+	float width = place.size.x;
 	float line_height = al_get_font_line_height(font);
 
 	std::vector<word_width_pair> word_width_pairs = lines_of_word_width_pairs[0];

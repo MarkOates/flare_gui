@@ -348,12 +348,12 @@ void FGUITextInput::_update_text_and_selection_render(float len_to_cursor, float
 	al_store_state(&state, ALLEGRO_STATE_TARGET_BITMAP);
 
 	if (!_text_render
-		|| gimmie_placement()->size.x != al_get_bitmap_width(_text_render)
-		|| gimmie_placement()->size.y != al_get_bitmap_height(_text_render)
+		|| place.size.x != al_get_bitmap_width(_text_render)
+		|| place.size.y != al_get_bitmap_height(_text_render)
 		)
 	{
 		al_destroy_bitmap(_text_render);
-		_text_render = al_create_bitmap(gimmie_placement()->size.x, gimmie_placement()->size.y);
+		_text_render = al_create_bitmap(place.size.x, place.size.y);
 	}
 	al_set_target_bitmap(_text_render);
 	al_clear_to_color(color::transparent);

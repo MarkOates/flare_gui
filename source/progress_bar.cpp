@@ -1,6 +1,7 @@
 
 
 
+#include <flare_gui/flare_gui.h>
 #include <allegro5/allegro_primitives.h>
 
 #include <flare_gui/progress_bar.h>
@@ -32,13 +33,12 @@ FGUIProgressBar::FGUIProgressBar(FGUIParent *parent, float x, float y, float w, 
 void FGUIProgressBar::set_val(float normalized_val, float update_speed)
 {
 	normalized_val = limit<float>(0, 1, normalized_val);
-	Motion *motion = gimmie_motion();
-	motion->cmove_to(&val, normalized_val, update_speed, interpolator::doubleFastIn);
+	af::motion.cmove_to(&val, normalized_val, update_speed, interpolator::doubleFastIn);
 
 	current_color = color::mix(update_color, normal_color, 0.5);
-	motion->cmove_to(&current_color.r, normal_color.r, update_speed);
-	motion->cmove_to(&current_color.g, normal_color.g, update_speed);
-	motion->cmove_to(&current_color.b, normal_color.b, update_speed);
+	af::motion.cmove_to(&current_color.r, normal_color.r, update_speed);
+	af::motion.cmove_to(&current_color.g, normal_color.g, update_speed);
+	af::motion.cmove_to(&current_color.b, normal_color.b, update_speed);
 }
 
 
@@ -53,8 +53,6 @@ void FGUIProgressBar::set_val(float _val, float min, float max, float update_spe
 
 void FGUIProgressBar::on_draw()
 {
-	placement2d &place = (*gimmie_placement());
-
 	float roundness = place.size.y/4;
 	float inset_padding = 3;
 
@@ -78,7 +76,7 @@ void FGUIProgressBar::on_draw()
 		roundness, roundness, color::color(current_color, 0.8));
 
 	// draw the shaded bitmap
-	draw_stretched_bitmap(3, 3, place.size.x-6, place.size.y-6, (gimmie_super_screen()->bitmaps)["shade_down.png"], 0, color::color(color::white, 0.2));
+	draw_stretched_bitmap(3, 3, place.size.x-6, place.size.y-6, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
 
 	// draw the progress bar outline
 	//al_draw_rounded_rectangle(inset_padding, inset_padding,

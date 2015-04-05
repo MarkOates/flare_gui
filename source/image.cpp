@@ -30,8 +30,8 @@ void FGUIImage::on_draw()
 void FGUIImage::set_bitmap(ALLEGRO_BITMAP *bitmap)
 {
 	this->bitmap = bitmap;
-	gimmie_placement()->size.x = bitmap ? al_get_bitmap_width(bitmap) : 0;
-	gimmie_placement()->size.y = bitmap ? al_get_bitmap_height(bitmap) : 0;
+	place.size.x = bitmap ? al_get_bitmap_width(bitmap) : 0;
+	place.size.y = bitmap ? al_get_bitmap_height(bitmap) : 0;
 }
 
 
