@@ -19,10 +19,10 @@
 class FGUIScreen : public Screen, public FGUIParent
 {
 public:
-	BitmapBin bitmaps;
-	FontBin fonts;
-	SampleBin samples;
-	Motion motion;
+	BitmapBin &bitmaps;
+	FontBin &fonts;
+	SampleBin &samples;
+	Motion &motion;
 
 	bool draw_focused_outline;
 	ALLEGRO_COLOR focused_outline_color;
