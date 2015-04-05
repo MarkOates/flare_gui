@@ -53,7 +53,6 @@ protected:
 	friend class FGUIParent;
 	friend class FGUIScreen;
 	friend class FGUIChildren;
-	//FontBin &fonts; // new concept to put this reference to the parent's fontbin, try it :)
 
 	FGUIParent *parent;
 	static int widget_count;
@@ -74,7 +73,7 @@ protected:
 	virtual void joy_axis_func();
 
 public:
-	//BitFlags<int16_t> flags;
+	//BitFlags<int16_t> flags;    // << this should be added eventually
 	bool delete_me;
 	DataAttr attr;
 
@@ -85,8 +84,7 @@ public:
 	virtual ~FGUIWidget();
 
 
-
-	// convience
+	// convience (these might become depreciated)
 	placement2d *gimmie_placement();
 	FGUIWidget *gimmie_super_parent();
 	FGUIScreen *gimmie_super_screen();
@@ -98,24 +96,23 @@ public:
 	// ordering
 	void bring_to_front();
 	void send_message_to_parent(std::string message);
-	//bool reassign_parent_as(FGUIParent *new_parent); // give it a shot, hopefully this can work. :)
-													// hrmkay, it worked, but...
-													// this functionality should probably be inside
-													// FGUIChildren, as it relies on functionality
-													// that is in there.
 
 
 	// retrieval
 	bool is_mouse_over();
 	bool is_focused();
 	void set_as_focused();
-	void set_as_unfocused(); // should be renamed to blur()?
+	void set_as_unfocused();
 
 
-	// widget *user* functions:
+	///
+	// widget behavior functions
+	///
+
 	virtual void on_focus();
 	virtual void on_blur();
 
+	// mouse
 	virtual void on_mouse_enter();
 	virtual void on_mouse_leave();
 	virtual void on_mouse_move(float x, float y, float dx, float dy);
@@ -126,23 +123,33 @@ public:
 	virtual void on_drag(float x, float y, float dx, float dy);
 	virtual void on_drop();
 
+	// keybaord
 	virtual void on_key_down();
 	virtual void on_key_up();
 	virtual void on_key_char();
 
+	// joystick
 	virtual void on_joy_down();
 	virtual void on_joy_up();
 	virtual void on_joy_axis();
 
+	// other
 	virtual void on_timer();
 	virtual void on_draw();
 
 
+	// static functions
 	static int get_num_active_widgets();
-
 	static FGUIWidget *get_element_by_id(std::string id, std::vector<FGUIWidget *> &widgets); // < huh?  I think this should probably be obsolete
 
 public:
+	// Down here are some static functions for drawing basic graphic elements for the GUI.
+	// Insets (textarea, textinput, group frames), outsets (buttons, window bodys, etc)
+	// and any other graphic elements that might be needed.  This design technique might
+	// eventually be replaced with a more robust and configurable styling method.  But
+	// for now, this simple solution is intended to be the first steps to detaching style
+	// from widget drawing - if the user want it.
+
 	void FGUIWidget::draw_inset(float x, float y, float w, float h);
 };
 

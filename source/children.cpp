@@ -75,9 +75,8 @@ bool FGUIChildren::assign_child_to_new_parent(FGUIWidget *child_widget, FGUIPare
 void FGUIChildren::delete_all()
 {
 	for (unsigned i=0; i<children.size(); i++)
-	{
 		delete children[i];
-	}
+
 	children.clear();
 }
 
@@ -86,23 +85,16 @@ void FGUIChildren::delete_all()
 void FGUIChildren::unfocus_all()
 {
 	for (unsigned i=0; i<children.size(); i++)
-	{
 		if (children[i]->is_focused()) children[i]->set_as_unfocused();
-	}
 }
 
 
 
 FGUIWidget *FGUIChildren::get_element_by_id(std::string id)
 {
-	//std::cout << "FGUIChildren::get_element_by_id(" << id << ")" << std::endl;
-	//std::cout << "searching " << children.size() << " element(s)" << std::endl;
-
 	for (unsigned i=0; i<children.size(); i++)
-	{
-		//std::cout << "children[" << i << "].id==" << children[i]->attr.get("id") << " " << std::endl;
 		if (children[i]->attr.matches("id", id)) return children[i];
-	}
+
 	return NULL;
 }
 
@@ -111,9 +103,8 @@ FGUIWidget *FGUIChildren::get_element_by_id(std::string id)
 FGUIWidget *FGUIChildren::get_1st_element_with_attr(std::string key)
 {
 	for (unsigned i=0; i<children.size(); i++)
-	{
 		if (children[i]->attr.has(key)) return children[i];
-	}
+
 	return NULL;
 }
 
@@ -122,9 +113,8 @@ FGUIWidget *FGUIChildren::get_1st_element_with_attr(std::string key)
 FGUIWidget *FGUIChildren::get_1st_element_with_attr_val(std::string key, std::string val)
 {
 	for (unsigned i=0; i<children.size(); i++)
-	{
 		if (children[i]->attr.matches(key, val)) return children[i];
-	}
+
 	return NULL;
 }
 
@@ -206,26 +196,3 @@ void FGUIChildren::draw_all_except(FGUIWidget *widget)
 	}
 }
 
-
-
-
-
-/*
-bool FGUIChildren::delete_child(FGUIWidget *child)
-{
-	// I'm not thinking this should be a function
-
-	for (unsigned i=0; i<children.size(); i++)
-	{
-		if (children[i] == child)
-		{
-			delete children[i];
-			//std::cout << "child deleted" << std::endl;
-			//i--;
-			return true;
-		}
-	}
-	return false;
-}
-
-*/

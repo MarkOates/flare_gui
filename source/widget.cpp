@@ -229,7 +229,6 @@ void FGUIWidget::mouse_down_func()
 			focused = false;
 			on_blur();
 		}
-//		on_blur(); // TODO: hmm... does this then fire everytime the mouse is pressed down?
 	}
 }
 
@@ -366,45 +365,11 @@ void FGUIWidget::set_as_unfocused()
 
 FGUIWidget *FGUIWidget::get_element_by_id(std::string id, std::vector<FGUIWidget *> &widgets)
 {
-	//std::cout << "searching for element with id \"" << id << "\"...";
 	for (unsigned i=0; i<widgets.size(); i++)
-	{
 		if (widgets[i]->attr.matches("id", id)) return widgets[i];
-//		if (widgets[i]->attr.has("id") && (widgets[i]->attr.get("id") == id)) return widgets[i];
-		//std::map<std::string, std::string>::iterator it = widgets[i]->attr.data.find("id");
-		//if (it == widgets[i]->attr.data.end()) continue;
 
-		//if ((*it).second == id)
-		//{
-			//std::cout << "found." << std::endl;
-		//	return widgets[i];
-		//}
-	}
-	//std::cout << "could not be found." << std::endl;
 	return NULL;
 }
-
-
-
-/*
-// this functionality was moved to FGUIChildren :)
-bool FGUIWidget::reassign_parent_as(FGUIParent *new_parent) // give it a shot, hopefully this can work. :)
-{
-	// have the current parent remove this child
-	if (parent)
-	{
-		parent->children.unregister_as_child(this);
-	}
-
-	// assign the parent to the new parent
-	if (new_parent)
-	{
-		new_parent->children.register_as_child(this);
-	}
-
-	return true;
-}
-*/
 
 
 
