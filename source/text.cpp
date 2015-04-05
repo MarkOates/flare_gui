@@ -35,11 +35,10 @@ void FGUIText::on_draw()
 
 void FGUIText::set_font_and_text(ALLEGRO_FONT *font, std::string text)
 {
-	placement2d *placement = gimmie_placement();
 	this->text = text;
 	this->font = font;
-	placement->size.x = al_get_text_width(font, text.c_str());
-	placement->size.y = al_get_font_line_height(font);
+	place.size.x = al_get_text_width(font, text.c_str());
+	place.size.y = al_get_font_line_height(font);
 }
 
 

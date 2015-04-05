@@ -85,12 +85,8 @@ public:
 
 
 	// convience (these might become depreciated)
-	placement2d *gimmie_placement();
 	FGUIWidget *gimmie_super_parent();
 	FGUIScreen *gimmie_super_screen();
-	Motion *gimmie_motion();
-	FontBin *gimmie_fonts();
-	SampleBin *gimmie_samples();
 
 
 	// ordering

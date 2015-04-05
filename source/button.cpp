@@ -67,7 +67,7 @@ void FGUIButton::on_draw()
 	// draw the shaded bitmap
 	// TODO: make this shade_down generated.
 	// preload some good stuff into FGUIScreen::bitmap_bin;
-	draw_stretched_bitmap(3, 3, placement.size.x-6, placement.size.y-6, (gimmie_super_screen()->bitmaps)["shade_down.png"], 0, color::color(color::white, 0.2));
+	draw_stretched_bitmap(3, 3, placement.size.x-6, placement.size.y-6, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
 
 	// draw the icon and/or the text
 	// in this case, the icon is always drawn to the left of the text
@@ -118,16 +118,12 @@ void FGUIButton::on_click()
 
 	placement2d &placement = collision_area->placement;
 
-
-	if (!gimmie_motion()) return;
-	Motion &motion = (*gimmie_motion());
-
-	motion.clear_animations_on(&placement.scale.x);
-	motion.clear_animations_on(&placement.scale.y);
-	motion.animate(&placement.scale.x, placement.scale.x, placement.scale.x*0.9, af::time_now, af::time_now+0.05, interpolator::doubleFastIn, NULL, NULL);
-	motion.animate(&placement.scale.y, placement.scale.y, placement.scale.y*0.9, af::time_now, af::time_now+0.05, interpolator::doubleFastIn, NULL, NULL);
-	motion.animate(&placement.scale.x, placement.scale.x*0.9, placement.scale.x, af::time_now+0.05, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
-	motion.animate(&placement.scale.y, placement.scale.y*0.9, placement.scale.y, af::time_now+0.05, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
+	af::motion.clear_animations_on(&placement.scale.x);
+	af::motion.clear_animations_on(&placement.scale.y);
+	af::motion.animate(&placement.scale.x, placement.scale.x, placement.scale.x*0.9, af::time_now, af::time_now+0.05, interpolator::doubleFastIn, NULL, NULL);
+	af::motion.animate(&placement.scale.y, placement.scale.y, placement.scale.y*0.9, af::time_now, af::time_now+0.05, interpolator::doubleFastIn, NULL, NULL);
+	af::motion.animate(&placement.scale.x, placement.scale.x*0.9, placement.scale.x, af::time_now+0.05, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
+	af::motion.animate(&placement.scale.y, placement.scale.y*0.9, placement.scale.y, af::time_now+0.05, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
 }
 
 
@@ -136,27 +132,22 @@ void FGUIButton::on_mouse_enter()
 {
 	placement2d &placement = collision_area->placement;
 
-	Motion &motion = (*gimmie_motion());
+	af::motion.clear_animations_on(&placement.scale.x);
+	af::motion.clear_animations_on(&placement.scale.y);
+	af::motion.animate(&placement.scale.x, placement.scale.x, 1.1, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
+	af::motion.animate(&placement.scale.y, placement.scale.y, 1.1, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
 
-	motion.clear_animations_on(&placement.scale.x);
-	motion.clear_animations_on(&placement.scale.y);
-	motion.animate(&placement.scale.x, placement.scale.x, 1.1, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
-	motion.animate(&placement.scale.y, placement.scale.y, 1.1, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
-
-	al_play_sample(gimmie_samples()->auto_get("ui_hover.wav"), 0.2, 0.5, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+	al_play_sample(af::samples["ui_hover.wav"], 0.2, 0.5, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 }
 
 
 
 void FGUIButton::on_mouse_leave()
 {
-	placement2d &placement = collision_area->placement;
-	Motion &motion = (*gimmie_motion());
-
-	motion.clear_animations_on(&placement.scale.x);
-	motion.clear_animations_on(&placement.scale.y);
-	motion.animate(&placement.scale.x, placement.scale.x, 1.0, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
-	motion.animate(&placement.scale.y, placement.scale.y, 1.0, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
+	af::motion.clear_animations_on(&place.scale.x);
+	af::motion.clear_animations_on(&place.scale.y);
+	af::motion.animate(&place.scale.x, place.scale.x, 1.0, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
+	af::motion.animate(&place.scale.y, place.scale.y, 1.0, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
 }
 
 

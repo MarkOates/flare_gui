@@ -152,7 +152,6 @@ std::string FGUITextArea::get_text()
 
 void FGUITextArea::on_draw()
 {
-	placement2d &place = (*gimmie_placement());
 	//if (focused) al_draw_rectangle(0, 0, place.w, place.h, color::red, 2.0);
 	//if (focused) al_draw_text(font, color::yellow, -10, -10, NULL, tostring(cursor).c_str());
 
@@ -160,7 +159,7 @@ void FGUITextArea::on_draw()
 	//al_draw_rectangle(0, 0, place.size.x, place.size.y, color::color(color::white, 0.3), 1.0);
 
 
-	this->draw_inset(-6, -6, place.size.x+6, place.size.y+6);
+	this->draw_inset(-6, -6, place.size.x+6, place.size.y+6);  // change to FGUIWidget::draw_inset(...)
 	if (focused) al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::dodgerblue, 2.0);	
 
 
@@ -197,7 +196,7 @@ void FGUITextArea::on_draw()
 			std::string text_packet_to_draw = tostring(full_text[i]).c_str();
 			float text_width = al_get_text_width(font, text_packet_to_draw.c_str()); // < this is the process that should be cached
 
-			if (draw_cursor_x + text_width > gimmie_placement()->size.x)
+			if (draw_cursor_x + text_width > place.size.x)
 			{
 				// wrap if the text width is beyond the edge
 				draw_cursor_x = 0;
@@ -272,7 +271,7 @@ void FGUITextArea::on_draw()
 		else
 		{
 			// draw the first selection line
-			al_draw_filled_rectangle(selection_x_start, selection_line_start*line_height, gimmie_placement()->size.x, (selection_line_start+1)*line_height, selection_color);
+			al_draw_filled_rectangle(selection_x_start, selection_line_start*line_height, place.size.x, (selection_line_start+1)*line_height, selection_color);
 
 			// draw the last selection line
 			al_draw_filled_rectangle(0, selection_line_end*line_height, selection_x_end, (selection_line_end+1)*line_height, selection_color);
@@ -280,7 +279,7 @@ void FGUITextArea::on_draw()
 			// if the selection box is larger than 2 lines
 			if (abs(selection_line_start - selection_line_end) > 1)
 			{
-				al_draw_filled_rectangle(0, (selection_line_start+1)*line_height, gimmie_placement()->size.x, (selection_line_end)*line_height, selection_color);
+				al_draw_filled_rectangle(0, (selection_line_start+1)*line_height, place.size.x, (selection_line_end)*line_height, selection_color);
 			}
 		}
 	}

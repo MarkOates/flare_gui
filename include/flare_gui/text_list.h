@@ -35,7 +35,6 @@ class FGUITextList : public FGUIWidget
 public:
 	int currently_selected_item;
 	std::vector<std::string> items;
-	FontBin fonts;
 
 public:
 	FGUITextList(FGUIParent *parent, float x, float y, float w);

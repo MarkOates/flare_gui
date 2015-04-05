@@ -43,12 +43,11 @@ void FGUIParent::draw_func()
 {
 	FGUIWidget::draw_func();
 
-	placement2d *placement = gimmie_placement();
-	placement->start_transform();
+	place.start_transform();
 
 	children.draw_all();
 
-	placement->restore_transform();
+	place.restore_transform();
 }
 
 

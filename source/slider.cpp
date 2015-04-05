@@ -34,7 +34,6 @@ void FGUIVerticalSlider::on_draw()
 	al_draw_filled_rounded_rectangle(0+hilight_inset, place.size.y*(1.0-val)+hilight_inset,
 		place.size.x-hilight_inset, place.size.y-hilight_inset, 3, 3, color::color(color::dodgerblue, 1.0));
 	al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::color(color::black, 0.2), 2);
-	FontBin &fonts = *gimmie_fonts();
 
 
 	//

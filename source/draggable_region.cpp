@@ -30,8 +30,7 @@ FGUIDraggableRegion::FGUIDraggableRegion(FGUIParent *parent, float x, float y, f
 
 void FGUIDraggableRegion::on_draw()
 {
-	placement2d *placement = gimmie_placement();
-	al_draw_filled_rounded_rectangle(0, 0, placement->size.x, placement->size.y, 5, 5, color::color(color::black, 0.1));
+	al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 5, 5, color::color(color::black, 0.1));
 }
 
 
@@ -40,8 +39,11 @@ void FGUIDraggableRegion::on_drag(float x, float y, float dx, float dy)
 {
 	if (parent)
 	{
-		placement2d *parent_placement = parent->gimmie_placement();
-		parent_placement->position.x += dx;
-		parent_placement->position.y += dy;
+		// This might not be the best method, that is, directly controlling the parameters
+		// of a parent object.  It might interfere with other events or other actions on
+		// or around the parent's parameters.  For example, if the parent is being animated, etc.
+		placement2d &parent_placement = parent->place;
+		parent_placement.position.x += dx;
+		parent_placement.position.y += dy;
 	}
 }

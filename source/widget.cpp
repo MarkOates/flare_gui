@@ -59,16 +59,7 @@ FGUIWidget::~FGUIWidget()
 	};
 
 	std::vector<float*> pacement_elements (_elem, _elem + sizeof(_elem) / sizeof(float*) );
-	parent->gimmie_motion()->clear_animations_on(pacement_elements);
-}
-
-
-
-
-
-placement2d *FGUIWidget::gimmie_placement()
-{
-	return &collision_area->placement;
+	af::motion.clear_animations_on(pacement_elements);
 }
 
 
@@ -106,29 +97,6 @@ FGUIWidget *FGUIWidget::gimmie_super_parent()
 FGUIScreen *FGUIWidget::gimmie_super_screen()
 {
 	return static_cast<FGUIScreen *>(gimmie_super_parent());
-}
-
-
-
-
-Motion *FGUIWidget::gimmie_motion()
-{
-	return &gimmie_super_screen()->motion;
-}
-
-
-
-
-FontBin *FGUIWidget::gimmie_fonts()
-{
-	return &gimmie_super_screen()->fonts;
-}
-
-
-
-SampleBin *FGUIWidget::gimmie_samples()
-{
-	return &gimmie_super_screen()->samples;
 }
 
 
@@ -318,8 +286,7 @@ void FGUIWidget::on_joy_axis() {}
 void FGUIWidget::on_timer() {}
 void FGUIWidget::on_draw()
 {
-	placement2d *placement = gimmie_placement();
-	al_draw_rounded_rectangle(0, 0, placement->size.x, placement->size.y, 4, 4, color::color(color::aliceblue, 0.2), 2.0);
+	al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 4, 4, color::color(color::aliceblue, 0.2), 2.0);
 }
 void FGUIWidget::on_drag(float x, float y, float dx, float dy) {}
 

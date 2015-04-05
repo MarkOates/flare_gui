@@ -2,6 +2,7 @@
 
 
 
+#include <flare_gui/flare_gui.h>
 #include <flare_gui/scaled_text.h>
 
 #include <allegro_flare/useful.h> // for tostring
@@ -23,7 +24,7 @@ void FGUIScaledText::refresh_render()
 {
 	// for easy life
 	FGUIScreen *super_parent = static_cast<FGUIScreen *>(gimmie_super_parent());
-	ALLEGRO_FONT *scaled_font = super_parent->fonts[_get_font_index_str()];
+	ALLEGRO_FONT *scaled_font = af::fonts[_get_font_index_str()];
 	//placement2d *placement = gimmie_placement();
 
 	// save the previous state
@@ -99,10 +100,9 @@ FGUIScaledText::FGUIScaledText(FGUIParent *parent, float x, float y, std::string
 void FGUIScaledText::on_draw()
 {
 	if (!render) return;
-	placement2d *placement = gimmie_placement();
 
 	al_draw_tinted_scaled_bitmap(render, font_color, 0, 0, al_get_bitmap_width(render), al_get_bitmap_height(render),
-		0, 0, placement->size.x, placement->size.y, NULL);
+		0, 0, place.size.x, place.size.y, NULL);
 }
 
 

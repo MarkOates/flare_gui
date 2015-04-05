@@ -22,7 +22,6 @@ FGUIListItem::FGUIListItem() {};
 
 FGUITextList::FGUITextList(FGUIParent *parent, float x, float y, float w)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, 20))
-	, fonts(*gimmie_fonts())
 	, currently_selected_item(0)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUITextList");
@@ -177,7 +176,7 @@ void FGUITextList::draw_item(vec2d position, int index)
 	position.y += item_padding;
 	bool item_is_selected = index == (this->currently_selected_item);
 
-	ALLEGRO_FONT *font = fonts["DroidSans.ttf 18"];
+	ALLEGRO_FONT *font = af::fonts["DroidSans.ttf 18"];
 
 	if (item_is_selected)
 	{

@@ -14,10 +14,6 @@
 FGUIScreen::FGUIScreen(Display *display)
 	: Screen(display)
 	, FGUIParent(NULL, new FGUICollisionBox(0, 0, display->width(), display->height()))
-	, bitmaps(af::bitmaps) // just create references to the main af:: bins
-	, fonts(af::fonts)
-	, samples(af::samples)
-	, motion(af::motion)
 	, draw_focused_outline(true)
 	, use_joystick_as_mouse(true)
 	, clear_to_background_color(true)
@@ -34,8 +30,6 @@ FGUIScreen::FGUIScreen(Display *display)
 
 void FGUIScreen::primary_timer_func()
 {
-	motion.update(af::time_now);
-
 	if (clear_to_background_color) al_clear_to_color(color::mix(color::hex("3a3c47"), focused_outline_color, 0.2));
 
 //	if (true) al_draw_bitmap(bitmaps["veddy_nice.png"], 0, 0, NULL);
