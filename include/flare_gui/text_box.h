@@ -36,6 +36,7 @@ public:
 	FGUITextBox(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float width, float height);
 
 	void set_text(std::string text);
+	std::string get_text();
 	void set_text_color(ALLEGRO_COLOR color);
 
 	void on_draw() override;

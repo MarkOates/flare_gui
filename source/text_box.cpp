@@ -128,6 +128,15 @@ void FGUITextBox::set_text(std::string text)
 
 
 
+
+std::string FGUITextBox::get_text()
+{
+	return this->text;
+}
+
+
+
+
 void FGUITextBox::set_text_color(ALLEGRO_COLOR col)
 {
 	this->text_color = col;
