@@ -7,6 +7,7 @@
 
 
 #include <allegro_flare/color.h>
+#include <allegro_flare/useful.h>
 
 #include <allegro5/allegro_primitives.h>
 
@@ -23,7 +24,7 @@ FGUIDraggableRegion::FGUIDraggableRegion(FGUIParent *parent, float x, float y, f
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIDraggableRegion");
-	attr.set("id", "DraggableRegion" + tostring(widget_count));
+	attr.set("id", "DraggableRegion" + tostring<int>(widget_count));
 }
 
 
