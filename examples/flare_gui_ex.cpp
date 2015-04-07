@@ -322,6 +322,8 @@ public:
 	Project(Display *display)
 		: FGUIScreen(display)
 	{
+		draw_focused_outline = false;
+
 		window = new MyFGUIWindow(this, display);
 		window->collision_area->placement.position.x = display->width()/2;
 		window->collision_area->placement.position.y = display->height()/2;
