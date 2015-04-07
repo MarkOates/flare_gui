@@ -141,7 +141,7 @@ FGUIWidget *FGUIChildren::__get_nth_child_recursive(FGUIChildren &children, int 
 	for (unsigned i=0; i<children.children.size(); i++)
 	{
 		_index_count++;
-		if (children.children[i]->attr.matches(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIParent"))
+		if (children.children[i]->attr.matches(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIParent")) // BUG: what about derived FGUIParents?
 		{
 			FGUIParent *p = static_cast<FGUIParent *>(children.children[i]);
 			widget = FGUIChildren::__get_nth_child_recursive(p->children, n);
