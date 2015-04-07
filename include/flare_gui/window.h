@@ -17,37 +17,15 @@
 
 
 
-//class FGUIParent;
-
 class FGUIWindow : public FGUIParent
 {
 public:
-	ALLEGRO_COLOR border_color;
 	ALLEGRO_COLOR background_color;
-
-	vec2d local_mouse;
 
 	FGUIWindow(FGUIParent *parent, float x, float y, float w, float h);
 
-
-	// developer functions
-	/*
-	void timer_func();
-	void mouse_down_func();
-	void mouse_up_func();
-	void key_down_func();
-	void key_up_func();
-	void key_char_func();
-	*/
-
-	void on_drag(float x, float y, float dx, float dy);
-
-	// user functions
-	void on_focus();
-	void on_mouse_enter();
-	void on_mouse_leave();
-	void on_timer();
 	void on_draw();
+	void on_focus();
 };
 
 
