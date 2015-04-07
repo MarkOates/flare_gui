@@ -429,4 +429,13 @@ void FGUITextInput::on_change()
 
 void FGUITextInput::on_submit()
 {
+	// If the widget has a "on_submit_send_message" key in its (DataAttr data), then send it to the parent.
+	// This is a default action and is for convience and usability.  Having this allows a person to
+	// create a FGUITextInput and provide (basic) functionality without having to create a whole new
+	// derived class.
+	if (attr.has("on_submit_send_text"))
+	{
+		send_message_to_parent(get_text());
+		set_text("");
+	}
 }
