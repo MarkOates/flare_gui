@@ -437,6 +437,6 @@ void FGUITextInput::on_submit()
 	if (attr.has("on_submit_send_text"))
 	{
 		send_message_to_parent(get_text());
-		set_text("");
+		if (attr.has("clear_on_submit")) set_text("");
 	}
 }
