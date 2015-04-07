@@ -123,6 +123,8 @@ private:
 
 	FGUINotificationBubble *notification_bubble;
 
+	int mouse_down_x, mouse_down_y;
+
 public:
 	MyFGUIWindow(FGUIParent *parent, Display *display)
 		: FGUIWindow(parent, 0, 0, display->width(), display->height())
@@ -134,6 +136,8 @@ public:
 		, media_player(NULL)
 		, notification_bubble(NULL)
 		, virtual_memory_filename("virtual_memory_file.txt")
+		, mouse_down_x(0)
+		, mouse_down_y(0)
 	{			
 		int button_width = 130;
 		int button_height = 80;
@@ -302,11 +306,40 @@ public:
 
 		if (!message_caught) std::cout << "Uncaught message: \"" << message << "\"" << std::endl;
 	}
+	void on_mouse_down() override
+	{
+		FGUIWindow::on_mouse_down();
+		mouse_down_x = af::current_event->mouse.x;
+		mouse_down_y = af::current_event->mouse.y;
+	}
+	void on_drag(float x, float y, float mx, float my) override
+	{
+		FGUIWindow::on_drag(x, y, mx, my);
+
+		if (mouse_down_y > 40) return;
+
+		int cx, cy;
+		if (al_get_mouse_cursor_position(&cx, &cy))
+		al_set_window_position(display, cx - mouse_down_x, cy - mouse_down_y);
+	}
 	void on_draw() override
 	{
 		FGUIWindow::on_draw();
 
-		al_draw_filled_rectangle(0, 0, place.size.x, 40, color::black);
+		ALLEGRO_COLOR frame_color = color::color(color::hex("8e283e"));
+		al_draw_filled_rectangle(0, 0, place.size.x, 40, frame_color);
+
+		float frame_thickness = 6;
+		al_draw_filled_rectangle(0, 0, frame_thickness, place.size.y, frame_color);
+		al_draw_filled_rectangle(0, place.size.y-frame_thickness, place.size.x, place.size.y, frame_color);
+		al_draw_filled_rectangle(place.size.x-frame_thickness, 0, place.size.x, place.size.y, frame_color);
+
+		// white outline
+		ALLEGRO_COLOR frame_border_color = color::color(color::black, 0.7);
+		al_draw_line(0, 0, place.size.x, 0, frame_border_color, 2.0);
+		al_draw_line(place.size.x, 0, place.size.x, place.size.y, frame_border_color, 2.0);
+		al_draw_line(0, place.size.y, place.size.x, place.size.y, frame_border_color, 2.0);
+		al_draw_line(0, 0, 0, place.size.y, frame_border_color, 2.0);
 	}
 };
 
@@ -340,10 +373,10 @@ public:
 int main(int argc, char *argv[])
 {
 	af::initialize();
-	Display *display = af::create_display(800, 720);
+	//Display *display = af::create_display(800, 720);
 
-	//Display *display = new Display(800, 720, ALLEGRO_NOFRAME);
-	//al_register_event_source(af::event_queue, al_get_display_event_source(display->display));
+	Display *display = new Display(800, 720, ALLEGRO_NOFRAME);
+	al_register_event_source(af::event_queue, al_get_display_event_source(display->display));
 
 	Project *main = new Project(display);
 	af::run_loop();
