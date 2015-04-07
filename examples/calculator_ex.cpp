@@ -227,6 +227,8 @@ public:
     Project(Display *display)
         : FGUIScreen(display)
     {
+		this->draw_focused_outline = false;
+
 		// make a nice background image
 		FGUIImage *img = new FGUIImage(this, af::bitmaps["veddy_nice.png"], 0, 0);
 			img->set_color(color::color(color::white, 0.2));
