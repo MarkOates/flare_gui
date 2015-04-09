@@ -311,8 +311,8 @@ void FGUIWidget::set_as_focused()
 	// iterates through all siblings and sets all parent's children to unfocused.
 	// if the widget is not already focused, then set to focused and on_focus() is called
 {
-	if (parent && parent->set_focus_to(this))
-		this->on_focus();
+	// todo: this might require that the superparent is iterated
+	if (parent) parent->set_focus_to(this);
 }
 
 

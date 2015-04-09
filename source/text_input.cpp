@@ -422,6 +422,18 @@ void FGUITextInput::on_draw()
 
 
 
+void FGUITextInput::on_focus()
+{
+	if (attr.has("select_all_on_focus"))
+	{
+		// select all
+		cursor_end = 0;
+		cursor_pos = text.length();
+	}
+}
+
+
+
 void FGUITextInput::on_change()
 {
 }

@@ -183,7 +183,11 @@ bool FGUIParent::set_focus_to(FGUIWidget *child)
 		}
 	}
 
-	if (child) child->focused = true;
+	if (child)
+	{
+		child->focused = true;
+		child->on_focus();
+	}
 
 	return true;
 }

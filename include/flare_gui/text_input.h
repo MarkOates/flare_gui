@@ -45,6 +45,7 @@ public:
 	void on_mouse_move(float x, float y, float dx, float dy);
 	void on_key_char();
 	void on_draw();
+	void on_focus() override;
 	virtual void on_change();
 	virtual void on_submit(); // usually instigated by the ENTER key
 };
