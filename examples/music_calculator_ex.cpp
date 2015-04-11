@@ -1,10 +1,73 @@
 
 
+
+
+// // // // //
+// This is the run script part of the file
+// // // // //
+
+#include <string>
+#include <iostream>
+#include <stdio.h>
+
+
+#include <string>
+
+struct RubyScriptResult
+{
+	bool exception_caught; // currently does not function
+	std::string filename;
+	std::string output;
+};
+
+// from http://stackoverflow.com/questions/478898/how-to-execute-a-command-and-get-output-of-command-within-c
+// use "_popen" and "_pclose" for windows
+// and "popen" and "pclose" for other systems
+
+static std::string exec(const char* cmd) {
+    FILE* pipe = _popen(cmd, "r");
+    if (!pipe) return "ERROR";
+    char buffer[128];
+    std::string result = "";
+    while(!feof(pipe)) {
+    	if(fgets(buffer, 128, pipe) != NULL)
+    		result += buffer;
+    }
+    _pclose(pipe);
+    return result;
+}
+
+RubyScriptResult run_ruby_script(std::string script_filename, std::string args)
+{
+	RubyScriptResult result;
+	std::string exec_command = "C:/Ruby200/bin/setrbvars.bat & ruby ./data/scripts/" + script_filename + " " + args;
+	result.output = exec(exec_command.c_str());
+	// profiling on my computer demonstrates that this method takes 0.09sec to 0.11sec to execute.
+	// That's setting the environment vars, starting the interpreter, and running a simple script.
+	// obviously, it's not ideal for realtime usage, but for now this is the simplest implementation
+	// to begin development with ruby and scripting.
+
+	result.filename = script_filename;
+	result.exception_caught = false; // with this method, there is no way to catch the error in std err
+
+	return result;
+}
+
+
+
+
+
+// // // // //
+// This is the main Projec part of the file
+// // // // //
+
+
 #include <flare_gui/flare_gui.h>
 #include <flare_gui/music_notation.h>
 #include <allegro_flare/drawing_interfaces/drawing_interface_allegro5.h>
 
 #include <algorithm>
+
 
 
 
@@ -14,15 +77,20 @@ public:
 	ALLEGRO_BITMAP *music_render;
 	FGUITextInput *text_input;
 	FGUIText *notation_text;
+	std::string result_text;
 	Project() : FGUIScreen(af::create_display())
 		, music_render(al_create_bitmap(200, 80))
 		, text_input(NULL)
 		, notation_text(NULL)
+		, result_text()
 	{
-		text_input = new FGUITextInput(this, af::fonts["DroidSans.ttf 20"], "0 1 2 3 4 5", display->center(), display->height()*2/3, 300, 40);
+		text_input = new FGUITextInput(this, af::fonts["DroidSans.ttf 20"],
+									"0 1 2 3 4 5", display->center(), display->height()*2/3, 300, 40);
+		text_input->attr.set("on_submit_send_text", "process music");
 		notation_text = new FGUIText(this, display->center()-text_input->place.size.x/2, display->height()*2/3+45,
 			af::fonts["DroidSans.ttf 20"], "[notation_string]");
 	}
+
 	void primary_timer_func() override
 	{
 		static int last_width = 0;
@@ -30,13 +98,25 @@ public:
 		MusicNotation music_notation(&drawing_interface);
 
 		FGUIScreen::primary_timer_func();
+
 		last_width = music_notation.draw(display->center() - last_width/2, display->height()/3,
-			"{staff_color=white color=white spacing=fixed}" + convert_cell_format_to_notation(text_input->get_text()));
-
-		std::string result_text = convert_cell_format_to_notation(text_input->get_text()).c_str();
-
-		notation_text->set_text(result_text);
+			"{staff_color=white color=white spacing=fixed ignore_spaces}" + result_text);
 	}
+
+	void receive_message(std::string message) override
+	{
+		// on any message, reset the result_text
+		result_text = get_result_from_script(text_input->get_text());
+		notation_text->set_text(result_text);
+		std::cout << "message recieved" << std::endl;
+	}	
+
+	static std::string get_result_from_script(std::string arguments)
+	{
+		RubyScriptResult result = run_ruby_script("music_calc.rb", arguments);
+		return result.output;
+	}
+
 	static std::string convert_cell_format_to_notation(std::string cell)
 	{
 		// each note is in the format "[0q 6 2h 8 1 0]" which is
