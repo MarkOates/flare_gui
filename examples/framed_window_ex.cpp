@@ -92,14 +92,40 @@ public:
 class Project : public FGUIScreen
 {
 public:
+	FGUIButton *launch_button;
+
 	Project(Display *display)
 		: FGUIScreen(display)
+		, launch_button(NULL)
 	{
-		draw_focused_outline = false;
+		//draw_focused_outline = false;
+		launch_button = new FGUIButton(this, "launch a window!", af::fonts["DroidSans.ttf 16"], 300, 200, 200, 170);
+		launch_button->attr.set("on_click_send_message", "launch window");
+
 		new FGUIFramedWindow(this, 200, 200, 300, 200);
 		new FGUIFramedWindow(this, 280, 300, 100, 80);
 		new FGUIFramedWindow(this, 570, 280, 400, 320);
 	}
+	void primary_timer_func() override
+	{
+		FGUIScreen::primary_timer_func();
+		for (unsigned i=0; i<children.children.size(); i++)
+		{
+			if (children.children[i]->delete_me == true)
+				delete children.children[i--];
+		}
+	}
+	void receive_message(std::string message)
+	{
+		if (message == "launch window")
+		{
+			FGUIFramedWindow *window = new FGUIFramedWindow(this,
+					random_int(-100, -100), random_int(-100, 100),
+					random_int(200, 400), random_int(150, 300));
+			window->place.position += vec2d(place.size.x, place.size.y);
+		}
+	}
+
 };
 
 
