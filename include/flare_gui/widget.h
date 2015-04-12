@@ -147,6 +147,7 @@ public:
 	// from widget drawing - if the user want it.
 
 	void FGUIWidget::draw_inset(float x, float y, float w, float h);
+	void FGUIWidget::draw_outset(float x, float y, float w, float h);
 };
 
 
