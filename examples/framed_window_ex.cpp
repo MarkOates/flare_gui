@@ -16,7 +16,7 @@ simple example program of how a framed window might be implemented
 
 
 
-class FGUIFramedWindow : public FGUIWindow
+class FGUIFramedWindow : public FGUIParent
 {
 public:
 	FGUIDraggableRegion *titlebar_dragger;
@@ -26,7 +26,7 @@ public:
 	FGUIButton *close_button;
 
 	FGUIFramedWindow(FGUIParent *parent, float x, float y, float w, float h)
-		: FGUIWindow(parent, x, y, w, h)
+		: FGUIParent(parent, new FGUICollisionBoxPadded(x, y, w, h, 30+6, 6, 6, 6))
 		, titlebar_dragger(NULL)
 		, titlebar_height(30)
 		, frame_thickness(6)
@@ -48,8 +48,6 @@ public:
 	}
 	void draw_window_frame_around(float x1, float y1, float x2, float y2)
 	{
-		FGUIWindow::on_draw();
-
 		ALLEGRO_COLOR frame_color = color::color(color::hex("8e283e"), 0.3);
 
 		// titlebar
@@ -73,8 +71,11 @@ public:
 	void on_draw() override
 		// ultimately when implemented as FGUIWindowFrame, on_draw() should not need to be overridden at all
 	{
+		// draw the background of the window
+		FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+	
 		// draw the window's regular widgets
-		FGUIWindow::on_draw();
+		FGUIWidget::on_draw();
 
 		// draw the frame
 		draw_window_frame_around(0, 0, place.size.x, place.size.y);
