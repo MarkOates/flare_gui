@@ -7,6 +7,7 @@
 #include <flare_gui/widget.h>
 
 #include <flare_gui/collision_box.h>
+#include <flare_gui/collision_box_padded.h>
 #include <flare_gui/collision_circle.h>
 #include <flare_gui/collision_bitmap.h>
 #include <flare_gui/collision_column.h>
