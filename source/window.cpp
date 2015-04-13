@@ -49,5 +49,5 @@ void FGUIWindow::on_draw()
 
 void FGUIWindow::on_focus()
 {
-	//bring_to_front();
+	if (attr.has("bring_to_front_on_focus")) bring_to_front();
 }
