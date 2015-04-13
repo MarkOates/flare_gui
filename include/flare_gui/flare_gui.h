@@ -16,6 +16,7 @@
 #include <flare_gui/button.h>
 #include <flare_gui/text_input.h>
 #include <flare_gui/window.h>
+#include <flare_gui/framed_window.h>
 #include <flare_gui/text.h>
 #include <flare_gui/text_box.h>
 #include <flare_gui/scaled_text.h>
