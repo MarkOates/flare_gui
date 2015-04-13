@@ -35,7 +35,7 @@ FGUIFramedWindow::FGUIFramedWindow(FGUIParent *parent, float x, float y, float w
 
 void FGUIFramedWindow::draw_window_frame_around(float x1, float y1, float x2, float y2)
 {
-	ALLEGRO_COLOR frame_color = color::color(color::hex("8e283e"), 0.3);
+	ALLEGRO_COLOR frame_color = color::color(color::hex("8e283e"), 0.6);
 
 	// titlebar
 	al_draw_filled_rectangle(x1-frame_thickness, y1-frame_thickness-titlebar_height, x2+frame_thickness, y1, frame_color);
@@ -83,6 +83,13 @@ void FGUIFramedWindow::on_draw()
 void FGUIFramedWindow::on_focus() 
 {
 	bring_to_front();
+}
+
+
+
+void FGUIFramedWindow::set_title(std::string title)
+{
+	window_title = title;
 }
 
 

@@ -28,6 +28,8 @@ public:
 
 	void on_draw() override;
 	void on_focus() override;
+
+	void set_title(std::string title);
 };
 
 
