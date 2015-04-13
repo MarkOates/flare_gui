@@ -1,3 +1,4 @@
 /msvc-10.0
 /lib
 *.swp
+*.swo
