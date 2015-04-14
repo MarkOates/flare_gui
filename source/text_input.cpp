@@ -95,6 +95,7 @@ void FGUITextInput::_insert_text(const char *str)
 	//if (cursor_pos != cursor_end) _handle_erase(); // this causes a crash
 	text.insert(cursor_pos, str);
 	cursor_pos += strlen(str);
+	on_change();
 }
 
 
