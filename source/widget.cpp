@@ -50,16 +50,19 @@ FGUIWidget::~FGUIWidget()
 	// so there aren't any dangling pointers.  This is an attempt to offer one type
 	// of solution, but it only covers the widget.placement elements.
 
-	float* _elem[] = {
-		&place.position.x, &place.position.y,
-		&place.size.x, &place.size.y,
-		&place.scale.x, &place.scale.y,
-		&place.anchor.x, &place.anchor.y,
-		&place.rotation
-	};
+	if (collision_area)
+	{
+		float* _elem[] = {
+			&collision_area->placement.position.x, &collision_area->placement.position.y,
+			&collision_area->placement.size.x, &collision_area->placement.size.y,
+			&collision_area->placement.scale.x, &collision_area->placement.scale.y,
+			&collision_area->placement.anchor.x, &collision_area->placement.anchor.y,
+			&collision_area->placement.rotation
+		};
 
-	std::vector<float*> pacement_elements (_elem, _elem + sizeof(_elem) / sizeof(float*) );
-	af::motion.clear_animations_on(pacement_elements);
+		std::vector<float*> pacement_elements (_elem, _elem + sizeof(_elem) / sizeof(float*) );
+		af::motion.clear_animations_on(pacement_elements);
+	}
 }
 
 
@@ -105,6 +108,7 @@ FGUIScreen *FGUIWidget::gimmie_super_screen()
 void FGUIWidget::bring_to_front()
 {
 	if (!parent) return;
+		// hmm.. the logic of this should be executed by the parent, not this child
 	for (unsigned i=0; i<parent->children.children.size(); i++)
 	{
 		if (parent->children.children[i] == this)
@@ -137,19 +141,18 @@ void FGUIWidget::primary_timer_func()
 
 void FGUIWidget::draw_func()
 {
-	//placement2d *placement = gimmie_placement();
-	place.start_transform();
+	if (collision_area) collision_area->placement.start_transform();
 
 	on_draw();
 	
 	// draws the focus rectangle if it's focused
 	if (focused && gimmie_super_screen()->draw_focused_outline)
 	{
-		al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::color(color::black, 0.2), 5);
-		al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::mix(gimmie_super_screen()->focused_outline_color, color::purple, 0.6+0.4*sin(af::time_now*3)), 1.5);
+		al_draw_rounded_rectangle(0, 0, collision_area->placement.size.x, collision_area->placement.size.y, 3, 3, color::color(color::black, 0.2), 5);
+		al_draw_rounded_rectangle(0, 0, collision_area->placement.size.x, collision_area->placement.size.y, 3, 3, color::mix(gimmie_super_screen()->focused_outline_color, color::purple, 0.6+0.4*sin(af::time_now*3)), 1.5);
 	}
 
-	place.restore_transform();
+	if (collision_area) collision_area->placement.restore_transform();
 
 	// draws the collision shape (for debugging)
 	//collision_area->draw_bounding_area();
@@ -160,14 +163,17 @@ void FGUIWidget::draw_func()
 // widget developer functions:
 void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 {
-	bool mouse_over_now = collision_area->collides(x, y);
-	if (parent && parent->mouse_blocked) mouse_over_now = false;
+	if (collision_area)
+	{
+		bool mouse_over_now = collision_area->collides(x, y);
+		if (parent && parent->mouse_blocked) mouse_over_now = false;
 
-	if (mouse_over_now && !mouse_over) on_mouse_enter();
-	else if (!mouse_over_now && mouse_over) on_mouse_leave();
+		if (mouse_over_now && !mouse_over) on_mouse_enter();
+		else if (!mouse_over_now && mouse_over) on_mouse_leave();
 
-	mouse_over = mouse_over_now;
-	if (parent && mouse_over) parent->mouse_blocked = true;
+		mouse_over = mouse_over_now;
+		if (parent && mouse_over) parent->mouse_blocked = true;
+	}
 
 	on_mouse_move(x, y, dx, dy);
 	if (mouse_down_on_over)
@@ -286,7 +292,8 @@ void FGUIWidget::on_joy_axis() {}
 void FGUIWidget::on_timer() {}
 void FGUIWidget::on_draw()
 {
-	al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 4, 4, color::color(color::aliceblue, 0.2), 2.0);
+	if (collision_area)
+		al_draw_rounded_rectangle(0, 0, collision_area->placement.size.x, collision_area->placement.size.y, 4, 4, color::color(color::aliceblue, 0.2), 2.0);
 }
 void FGUIWidget::on_drag(float x, float y, float dx, float dy) {}
 
