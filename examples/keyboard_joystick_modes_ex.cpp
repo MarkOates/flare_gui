@@ -40,7 +40,7 @@ public:
 	FlareGUIJoystick(Display *display)
 		: FGUIScreen(display)
 		, notification_screen(NULL)
-		, font(fonts["DroidSerif.ttf 20"])
+		, font(af::fonts["DroidSerif.ttf 20"])
 		//, last_focused_ancestor(0)
 		//, joy_as_mouse(false)
 		//, joy_vertical_pos(0)
@@ -48,7 +48,7 @@ public:
 		//, hide_mouse_cursor_on_widget_jump(false)
 	{
 		//FGUIScreen::draw_focused_outline = false;
-		notification_screen = new SimpleNotificationScreen(display, fonts["DroidSerif.ttf 16"]);
+		notification_screen = new SimpleNotificationScreen(display, af::fonts["DroidSerif.ttf 16"]);
 
 		float button_x = 800/2;
 		float button_y = 200;
@@ -67,11 +67,11 @@ public:
 
 		new ::FGUITextArea(this, font, "This is a textarea", 800, 320, 200, 300);
 
-		new FGUIScaledText(this, 60, 100, "HelveticaNeueLTStd-HvIt.otf 42", "Widget Selection Example");
+		new FGUIScaledText(this, 60, 100, "DroidSans.ttf 42", "Widget Selection Example");
 
 		new FGUIText(this, 20, display->height()-70-30, font, "Use the mouse OR joystick to move the mouse cursor.");
 		new FGUIText(this, 20, display->height()-40-30, font, "Press the joystick SHOULDER BUTTONS or keyboard's TAB to jump to the next GUI widget.");
-		new FGUIText(this, 20, display->height()-40, font, "(you can also hot-swapt the joystick)");
+		new FGUIText(this, 20, display->height()-40, font, "(you can also hot-swap the joystick)");
 
 		std::cout << "count_complete_lineage: " << get_num_ancestors() << std::endl;
 	}

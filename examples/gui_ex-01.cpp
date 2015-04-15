@@ -37,11 +37,10 @@ public:
 	}
 	void on_draw() override
 	{
-		placement2d &place = (*gimmie_placement());
 		// this is correct placement for the circle:
 		al_draw_filled_circle(place.size.x/2, place.size.y/2, place.size.x/2, color::color(icon_color, mouse_over ? 1.0 : 0.3));
 
-		ALLEGRO_FONT *font = gimmie_fonts()->auto_get("FontAwesome.otf -" + tostring(place.size.x/3));
+		ALLEGRO_FONT *font = af::fonts["FontAwesome.otf -" + tostring(place.size.x/3)];
 		int line_height = al_get_font_line_height(font);
 		draw_unicode_char(font, color::white, icon, ALLEGRO_ALIGN_CENTER, place.size.x/2, place.size.y/2 - line_height/2-1);
 		//font_awesome:
@@ -103,14 +102,13 @@ public:
 
 
 
-//(*gimmie_fonts())["DroidSans_0.ttf 20"],
+//af::fonts["DroidSans.ttf 20"],
 
 #include <allegro_flare/objects/sound_object.h>
 
 class MyMediaPlayer : public FGUIWindow
 {
 private:
-	//(*gimmie_fonts())["DroidSans_0.ttf 20"],
 	std::string filename;
 	Sound sound;
 	FGUIProgressBar *progress_bar;
@@ -118,26 +116,26 @@ public:
 	MyMediaPlayer(FGUIParent *parent)
 		: FGUIWindow(parent, 650, 500, 200, 170)
 		, filename("water_4.wav")
-		, sound(gimmie_super_screen()->samples[filename])
+		, sound(af::samples[filename])
 		, progress_bar(NULL)
 	{
-		(new FGUIButton(this, "play", (*gimmie_fonts())["DroidSans_0.ttf 20"], 100-45, 120, 80, 50))
+		(new FGUIButton(this, "play", af::fonts["DroidSans.ttf 20"], 100-45, 120, 80, 50))
 			->attr.set("on_click_send_message", "play");
 
-		(new FGUIButton(this, "stop", (*gimmie_fonts())["DroidSans_0.ttf 20"], 190-45, 120, 80, 50))
+		(new FGUIButton(this, "stop", af::fonts["DroidSans.ttf 20"], 190-45, 120, 80, 50))
 			->attr.set("on_click_send_message", "stop");
 
 		progress_bar = new FGUIProgressBar(this, 100, 70, 180);
 			//->set("", "");
 
-		(new FGUIText(this, 100, 30, (*gimmie_fonts())["DroidSans_0.ttf 20"], filename))
+		(new FGUIText(this, 100, 30, af::fonts["DroidSans.ttf 20"], filename))
 			->collision_area->placement.align.x = 0.5;
 	}
 	void receive_message(std::string message) override
 	{
 		if (message == "play") sound.play();
 		else if (message == "stop") sound.stop();
-		//(*gimmie_fonts())["DroidSans_0.ttf 20"],
+		//af::fonts["DroidSans.ttf 20"],
 	}
 	void primary_timer_func() override
 	{
@@ -241,7 +239,6 @@ class MyFGUIWindow : public FGUIWindow
 {
 private:
 	ALLEGRO_DISPLAY *display;
-	placement2d &place;
 	MyTextInput *primary_text_input;
 	FGUIMusicNotation *music_render;
 	FGUIProgressBar *progress_bar;
@@ -258,7 +255,6 @@ public:
 	MyFGUIWindow(FGUIParent *parent, Display *display)
 		: FGUIWindow(parent, 0, 0, display->width(), display->height())
 		, display(display->display)
-		, place(*gimmie_placement())
 		, primary_text_input(NULL)
 		, music_render(NULL)
 		, progress_bar(NULL)
@@ -276,18 +272,18 @@ public:
 
 
 
-		primary_text_input = new MyTextInput(this, (*gimmie_fonts())["DroidSerif.ttf 25"], "", place.size.x/2, 80, place.size.x-30, 50);
+		primary_text_input = new MyTextInput(this, af::fonts["DroidSerif.ttf 25"], "", place.size.x/2, 80, place.size.x-30, 50);
 		primary_text_input->set_as_focused();
 
 
 		music_render = new FGUIMusicNotation(this, this->place.size.x/2, 300);
 
 
-		FGUIText *title_text = new FGUIText(this, 20, 14, (*gimmie_fonts())["consola.ttf 20"], Globals.get("window_title"));
-		title_text->collision_area->placement.align.x = 0;
-		title_text->collision_area->placement.align.y = 0;
+		FGUIText *title_text = new FGUIText(this, 20, 14, af::fonts["consola.ttf 20"], Globals.get("window_title"));
+		title_text->place.align.x = 0;
+		title_text->place.align.y = 0;
 				
-		float window_right = this->collision_area->placement.size.x;
+		float window_right = this->place.size.x;
 
 
 		float radius = 30;
@@ -296,40 +292,40 @@ public:
 
 
 		
-		(new FGUIButton(this, "0.0", (*gimmie_fonts())["DroidSans_0.ttf 20"], 100, 200+60*0, 80, 50))
+		(new FGUIButton(this, "0.0", af::fonts["DroidSans.ttf 20"], 100, 200+60*0, 80, 50))
 			->attr.set("on_click_send_message", "set_progress_bar 0.0");
 
-		(new FGUIButton(this, "0.2", (*gimmie_fonts())["DroidSans_0.ttf 20"], 100, 200+60*1, 80, 50))
+		(new FGUIButton(this, "0.2", af::fonts["DroidSans.ttf 20"], 100, 200+60*1, 80, 50))
 			->attr.set("on_click_send_message", "set_progress_bar 0.2");
 
-		(new FGUIButton(this, "0.5", (*gimmie_fonts())["DroidSans_0.ttf 20"], 100, 200+60*2, 80, 50))
+		(new FGUIButton(this, "0.5", af::fonts["DroidSans.ttf 20"], 100, 200+60*2, 80, 50))
 			->attr.set("on_click_send_message", "set_progress_bar 0.5");
 
-		(new FGUIButton(this, "1.0", (*gimmie_fonts())["DroidSans_0.ttf 20"], 100, 200+60*3, 80, 50))
+		(new FGUIButton(this, "1.0", af::fonts["DroidSans.ttf 20"], 100, 200+60*3, 80, 50))
 			->attr.set("on_click_send_message", "set_progress_bar 1.0");
 
-		(new FGUIButton(this, "set music", (*gimmie_fonts())["DroidSans_0.ttf 20"], 100, 200+60*4, 110, 50))
+		(new FGUIButton(this, "set music", af::fonts["DroidSans.ttf 20"], 100, 200+60*4, 110, 50))
 			->attr.set("on_click_send_message", "set_music 123456");
 
 
-		(new FGUIButton(this, "shrink", (*gimmie_fonts())["DroidSans_0.ttf 20"], 100, 200+60*5, 80, 50))
+		(new FGUIButton(this, "shrink", af::fonts["DroidSans.ttf 20"], 100, 200+60*5, 80, 50))
 			->attr.set("on_click_send_message", "shrink");
 
-		(new FGUIButton(this, "grow", (*gimmie_fonts())["DroidSans_0.ttf 20"], 100+90, 200+60*5, 80, 50))
+		(new FGUIButton(this, "grow", af::fonts["DroidSans.ttf 20"], 100+90, 200+60*5, 80, 50))
 			->attr.set("on_click_send_message", "grow");
 
 		
 		(new FGUICheckbox(this, 600, 200-40, 24));
-			(new FGUIScaledText(this, 600+30, 200-40, "DroidSans_0.ttf 20", "Option 1"));
+			(new FGUIScaledText(this, 600+30, 200-40, "DroidSans.ttf 20", "Option 1"));
 		(new FGUICheckbox(this, 600, 230-40, 24));
-			(new FGUIScaledText(this, 600+30, 230-40, "DroidSans_0.ttf 20", "Option 2"));
+			(new FGUIScaledText(this, 600+30, 230-40, "DroidSans.ttf 20", "Option 2"));
 		(new FGUICheckbox(this, 600, 260-40, 24));
-			(new FGUIScaledText(this, 600+30, 260-40,  "DroidSans_0.ttf 20", "Option 3"));
+			(new FGUIScaledText(this, 600+30, 260-40,  "DroidSans.ttf 20", "Option 3"));
 
 
-		text = new FGUIText(this, place.size.x/2, place.size.y-20, (*gimmie_fonts())["consola.ttf 20"], "-last-");
-		text->collision_area->placement.scale.x = 0.8;
-		text->collision_area->placement.scale.y = 0.8;
+		text = new FGUIText(this, place.size.x/2, place.size.y-20, af::fonts["consola.ttf 20"], "-last-");
+		text->place.scale.x = 0.8;
+		text->place.scale.y = 0.8;
 
 		progress_bar = new FGUIProgressBar(this, 500, 400);
 
@@ -408,15 +404,13 @@ public:
 		}
 		else if (message_caught = (message == "shrink"))
 		{
-			placement2d &place = (*gimmie_placement());
-			gimmie_motion()->cmove_to(&place.scale.x, 0.86, 0.3);
-			gimmie_motion()->cmove_to(&place.scale.y, 0.86, 0.3);
+			af::motion.cmove_to(&place.scale.x, 0.86, 0.3);
+			af::motion.cmove_to(&place.scale.y, 0.86, 0.3);
 		}
 		else if (message_caught = (message == "grow"))
 		{
-			placement2d &place = (*gimmie_placement());
-			gimmie_motion()->cmove_to(&place.scale.x, 1, 0.3);
-			gimmie_motion()->cmove_to(&place.scale.y, 1, 0.3);
+			af::motion.cmove_to(&place.scale.x, 1, 0.3);
+			af::motion.cmove_to(&place.scale.y, 1, 0.3);
 		}
 		else if (message_caught = (message == "exit"))
 		{
@@ -487,8 +481,8 @@ public:
 		, current_focused_ancestor(0)
 	{
 		window = new MyFGUIWindow(this, display);
-		window->collision_area->placement.position.x = display->width()/2;
-		window->collision_area->placement.position.y = display->height()/2;
+		window->place.position.x = display->width()/2;
+		window->place.position.y = display->height()/2;
 
 		std::cout << "this widget has " << get_num_ancestors() << " leaves" << std::endl;
 	}
@@ -518,7 +512,7 @@ public:
 int main(int argc, char *argv[])
 {
 	af::initialize();
-	Globals.load("gui_example_01_settings.txt");
+	Globals.load("data/config/gui_ex-01.cfg");
 	Display *display = af::create_display(Globals.get_as_int("screen_width"), Globals.get_as_int("screen_height"));
 	al_set_window_title(display->display, Globals.get("window_title").c_str());
 	Project *main = new Project(display);

@@ -288,12 +288,10 @@ public:
 	{
 	public:
 		Input(FGUIParent *parent)
-			: FGUITextInput(parent, parent->gimmie_fonts()->operator[]("DroidSans.ttf 18"), "function(arg1, \"this is a string\")", PADDING, PADDING, WIDTH, 40)
+			: FGUITextInput(parent, af::fonts["DroidSans.ttf 18"], "function(arg1, \"this is a string\")", PADDING, PADDING, WIDTH, 40)
 		{
 			place.align.x = 0;
 			place.align.y = 0;
-//			this->gimmie_placement()->align_x = 0;
-//			this->gimmie_placement()->align_y = 0;
 		}
 	};
 
@@ -301,16 +299,13 @@ public:
 	{
 	public:
 		Output(FGUIParent *parent)
-			: FGUITextArea(parent, parent->gimmie_fonts()->operator[]("consola.ttf 18"), "", PADDING, PADDING + 80, WIDTH, 400)
+			: FGUITextArea(parent, af::fonts["consola.ttf 18"], "", PADDING, PADDING + 80, WIDTH, 400)
 		{
 			place.align.x = 0;
 			place.align.y = 0;
-//			this->gimmie_placement()->align_x = 0;
-//			this->gimmie_placement()->align_y = 0;
 		}
 		void on_draw() override
 		{
-			placement2d &place = (*gimmie_placement());
 			al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color::color(color::white, 0.1));
 			FGUITextArea::on_draw();
 		}
@@ -322,7 +317,7 @@ public:
 	std::string get_pointing_string(std::size_t point1, std::size_t point2)
 	{
 		std::stringstream ss;
-		for (unsigned i=0; i<=max(point1, point2); i++)
+		for (unsigned i=0; i<=std::max(point1, point2); i++)
 		{
 			if (i == point1) ss << "^";
 			else if (i == point2) ss << "^";
