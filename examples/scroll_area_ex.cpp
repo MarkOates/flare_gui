@@ -43,34 +43,6 @@ public:
 
 
 
-/*
-class FGUISettingsWindow : public FGUIWindow
-{
-private:
-	FontBin &fonts;
-public:
-	FGUISettingsWindow(FGUIParent *parent, Display *display)
-		: FGUIWindow(parent, display->width()/2, display->height()/2, 500, 400)
-		, fonts(*gimmie_fonts())
-	{
-		FGUIWindow::background_color = color::mix(FGUIWindow::background_color, color::aliceblue, 0.1);
-		///fonts["DroidSerif.ttf 18"];
-		//new FGUIDraggableRegion(this, 0, 0, this->place.size.x, 20);
-		new FGUIText(this, 18, 26, fonts["DroidSerif.ttf 22"], "GUI Settings");
-
-		float cursor_y = 80;
-		float spacing_y = 30;
-
-		new FGUICheckbox(this, 40, cursor_y, 24);
-			new FGUIText(this, 40+36, cursor_y, fonts["DroidSans.ttf 18"], "Show hilight on focused widget");
-
-		new FGUICheckbox(this, 40, cursor_y+spacing_y, 24);
-			new FGUIText(this, 40+36, cursor_y+spacing_y, fonts["DroidSans.ttf 18"], "Allow click to focus on no_focus elements");
-	}
-};
-*/
- 
-
 
 
 class ScrollViewExpampleProgram : public FGUIScreen
@@ -87,12 +59,12 @@ public:
 		, scroll_view(NULL)
 		//, settings_window(NULL)
 	{
-		new FGUIImage(this, bitmaps["maybe_cooler2.png"], display->width()/2, display->height()/2);
+		new FGUIImage(this, af::bitmaps["maybe_cooler2.png"], display->width()/2, display->height()/2);
 
 		FGUIParent *canvas = build_canvas_for_scrollable_area();
 		scroll_view = new FGUIScrollView(this, display->width()/3, display->height()/2, canvas->place.size.x, 600, canvas);
 
-		(new FGUIText(this, 700, 140, fonts["DroidSerif.ttf 42"], "Scroll Area Example"))
+		(new FGUIText(this, 700, 140, af::fonts["DroidSerif.ttf 42"], "Scroll Area Example"))
 			->place.align.x = 0;
 
 		// settins window
@@ -100,10 +72,10 @@ public:
 
 
 
-		(new FGUIText(this, 700, 260, fonts["DroidSans.ttf 30"], "Scroll Area Info"))
+		(new FGUIText(this, 700, 260, af::fonts["DroidSans.ttf 30"], "Scroll Area Info"))
 			->place.align.x = 0;
 
-		text_box = new FGUITextArea(this, fonts["DroidSans.ttf 20"], "InfoPane", 700, 300, 300, 200);
+		text_box = new FGUITextArea(this, af::fonts["DroidSans.ttf 20"], "InfoPane", 700, 300, 300, 200);
 		text_box->place.align = vec2d(0, 0);
 
 
@@ -113,16 +85,16 @@ public:
 		float cursor_y = 600;
 		float spacing_y = 30;
 
-		(new FGUIText(this, 700, cursor_y, fonts["DroidSans.ttf 30"], "Options"))
+		(new FGUIText(this, 700, cursor_y, af::fonts["DroidSans.ttf 30"], "Options"))
 			->place.align.x = 0;
 
 		cursor_y += 40;
 
 		new FGUICheckbox(this, cursor_x, cursor_y, 24);
-			new FGUIText(this, cursor_x+36, cursor_y, fonts["DroidSans.ttf 18"], "Show hilight on focused widget");
+			new FGUIText(this, cursor_x+36, cursor_y, af::fonts["DroidSans.ttf 18"], "Show hilight on focused widget");
 
 		new FGUICheckbox(this, cursor_x, cursor_y+spacing_y, 24);
-			new FGUIText(this, cursor_x+36, cursor_y+spacing_y, fonts["DroidSans.ttf 18"], "Allow click to focus on no_focus elements");
+			new FGUIText(this, cursor_x+36, cursor_y+spacing_y, af::fonts["DroidSans.ttf 18"], "Allow click to focus on no_focus elements");
 
 	}
 	FGUIParent *build_canvas_for_scrollable_area()
@@ -133,10 +105,10 @@ public:
 
 		//{
 			// some example in-canvas elements
-			FGUIImage *img = new FGUIImage(canvas, gimmie_super_screen()->bitmaps["pic1.jpg"], canvas->place.size.x/2, 120);
+			FGUIImage *img = new FGUIImage(canvas, af::bitmaps["pic1.jpg"], canvas->place.size.x/2, 120);
 				img->place.rotation = 0.2;
-			new FGUIImage(canvas, gimmie_super_screen()->bitmaps["pic2.png"], canvas->place.size.x/2, 330);
-			new FGUITextBox(canvas, gimmie_super_screen()->fonts["DroidSans.ttf 22"],
+			new FGUIImage(canvas, af::bitmaps["pic2.png"], canvas->place.size.x/2, 330);
+			new FGUITextBox(canvas, af::fonts["DroidSans.ttf 22"],
 				"The content in this scroll area is a Parent widget.",
 				canvas->place.size.x/2, 510, 300, 120);  
 			FGUITextList *text_list = new FGUITextList(canvas, canvas->place.size.x/2, 700, 300);
@@ -145,7 +117,7 @@ public:
 				text_list->add_item("Wrapping Paper");
 				text_list->add_item("Toys");
 				text_list->add_item("Dishwashing Soap");
-			new FGUIButton(canvas, "Button", gimmie_super_screen()->fonts["DroidSans.ttf 22"], canvas->place.size.x/2, canvas->place.size.y-60, 110, 60);  
+			new FGUIButton(canvas, "Button", af::fonts["DroidSans.ttf 22"], canvas->place.size.x/2, canvas->place.size.y-60, 110, 60);  
 		//}
 		return canvas;
 	}
