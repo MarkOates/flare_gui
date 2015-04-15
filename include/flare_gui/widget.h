@@ -46,7 +46,7 @@ enum WIDGET_FLAGS
 class FGUIWidget
 {
 private:
-	static int num_active_widgets;
+	static int num_active_widgets; // holds the number of widgets that are currently being managed
 
 protected:
 
@@ -55,7 +55,7 @@ protected:
 	friend class FGUIChildren;
 
 	FGUIParent *parent;
-	static int widget_count;
+	static int widget_count; // a counter for numbering new widget ids
 	bool mouse_over, mouse_down_on_over, focused, dragging, no_focus; // should implement a flag system instead ;)
 		// ^^^ will need to add: skip_on_tab_focus (or no_focus), no_jumpout_on_tab
 
@@ -135,8 +135,8 @@ public:
 
 
 	// static functions
+	static int get_num_created_widgets();
 	static int get_num_active_widgets();
-	static FGUIWidget *get_element_by_id(std::string id, std::vector<FGUIWidget *> &widgets); // < huh?  I think this should probably be obsolete
 
 public:
 	// Down here are some static functions for drawing basic graphic elements for the GUI.
@@ -155,3 +155,4 @@ public:
 
 
 #endif
+

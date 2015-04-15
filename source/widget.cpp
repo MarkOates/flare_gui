@@ -19,18 +19,13 @@ FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
 	, dragging(false)
 	, no_focus(false)
 	, delete_me(false)
-	//, fonts(*gimmie_fonts()) // < this means you will never be able to re-assign the widget to another parent
-			  // lest you risk the previous owner's font bin being deleted.
-			  // this may allude to the need of a global resource
 {
-	//std::cout << "FGUIWidget()" << std::endl;
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWidget");
 	attr.set("id", "Widget" + tostring(widget_count));
 
 	if (parent) parent->children.register_as_child(this);
 	num_active_widgets++;
 	widget_count++;
-	//std::cout << "FGUIWidget().num_active_widgets == " << num_active_widgets << std::endl;
 }
 
 
@@ -307,6 +302,13 @@ int FGUIWidget::widget_count = 0;
 
 
 
+int FGUIWidget::get_num_created_widgets()
+{
+	return widget_count;
+}
+
+
+
 int FGUIWidget::get_num_active_widgets()
 {
 	return num_active_widgets;
@@ -337,13 +339,13 @@ void FGUIWidget::set_as_unfocused()
 
 
 
-FGUIWidget *FGUIWidget::get_element_by_id(std::string id, std::vector<FGUIWidget *> &widgets)
-{
-	for (unsigned i=0; i<widgets.size(); i++)
-		if (widgets[i]->attr.matches("id", id)) return widgets[i];
-
-	return NULL;
-}
+//FGUIWidget *FGUIWidget::get_element_by_id(std::string id, std::vector<FGUIWidget *> &widgets)
+//{
+	//for (unsigned i=0; i<widgets.size(); i++)
+		//if (widgets[i]->attr.matches("id", id)) return widgets[i];
+//
+	//return NULL;
+//}
 
 
 
