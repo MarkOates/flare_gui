@@ -113,7 +113,7 @@ public:
 
 	static std::string get_result_from_script(std::string arguments)
 	{
-		RubyScriptResult result = run_ruby_script("music_calc.rb", arguments);
+		RubyScriptResult result = run_ruby_script("music_calculator_ex_script.rb", arguments);
 		return result.output;
 	}
 
