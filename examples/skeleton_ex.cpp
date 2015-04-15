@@ -135,19 +135,19 @@ public:
 		bone_test = BoneFactory::build_simple_person();
 		simple_notification_screen = new SimpleNotificationScreen(display, fonts["DroidSans.ttf 14"]);
 
-		(new FGUIText(this, 10, 17, fonts["HelveticaNeueLTStd-HvIt.otf 42"], "Skeleton Example"))->place.align.y = 0.0;
+		(new FGUIText(this, 10, 17, fonts["DroidSans.ttf 42"], "Skeleton Example"))->place.align.y = 0.0;
 
 		ALLEGRO_FONT *button_font = fonts["consola.ttf 19"];
 		float button_y = 140;
-		(new FGUIButton(this, "frame1.bfs", button_font, 100, button_y+60*1, 160, 50))->attr.set("on_click_send_message", "data/skeleton_states/some_poses/frame1.bfs");
-		(new FGUIButton(this, "frame2.bfs", button_font, 100, button_y+60*2, 160, 50))->attr.set("on_click_send_message", "data/skeleton_states/some_poses/frame2.bfs");
-		(new FGUIButton(this, "frame3.bfs", button_font, 100, button_y+60*3, 160, 50))->attr.set("on_click_send_message", "data/skeleton_states/some_poses/frame3.bfs");
-		(new FGUIButton(this, "frame4.bfs", button_font, 100, button_y+60*4, 160, 50))->attr.set("on_click_send_message", "data/skeleton_states/some_poses/frame4.bfs");
-		(new FGUIButton(this, "frame5.bfs", button_font, 100, button_y+60*5, 160, 50))->attr.set("on_click_send_message", "data/skeleton_states/some_poses/frame5.bfs");
-		(new FGUIButton(this, "frame6.bfs", button_font, 100, button_y+60*6, 160, 50))->attr.set("on_click_send_message", "data/skeleton_states/some_poses/frame6.bfs");
-		(new FGUIButton(this, "frame7.bfs", button_font, 100, button_y+60*7, 160, 50))->attr.set("on_click_send_message", "data/skeleton_states/some_poses/frame7.bfs");
-		(new FGUIButton(this, "frame8.bfs", button_font, 100, button_y+60*8, 160, 50))->attr.set("on_click_send_message", "data/skeleton_states/some_poses/frame8.bfs");
-		(new FGUIButton(this, "frame9.bfs", button_font, 100, button_y+60*9, 160, 50))->attr.set("on_click_send_message", "data/skeleton_states/some_poses/frame9.bfs");
+		(new FGUIButton(this, "frame1.bfs", button_font, 100, button_y+60*1, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame1.bfs");
+		(new FGUIButton(this, "frame2.bfs", button_font, 100, button_y+60*2, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame2.bfs");
+		(new FGUIButton(this, "frame3.bfs", button_font, 100, button_y+60*3, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame3.bfs");
+		(new FGUIButton(this, "frame4.bfs", button_font, 100, button_y+60*4, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame4.bfs");
+		(new FGUIButton(this, "frame5.bfs", button_font, 100, button_y+60*5, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame5.bfs");
+		(new FGUIButton(this, "frame6.bfs", button_font, 100, button_y+60*6, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame6.bfs");
+		(new FGUIButton(this, "frame7.bfs", button_font, 100, button_y+60*7, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame7.bfs");
+		(new FGUIButton(this, "frame8.bfs", button_font, 100, button_y+60*8, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame8.bfs");
+		(new FGUIButton(this, "frame9.bfs", button_font, 100, button_y+60*9, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame9.bfs");
 	}
 
 	void receive_message(std::string message) override
@@ -173,7 +173,7 @@ public:
 		}
 		bone_test->draw(display->width()/2, display->height()/4, focus_bone_index);
 
-		al_draw_text(fonts["HelveticaNeueLTStd-HvIt.otf 42"], color::white, 10, 17, 0, (tostring("Skeleton Example")).c_str());
+		al_draw_text(fonts["DroidSans.ttf 42"], color::white, 10, 17, 0, (tostring("Skeleton Example")).c_str());
 		al_draw_text(fonts["consola.ttf 20"], color::white, 10, 60, 0, (tostring("number of bones: ") + tostring(bone_test->get_tree_size())).c_str());
 		al_draw_text(fonts["consola.ttf 20"], color::white, 10, 80, 0, (tostring("current focused bone index: ") + tostring(focus_bone_index)).c_str());
 		//al_draw_text(fonts["consola.ttf 32"], color::white, 10, 20, 0, tostring(bone_test->get_tree_size()).c_str());
@@ -287,7 +287,7 @@ public:
 int main(int argc, char *argv[])
 {
 	af::initialize();
-	Display *display = af::create_display(1600, 800, FALSE, 0);
+	Display *display = af::create_display(1600, 800);
 	SkeletonExampleProgram *prog = new SkeletonExampleProgram(display);
 	af::run_loop();
 }
