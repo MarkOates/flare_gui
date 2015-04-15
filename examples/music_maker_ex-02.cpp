@@ -90,7 +90,7 @@ public:
 		, cursor_x(0)
 		, cursor_y(0)
 		, fonts("data/fonts")
-		, text_font(fonts["DroidSans_0.ttf 20"])
+		, text_font(fonts["DroidSans.ttf 20"])
 		, type_cursor_pos(0) // << YOU WERE HERE :)
 	{
 		measures[3][2].notes.push_back(new Note());
