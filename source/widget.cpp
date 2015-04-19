@@ -205,7 +205,12 @@ void FGUIWidget::mouse_down_func()
 
 void FGUIWidget::mouse_up_func()
 {
-	if (mouse_over && mouse_down_on_over) on_click();
+	if (mouse_over && mouse_down_on_over)
+	{
+		// if the widget has a "on_click_send_message" key in its (DataAttr data), then send it to the parent
+		if (attr.has("on_click_send_message")) send_message_to_parent(attr.get("on_click_send_message"));
+		on_click();
+	}
 	mouse_down_on_over = false;
 	if (dragging)
 	{
@@ -269,12 +274,7 @@ void FGUIWidget::on_mouse_move(float x, float y, float dx, float dy) {}
 void FGUIWidget::on_mouse_down() {}
 void FGUIWidget::on_mouse_up() {}
 void FGUIWidget::on_mouse_wheel() {}
-
-void FGUIWidget::on_click()
-{
-	// if the widget has a "on_click_send_message" key in its (DataAttr data), then send it to the parent
-	if (attr.has("on_click_send_message")) send_message_to_parent(attr.get("on_click_send_message"));
-}
+void FGUIWidget::on_click() {}
 
 void FGUIWidget::on_key_down() {}
 void FGUIWidget::on_key_up() {}
@@ -337,15 +337,6 @@ void FGUIWidget::set_as_unfocused()
 }
 
 
-
-
-//FGUIWidget *FGUIWidget::get_element_by_id(std::string id, std::vector<FGUIWidget *> &widgets)
-//{
-	//for (unsigned i=0; i<widgets.size(); i++)
-		//if (widgets[i]->attr.matches("id", id)) return widgets[i];
-//
-	//return NULL;
-//}
 
 
 
