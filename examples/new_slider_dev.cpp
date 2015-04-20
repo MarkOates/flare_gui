@@ -17,8 +17,11 @@ private:
 	{
 	public:
 		ScrollButton(FGUIParent *parent, float x, float y, float w, float h)
-			: FGUIButton(parent, "", af::fonts["DroidSans.ttf -16"], x, y, w, h)
+			: FGUIButton(parent, "", af::fonts["DroidSans.ttf -16"], x, y, w, h) {}
+		void on_click() override
 		{
+			FGUIButton::on_click();
+			//static_cast<NewSlider *>(parent)->step_up();
 		}
 	};
 
@@ -29,17 +32,20 @@ private:
 	public:
 		ScrollHandle(FGUIParent *parent, float x, float y, float w, float h)
 			: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+			, min_y(0)
+			, max_y(0)
 		{
 		}
-		void set_min_max_coordinate_position(float min, float max)
+		void set_min_max_coordinate_position(float min_val, float max_val)
 		{
-			min_y = min;
-			max_y = max;
+			min_y = min_val;
+			max_y = max_val;
 		}
 		void on_drag(float x, float y, float dx, float dy) override
 		{
 			//place.position.x += dx;
 			place.position.y = limit<float>(min_y+place.size.y/2, max_y-place.size.y/2, place.position.y+dy);
+			static_cast<NewSlider *>(parent)->on_change();
 		}
 		void on_draw() override
 		{
@@ -47,7 +53,18 @@ private:
 		}
 		float get_position()
 		{
-			return (max_y - min_y) / place.position.y;
+			return (place.position.y) / (max_y - min_y);
+		}
+		void set_position(float position)
+		{
+			// this does not check for bounds
+			float previous_pos = place.position.y;
+			place.position.y = position;
+			if (place.position.y != previous_pos) static_cast<NewSlider *>(parent)->on_change();
+		}
+		void on_key_down() override
+		{
+			std::cout << "min(" << min_y << ") max(" << max_y << ")" << std::endl;
 		}
 	};
 
@@ -72,6 +89,24 @@ public:
 	{
 		return handle->get_position();
 	}
+/*
+	void set_position(float position_unit_val)
+	{
+		handle->set_position(limit<float>(0.0, 1.0, position_unit_val));
+		// this->on_change() happens from the handle
+	}
+	void step_up()
+	{
+		float step_rate = 0.01;
+		handle->set_position(handle->get_position() + step_rate);
+	}
+	void step_down()
+	{
+		float step_rate = 0.01;
+		handle->set_position(handle->get_position() - step_rate);
+	}
+*/
+	virtual void on_change() {}
 };
 
 
