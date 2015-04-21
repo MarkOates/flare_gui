@@ -52,18 +52,26 @@ private:
 		}
 		float get_position()
 		{
-			return (place.position.y - min_y - place.size.y/2) / (max_y - min_y - place.size.y);
+			return (place.position.y - min_y - place.size.y/2.0) / (max_y - min_y - place.size.y);
 		}
-		void set_position(float position)
+		float set_position(float position_in_unit_value)
 		{
-			// this does not check for bounds
-			float previous_pos = place.position.y;
-			place.position.y = position;
-			if (place.position.y != previous_pos) static_cast<NewSlider *>(parent)->on_change();
+			// TODO: check and see if an on_change is necessairy
+			// float previous_pos = place.position.y;
+
+			float new_pos = position_in_unit_value * (max_y - min_y - place.size.y) + (min_y + place.size.y/3.0);
+			
+			place.position.y = new_pos;
+
+			// calculate the position of the scroll_handle
+			//float non_unit_val = 
+
+			//if (place.position.y != previous_pos) static_cast<NewSlider *>(parent)->on_change();
 		}
 		void on_key_down() override
 		{
 			std::cout << "min(" << min_y << ") max(" << max_y << ")" << std::endl;
+			std::cout << "pos(" << place.position.y << ")" << std::endl;
 		}
 	};
 
