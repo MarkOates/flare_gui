@@ -43,7 +43,6 @@ private:
 		}
 		void on_drag(float x, float y, float dx, float dy) override
 		{
-			//place.position.x += dx;
 			place.position.y = limit<float>(min_y+place.size.y/2, max_y-place.size.y/2, place.position.y+dy);
 			static_cast<NewSlider *>(parent)->on_change();
 		}
@@ -53,7 +52,7 @@ private:
 		}
 		float get_position()
 		{
-			return (place.position.y) / (max_y - min_y);
+			return (place.position.y - min_y - place.size.y/2) / (max_y - min_y - place.size.y);
 		}
 		void set_position(float position)
 		{
