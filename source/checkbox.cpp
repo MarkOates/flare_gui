@@ -150,9 +150,6 @@ void FGUICheckbox::on_draw()
 
 
 
-void FGUICheckbox::on_change() {}
-
-
 
 
 

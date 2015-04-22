@@ -24,10 +24,7 @@ public:
 	void on_draw();
 
 	void toggle();
-
-	// for you
 	bool is_checked();
-	virtual void on_change();
 };
 
 
