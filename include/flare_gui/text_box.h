@@ -33,7 +33,7 @@ private:
 public:
 	//void print(std::vector<word_width_pair> &word, ALLEGRO_FONT *font, int x, int y, int width)
 
-	FGUITextBox(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float width, float height);
+	FGUITextBox(FGUIParent *parent, std::string text, float x, float y, float width, float height);
 
 	void set_text(std::string text);
 	std::string get_text();

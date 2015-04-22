@@ -8,6 +8,8 @@
 
 #include <allegro_flare/useful.h> // just for tostring, meh
 
+#include <allegro_flare/allegro_flare.h> // for af::fonts
+
 
 
 
@@ -29,9 +31,9 @@ bool FGUITextBox::word_width_pair::is_carriage_return()
 
 
 
-FGUITextBox::FGUITextBox(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float width, float height)
+FGUITextBox::FGUITextBox(FGUIParent *parent, std::string text, float x, float y, float width, float height)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, width, height))
-	, font(font)
+	, font(af::fonts["DroidSans.ttf 20"])
 	, text(text)
 	, text_color(color::black)
 {
