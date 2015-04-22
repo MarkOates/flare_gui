@@ -6,7 +6,7 @@ Goals and Desired Features
 
 * Change DataAttr to Attributes (this is actually an AllegroFlare feature)
 
-* Clean up NotificationBubble files
+* Clean up NotificationBubble files (perhaps shift it over to dev_sandbox)
 
 
 Unimplemented goals since version (0.6.2)
