@@ -435,12 +435,6 @@ void FGUITextInput::on_focus()
 
 
 
-void FGUITextInput::on_change()
-{
-}
-
-
-
 void FGUITextInput::on_submit()
 {
 	// If the widget has a "on_submit_send_message" key in its (DataAttr data), then send it to the parent.
