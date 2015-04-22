@@ -17,7 +17,7 @@ private:
 	{
 	public:
 		ScrollUpButton(FGUIParent *parent, float x, float y, float w, float h)
-			: FGUIButton(parent, "", x, y, w, h) {}
+			: FGUIButton(parent, x, y, w, h, "") {}
 		void on_click() override
 		{
 			FGUIButton::on_click();
@@ -29,7 +29,7 @@ private:
 	{
 	public:
 		ScrollDownButton(FGUIParent *parent, float x, float y, float w, float h)
-			: FGUIButton(parent, "", x, y, w, h) {}
+			: FGUIButton(parent, x, y, w, h, "") {}
 		void on_click() override
 		{
 			FGUIButton::on_click();

@@ -21,7 +21,7 @@
 
 
 
-FGUIButton::FGUIButton(FGUIParent *parent, std::string text, float x, float y, float w, float h)
+FGUIButton::FGUIButton(FGUIParent *parent, float x, float y, float w, float h, std::string text)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, text(text)
 	, content_alignment(0.5)

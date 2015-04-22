@@ -54,15 +54,15 @@ public:
 		float button_y = 200;
 		float button_spacing = 60;
 		int cur = 0;
-		new FGUIButton(this, "Button1", button_x, button_y+button_spacing*cur++, 170, 50);
-		new FGUIButton(this, "Button2", button_x, button_y+button_spacing*cur++, 170, 50);
-		new FGUIButton(this, "Button3", button_x, button_y+button_spacing*cur++, 170, 50);
-		new FGUIButton(this, "Button4", button_x, button_y+button_spacing*cur++, 170, 50);
-		new FGUIButton(this, "Button5", button_x, button_y+button_spacing*cur++, 170, 50);
+		new FGUIButton(this, button_x, button_y+button_spacing*cur++, 170, 50, "Button1");
+		new FGUIButton(this, button_x, button_y+button_spacing*cur++, 170, 50, "Button2");
+		new FGUIButton(this, button_x, button_y+button_spacing*cur++, 170, 50, "Button3");
+		new FGUIButton(this, button_x, button_y+button_spacing*cur++, 170, 50, "Button4");
+		new FGUIButton(this, button_x, button_y+button_spacing*cur++, 170, 50, "Button5");
 
 
 		(new ::FGUITextInput(this, "This is a text input", 400, 500, 300, 45))->attr.set("name", "input_val"); 
-		(new FGUIButton(this, "send", 400+170+30, 500, 80, 50))->attr.set("on_click_send_message", "submit_input");
+		(new FGUIButton(this, 400+170+30, 500, 80, 50, "send"))->attr.set("on_click_send_message", "submit_input");
 
 
 		new ::FGUITextArea(this, "This is a textarea", 800, 320, 200, 300);

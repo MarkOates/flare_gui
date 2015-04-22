@@ -115,7 +115,7 @@ public:
 				text_list->add_item("Wrapping Paper");
 				text_list->add_item("Toys");
 				text_list->add_item("Dishwashing Soap");
-			new FGUIButton(canvas, "Button", canvas->place.size.x/2, canvas->place.size.y-60, 110, 60);  
+			new FGUIButton(canvas, canvas->place.size.x/2, canvas->place.size.y-60, 110, 60, "Button");  
 		//}
 		return canvas;
 	}

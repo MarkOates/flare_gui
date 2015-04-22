@@ -25,8 +25,8 @@ FGUIFramedWindow::FGUIFramedWindow(FGUIParent *parent, float x, float y, float w
 
 	// create the close button in the top right of the window
 	float close_button_width = 16;
-	close_button = new FGUIButton(this, "", place.size.x-close_button_width/2, 0-frame_thickness*2-close_button_width/2,
-		close_button_width, close_button_width);
+	close_button = new FGUIButton(this, place.size.x-close_button_width/2, 0-frame_thickness*2-close_button_width/2,
+		close_button_width, close_button_width, "");
 	close_button->attr.set("on_click_send_message", "close");
 }
 

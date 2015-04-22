@@ -139,15 +139,15 @@ public:
 
 		//ALLEGRO_FONT *button_font = fonts["consola.ttf 19"];
 		float button_y = 140;
-		(new FGUIButton(this, "frame1.bfs", 100, button_y+60*1, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame1.bfs");
-		(new FGUIButton(this, "frame2.bfs", 100, button_y+60*2, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame2.bfs");
-		(new FGUIButton(this, "frame3.bfs", 100, button_y+60*3, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame3.bfs");
-		(new FGUIButton(this, "frame4.bfs", 100, button_y+60*4, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame4.bfs");
-		(new FGUIButton(this, "frame5.bfs", 100, button_y+60*5, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame5.bfs");
-		(new FGUIButton(this, "frame6.bfs", 100, button_y+60*6, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame6.bfs");
-		(new FGUIButton(this, "frame7.bfs", 100, button_y+60*7, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame7.bfs");
-		(new FGUIButton(this, "frame8.bfs", 100, button_y+60*8, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame8.bfs");
-		(new FGUIButton(this, "frame9.bfs", 100, button_y+60*9, 160, 50))->attr.set("on_click_send_message", "data/skeleton_ex/frame9.bfs");
+		(new FGUIButton(this, 100, button_y+60*1, 160, 50, "Frame1"))->attr.set("on_click_send_message", "data/skeleton_ex/frame1.bfs");
+		(new FGUIButton(this, 100, button_y+60*2, 160, 50, "Frame2"))->attr.set("on_click_send_message", "data/skeleton_ex/frame2.bfs");
+		(new FGUIButton(this, 100, button_y+60*3, 160, 50, "Frame3"))->attr.set("on_click_send_message", "data/skeleton_ex/frame3.bfs");
+		(new FGUIButton(this, 100, button_y+60*4, 160, 50, "Frame4"))->attr.set("on_click_send_message", "data/skeleton_ex/frame4.bfs");
+		(new FGUIButton(this, 100, button_y+60*5, 160, 50, "Frame5"))->attr.set("on_click_send_message", "data/skeleton_ex/frame5.bfs");
+		(new FGUIButton(this, 100, button_y+60*6, 160, 50, "Frame6"))->attr.set("on_click_send_message", "data/skeleton_ex/frame6.bfs");
+		(new FGUIButton(this, 100, button_y+60*7, 160, 50, "Frame7"))->attr.set("on_click_send_message", "data/skeleton_ex/frame7.bfs");
+		(new FGUIButton(this, 100, button_y+60*8, 160, 50, "Frame8"))->attr.set("on_click_send_message", "data/skeleton_ex/frame8.bfs");
+		(new FGUIButton(this, 100, button_y+60*9, 160, 50, "Frame9"))->attr.set("on_click_send_message", "data/skeleton_ex/frame9.bfs");
 	}
 
 	void receive_message(std::string message) override
