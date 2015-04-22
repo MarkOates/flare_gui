@@ -18,29 +18,25 @@ FGUIMusicNotation(FGUIParent *parent, float x, float y);
 
 FGUINotificationBubble(FGUIParent *parent, std::string text, float x=300, float y=200)
 
-// this should be (val, x, y, w, h)
+// this might be (val, x, y, w, h)
 FGUIProgressBar(FGUIParent *parent, float x, float y, float w=300, float h=26, float val=0.6);
 
-// this should be (font_filename, font_size, text, x, y)
-FGUIScaledText(FGUIParent *parent, float x, float y, std::string font_filename, int font_size, std::string text);
-FGUIScaledText(FGUIParent *parent, float x, float y, std::string font_string, std::string text);
+// this might be (font_filename, font_size, text, x, y)
+FGUIScaledText(FGUIParent *parent, float x, float y, std::string text);
 
-// should be (content_parent, x, y, w, h)
+// might be (content_parent, x, y, w, h)
 FGUIScrollView(FGUIParent *parent, float x, float y, float w, float h, FGUIParent *content_parent);
 
 FGUIVerticalSlider(FGUIParent *parent, float x, float y, float w, float h);
 
-// should be (text, x, y)
+// might be (text, x, y)
 FGUIText(FGUIParent *parent, float x, float y, std::string text);
 
-// remove font
-FGUITextArea(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float w, float h);
+FGUITextArea(FGUIParent *parent, std::string text, float x, float y, float w, float h);
 
-// remove font
-FGUITextBox(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float width, float height);
+FGUITextBox(FGUIParent *parent, std::string text, float x, float y, float width, float height);
 
-// remove font
-explicit FGUITextInput(FGUIParent *parent, ALLEGRO_FONT *font, std::string initial_text, float x, float y, float w, float h);
+explicit FGUITextInput(FGUIParent *parent, std::string initial_text, float x, float y, float w, float h);
 
 FGUITextList(FGUIParent *parent, float x, float y, float w);
 
