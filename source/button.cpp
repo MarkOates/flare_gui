@@ -51,6 +51,11 @@ void FGUIButton::on_draw()
 {
 	placement2d &placement = collision_area->placement;
 
+	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+
+/*
+	// PREVIOUS STYLING:	
+
 	// the bottom shade
 	float shade_depth = 5;
 	al_draw_filled_rounded_rectangle(0, placement.size.y/2 + shade_depth, placement.size.x, placement.size.y+shade_depth, 2, 2, color::color(color::black, 0.1));
@@ -68,6 +73,7 @@ void FGUIButton::on_draw()
 	// TODO: make this shade_down generated.
 	// preload some good stuff into FGUIScreen::bitmap_bin;
 	draw_stretched_bitmap(3, 3, placement.size.x-6, placement.size.y-6, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
+*/
 
 	// draw the icon and/or the text
 	// in this case, the icon is always drawn to the left of the text
@@ -96,11 +102,6 @@ void FGUIButton::on_draw()
 		al_draw_text(font, color::black, start_x, placement.size.y/2-al_get_font_line_height(font)/2+3, ALLEGRO_ALIGN_LEFT, text.c_str());
 		al_draw_text(font, color::white, start_x, placement.size.y/2-al_get_font_line_height(font)/2, ALLEGRO_ALIGN_LEFT, text.c_str());
 	}
-
-	// draw the shade
-	//float padding = 3;
-	//al_draw_filled_rounded_rectangle(padding, placement.size.y/2 + padding, placement.size.x-padding, placement.size.y-padding, 2, 2, color::color(color::black, 0.1));
-	//placement.restore_transform();
 }
 
 
