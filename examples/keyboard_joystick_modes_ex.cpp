@@ -65,7 +65,7 @@ public:
 		(new FGUIButton(this, "send", 400+170+30, 500, 80, 50))->attr.set("on_click_send_message", "submit_input");
 
 
-		new ::FGUITextArea(this, font, "This is a textarea", 800, 320, 200, 300);
+		new ::FGUITextArea(this, "This is a textarea", 800, 320, 200, 300);
 
 		new FGUIScaledText(this, 60, 100, "DroidSans.ttf 42", "Widget Selection Example");
 

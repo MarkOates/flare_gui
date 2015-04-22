@@ -75,7 +75,7 @@ public:
 		(new FGUIText(this, 700, 260, "Scroll Area Info"))
 			->place.align.x = 0;
 
-		text_box = new FGUITextArea(this, af::fonts["DroidSans.ttf 20"], "InfoPane", 700, 300, 300, 200);
+		text_box = new FGUITextArea(this, "InfoPane", 700, 300, 300, 200);
 		text_box->place.align = vec2d(0, 0);
 
 

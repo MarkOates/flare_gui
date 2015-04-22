@@ -299,7 +299,7 @@ public:
 	{
 	public:
 		Output(FGUIParent *parent)
-			: FGUITextArea(parent, af::fonts["consola.ttf 18"], "", PADDING, PADDING + 80, WIDTH, 400)
+			: FGUITextArea(parent, "", PADDING, PADDING + 80, WIDTH, 400)
 		{
 			place.align.x = 0;
 			place.align.y = 0;
