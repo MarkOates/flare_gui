@@ -9,12 +9,14 @@
 
 #include <allegro_flare/useful.h>
 
+#include <allegro_flare/allegro_flare.h> // for fonts
 
 
-FGUIText::FGUIText(FGUIParent *parent, float x, float y, ALLEGRO_FONT *font, std::string text)
+
+FGUIText::FGUIText(FGUIParent *parent, float x, float y, std::string text)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, al_get_text_width(font, text.c_str()), al_get_font_line_height(font)))
 	, text(text)
-	, font(font)
+	, font(af::fonts["DroidSans.ttf 20"])
 	, font_color(color::white)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIText");

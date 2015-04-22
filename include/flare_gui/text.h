@@ -17,7 +17,7 @@ private:
 	std::string text;
 	ALLEGRO_COLOR font_color;
 public:
-	FGUIText(FGUIParent *parent, float x, float y, ALLEGRO_FONT *font, std::string text);
+	FGUIText(FGUIParent *parent, float x, float y, std::string text);
 
 	// used by this
 	void on_draw();
