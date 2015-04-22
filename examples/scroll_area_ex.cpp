@@ -59,7 +59,7 @@ public:
 		, scroll_view(NULL)
 		//, settings_window(NULL)
 	{
-		new FGUIImage(this, af::bitmaps["maybe_cooler2.png"], display->width()/2, display->height()/2);
+		new FGUIImage(this, display->width()/2, display->height()/2, af::bitmaps["maybe_cooler2.png"]);
 
 		FGUIParent *canvas = build_canvas_for_scrollable_area();
 		scroll_view = new FGUIScrollView(this, display->width()/3, display->height()/2, canvas->place.size.x, 600, canvas);
@@ -105,9 +105,9 @@ public:
 
 		//{
 			// some example in-canvas elements
-			FGUIImage *img = new FGUIImage(canvas, af::bitmaps["pic1.jpg"], canvas->place.size.x/2, 120);
+			FGUIImage *img = new FGUIImage(canvas, canvas->place.size.x/2, 120, af::bitmaps["pic1.jpg"]);
 				img->place.rotation = 0.2;
-			new FGUIImage(canvas, af::bitmaps["pic2.png"], canvas->place.size.x/2, 330);
+			new FGUIImage(canvas, canvas->place.size.x/2, 330, af::bitmaps["pic2.png"]);
 			new FGUITextBox(canvas,	"The content in this scroll area is a Parent widget.", canvas->place.size.x/2, 510, 300, 120);  
 			FGUITextList *text_list = new FGUITextList(canvas, canvas->place.size.x/2, 700, 300);
 				text_list->add_item("Shoes");

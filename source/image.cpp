@@ -7,9 +7,9 @@
 
 
 
-FGUIImage::FGUIImage(FGUIParent *parent, ALLEGRO_BITMAP *bitmap, float x, float y)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, bitmap ? al_get_bitmap_width(bitmap) : 0, bitmap ? al_get_bitmap_height(bitmap) : 0))
-	, bitmap(bitmap)
+FGUIImage::FGUIImage(FGUIParent *parent, float x, float y, ALLEGRO_BITMAP *_bitmap)
+	: FGUIWidget(parent, new FGUICollisionBox(x, y, _bitmap ? al_get_bitmap_width(_bitmap) : 0, _bitmap ? al_get_bitmap_height(_bitmap) : 0))
+	, bitmap(_bitmap)
 	, color(color::white)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIImage");
