@@ -13,8 +13,8 @@
 class FGUIText : public FGUIWidget
 {
 private:
-	ALLEGRO_FONT *font;
 	std::string text;
+	ALLEGRO_FONT *font;
 	ALLEGRO_COLOR font_color;
 public:
 	FGUIText(FGUIParent *parent, float x, float y, std::string text);

@@ -14,7 +14,7 @@
 
 
 FGUIText::FGUIText(FGUIParent *parent, float x, float y, std::string text)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, al_get_text_width(font, text.c_str()), al_get_font_line_height(font)))
+	: FGUIWidget(parent, new FGUICollisionBox(x, y, 200, 20)) // just set arbitrary width and height
 	, text(text)
 	, font(af::fonts["DroidSans.ttf 20"])
 	, font_color(color::white)
@@ -22,8 +22,15 @@ FGUIText::FGUIText(FGUIParent *parent, float x, float y, std::string text)
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIText");
 	attr.set("id", "Text" + tostring(widget_count));
 
+	// text elements do not recieve focus when ALLEGRO_KEY_TABbing
 	no_focus = true;
+	
+	// unlike other widgets, text will always align left by default
 	this->collision_area->placement.align.x = 0.0;
+	
+	// update the dimentions of the box
+	place.size.x = al_get_text_width(font, text.c_str());
+	place.size.y = al_get_font_line_height(font);
 }
 
 
