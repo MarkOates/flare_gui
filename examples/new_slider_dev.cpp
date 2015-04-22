@@ -56,7 +56,7 @@ private:
 		void on_drag(float x, float y, float dx, float dy) override
 		{
 			place.position.y = limit<float>(min_y+place.size.y/2, max_y-place.size.y/2, place.position.y+dy);
-			static_cast<NewSlider *>(parent)->on_change();
+			parent->on_change();
 		}
 		void on_draw() override
 		{
@@ -126,7 +126,6 @@ public:
 		if (af::current_event->keyboard.keycode == ALLEGRO_KEY_DOWN) step_down();
 		else if (af::current_event->keyboard.keycode == ALLEGRO_KEY_UP) step_up();
 	}
-	virtual void on_change() {}
 };
 
 
