@@ -78,7 +78,7 @@ public:
 		stop_button = new FGUIButton(this, "stop", 190-45, 120+4, 80, 50);
 		stop_button->attr.set("on_click_send_message", "stop");
 
-		progress_bar = new FGUIProgressBar(this, 100, 70+4, 180);
+		progress_bar = new FGUIProgressBar(this, 100, 70+4, 180, 18, 0);
 	}
 	void receive_message(std::string message) override
 	{
@@ -197,7 +197,7 @@ public:
 			(new FGUIScaledText(this, 600+30, 260-40, "Option 3"));
 
 
-		progress_bar = new FGUIProgressBar(this, 225, 400);
+		progress_bar = new FGUIProgressBar(this, 225, 400, 160, 20, 0.0);
 		progress_bar->place.rotation = TAU * 0.25;
 
 

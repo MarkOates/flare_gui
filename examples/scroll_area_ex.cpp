@@ -144,4 +144,4 @@ int main(int argc, char *argv[])
 	Display *display = af::create_display(Display::RESOLUTION_WXGA);
 	ScrollViewExpampleProgram *proj = new ScrollViewExpampleProgram(display);
 	af::run_loop();
-}
+}//
