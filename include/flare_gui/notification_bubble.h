@@ -23,7 +23,7 @@ private:
 	float opacity;
 	ALLEGRO_FONT *font;
 public:
-	FGUINotificationBubble(FGUIParent *parent, std::string text, float x=300, float y=200)
+	FGUINotificationBubble(FGUIParent *parent, std::string text, float x, float y)
 		: FGUIWidget(parent, new FGUICollisionBox(x, y, 280, 90))
 		, text(text)
 		, font(af::fonts["DroidSerif.ttf 20"])
@@ -50,7 +50,6 @@ public:
 	{
 		if (paused || delete_me) return;
 
-		//text = "life: " + tostring(af::time_now - spawn_time);
 		if ((af::time_now - spawn_time) > lifespan)
 		{
 			delete_me = true;
@@ -60,24 +59,26 @@ public:
 
 	void on_mouse_enter()
 	{
+		if (delete_me) return;
+
 		paused = true;
 		af::motion.cmove_to(&this->opacity, 1.0, 0.5);
-		//text = "Hi! :)";
 	}
 
 	void on_mouse_leave()
 	{
+		if (delete_me) return;
+
 		paused = false;
 		spawn_time  = af::time_now;
 	}
 
 	void on_draw()
 	{
-		//if (!delete_me)
-		//{
-			al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 6, 6, color::hex("#fce566", opacity));
-			al_draw_text(font, color::hex("645710", opacity), 23, 20, 0, text.c_str());
-		//}
+		if (delete_me) return;
+
+		al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 6, 6, color::hex("#fce566", opacity));
+		al_draw_text(font, color::hex("645710", opacity), 23, 20, 0, text.c_str());
 	}
 };
 
