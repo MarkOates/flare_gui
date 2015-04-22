@@ -108,9 +108,7 @@ public:
 			FGUIImage *img = new FGUIImage(canvas, af::bitmaps["pic1.jpg"], canvas->place.size.x/2, 120);
 				img->place.rotation = 0.2;
 			new FGUIImage(canvas, af::bitmaps["pic2.png"], canvas->place.size.x/2, 330);
-			new FGUITextBox(canvas, af::fonts["DroidSans.ttf 22"],
-				"The content in this scroll area is a Parent widget.",
-				canvas->place.size.x/2, 510, 300, 120);  
+			new FGUITextBox(canvas,	"The content in this scroll area is a Parent widget.", canvas->place.size.x/2, 510, 300, 120);  
 			FGUITextList *text_list = new FGUITextList(canvas, canvas->place.size.x/2, 700, 300);
 				text_list->add_item("Shoes");
 				text_list->add_item("Groceries");
