@@ -17,7 +17,7 @@ FGUITextInput::FGUITextInput(FGUIParent *parent, std::string text, float x, floa
 	, text("")
 	, cursor_pos(0)
 	, cursor_end(0)
-	, font(af::fonts["DroidSans 20"])
+	, font(af::fonts["DroidSans.ttf 20"])
 	, cursor_blink_counter(0)
 	, text_x_offset(0)
 	, font_color(color::white)
