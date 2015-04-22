@@ -22,12 +22,12 @@ private:
 	void refresh_render();
 
 public:
-	FGUIScaledText(FGUIParent *parent, float x, float y, std::string font_filename, int font_size, std::string text);
-	FGUIScaledText(FGUIParent *parent, float x, float y, std::string font_string, std::string text);
+	FGUIScaledText(FGUIParent *parent, float x, float y, std::string text);
 
 	void set_font_color(ALLEGRO_COLOR color);
 	void on_draw();
 	void set_text(std::string text);
+	void set_font(std::string font_filename, int font_size);
 };
 
 

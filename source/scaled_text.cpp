@@ -52,26 +52,9 @@ void FGUIScaledText::refresh_render()
 
 
 
-FGUIScaledText::FGUIScaledText(FGUIParent *parent, float x, float y, std::string font_filename, int font_size, std::string text)
+FGUIScaledText::FGUIScaledText(FGUIParent *parent, float x, float y, std::string text)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, 100, 100))
-	, font_filename(font_filename)
-	, font_size(font_size)
-	, render_scale(3.0)
-	, render(NULL)
-	, text(text)
-	, font_color(color::white)
-{
-	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScaledText");
-	this->collision_area->placement.align.x = 0.0;
-	this->no_focus = true;
-	refresh_render();
-}
-
-
-
-FGUIScaledText::FGUIScaledText(FGUIParent *parent, float x, float y, std::string font_string, std::string text)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, 100, 100))
-	, font_filename("")
+	, font_filename("DroidSans.ttf")
 	, font_size(14)
 	, render_scale(3.0)
 	, render(NULL)
@@ -83,14 +66,6 @@ FGUIScaledText::FGUIScaledText(FGUIParent *parent, float x, float y, std::string
 
 	this->collision_area->placement.align.x = 0.0;
 	this->no_focus = true;
-
-	int last_space_pos = font_string.find_last_of(" ");
-	if (last_space_pos == std::string::npos) font_filename = font_string;
-	else
-	{
-		font_filename = font_string.substr(0, last_space_pos);
-		font_size = atoi(font_string.substr(last_space_pos+1).c_str());
-	}
 
 	refresh_render();
 }
@@ -120,3 +95,17 @@ void FGUIScaledText::set_text(std::string text)
 	this->text = text;
 	refresh_render();
 }
+
+
+
+void FGUIScaledText::set_font(std::string _font_filename, int _font_size)
+{
+	if (_font_size == font_size && _font_filename == font_filename) return;
+
+	font_size = _font_size;
+	font_filename = _font_filename;
+
+	refresh_render();
+}
+
+
