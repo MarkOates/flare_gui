@@ -28,7 +28,7 @@ protected:
 	void _update_text_and_selection_render(float len_to_cursor, float len_to_cursor_end);
 
 public:
-	explicit FGUITextInput(FGUIParent *parent, ALLEGRO_FONT *font, std::string initial_text, float x, float y, float w, float h);
+	explicit FGUITextInput(FGUIParent *parent, std::string initial_text, float x, float y, float w, float h);
 	~FGUITextInput();
 
 	void set_text(std::string text);

@@ -4,7 +4,7 @@
 
 #include <flare_gui/text_input.h>
 #include <flare_gui/collision_box.h>
-#include <allegro_flare/allegro_flare.h> // for af::current_event
+#include <allegro_flare/allegro_flare.h> // for af::current_event and af::fonts
 
 #include <flare_gui/widget.h>
 
@@ -12,12 +12,12 @@
 
 
 
-FGUITextInput::FGUITextInput(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float w, float h)
+FGUITextInput::FGUITextInput(FGUIParent *parent, std::string text, float x, float y, float w, float h)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, text("")
 	, cursor_pos(0)
 	, cursor_end(0)
-	, font(font)
+	, font(af::fonts["DroidSans 20"])
 	, cursor_blink_counter(0)
 	, text_x_offset(0)
 	, font_color(color::white)
