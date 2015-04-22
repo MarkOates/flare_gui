@@ -131,10 +131,6 @@ void FGUIVerticalSlider::on_key_char()
 
 
 
-void FGUIVerticalSlider::on_change() {}
-
-
-
 float FGUIVerticalSlider::get_val()
 {
 	return val;

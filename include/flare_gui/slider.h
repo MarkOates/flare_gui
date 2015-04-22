@@ -35,8 +35,6 @@ public:
 	void on_drag(float x, float y, float dx, float dy);
 	void on_key_char();
 	void on_mouse_wheel();
-
-	virtual void on_change();
 };
 
 
