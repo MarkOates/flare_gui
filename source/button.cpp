@@ -21,11 +21,11 @@
 
 
 
-FGUIButton::FGUIButton(FGUIParent *parent, std::string text, ALLEGRO_FONT *font, float x, float y, float w, float h)
+FGUIButton::FGUIButton(FGUIParent *parent, std::string text, float x, float y, float w, float h)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, text(text)
 	, content_alignment(0.5)
-	, font(font)
+	, font(af::fonts["DroidSans.ttf 20"])
 	, icon(NULL)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIButton");
