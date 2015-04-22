@@ -17,12 +17,13 @@
 
 
 
-FGUIProgressBar::FGUIProgressBar(FGUIParent *parent, float x, float y, float w, float h, float val)
+FGUIProgressBar::FGUIProgressBar(FGUIParent *parent, float x, float y, float w, float h)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
-	, val(0.6)
-	, update_color(color::aquamarine)
+	, val(0)
+	, update_speed(0.4)
 	, current_color(color::dodgerblue)
 	, normal_color(color::dodgerblue)
+	, update_color(color::aquamarine)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIProgressBar");
 	attr.set("id", "ProgressBar" + tostring(widget_count));
@@ -30,7 +31,7 @@ FGUIProgressBar::FGUIProgressBar(FGUIParent *parent, float x, float y, float w, 
 
 
 
-void FGUIProgressBar::set_val(float normalized_val, float update_speed)
+void FGUIProgressBar::set_val(float normalized_val)
 {
 	normalized_val = limit<float>(0, 1, normalized_val);
 	af::motion.cmove_to(&val, normalized_val, update_speed, interpolator::doubleFastIn);
@@ -43,10 +44,10 @@ void FGUIProgressBar::set_val(float normalized_val, float update_speed)
 
 
 
-void FGUIProgressBar::set_val(float _val, float min, float max, float update_speed)
+void FGUIProgressBar::set_val(float _val, float min, float max)
 {
 	float normalized_val = (_val - min) / (max - min);
-	set_val(normalized_val, update_speed);
+	set_val(normalized_val);
 }
 
 
