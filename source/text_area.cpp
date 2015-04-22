@@ -82,11 +82,11 @@ bool FGUITextArea::Cursor::selection_active() { return head_pos != _anchor_pos; 
 
 
 
-FGUITextArea::FGUITextArea(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float w, float h)
+FGUITextArea::FGUITextArea(FGUIParent *parent, std::string text, float x, float y, float w, float h)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, cursor(0, 0)
 	, full_text(text)
-	, font(font)
+	, font(af::fonts["DroidSans.ttf 20"])
 	, cursor_blink_counter(1)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUITextArea");

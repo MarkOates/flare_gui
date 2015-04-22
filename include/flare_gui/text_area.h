@@ -47,7 +47,7 @@ private:
 
 public:
 
-	FGUITextArea(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float w, float h);
+	FGUITextArea(FGUIParent *parent, std::string text, float x, float y, float w, float h);
 
 	void move_cursor(int delta);
 	void move_cursor_to(int pos);
