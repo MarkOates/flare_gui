@@ -71,30 +71,30 @@ private:
 			// TODO: check and see if an on_change is necessairy
 			// float previous_pos = place.position.y;
 
+			float previous_pos = place.position.y;
+
 			position_in_unit_value = limit<float>(0.0, 1.0, position_in_unit_value);
 			float new_pos = position_in_unit_value * (max_y - min_y - place.size.y) + (min_y + place.size.y/2.0);
 			place.position.y = new_pos; 
-		}
-		void on_key_down() override
-		{
-			std::cout << "min(" << min_y << ") max(" << max_y << ")" << std::endl;
-			std::cout << "pos(" << place.position.y << ")" << std::endl;
-			//if (place.position.y == set_position(get_position()))
-			//	std::cout << "PASS" << std::endl;
-			//else
-			//	std::cout << "expect(" << place.position.y << ") but recieved " << set_position(get_position());
+
+			if (place.position.y != previous_pos) parent->on_change();
 		}
 	};
 
 	ScrollHandle *handle;
+   ScrollUpButton *up_button;
+	ScrollDownButton *down_button;
 
 public:
 
 	NewSlider(FGUIParent *parent, float x, float y, float w, float h)
 		: FGUIParent(parent, new FGUICollisionBox(x, y, w, h))
+		, handle(NULL)
+		, up_button(NULL)
+		, down_button(NULL)
 	{
-		new ScrollUpButton(this, w/2, w/2, w, w);
-		new ScrollDownButton(this, w/2, h-w/2, w, w);
+		up_button = new ScrollUpButton(this, w/2, w/2, w, w);
+		down_button = new ScrollDownButton(this, w/2, h-w/2, w, w);
 
 		handle = new ScrollHandle(this, w/2, h/2, w, w*3);
 		handle->set_min_max_coordinate_position(w, h-w);
@@ -116,6 +116,15 @@ public:
 	{
 		float step_rate = 0.1;
 		handle->set_position(handle->get_position() + step_rate);
+	}
+	void set_position(float position_in_unit_value)
+	{
+		handle->set_position(position_in_unit_value);
+	}
+	void on_key_down() override
+	{
+		if (af::current_event->keyboard.keycode == ALLEGRO_KEY_DOWN) step_down();
+		else if (af::current_event->keyboard.keycode == ALLEGRO_KEY_UP) step_up();
 	}
 	virtual void on_change() {}
 };

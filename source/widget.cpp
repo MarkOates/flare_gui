@@ -291,7 +291,7 @@ void FGUIWidget::on_draw()
 		al_draw_rounded_rectangle(0, 0, collision_area->placement.size.x, collision_area->placement.size.y, 4, 4, color::color(color::aliceblue, 0.2), 2.0);
 }
 void FGUIWidget::on_drag(float x, float y, float dx, float dy) {}
-
+void FGUIWidget::on_change() {}
 
 
 int FGUIWidget::num_active_widgets = 0;

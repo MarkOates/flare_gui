@@ -133,6 +133,9 @@ public:
 	virtual void on_timer();
 	virtual void on_draw();
 
+	// state
+	virtual void on_change();
+
 
 	// static functions
 	static int get_num_created_widgets();
