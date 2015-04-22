@@ -12,8 +12,6 @@ Goals and Desired Features
 Unimplemented goals since version (0.6.2)
 -----------------------------------------
 
-* The constructor of FGUIButton needs to have the ALLEGRO_FONT parameter removed.  Get it from the parent (somehow)
-
 * Make a FGUIIconButton (for awesome font icons) :/
 
 * A Globals data store, for something like settings, maybe font names or something.  The Globals might include some generated content, like a gradient image, a noise image, a diagonal lines texture image, a standard GUI font.
