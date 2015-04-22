@@ -288,7 +288,7 @@ public:
 	{
 	public:
 		Input(FGUIParent *parent)
-			: FGUITextInput(parent, af::fonts["DroidSans.ttf 18"], "function(arg1, \"this is a string\")", PADDING, PADDING, WIDTH, 40)
+			: FGUITextInput(parent, "function(arg1, \"this is a string\")", PADDING, PADDING, WIDTH, 40)
 		{
 			place.align.x = 0;
 			place.align.y = 0;

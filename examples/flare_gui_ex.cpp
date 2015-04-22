@@ -141,7 +141,7 @@ public:
 		float y = 1;
 
 
-		text_input = new FGUITextInput(this, af::fonts["DroidSans.ttf 25"], "", place.size.x/2, 80, place.size.x-30, 50);
+		text_input = new FGUITextInput(this, "", place.size.x/2, 80, place.size.x-30, 50);
 		text_input->set_as_focused();
 		text_input->attr.set("on_submit_send_text", "true");
 		text_input->attr.set("default_text_when_empty", "type a command");

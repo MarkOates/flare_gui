@@ -84,8 +84,7 @@ public:
 		, notation_text(NULL)
 		, result_text()
 	{
-		text_input = new FGUITextInput(this, af::fonts["DroidSans.ttf 20"],
-									"0 1 2 3 4 5", display->center(), display->height()*2/3, 300, 40);
+		text_input = new FGUITextInput(this, "0 1 2 3 4 5", display->center(), display->height()*2/3, 300, 40);
 		text_input->attr.set("on_submit_send_text", "process music");
 		notation_text = new FGUIText(this, display->center()-text_input->place.size.x/2, display->height()*2/3+45,
 			"[notation_string]");

@@ -213,10 +213,10 @@ public:
 class MyTextInput : public FGUITextInput
 {
 public:
-	using FGUITextInput::FGUITextInput;
+	using FGUITextInput::FGUITextInput; // ? hurm? what's this all about?
 
-	MyTextInput(FGUIParent *parent, ALLEGRO_FONT *font, std::string initial_text, float x, float y, float w, float h)
-		: FGUITextInput(parent, font, initial_text, x, y, w, h)
+	MyTextInput(FGUIParent *parent, std::string initial_text, float x, float y, float w, float h)
+		: FGUITextInput(parent, initial_text, x, y, w, h)
 	{}
 
 	void on_submit() override
@@ -272,7 +272,7 @@ public:
 
 
 
-		primary_text_input = new MyTextInput(this, af::fonts["DroidSerif.ttf 25"], "", place.size.x/2, 80, place.size.x-30, 50);
+		primary_text_input = new MyTextInput(this, "", place.size.x/2, 80, place.size.x-30, 50);
 		primary_text_input->set_as_focused();
 
 

@@ -32,7 +32,7 @@ public:
 		new FGUIVerticalSlider(this, 110, 340, 20, 80);
 		new FGUIVerticalSlider(this, 140, 340, 20, 80);
 		new FGUIVerticalSlider(this, 170, 340, 20, 80);
-		new FGUITextInput(this, af::fonts["DroidSans.ttf 20"], "Input some text here", 250, 450, 360, 40);
+		new FGUITextInput(this, "Input some text here", 250, 450, 360, 40);
 		//new FGUIScaledText(this, 100, 300, "DroidSans.ttf", 20, "This is a scaled text box.  It renders smoothly when in motion.");
 	}
 };

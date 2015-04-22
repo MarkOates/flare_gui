@@ -61,7 +61,7 @@ public:
 		new FGUIButton(this, "Button5", button_x, button_y+button_spacing*cur++, 170, 50);
 
 
-		(new ::FGUITextInput(this, font, "This is a text input", 400, 500, 300, 45))->attr.set("name", "input_val"); 
+		(new ::FGUITextInput(this, "This is a text input", 400, 500, 300, 45))->attr.set("name", "input_val"); 
 		(new FGUIButton(this, "send", 400+170+30, 500, 80, 50))->attr.set("on_click_send_message", "submit_input");
 
 
