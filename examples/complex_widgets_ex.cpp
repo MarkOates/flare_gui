@@ -28,7 +28,7 @@ public:
 		new FGUIText(this, 100, 100, af::fonts["DroidSans.ttf 20"], "This is a normal text box.");
 		new FGUIScaledText(this, 100, 150, "DroidSans.ttf", 20, "This is a scaled text box.  It renders smoothly when in motion.");
 		new FGUICheckbox(this, 100, 200, 20);
-		new FGUIButton(this, "Click Me!", af::fonts["DroidSans.ttf 18"], 150, 250, 100, 40);
+		new FGUIButton(this, "Click Me!", 150, 250, 100, 40);
 		new FGUIVerticalSlider(this, 110, 340, 20, 80);
 		new FGUIVerticalSlider(this, 140, 340, 20, 80);
 		new FGUIVerticalSlider(this, 170, 340, 20, 80);

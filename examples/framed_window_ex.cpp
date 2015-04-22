@@ -30,7 +30,7 @@ public:
 	{
 		draw_focused_outline = false;
 
-		launch_button = new FGUIButton(this, "launch a window!", af::fonts["DroidSans.ttf 16"], 300, 200, 200, 170);
+		launch_button = new FGUIButton(this, "launch a window!", 300, 200, 200, 170);
 		launch_button->attr.set("on_click_send_message", "launch window");
 
 		new FGUIFramedWindow(this, 200, 200, 300, 200);

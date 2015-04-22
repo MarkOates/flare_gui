@@ -66,21 +66,16 @@ public:
 		, stop_button(NULL)
 		, media_player_title(NULL)
 	{
-		ALLEGRO_FONT *text_font = af::fonts["DroidSans.ttf 20"];
-
-		//media_player_title = new FGUIText(this, 10, 20, af::fonts["DroidSans.ttf 20"], "Media Player");
-
-
 		filename_label = new FGUIText(this, 100, 34, af::fonts["DroidSans.ttf 20"], filename);
 		filename_label->collision_area->placement.align.x = 0.5;
 		filename_label->set_font_color(color::white);
 
 		new FGUIDraggableRegion(this, place.size.x/2, place.size.y/2, place.size.x, place.size.y);
 
-		play_button = new FGUIButton(this, "play", text_font, 100-45, 120+4, 80, 50);
+		play_button = new FGUIButton(this, "play", 100-45, 120+4, 80, 50);
 		play_button->attr.set("on_click_send_message", "play");
 
-		stop_button = new FGUIButton(this, "stop", af::fonts["DroidSans.ttf 20"], 190-45, 120+4, 80, 50);
+		stop_button = new FGUIButton(this, "stop", 190-45, 120+4, 80, 50);
 		stop_button->attr.set("on_click_send_message", "stop");
 
 		progress_bar = new FGUIProgressBar(this, 100, 70+4, 180);
@@ -171,26 +166,26 @@ public:
 
 
 		
-		(new FGUIButton(this, "0.0", af::fonts["DroidSans.ttf 20"], 100, 200+60*0, 80, 50))
+		(new FGUIButton(this, "0.0", 100, 200+60*0, 80, 50))
 			->attr.set("on_click_send_message", "set_progress_bar 0.0");
 
-		(new FGUIButton(this, "0.2", af::fonts["DroidSans.ttf 20"], 100, 200+60*1, 80, 50))
+		(new FGUIButton(this, "0.2", 100, 200+60*1, 80, 50))
 			->attr.set("on_click_send_message", "set_progress_bar 0.2");
 
-		(new FGUIButton(this, "0.5", af::fonts["DroidSans.ttf 20"], 100, 200+60*2, 80, 50))
+		(new FGUIButton(this, "0.5", 100, 200+60*2, 80, 50))
 			->attr.set("on_click_send_message", "set_progress_bar 0.5");
 
-		(new FGUIButton(this, "1.0", af::fonts["DroidSans.ttf 20"], 100, 200+60*3, 80, 50))
+		(new FGUIButton(this, "1.0", 100, 200+60*3, 80, 50))
 			->attr.set("on_click_send_message", "set_progress_bar 1.0");
 
-		(new FGUIButton(this, "set music", af::fonts["DroidSans.ttf 20"], 100, 200+60*4+20, 110, 50))
+		(new FGUIButton(this, "set music", 100, 200+60*4+20, 110, 50))
 			->attr.set("on_click_send_message", "set_music 123456");
 
 
-		(new FGUIButton(this, "shrink", af::fonts["DroidSans.ttf 20"], 100, 200+60*5+40, 80, 50))
+		(new FGUIButton(this, "shrink", 100, 200+60*5+40, 80, 50))
 			->attr.set("on_click_send_message", "shrink");
 
-		(new FGUIButton(this, "grow", af::fonts["DroidSans.ttf 20"], 100, 200+60*6+40, 80, 50))
+		(new FGUIButton(this, "grow", 100, 200+60*6+40, 80, 50))
 			->attr.set("on_click_send_message", "grow");
 
 		
