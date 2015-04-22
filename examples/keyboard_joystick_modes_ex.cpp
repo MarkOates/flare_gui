@@ -67,7 +67,7 @@ public:
 
 		new ::FGUITextArea(this, "This is a textarea", 800, 320, 200, 300);
 
-		new FGUIScaledText(this, 60, 100, "DroidSans.ttf 42", "Widget Selection Example");
+		new FGUIScaledText(this, 60, 100, "Widget Selection Example");
 
 		new FGUIText(this, 20, display->height()-70-30, "Use the mouse OR joystick to move the mouse cursor.");
 		new FGUIText(this, 20, display->height()-40-30, "Press the joystick SHOULDER BUTTONS or keyboard's TAB to jump to the next GUI widget.");

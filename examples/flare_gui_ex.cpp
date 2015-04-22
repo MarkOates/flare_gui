@@ -153,7 +153,7 @@ public:
 		music_render = new FGUIMusicNotation(this, this->place.size.x/2, 300);
 
 
-		FGUIScaledText *title_text = new FGUIScaledText(this, 20, 12, "DroidSans.ttf 18", "FlareGUI Example");
+		FGUIScaledText *title_text = new FGUIScaledText(this, 20, 12, "FlareGUI Example");
 		title_text->collision_area->placement.align.x = 0;
 		title_text->collision_area->placement.align.y = 0;
 				
@@ -190,11 +190,11 @@ public:
 
 		
 		(new FGUICheckbox(this, 600, 200-40, 24));
-			(new FGUIScaledText(this, 600+30, 200-40, "DroidSans.ttf 20", "Option 1"));
+			(new FGUIScaledText(this, 600+30, 200-40, "Option 1"));
 		(new FGUICheckbox(this, 600, 230-40, 24));
-			(new FGUIScaledText(this, 600+30, 230-40, "DroidSans.ttf 20", "Option 2"));
+			(new FGUIScaledText(this, 600+30, 230-40, "Option 2"));
 		(new FGUICheckbox(this, 600, 260-40, 24));
-			(new FGUIScaledText(this, 600+30, 260-40,  "DroidSans.ttf 20", "Option 3"));
+			(new FGUIScaledText(this, 600+30, 260-40, "Option 3"));
 
 
 		progress_bar = new FGUIProgressBar(this, 225, 400);

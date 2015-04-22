@@ -316,11 +316,11 @@ public:
 
 		
 		(new FGUICheckbox(this, 600, 200-40, 24));
-			(new FGUIScaledText(this, 600+30, 200-40, "DroidSans.ttf 20", "Option 1"));
+			(new FGUIScaledText(this, 600+30, 200-40, "Option 1"));
 		(new FGUICheckbox(this, 600, 230-40, 24));
-			(new FGUIScaledText(this, 600+30, 230-40, "DroidSans.ttf 20", "Option 2"));
+			(new FGUIScaledText(this, 600+30, 230-40, "Option 2"));
 		(new FGUICheckbox(this, 600, 260-40, 24));
-			(new FGUIScaledText(this, 600+30, 260-40,  "DroidSans.ttf 20", "Option 3"));
+			(new FGUIScaledText(this, 600+30, 260-40, "Option 3"));
 
 
 		text = new FGUIText(this, place.size.x/2, place.size.y-20, "-last-");
