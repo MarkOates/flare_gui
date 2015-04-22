@@ -128,7 +128,7 @@ public:
 		progress_bar = new FGUIProgressBar(this, 100, 70, 180);
 			//->set("", "");
 
-		(new FGUIText(this, 100, 30, af::fonts["DroidSans.ttf 20"], filename))
+		(new FGUIText(this, 100, 30, filename))
 			->collision_area->placement.align.x = 0.5;
 	}
 	void receive_message(std::string message) override
@@ -279,7 +279,7 @@ public:
 		music_render = new FGUIMusicNotation(this, this->place.size.x/2, 300);
 
 
-		FGUIText *title_text = new FGUIText(this, 20, 14, af::fonts["consola.ttf 20"], Globals.get("window_title"));
+		FGUIText *title_text = new FGUIText(this, 20, 14, Globals.get("window_title"));
 		title_text->place.align.x = 0;
 		title_text->place.align.y = 0;
 				
@@ -323,7 +323,7 @@ public:
 			(new FGUIScaledText(this, 600+30, 260-40,  "DroidSans.ttf 20", "Option 3"));
 
 
-		text = new FGUIText(this, place.size.x/2, place.size.y-20, af::fonts["consola.ttf 20"], "-last-");
+		text = new FGUIText(this, place.size.x/2, place.size.y-20, "-last-");
 		text->place.scale.x = 0.8;
 		text->place.scale.y = 0.8;
 

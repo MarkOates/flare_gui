@@ -135,7 +135,7 @@ public:
 		bone_test = BoneFactory::build_simple_person();
 		simple_notification_screen = new SimpleNotificationScreen(display, fonts["DroidSans.ttf 14"]);
 
-		(new FGUIText(this, 10, 17, fonts["DroidSans.ttf 42"], "Skeleton Example"))->place.align.y = 0.0;
+		(new FGUIText(this, 10, 17, "Skeleton Example"))->place.align.y = 0.0;
 
 		//ALLEGRO_FONT *button_font = fonts["consola.ttf 19"];
 		float button_y = 140;

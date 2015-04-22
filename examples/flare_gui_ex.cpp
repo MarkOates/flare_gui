@@ -66,7 +66,7 @@ public:
 		, stop_button(NULL)
 		, media_player_title(NULL)
 	{
-		filename_label = new FGUIText(this, 100, 34, af::fonts["DroidSans.ttf 20"], filename);
+		filename_label = new FGUIText(this, 100, 34, filename);
 		filename_label->collision_area->placement.align.x = 0.5;
 		filename_label->set_font_color(color::white);
 
@@ -146,7 +146,7 @@ public:
 		text_input->attr.set("on_submit_send_text", "true");
 		text_input->attr.set("default_text_when_empty", "type a command");
 
-		text = new FGUIText(this, 27, text_input->place.position.y + text_input->place.size.y + 4, af::fonts["consola.ttf 20"], "last:");
+		text = new FGUIText(this, 27, text_input->place.position.y + text_input->place.size.y + 4, "last:");
 
 
 

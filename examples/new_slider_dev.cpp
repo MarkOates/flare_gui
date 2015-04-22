@@ -147,7 +147,7 @@ public:
 
 		slider = new NewSlider(this, 200, 200, 20, 200);
 
-		position_text = new FGUIText(this, 250, display->height()/2, af::fonts["DroidSans.ttf 20"], "(position)");
+		position_text = new FGUIText(this, 250, display->height()/2, "(position)");
 	}
 	void on_timer() override
 	{

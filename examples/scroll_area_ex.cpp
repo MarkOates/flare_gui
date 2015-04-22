@@ -64,7 +64,7 @@ public:
 		FGUIParent *canvas = build_canvas_for_scrollable_area();
 		scroll_view = new FGUIScrollView(this, display->width()/3, display->height()/2, canvas->place.size.x, 600, canvas);
 
-		(new FGUIText(this, 700, 140, af::fonts["DroidSerif.ttf 42"], "Scroll Area Example"))
+		(new FGUIText(this, 700, 140, "Scroll Area Example"))
 			->place.align.x = 0;
 
 		// settins window
@@ -72,7 +72,7 @@ public:
 
 
 
-		(new FGUIText(this, 700, 260, af::fonts["DroidSans.ttf 30"], "Scroll Area Info"))
+		(new FGUIText(this, 700, 260, "Scroll Area Info"))
 			->place.align.x = 0;
 
 		text_box = new FGUITextArea(this, af::fonts["DroidSans.ttf 20"], "InfoPane", 700, 300, 300, 200);
@@ -85,16 +85,16 @@ public:
 		float cursor_y = 600;
 		float spacing_y = 30;
 
-		(new FGUIText(this, 700, cursor_y, af::fonts["DroidSans.ttf 30"], "Options"))
+		(new FGUIText(this, 700, cursor_y, "Options"))
 			->place.align.x = 0;
 
 		cursor_y += 40;
 
 		new FGUICheckbox(this, cursor_x, cursor_y, 24);
-			new FGUIText(this, cursor_x+36, cursor_y, af::fonts["DroidSans.ttf 18"], "Show hilight on focused widget");
+			new FGUIText(this, cursor_x+36, cursor_y, "Show hilight on focused widget");
 
 		new FGUICheckbox(this, cursor_x, cursor_y+spacing_y, 24);
-			new FGUIText(this, cursor_x+36, cursor_y+spacing_y, af::fonts["DroidSans.ttf 18"], "Allow click to focus on no_focus elements");
+			new FGUIText(this, cursor_x+36, cursor_y+spacing_y, "Allow click to focus on no_focus elements");
 
 	}
 	FGUIParent *build_canvas_for_scrollable_area()

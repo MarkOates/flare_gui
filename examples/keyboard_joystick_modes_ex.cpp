@@ -69,9 +69,9 @@ public:
 
 		new FGUIScaledText(this, 60, 100, "DroidSans.ttf 42", "Widget Selection Example");
 
-		new FGUIText(this, 20, display->height()-70-30, font, "Use the mouse OR joystick to move the mouse cursor.");
-		new FGUIText(this, 20, display->height()-40-30, font, "Press the joystick SHOULDER BUTTONS or keyboard's TAB to jump to the next GUI widget.");
-		new FGUIText(this, 20, display->height()-40, font, "(you can also hot-swap the joystick)");
+		new FGUIText(this, 20, display->height()-70-30, "Use the mouse OR joystick to move the mouse cursor.");
+		new FGUIText(this, 20, display->height()-40-30, "Press the joystick SHOULDER BUTTONS or keyboard's TAB to jump to the next GUI widget.");
+		new FGUIText(this, 20, display->height()-40, "(you can also hot-swap the joystick)");
 
 		std::cout << "count_complete_lineage: " << get_num_ancestors() << std::endl;
 	}
