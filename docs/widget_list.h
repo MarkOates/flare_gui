@@ -8,7 +8,7 @@
 
 FGUICheckbox(FGUIParent *parent, float x, float y, float size);
 
-FGUIButton(FGUIParent *parent, std::string text, ALLEGRO_FONT *font, float x, float y, float w, float h);
+FGUIButton(FGUIParent *parent, std::string text, float x, float y, float w, float h);
 
 FGUIFramedWindow(FGUIParent *parent, float x, float y, float w, float h);
 
@@ -30,13 +30,16 @@ FGUIScrollView(FGUIParent *parent, float x, float y, float w, float h, FGUIParen
 
 FGUIVerticalSlider(FGUIParent *parent, float x, float y, float w, float h);
 
-// should be (font, text, x, y)
-FGUIText(FGUIParent *parent, float x, float y, ALLEGRO_FONT *font, std::string text);
+// should be (text, x, y)
+FGUIText(FGUIParent *parent, float x, float y, std::string text);
 
+// remove font
 FGUITextArea(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float w, float h);
 
+// remove font
 FGUITextBox(FGUIParent *parent, ALLEGRO_FONT *font, std::string text, float x, float y, float width, float height);
 
+// remove font
 explicit FGUITextInput(FGUIParent *parent, ALLEGRO_FONT *font, std::string initial_text, float x, float y, float w, float h);
 
 FGUITextList(FGUIParent *parent, float x, float y, float w);
