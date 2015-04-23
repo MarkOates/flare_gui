@@ -23,7 +23,7 @@ private:
 	float opacity;
 	ALLEGRO_FONT *font;
 public:
-	FGUINotificationBubble(FGUIParent *parent, std::string text, float x, float y)
+	FGUINotificationBubble(FGUIParent *parent, float x, float y, std::string text)
 		: FGUIWidget(parent, new FGUICollisionBox(x, y, 280, 90))
 		, text(text)
 		, font(af::fonts["DroidSerif.ttf 20"])
