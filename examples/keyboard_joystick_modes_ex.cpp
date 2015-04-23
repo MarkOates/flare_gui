@@ -61,11 +61,11 @@ public:
 		new FGUIButton(this, button_x, button_y+button_spacing*cur++, 170, 50, "Button5");
 
 
-		(new ::FGUITextInput(this, "This is a text input", 400, 500, 300, 45))->attr.set("name", "input_val"); 
+		(new FGUITextInput(this, 400, 500, 300, 45, "This is a text input"))->attr.set("name", "input_val"); 
 		(new FGUIButton(this, 400+170+30, 500, 80, 50, "send"))->attr.set("on_click_send_message", "submit_input");
 
 
-		new ::FGUITextArea(this, "This is a textarea", 800, 320, 200, 300);
+		new FGUITextArea(this, 800, 320, 200, 300, "This is a textarea");
 
 		new FGUIScaledText(this, 60, 100, "Widget Selection Example");
 

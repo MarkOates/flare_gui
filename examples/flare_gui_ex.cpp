@@ -141,7 +141,7 @@ public:
 		float y = 1;
 
 
-		text_input = new FGUITextInput(this, "", place.size.x/2, 80, place.size.x-30, 50);
+		text_input = new FGUITextInput(this, place.size.x/2, 80, place.size.x-30, 50, "");
 		text_input->set_as_focused();
 		text_input->attr.set("on_submit_send_text", "true");
 		text_input->attr.set("default_text_when_empty", "type a command");
@@ -205,7 +205,7 @@ public:
 	}
 	void spawn_notification_bubble()
 	{
-		if (!notification_bubble) notification_bubble = new FGUINotificationBubble(this, "Notification Text", this->place.size.x-20, this->place.size.y-20);
+		if (!notification_bubble) notification_bubble = new FGUINotificationBubble(this, this->place.size.x-20, this->place.size.y-20, "Notification Text");
 	}
 	bool parses_as_variable_definition(std::string message)
 	{

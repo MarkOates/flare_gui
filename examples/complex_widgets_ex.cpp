@@ -32,7 +32,7 @@ public:
 		new FGUIVerticalSlider(this, 110, 340, 20, 80);
 		new FGUIVerticalSlider(this, 140, 340, 20, 80);
 		new FGUIVerticalSlider(this, 170, 340, 20, 80);
-		new FGUITextInput(this, "Input some text here", 250, 450, 360, 40);
+		new FGUITextInput(this, 250, 450, 360, 40, "Input some text here");
 	}
 };
 

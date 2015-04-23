@@ -75,7 +75,7 @@ public:
 		(new FGUIText(this, 700, 260, "Scroll Area Info"))
 			->place.align.x = 0;
 
-		text_box = new FGUITextArea(this, "InfoPane", 700, 300, 300, 200);
+		text_box = new FGUITextArea(this, 700, 300, 300, 200, "InfoPane");
 		text_box->place.align = vec2d(0, 0);
 
 
@@ -108,7 +108,7 @@ public:
 			FGUIImage *img = new FGUIImage(canvas, canvas->place.size.x/2, 120, af::bitmaps["pic1.jpg"]);
 				img->place.rotation = 0.2;
 			new FGUIImage(canvas, canvas->place.size.x/2, 330, af::bitmaps["pic2.png"]);
-			new FGUITextBox(canvas,	"The content in this scroll area is a Parent widget.", canvas->place.size.x/2, 510, 300, 120);  
+			new FGUITextBox(canvas, canvas->place.size.x/2, 510, 300, 120,	"The content in this scroll area is a Parent widget.");  
 			FGUITextList *text_list = new FGUITextList(canvas, canvas->place.size.x/2, 700, 300);
 				text_list->add_item("Shoes");
 				text_list->add_item("Groceries");
