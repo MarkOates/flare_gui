@@ -82,7 +82,7 @@ bool FGUITextArea::Cursor::selection_active() { return head_pos != _anchor_pos; 
 
 
 
-FGUITextArea::FGUITextArea(FGUIParent *parent, std::string text, float x, float y, float w, float h)
+FGUITextArea::FGUITextArea(FGUIParent *parent, float x, float y, float w, float h, std::string text)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, cursor(0, 0)
 	, full_text(text)
