@@ -37,6 +37,32 @@ private:
 		}
 	};
 
+	class ScrollRail : public FGUIWidget
+	{
+	public:
+		float current_mouse_y;
+		ScrollRail(FGUIParent *parent, float x, float y, float w, float h)
+			: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+			, current_mouse_y(0)
+		{}
+		void on_draw() override
+		{
+			al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color::gray);
+		}
+		void on_mouse_move(float x, float y, float dx, float dy) override
+		{
+			current_mouse_y = y;
+			std::cout << current_mouse_y << std::endl;
+		}
+		void on_click() override
+		{
+			// find the direction of the jump based on the handle's position
+			NewSlider *slider_parent = static_cast<NewSlider *>(parent);
+			if (slider_parent->handle->place.position.y < current_mouse_y) slider_parent->jump_down();	
+			else slider_parent->jump_up();	
+		}
+	};
+
 	class ScrollHandle : public FGUIWidget
 	{
 	private:
@@ -81,6 +107,7 @@ private:
 		}
 	};
 
+	ScrollRail *rail;
 	ScrollHandle *handle;
    ScrollUpButton *up_button;
 	ScrollDownButton *down_button;
@@ -89,23 +116,36 @@ public:
 
 	NewSlider(FGUIParent *parent, float x, float y, float w, float h)
 		: FGUIParent(parent, new FGUICollisionBox(x, y, w, h))
+		, rail(NULL)
 		, handle(NULL)
 		, up_button(NULL)
 		, down_button(NULL)
 	{
+		// create the rail
+		rail = new ScrollRail(this, 0, 0, w, h);
+		rail->place.align = vec2d(0, 0);
+
+		// create the up and down buttons
 		up_button = new ScrollUpButton(this, w/2, w/2, w, w);
 		down_button = new ScrollDownButton(this, w/2, h-w/2, w, w);
 
+		// create the handle
 		handle = new ScrollHandle(this, w/2, h/2, w, w*3);
 		handle->set_min_max_coordinate_position(w, h-w);
-	}
-	void on_draw() override
-	{
-		al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color::gray);
 	}
 	float get_position()
 	{
 		return handle->get_position();
+	}
+	void jump_down()
+	{
+		float jump_rate = 0.3;
+		handle->set_position(handle->get_position() + jump_rate);
+	}
+	void jump_up()
+	{
+		float jump_rate = 0.3;
+		handle->set_position(handle->get_position() - jump_rate);
 	}
 	void step_up()
 	{
