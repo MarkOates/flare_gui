@@ -32,7 +32,7 @@ bool FGUITextBox::word_width_pair::is_carriage_return()
 
 
 FGUITextBox::FGUITextBox(FGUIParent *parent, float x, float y, float w, float h, std::string text)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, width, height))
+	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, font(af::fonts["DroidSans.ttf 20"])
 	, text(text)
 	, text_color(color::black)

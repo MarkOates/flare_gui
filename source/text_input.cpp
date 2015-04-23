@@ -12,7 +12,7 @@
 
 
 
-FGUITextInput::FGUITextInput(FGUIParent *parent, std::string text, float x, float y, float w, float h)
+FGUITextInput::FGUITextInput(FGUIParent *parent, float x, float y, float w, float h, std::string text)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, text("")
 	, cursor_pos(0)
