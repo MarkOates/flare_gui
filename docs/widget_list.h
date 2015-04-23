@@ -6,37 +6,38 @@
 // Standard Widgets in FGUI
 // 
 
-FGUICheckbox(FGUIParent *parent, float x, float y, float size);
 
-FGUIButton(FGUIParent *parent, float x, float y, float w, float h, std::string text);
-
-FGUIFramedWindow(FGUIParent *parent, float x, float y, float w, float h);
-
-FGUIImage(FGUIParent *parent, float x, float y, ALLEGRO_BITMAP *bitmap);
-
-FGUIMusicNotation(FGUIParent *parent, float x, float y);
-
-FGUINotificationBubble(FGUIParent *parent, std::string text, float x, float y)/////
-
-FGUIProgressBar(FGUIParent *parent, float x, float y, float w, float h, float val);
-
-FGUIScaledText(FGUIParent *parent, float x, float y, std::string text);
-
-FGUIScrollView(FGUIParent *parent, float x, float y, float w, float h, FGUIParent *content_parent);
-
-FGUIVerticalSlider(FGUIParent *parent, float x, float y, float w, float h);
+// Text
 
 FGUIText(FGUIParent *parent, float x, float y, std::string text);
-
-FGUITextArea(FGUIParent *parent, std::string text, float x, float y, float w, float h);/////
-
-FGUITextBox(FGUIParent *parent, std::string text, float x, float y, float width, float height);/////
-
-FGUITextInput(FGUIParent *parent, std::string initial_text, float x, float y, float w, float h);/////
-
+FGUIScaledText(FGUIParent *parent, float x, float y, std::string text);
+FGUITextBox(FGUIParent *parent, float x, float y, float w, float h, std::string text);
+FGUINotificationBubble(FGUIParent *parent, float x, float y, std::string text);
 FGUITextList(FGUIParent *parent, float x, float y, float w);
 
+
+// Containers and Frames
+
 FGUIWindow(FGUIParent *parent, float x, float y, float w, float h);
+FGUIFramedWindow(FGUIParent *parent, float x, float y, float w, float h);
+FGUIScrollView(FGUIParent *parent, float x, float y, float w, float h, FGUIParent *content_parent);
+
+
+// Inputs and Controls
+
+FGUITextArea(FGUIParent *parent, float x, float y, float w, float h, std::string text);
+FGUITextInput(FGUIParent *parent, float x, float y, float w, float h, std::string initial_text);
+FGUIButton(FGUIParent *parent, float x, float y, float w, float h, std::string text);
+FGUICheckbox(FGUIParent *parent, float x, float y, float size);
+FGUIVerticalSlider(FGUIParent *parent, float x, float y, float w, float h);
+
+
+// Graphics and Data Visualization
+
+FGUIImage(FGUIParent *parent, float x, float y, ALLEGRO_BITMAP *bitmap);
+FGUIMusicNotation(FGUIParent *parent, float x, float y);
+FGUIProgressBar(FGUIParent *parent, float x, float y, float w, float h, float val);
+
 
 
 
@@ -47,9 +48,7 @@ FGUIWindow(FGUIParent *parent, float x, float y, float w, float h);
 //
 
 FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area);
-
 FGUIParent(FGUIParent *parent, FGUICollisionArea *collision_area);
-
 FGUIScreen(Display *display);
 
 
