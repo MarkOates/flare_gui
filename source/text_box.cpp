@@ -31,7 +31,7 @@ bool FGUITextBox::word_width_pair::is_carriage_return()
 
 
 
-FGUITextBox::FGUITextBox(FGUIParent *parent, std::string text, float x, float y, float width, float height)
+FGUITextBox::FGUITextBox(FGUIParent *parent, float x, float y, float width, float height, std::string text)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, width, height))
 	, font(af::fonts["DroidSans.ttf 20"])
 	, text(text)
