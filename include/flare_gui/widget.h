@@ -82,6 +82,7 @@ protected:
 public:
 	//BitFlags<int16_t> flags;    // << this should be added eventually
 	bool delete_me;
+	bool mouse_is_blocked; // was a part of FGUIParent
 	DataAttr attr;
 
 	FGUICollisionArea *collision_area;

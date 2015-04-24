@@ -23,6 +23,7 @@ FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
 	, dragging(false)
 	, no_focus(false)
 	, delete_me(false)
+	, mouse_is_blocked(false)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWidget");
 	attr.set("id", "Widget" + tostring(widget_count));
@@ -166,13 +167,13 @@ void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 	if (collision_area)
 	{
 		bool mouse_over_now = collision_area->collides(x, y);
-		if (family.parent && static_cast<FGUIParent *>(family.parent)->mouse_blocked) mouse_over_now = false;
+		if (family.parent && family.parent->mouse_is_blocked) mouse_over_now = false;
 
 		if (mouse_over_now && !mouse_over) on_mouse_enter();
 		else if (!mouse_over_now && mouse_over) on_mouse_leave();
 
 		mouse_over = mouse_over_now;
-		if (family.parent && mouse_over) static_cast<FGUIParent *>(family.parent)->mouse_blocked = true;
+		if (family.parent && mouse_over) family.parent->mouse_is_blocked = true;
 	}
 
 	on_mouse_move(x, y, dx, dy);

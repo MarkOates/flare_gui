@@ -13,7 +13,7 @@
 
 FGUIParent::FGUIParent(FGUIParent *parent, FGUICollisionArea *collision_area)
 	: FGUIWidget(parent, collision_area)
-	, mouse_blocked(false)
+	//, mouse_blocked(false)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIParent");
 	attr.set(FGUI_ATTR__FGUI_IS_PARENT, "true");
@@ -81,8 +81,8 @@ void FGUIParent::mouse_axes_func(float mx, float my, float mdx, float mdy)
 	collision_area->placement.transform_coordinates(&tmx, &tmy);
 	collision_area->placement.transform_coordinates(&tmdx, &tmdy);
 
-	if (family.parent && static_cast<FGUIParent *>(family.parent)->mouse_blocked) mouse_blocked = true;
-	else mouse_blocked = false;
+	if (family.parent && family.parent->mouse_is_blocked) mouse_is_blocked = true;
+	else mouse_is_blocked = false;
 
 	for (int i=(int)children.children.size()-1; i>=0; i--)
 		children.children[i]->mouse_axes_func(tmx, tmy, mdx, mdy);

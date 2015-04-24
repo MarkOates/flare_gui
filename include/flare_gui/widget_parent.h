@@ -13,7 +13,7 @@
 class FGUIParent : public FGUIWidget
 {
 public:
-	bool mouse_blocked;
+	//bool mouse_blocked;
 	//FGUIChildren children;
 	// FGUISignalSlots slots;  // < gotta do this eventually, I imagine.  dang...
 

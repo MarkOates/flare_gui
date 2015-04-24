@@ -61,7 +61,7 @@ void FGUIScrollView::mouse_axes_func(float mx, float my, float mdx, float mdy)
 
 	if (!collision_area->collides(mx, my))
 	{
-		static_cast<FGUIParent *>(family.parent)->mouse_blocked = true; // TODO: this works, but I don't think it's "correct"
+		family.parent->mouse_is_blocked = true; // TODO: this works, but I don't think it's "correct"
 										// e.g. what if there is no parent?
 	}
 	else
