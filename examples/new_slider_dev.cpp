@@ -21,7 +21,7 @@ private:
 		void on_click() override
 		{
 			FGUIButton::on_click();
-			static_cast<NewSlider *>(parent)->step_up();
+			static_cast<NewSlider *>(family.parent)->step_up();
 		}
 	};
 
@@ -33,7 +33,7 @@ private:
 		void on_click() override
 		{
 			FGUIButton::on_click();
-			static_cast<NewSlider *>(parent)->step_down();
+			static_cast<NewSlider *>(family.parent)->step_down();
 		}
 	};
 
@@ -57,7 +57,7 @@ private:
 		void on_click() override
 		{
 			// find the direction of the jump based on the handle's position
-			NewSlider *slider_parent = static_cast<NewSlider *>(parent);
+			NewSlider *slider_parent = static_cast<NewSlider *>(family.parent);
 			if (slider_parent->handle->place.position.y < current_mouse_y) slider_parent->jump_down();	
 			else slider_parent->jump_up();	
 		}
@@ -82,7 +82,7 @@ private:
 		void on_drag(float x, float y, float dx, float dy) override
 		{
 			place.position.y = limit<float>(min_y+place.size.y/2, max_y-place.size.y/2, place.position.y+dy);
-			parent->on_change();
+			family.parent->on_change();
 		}
 		void on_draw() override
 		{
@@ -103,7 +103,7 @@ private:
 			float new_pos = position_in_unit_value * (max_y - min_y - place.size.y) + (min_y + place.size.y/2.0);
 			place.position.y = new_pos; 
 
-			if (place.position.y != previous_pos) parent->on_change();
+			if (place.position.y != previous_pos) family.parent->on_change();
 		}
 	};
 

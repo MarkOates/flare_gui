@@ -81,7 +81,7 @@ void FGUIParent::mouse_axes_func(float mx, float my, float mdx, float mdy)
 	collision_area->placement.transform_coordinates(&tmx, &tmy);
 	collision_area->placement.transform_coordinates(&tmdx, &tmdy);
 
-	if (parent && parent->mouse_blocked) mouse_blocked = true;
+	if (family.parent && static_cast<FGUIParent *>(family.parent)->mouse_blocked) mouse_blocked = true;
 	else mouse_blocked = false;
 
 	for (int i=(int)children.children.size()-1; i>=0; i--)

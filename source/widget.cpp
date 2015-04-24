@@ -12,8 +12,8 @@
 
 
 FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
-	: parent(parent)
-	, family(parent)
+	//: parent(parent)
+	: family(parent)
 	, children(family)
 	, collision_area(collision_area)
 	, place(collision_area->placement)
@@ -39,7 +39,7 @@ FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
 FGUIWidget::~FGUIWidget()
 {
 	if (collision_area) delete collision_area;
-	if (parent) parent->children.unregister_as_child(this);
+	if (family.parent) family.parent->children.unregister_as_child(this);
 	num_active_widgets--;
 	
 	std::cout << "~FGUIWidget() { type=" << attr.get(FGUI_ATTR__FGUI_WIDGET_TYPE) << " }" << std::endl;
@@ -90,7 +90,7 @@ bool FGUIWidget::is_mouse_over()
 FGUIWidget *FGUIWidget::gimmie_super_parent()
 {
 	FGUIWidget *widget = this;
-	while(widget->parent) widget = widget->parent;
+	while(widget->family.parent) widget = widget->family.parent;
 	return static_cast<FGUIWidget *>(widget);
 }
 
@@ -107,14 +107,14 @@ FGUIScreen *FGUIWidget::gimmie_super_screen()
 
 void FGUIWidget::bring_to_front()
 {
-	if (!parent) return;
+	if (!family.parent) return;
 		// hmm.. the logic of this should be executed by the parent, not this child
-	for (unsigned i=0; i<parent->children.children.size(); i++)
+	for (unsigned i=0; i<family.parent->children.children.size(); i++)
 	{
-		if (parent->children.children[i] == this)
+		if (family.parent->children.children[i] == this)
 		{
-			parent->children.children.erase(parent->children.children.begin() + i);
-			parent->children.children.push_back(this);
+			family.parent->children.children.erase(family.parent->children.children.begin() + i);
+			family.parent->children.children.push_back(this);
 			return;
 		}
 	}
@@ -125,7 +125,7 @@ void FGUIWidget::bring_to_front()
 
 void FGUIWidget::send_message_to_parent(std::string message)
 {
-	if (parent) parent->receive_message(message);
+	if (family.parent) static_cast<FGUIParent *>(family.parent)->receive_message(message);
 }
 
 
@@ -166,13 +166,13 @@ void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 	if (collision_area)
 	{
 		bool mouse_over_now = collision_area->collides(x, y);
-		if (parent && parent->mouse_blocked) mouse_over_now = false;
+		if (family.parent && static_cast<FGUIParent *>(family.parent)->mouse_blocked) mouse_over_now = false;
 
 		if (mouse_over_now && !mouse_over) on_mouse_enter();
 		else if (!mouse_over_now && mouse_over) on_mouse_leave();
 
 		mouse_over = mouse_over_now;
-		if (parent && mouse_over) parent->mouse_blocked = true;
+		if (family.parent && mouse_over) static_cast<FGUIParent *>(family.parent)->mouse_blocked = true;
 	}
 
 	on_mouse_move(x, y, dx, dy);
@@ -326,7 +326,7 @@ void FGUIWidget::set_as_focused()
 	// if the widget is not already focused, then set to focused and on_focus() is called
 {
 	// todo: this might require that the superparent is iterated
-	if (parent) parent->family.set_focus_to_child(this);
+	if (family.parent) family.parent->family.set_focus_to_child(this);
 }
 
 

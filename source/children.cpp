@@ -50,9 +50,9 @@ bool FGUIChildren::assign_child_to_new_parent(FGUIWidget *child_widget, FGUIPare
 	// have the current parent remove this child
 	if (!child_widget) { std::cout << "err1" << std::endl; return false; } // TODO: fix crappy error messages
 
-	if (child_widget->parent)
+	if (child_widget->family.parent)
 	{
-		child_widget->parent->children.unregister_as_child(child_widget);
+		child_widget->family.parent->children.unregister_as_child(child_widget);
 	}
 
 	// assign the parent to the new parent

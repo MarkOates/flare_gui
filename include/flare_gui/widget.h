@@ -61,7 +61,7 @@ protected:
 	FGUIFamily family;
 	FGUIFamily &children; // this is exactly the same as family, but for dev-deprec purposes children is here and will removed eventually
 
-	FGUIParent *parent;
+	//FGUIParent *parent;
 	static int widget_count; // a counter for numbering new widget ids
 	bool mouse_over, mouse_down_on_over, focused, dragging, no_focus; // should implement a flag system instead ;)
 		// ^^^ will need to add: skip_on_tab_focus (or no_focus), no_jumpout_on_tab

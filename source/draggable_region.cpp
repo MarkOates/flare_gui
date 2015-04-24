@@ -38,12 +38,12 @@ void FGUIDraggableRegion::on_draw()
 
 void FGUIDraggableRegion::on_drag(float x, float y, float dx, float dy)
 {
-	if (parent)
+	if (family.parent)
 	{
 		// This might not be the best method, that is, directly controlling the parameters
 		// of a parent object.  It might interfere with other events or other actions on
 		// or around the parent's parameters.  For example, if the parent is being animated, etc.
-		placement2d &parent_placement = parent->place;
+		placement2d &parent_placement = family.parent->place;
 		parent_placement.position.x += dx;
 		parent_placement.position.y += dy;
 	}
