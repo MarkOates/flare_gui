@@ -11,10 +11,12 @@
 
 #include <allegro_flare/bit_flags.h>
 
+#include <flare_gui/family.h>
 
 
 class FGUIParent;
 class FGUIScreen;
+class FGUIFamily;
 class Motion;
 class FontBin;
 class SampleBin;
@@ -54,6 +56,10 @@ protected:
 	friend class FGUIParent;
 	friend class FGUIScreen;
 	friend class FGUIChildren;
+	friend class FGUIFamily;
+	
+	FGUIFamily family;
+	FGUIFamily &children; // this is exactly the same as family, but for dev-deprec purposes children is here and will removed eventually
 
 	FGUIParent *parent;
 	static int widget_count; // a counter for numbering new widget ids

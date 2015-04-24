@@ -14,7 +14,7 @@ class FGUIParent : public FGUIWidget
 {
 public:
 	bool mouse_blocked;
-	FGUIChildren children;
+	//FGUIChildren children;
 	// FGUISignalSlots slots;  // < gotta do this eventually, I imagine.  dang...
 
 	FGUIParent(FGUIParent *parent, FGUICollisionArea *collision_area);
@@ -41,10 +41,13 @@ public:
 	void joy_up_func();
 	void joy_axis_func();
 
+
+
+
 	// these are used
 	//void on_focus(); //<< this should only be in the FGUIWidget, not the FGUIParent
 
-	bool set_focus_to(FGUIWidget *child); // TODO: implement this in FGUIChildren
+	//bool set_focus_to(FGUIWidget *child); // TODO: implement this in FGUIChildren
 	//void unfocus_all(); // <- this is implemented in "FGUIChildren children"
 //	bool has_child(FGUIWidget *widget);
 

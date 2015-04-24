@@ -163,7 +163,7 @@ void FGUIParent::joy_axis_func()
 }
 
 
-
+/*
 bool FGUIParent::set_focus_to(FGUIWidget *child)
 	// returns true if the child was set from an unfocused state to a focused state
 	// TODO: allow NULL as a parameter
@@ -191,7 +191,7 @@ bool FGUIParent::set_focus_to(FGUIWidget *child)
 
 	return true;
 }
-
+*/
 
 
 

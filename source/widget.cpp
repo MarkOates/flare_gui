@@ -6,11 +6,15 @@
 #include <flare_gui/widget_screen.h>
 #include <allegro_flare/motion.h>
 
+#include <flare_gui/family.h>
+
 
 
 
 FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
 	: parent(parent)
+	, family(parent)
+	, children(family)
 	, collision_area(collision_area)
 	, place(collision_area->placement)
 	, mouse_down_on_over(false)
@@ -27,6 +31,7 @@ FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
 	num_active_widgets++;
 	widget_count++;
 }
+
 
 
 
@@ -321,7 +326,7 @@ void FGUIWidget::set_as_focused()
 	// if the widget is not already focused, then set to focused and on_focus() is called
 {
 	// todo: this might require that the superparent is iterated
-	if (parent) parent->set_focus_to(this);
+	if (parent) parent->family.set_focus_to_child(this);
 }
 
 

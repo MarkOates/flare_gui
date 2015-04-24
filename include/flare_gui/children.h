@@ -7,7 +7,10 @@
 #include <deque>
 #include <vector>
 
-#include <flare_gui/widget.h>
+//#include <flare_gui/widget.h>
+class FGUIWidget;
+class FGUIParent;
+
 
 class FGUIChildren
 {
