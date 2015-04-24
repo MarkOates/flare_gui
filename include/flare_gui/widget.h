@@ -7,6 +7,7 @@
 #include <flare_gui/collision_area.h>
 #include <allegro_flare/data_attr.h>
 #include <allegro_flare/clipboard_win.h> // this should eventually be replaced with a cross-platform clipboard solution
+#include <allegro_flare/color.h>
 
 #include <allegro_flare/bit_flags.h>
 
@@ -150,7 +151,7 @@ public:
 	// from widget drawing - if the user want it.
 
 	void FGUIWidget::draw_inset(float x, float y, float w, float h);
-	void FGUIWidget::draw_outset(float x, float y, float w, float h);
+	void FGUIWidget::draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"));
 };
 
 

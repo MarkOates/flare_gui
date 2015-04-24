@@ -27,6 +27,7 @@ FGUIWindow::FGUIWindow(FGUIParent *parent, float x, float y, float w, float h)
 void FGUIWindow::on_draw()
 {
 	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+	draw_textured_rectangle(1, 1, place.size.x-1, place.size.y-1, af::bitmaps["rough.jpg"], color::color(color::white, 0.1));
 }
 
 

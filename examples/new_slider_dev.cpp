@@ -47,12 +47,12 @@ private:
 		{}
 		void on_draw() override
 		{
-			al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color::gray);
+			al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color::mix(color::transparent, color::hex("3a3c47"), 0.4));
+			al_draw_rectangle(0.5, 0.5, place.size.x-0.5, place.size.y-0.5, color::color(color::black, 0.2), 1.0);
 		}
 		void on_mouse_move(float x, float y, float dx, float dy) override
 		{
 			current_mouse_y = y;
-			std::cout << current_mouse_y << std::endl;
 		}
 		void on_click() override
 		{
@@ -166,6 +166,7 @@ public:
 		if (af::current_event->keyboard.keycode == ALLEGRO_KEY_DOWN) step_down();
 		else if (af::current_event->keyboard.keycode == ALLEGRO_KEY_UP) step_up();
 	}
+	void on_draw() override {}
 };
 
 

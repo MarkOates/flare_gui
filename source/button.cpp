@@ -53,6 +53,9 @@ void FGUIButton::on_draw()
 
 	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
 
+	// draw a hilight along the top
+	al_draw_filled_rounded_rectangle(4, 4, place.size.x-4, 4+place.size.y/3, 4, 4, color::color(color::white, 0.05));
+
 /*
 	// PREVIOUS STYLING:	
 
