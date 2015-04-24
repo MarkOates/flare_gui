@@ -196,6 +196,10 @@ bool FGUIParent::set_focus_to(FGUIWidget *child)
 
 
 
+/*
+
+
+
 void FGUIParent::jump_focus_to_next_direct_descendent()
 {
 	jump_focus_to_direct_descendent_by_delta(1);
@@ -388,3 +392,10 @@ void FGUIParent::unselect_all_ancestors_except(int n)
 		}
 	}
 }
+
+
+
+*/
+
+
+

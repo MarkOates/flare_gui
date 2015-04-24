@@ -73,7 +73,7 @@ public:
 		new FGUIText(this, 20, display->height()-40-30, "Press the joystick SHOULDER BUTTONS or keyboard's TAB to jump to the next GUI widget.");
 		new FGUIText(this, 20, display->height()-40, "(you can also hot-swap the joystick)");
 
-		std::cout << "count_complete_lineage: " << get_num_ancestors() << std::endl;
+		//std::cout << "count_complete_lineage: " << get_num_ancestors() << std::endl;
 	}
 	//void on_draw() override
 	//{

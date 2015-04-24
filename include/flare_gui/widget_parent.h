@@ -51,6 +51,7 @@ public:
 	//void unfocus_all(); // <- this is implemented in "FGUIChildren children"
 //	bool has_child(FGUIWidget *widget);
 
+/*
 	void jump_focus_to_next_direct_descendent(); // for the most part, these should be considered depreciated...
 	void jump_focus_to_previous_direct_descendent();
 	void jump_focus_to_direct_descendent_by_delta(int offset);
@@ -65,6 +66,7 @@ private:
 	int __count_ancestors_recursive(); 
 	FGUIWidget *__get_nth_ancestor_recursive(int n);
 	//void 
+*/
 };
 
 

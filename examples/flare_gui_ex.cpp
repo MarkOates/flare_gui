@@ -356,7 +356,7 @@ public:
 		window->collision_area->placement.position.x = display->width()/2;
 		window->collision_area->placement.position.y = display->height()/2;
 
-		std::cout << "this widget has " << get_num_ancestors() << " leaves" << std::endl;
+		//std::cout << "this widget has " << get_num_ancestors() << " leaves" << std::endl;
 	}
 };
 

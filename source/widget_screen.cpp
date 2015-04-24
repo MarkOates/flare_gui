@@ -106,6 +106,7 @@ void FGUIScreen::key_down_func()
 
 	// these next two conditionals are for keyboard/joystick navigation of widgets
 
+/*
 	if (af::current_event->keyboard.keycode == ALLEGRO_KEY_TAB)
 	{
 		if (af::key_shift) jump_focus_to_ancestor_by_delta(true);// jump_focus_to_previous_direct_descendent();
@@ -116,7 +117,7 @@ void FGUIScreen::key_down_func()
 		children.unfocus_all();
 		al_show_mouse_cursor(display->display); // restore visibility of the cursor here
 	}
-
+*/
 
 	FGUIParent::key_down_func();
 }
@@ -142,9 +143,11 @@ void FGUIScreen::key_char_func()
 
 void FGUIScreen::joy_down_func()
 {
+/*
 	// for joystick / keyboard navigation of widgets
 	if (af::current_event->joystick.button ==  5) jump_focus_to_ancestor_by_delta(); // XBOX Controller right shoulder trigger button
 	if (af::current_event->joystick.button ==  4) jump_focus_to_ancestor_by_delta(true); // XBOX Controller left shoulder trigger button
+*/
 
 	FGUIParent::joy_down_func();
 }
