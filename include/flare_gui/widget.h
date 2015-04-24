@@ -100,6 +100,7 @@ public:
 	// ordering
 	void bring_to_front();
 	void send_message_to_parent(std::string message);
+	virtual void receive_message(std::string message);
 
 
 	// retrieval

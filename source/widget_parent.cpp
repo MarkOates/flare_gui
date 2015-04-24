@@ -30,7 +30,7 @@ FGUIParent::FGUIParent(FGUIParent *parent, FGUICollisionArea *collision_area)
 FGUIParent::~FGUIParent()
 	// ?
 {
-	children.delete_all();
+	//children.delete_all();
 }
 
 
@@ -43,11 +43,11 @@ void FGUIParent::draw_func()
 {
 	FGUIWidget::draw_func();
 
-	place.start_transform();
+	//place.start_transform();
 
-	children.draw_all();
+	//children.draw_all();
 
-	place.restore_transform();
+	//place.restore_transform();
 }
 
 
@@ -57,8 +57,8 @@ void FGUIParent::primary_timer_func()
 {
 	FGUIWidget::primary_timer_func();
 
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->primary_timer_func();
+//	for (unsigned i=0; i<children.children.size(); i++)
+//		children.children[i]->primary_timer_func();
 }
 
 
@@ -66,26 +66,26 @@ void FGUIParent::primary_timer_func()
 
 
 
-void FGUIParent::receive_message(std::string message) {};
+//void FGUIParent::receive_message(std::string message) {};
 
 
 
 
 void FGUIParent::mouse_axes_func(float mx, float my, float mdx, float mdy)
 {
-	float tmx = mx;
-	float tmy = my;
-	float tmdx = mdx;
-	float tmdy = mdy;
-
-	collision_area->placement.transform_coordinates(&tmx, &tmy);
-	collision_area->placement.transform_coordinates(&tmdx, &tmdy);
-
-	if (family.parent && family.parent->mouse_is_blocked) mouse_is_blocked = true;
-	else mouse_is_blocked = false;
-
-	for (int i=(int)children.children.size()-1; i>=0; i--)
-		children.children[i]->mouse_axes_func(tmx, tmy, mdx, mdy);
+//	float tmx = mx;
+//	float tmy = my;
+//	float tmdx = mdx;
+//	float tmdy = mdy;
+//
+//	collision_area->placement.transform_coordinates(&tmx, &tmy);
+//	collision_area->placement.transform_coordinates(&tmdx, &tmdy);
+//
+//	if (family.parent && family.parent->mouse_is_blocked) mouse_is_blocked = true;
+//	else mouse_is_blocked = false;
+//
+//	for (int i=(int)children.children.size()-1; i>=0; i--)
+//		children.children[i]->mouse_axes_func(tmx, tmy, mdx, mdy);
 
 	FGUIWidget::mouse_axes_func(mx, my, mdx, mdy);
 }
@@ -94,8 +94,8 @@ void FGUIParent::mouse_axes_func(float mx, float my, float mdx, float mdy)
 
 void FGUIParent::mouse_down_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->mouse_down_func();
+	//for (unsigned i=0; i<children.children.size(); i++)
+//		children.children[i]->mouse_down_func();
 	FGUIWidget::mouse_down_func();
 }
 
@@ -103,8 +103,8 @@ void FGUIParent::mouse_down_func()
 
 void FGUIParent::mouse_up_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->mouse_up_func();
+//	for (unsigned i=0; i<children.children.size(); i++)
+//		children.children[i]->mouse_up_func();
 	FGUIWidget::mouse_up_func();
 }
 
@@ -112,8 +112,8 @@ void FGUIParent::mouse_up_func()
 
 void FGUIParent::key_down_func() // should these be key_down_funcs() ?
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->key_down_func();
+//	for (unsigned i=0; i<children.children.size(); i++)
+//		children.children[i]->key_down_func();
 	FGUIWidget::key_down_func();
 }
 
@@ -121,8 +121,8 @@ void FGUIParent::key_down_func() // should these be key_down_funcs() ?
 
 void FGUIParent::key_up_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->key_up_func();
+//	for (unsigned i=0; i<children.children.size(); i++)
+//		children.children[i]->key_up_func();
 	FGUIWidget::key_up_func();
 }
 
@@ -130,8 +130,8 @@ void FGUIParent::key_up_func()
 
 void FGUIParent::key_char_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->key_char_func();
+//	for (unsigned i=0; i<children.children.size(); i++)
+//		children.children[i]->key_char_func();
 	FGUIWidget::key_char_func();
 }
 
@@ -139,8 +139,8 @@ void FGUIParent::key_char_func()
 
 void FGUIParent::joy_down_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->joy_down_func();
+//	for (unsigned i=0; i<children.children.size(); i++)
+//		children.children[i]->joy_down_func();
 	FGUIWidget::joy_down_func();
 }
 
@@ -148,8 +148,8 @@ void FGUIParent::joy_down_func()
 
 void FGUIParent::joy_up_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->joy_up_func();
+//	for (unsigned i=0; i<children.children.size(); i++)
+//		children.children[i]->joy_up_func();
 	FGUIWidget::joy_up_func();
 }
 
@@ -157,8 +157,8 @@ void FGUIParent::joy_up_func()
 
 void FGUIParent::joy_axis_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->joy_axis_func();
+//	for (unsigned i=0; i<children.children.size(); i++)
+//		children.children[i]->joy_axis_func();
 	FGUIWidget::joy_axis_func();
 }
 

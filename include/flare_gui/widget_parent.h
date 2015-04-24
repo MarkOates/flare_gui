@@ -22,7 +22,7 @@ public:
 
 
 	// widget communication
-	virtual void receive_message(std::string message);
+	//virtual void receive_message(std::string message);
 
 
 	// if the use wishes to overload these, be sure to call
