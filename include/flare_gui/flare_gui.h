@@ -23,6 +23,7 @@
 #include <flare_gui/text_area.h>
 #include <flare_gui/checkbox.h>
 #include <flare_gui/slider.h>
+#include <flare_gui/scrollbar.h>
 #include <flare_gui/image.h>
 #include <flare_gui/notification_bubble.h>
 #include <flare_gui/text_list.h>
