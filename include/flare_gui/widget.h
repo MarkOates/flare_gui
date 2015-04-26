@@ -88,7 +88,7 @@ public:
 	FGUICollisionArea *collision_area;
 	placement2d &place;
 
-	FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area);
+	FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area);
 	virtual ~FGUIWidget();
 
 

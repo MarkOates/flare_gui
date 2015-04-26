@@ -11,7 +11,7 @@
 
 
 
-FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
+FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area)
 	//: parent(parent)
 	: family(parent)
 	, children(family)
@@ -134,7 +134,7 @@ void FGUIWidget::bring_to_front()
 
 void FGUIWidget::send_message_to_parent(std::string message)
 {
-	if (family.parent) static_cast<FGUIParent *>(family.parent)->receive_message(message);
+	if (family.parent) family.parent->receive_message(message);
 }
 
 
