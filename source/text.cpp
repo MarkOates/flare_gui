@@ -13,7 +13,7 @@
 
 
 
-FGUIText::FGUIText(FGUIParent *parent, float x, float y, std::string text)
+FGUIText::FGUIText(FGUIWidget *parent, float x, float y, std::string text)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, 200, 20)) // just set arbitrary width and height
 	, text(text)
 	, font(af::fonts["DroidSans.ttf 20"])

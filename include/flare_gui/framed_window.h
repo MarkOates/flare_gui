@@ -3,13 +3,13 @@
 
 
 
-#include <flare_gui/widget_parent.h>
+#include <flare_gui/widget.h>
 #include <flare_gui/draggable_region.h>
 #include <flare_gui/button.h>
 
 
 
-class FGUIFramedWindow : public FGUIParent
+class FGUIFramedWindow : public FGUIWidget
 {
 private:
 
@@ -23,7 +23,7 @@ private:
 
 public:
 
-	FGUIFramedWindow(FGUIParent *parent, float x, float y, float w, float h);
+	FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w, float h);
 	void receive_message(std::string message);
 
 	void on_draw() override;

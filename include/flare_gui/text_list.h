@@ -37,7 +37,7 @@ public:
 	std::vector<std::string> items;
 
 public:
-	FGUITextList(FGUIParent *parent, float x, float y, float w);
+	FGUITextList(FGUIWidget *parent, float x, float y, float w);
 
 	// TODO: clean up this nasty beast :x
 

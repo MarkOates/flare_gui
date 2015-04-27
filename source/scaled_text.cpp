@@ -52,7 +52,7 @@ void FGUIScaledText::refresh_render()
 
 
 
-FGUIScaledText::FGUIScaledText(FGUIParent *parent, float x, float y, std::string text)
+FGUIScaledText::FGUIScaledText(FGUIWidget *parent, float x, float y, std::string text)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, 100, 100))
 	, font_filename("DroidSans.ttf")
 	, font_size(14)

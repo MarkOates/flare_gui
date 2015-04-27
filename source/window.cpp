@@ -10,8 +10,8 @@
 
 
 
-FGUIWindow::FGUIWindow(FGUIParent *parent, float x, float y, float w, float h)
-	: FGUIParent(parent, new FGUICollisionBox(x, y, w, h))
+FGUIWindow::FGUIWindow(FGUIWidget *parent, float x, float y, float w, float h)
+	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, background_color(color::hex("3a3c47"))
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWindow");

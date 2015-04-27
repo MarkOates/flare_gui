@@ -13,7 +13,7 @@
 
 FGUIScreen::FGUIScreen(Display *display)
 	: Screen(display)
-	, FGUIParent(NULL, new FGUICollisionBox(0, 0, display->width(), display->height()))
+	, FGUIWidget(NULL, new FGUICollisionBox(0, 0, display->width(), display->height()))
 	, draw_focused_outline(true)
 	, use_joystick_as_mouse(true)
 	, clear_to_background_color(true)
@@ -61,8 +61,8 @@ void FGUIScreen::primary_timer_func()
 
 	// call the parent's usual functions
 
-	FGUIParent::primary_timer_func();
-	FGUIParent::draw_func();
+	FGUIWidget::primary_timer_func();
+	FGUIWidget::draw_func();
 
 	on_draw_after_children();
 }
@@ -78,7 +78,7 @@ void FGUIScreen::mouse_axes_func()
 	float mdx = af::current_event->mouse.dx;
 	float mdy = af::current_event->mouse.dy;
 
-	FGUIParent::mouse_axes_func(mx, my, mdx, mdy);
+	FGUIWidget::mouse_axes_func(mx, my, mdx, mdy);
 }
 
 
@@ -86,7 +86,7 @@ void FGUIScreen::mouse_axes_func()
 void FGUIScreen::mouse_down_func()
 {
 	if (af::current_event->mouse.display != display->display) return;
-	FGUIParent::mouse_down_func();
+	FGUIWidget::mouse_down_func();
 }
 
 
@@ -94,7 +94,7 @@ void FGUIScreen::mouse_down_func()
 void FGUIScreen::mouse_up_func()
 {
 	if (af::current_event->mouse.display != display->display) return;
-	FGUIParent::mouse_up_func();
+	FGUIWidget::mouse_up_func();
 }
 
 
@@ -106,6 +106,7 @@ void FGUIScreen::key_down_func()
 
 	// these next two conditionals are for keyboard/joystick navigation of widgets
 
+/*
 	if (af::current_event->keyboard.keycode == ALLEGRO_KEY_TAB)
 	{
 		if (af::key_shift) jump_focus_to_ancestor_by_delta(true);// jump_focus_to_previous_direct_descendent();
@@ -116,9 +117,9 @@ void FGUIScreen::key_down_func()
 		children.unfocus_all();
 		al_show_mouse_cursor(display->display); // restore visibility of the cursor here
 	}
+*/
 
-
-	FGUIParent::key_down_func();
+	FGUIWidget::key_down_func();
 }
 
 
@@ -126,7 +127,7 @@ void FGUIScreen::key_down_func()
 void FGUIScreen::key_up_func()
 {
 	if (af::current_event->keyboard.display != display->display) return;
-	FGUIParent::key_up_func();
+	FGUIWidget::key_up_func();
 }
 
 
@@ -135,18 +136,20 @@ void FGUIScreen::key_char_func()
 {
 	if (af::current_event->keyboard.display != display->display) return;
 
-	FGUIParent::key_char_func();
+	FGUIWidget::key_char_func();
 }
 
 
 
 void FGUIScreen::joy_down_func()
 {
+/*
 	// for joystick / keyboard navigation of widgets
 	if (af::current_event->joystick.button ==  5) jump_focus_to_ancestor_by_delta(); // XBOX Controller right shoulder trigger button
 	if (af::current_event->joystick.button ==  4) jump_focus_to_ancestor_by_delta(true); // XBOX Controller left shoulder trigger button
+*/
 
-	FGUIParent::joy_down_func();
+	FGUIWidget::joy_down_func();
 }
 
 
@@ -154,7 +157,7 @@ void FGUIScreen::joy_down_func()
 void FGUIScreen::joy_up_func()
 {
 //	if (af::current_event->keyboard.display != display->display) return;
-	FGUIParent::joy_up_func();
+	FGUIWidget::joy_up_func();
 }
 
 
@@ -166,7 +169,7 @@ void FGUIScreen::joy_axis_func()
 //	if (af::current_event->joystick.axis == 0) joy_horizontal_pos = af::current_event->joystick.pos;
 //	if (af::current_event->joystick.axis == 1) joy_vertical_pos = af::current_event->joystick.pos;
 
-	FGUIParent::joy_axis_func();
+	FGUIWidget::joy_axis_func();
 }
 
 

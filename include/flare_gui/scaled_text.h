@@ -22,7 +22,7 @@ private:
 	void refresh_render();
 
 public:
-	FGUIScaledText(FGUIParent *parent, float x, float y, std::string text);
+	FGUIScaledText(FGUIWidget *parent, float x, float y, std::string text);
 
 	void set_font_color(ALLEGRO_COLOR color);
 	void on_draw();

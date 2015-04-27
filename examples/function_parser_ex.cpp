@@ -287,7 +287,7 @@ public:
 	class Input : public FGUITextInput
 	{
 	public:
-		Input(FGUIParent *parent)
+		Input(FGUIWidget *parent)
 			: FGUITextInput(parent, PADDING, PADDING, WIDTH, 40, "function(arg1, \"this is a string\")")
 		{
 			place.align.x = 0;
@@ -298,7 +298,7 @@ public:
 	class Output : public FGUITextArea
 	{
 	public:
-		Output(FGUIParent *parent)
+		Output(FGUIWidget *parent)
 			: FGUITextArea(parent, PADDING, PADDING + 80, WIDTH, 400, "")
 		{
 			place.align.x = 0;

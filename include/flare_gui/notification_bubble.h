@@ -7,7 +7,6 @@
 #include <allegro_flare/color.h>
 
 #include <flare_gui/widget.h>
-#include <flare_gui/widget_parent.h>
 #include <flare_gui/collision_box.h>
 
 #include <allegro5/allegro_font.h>
@@ -23,7 +22,7 @@ private:
 	float opacity;
 	ALLEGRO_FONT *font;
 public:
-	FGUINotificationBubble(FGUIParent *parent, float x, float y, std::string text)
+	FGUINotificationBubble(FGUIWidget *parent, float x, float y, std::string text)
 		: FGUIWidget(parent, new FGUICollisionBox(x, y, 280, 90))
 		, text(text)
 		, font(af::fonts["DroidSerif.ttf 20"])

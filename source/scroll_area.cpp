@@ -7,8 +7,8 @@
 
 
 
-FGUIScrollView::FGUIScrollView(FGUIParent *parent, float x, float y, float w, float h, FGUIParent *content_parent)
-	: FGUIParent(parent, new FGUICollisionBox(x, y, w, h))
+FGUIScrollView::FGUIScrollView(FGUIWidget *parent, float x, float y, float w, float h, FGUIWidget *content_parent)
+	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, canvas(content_parent)
 	, v_slider(NULL)
 	, canvas_render(al_create_bitmap(w, h))
@@ -24,7 +24,7 @@ FGUIScrollView::FGUIScrollView(FGUIParent *parent, float x, float y, float w, fl
 
 
 
-FGUIParent *FGUIScrollView::get_canvas()
+FGUIWidget *FGUIScrollView::get_canvas()
 {
 	return canvas;
 }
@@ -61,7 +61,7 @@ void FGUIScrollView::mouse_axes_func(float mx, float my, float mdx, float mdy)
 
 	if (!collision_area->collides(mx, my))
 	{
-		parent->mouse_blocked = true; // TODO: this works, but I don't think it's "correct"
+		family.parent->mouse_is_blocked = true; // TODO: this works, but I don't think it's "correct"
 										// e.g. what if there is no parent?
 	}
 	else
@@ -69,7 +69,7 @@ void FGUIScrollView::mouse_axes_func(float mx, float my, float mdx, float mdy)
 		//std::cout << ".";
 	}
 
-	FGUIParent::mouse_axes_func(tmx, tmy, tmdx, tmdy);
+	FGUIWidget::mouse_axes_func(tmx, tmy, tmdx, tmdy);
 }
 
 
@@ -78,7 +78,7 @@ void FGUIScrollView::on_timer()
 {
 	if (canvas)
 		canvas->place.position.y = v_slider->get_val(-(canvas->place.size.y-place.size.y), 0);
-	FGUIParent::on_timer();
+	FGUIWidget::on_timer();
 }
 
 

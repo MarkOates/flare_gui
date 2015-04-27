@@ -24,7 +24,7 @@ public:
 	int32_t icon;
 	ALLEGRO_COLOR icon_color;
 
-	FGUICircleButton(FGUIParent *parent, float x, float y, float radius, int32_t icon, std::string message_to_parent)
+	FGUICircleButton(FGUIWidget *parent, float x, float y, float radius, int32_t icon, std::string message_to_parent)
 		: FGUIWidget(parent, new FGUICollisionCircle(x-(radius)+10, y+(radius)-10, radius))
 		, icon(icon)
 		, icon_color(color::gray)
@@ -57,7 +57,7 @@ private:
 	FGUIText *filename_label;
 	FGUIText *media_player_title;
 public:
-	MyMediaPlayer(FGUIParent *parent)
+	MyMediaPlayer(FGUIWidget *parent)
 		: FGUIWindow(parent, 650, 500, 200, 170)
 		, filename("water_4.wav")
 		, sound(af::samples[filename])
@@ -121,7 +121,7 @@ private:
 	int mouse_down_x, mouse_down_y;
 
 public:
-	MyFGUIWindow(FGUIParent *parent, Display *display)
+	MyFGUIWindow(FGUIWidget *parent, Display *display)
 		: FGUIWindow(parent, 0, 0, display->width(), display->height())
 		, display(display->display)
 		, text_input(NULL)
@@ -356,7 +356,7 @@ public:
 		window->collision_area->placement.position.x = display->width()/2;
 		window->collision_area->placement.position.y = display->height()/2;
 
-		std::cout << "this widget has " << get_num_ancestors() << " leaves" << std::endl;
+		//std::cout << "this widget has " << get_num_ancestors() << " leaves" << std::endl;
 	}
 };
 

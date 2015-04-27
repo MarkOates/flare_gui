@@ -9,13 +9,12 @@
 
 #include <flare_gui/music_notation.h>
 #include <flare_gui/collision_box.h>
-#include <flare_gui/widget_parent.h>
 
 #include <allegro_flare/useful.h>
 
 
 
-FGUIMusicNotation::FGUIMusicNotation(FGUIParent *parent, float x, float y)
+FGUIMusicNotation::FGUIMusicNotation(FGUIWidget *parent, float x, float y)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, 300, 80))
 	, notation(new DrawingInterfaceAllegro5())
 {

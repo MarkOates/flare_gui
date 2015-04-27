@@ -21,7 +21,7 @@ public:
 	//int text_alignment; // since the addition of the icon, text_alignment referes to content alignment
 	float content_alignment; // since the addition of the icon, text_alignment referes to content alignment
 
-	FGUIButton(FGUIParent *parent, float x, float y, float w, float h, std::string text);
+	FGUIButton(FGUIWidget *parent, float x, float y, float w, float h, std::string text);
 
 	void set_text(std::string text);
 	void set_icon(ALLEGRO_BITMAP *icon);

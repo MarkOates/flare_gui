@@ -1,16 +1,19 @@
 
 
 #include <flare_gui/widget.h>
-#include <flare_gui/widget_parent.h>
 #include <allegro_flare/allegro_flare.h>
 #include <flare_gui/widget_screen.h>
 #include <allegro_flare/motion.h>
 
+#include <flare_gui/family.h>
 
 
 
-FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
-	: parent(parent)
+
+FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area)
+	//: parent(parent)
+	: family(parent)
+	, children(family)
 	, collision_area(collision_area)
 	, place(collision_area->placement)
 	, mouse_down_on_over(false)
@@ -19,6 +22,7 @@ FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
 	, dragging(false)
 	, no_focus(false)
 	, delete_me(false)
+	, mouse_is_blocked(false)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWidget");
 	attr.set("id", "Widget" + tostring(widget_count));
@@ -31,10 +35,13 @@ FGUIWidget::FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area)
 
 
 
+
 FGUIWidget::~FGUIWidget()
 {
+	children.delete_all(); // from FGUIParent
+
 	if (collision_area) delete collision_area;
-	if (parent) parent->children.unregister_as_child(this);
+	if (family.parent) family.parent->children.unregister_as_child(this);
 	num_active_widgets--;
 	
 	std::cout << "~FGUIWidget() { type=" << attr.get(FGUI_ATTR__FGUI_WIDGET_TYPE) << " }" << std::endl;
@@ -64,6 +71,12 @@ FGUIWidget::~FGUIWidget()
 
 
 
+void FGUIWidget::receive_message(std::string message) {};
+
+
+
+
+
 bool FGUIWidget::is_focused()
 {
 	return focused;
@@ -85,7 +98,7 @@ bool FGUIWidget::is_mouse_over()
 FGUIWidget *FGUIWidget::gimmie_super_parent()
 {
 	FGUIWidget *widget = this;
-	while(widget->parent) widget = widget->parent;
+	while(widget->family.parent) widget = widget->family.parent;
 	return static_cast<FGUIWidget *>(widget);
 }
 
@@ -102,14 +115,14 @@ FGUIScreen *FGUIWidget::gimmie_super_screen()
 
 void FGUIWidget::bring_to_front()
 {
-	if (!parent) return;
+	if (!family.parent) return;
 		// hmm.. the logic of this should be executed by the parent, not this child
-	for (unsigned i=0; i<parent->children.children.size(); i++)
+	for (unsigned i=0; i<family.parent->children.children.size(); i++)
 	{
-		if (parent->children.children[i] == this)
+		if (family.parent->children.children[i] == this)
 		{
-			parent->children.children.erase(parent->children.children.begin() + i);
-			parent->children.children.push_back(this);
+			family.parent->children.children.erase(family.parent->children.children.begin() + i);
+			family.parent->children.children.push_back(this);
 			return;
 		}
 	}
@@ -120,7 +133,7 @@ void FGUIWidget::bring_to_front()
 
 void FGUIWidget::send_message_to_parent(std::string message)
 {
-	if (parent) parent->receive_message(message);
+	if (family.parent) family.parent->receive_message(message);
 }
 
 
@@ -129,6 +142,9 @@ void FGUIWidget::send_message_to_parent(std::string message)
 void FGUIWidget::primary_timer_func()
 {
 	on_timer();
+
+	for (unsigned i=0; i<children.children.size(); i++)
+		children.children[i]->primary_timer_func();
 }
 
 
@@ -139,6 +155,8 @@ void FGUIWidget::draw_func()
 	if (collision_area) collision_area->placement.start_transform();
 
 	on_draw();
+
+	family.draw_all(); // TODO: should be renamed to draw_children();
 	
 	// draws the focus rectangle if it's focused
 	if (focused && gimmie_super_screen()->draw_focused_outline)
@@ -158,16 +176,36 @@ void FGUIWidget::draw_func()
 // widget developer functions:
 void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 {
+	// start by transforming the coordinates for the children
+
+	float tmx = x;
+	float tmy = y;
+	float tmdx = dx;
+	float tmdy = dy;
+
+	collision_area->placement.transform_coordinates(&tmx, &tmy);
+	collision_area->placement.transform_coordinates(&tmdx, &tmdy);
+
+	if (family.parent && family.parent->mouse_is_blocked) mouse_is_blocked = true;
+	else mouse_is_blocked = false;
+
+	for (int i=(int)children.children.size()-1; i>=0; i--)
+		children.children[i]->mouse_axes_func(tmx, tmy, dx, dy);  // I'm not sure why these are dx/dy, but it works correctly this way
+
+
+
+	// then proceed with the execution of the function
+
 	if (collision_area)
 	{
 		bool mouse_over_now = collision_area->collides(x, y);
-		if (parent && parent->mouse_blocked) mouse_over_now = false;
+		if (family.parent && family.parent->mouse_is_blocked) mouse_over_now = false;
 
 		if (mouse_over_now && !mouse_over) on_mouse_enter();
 		else if (!mouse_over_now && mouse_over) on_mouse_leave();
 
 		mouse_over = mouse_over_now;
-		if (parent && mouse_over) parent->mouse_blocked = true;
+		if (family.parent && mouse_over) family.parent->mouse_is_blocked = true;
 	}
 
 	on_mouse_move(x, y, dx, dy);
@@ -184,6 +222,11 @@ void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 
 void FGUIWidget::mouse_down_func()
 {
+	// call this function on the children first
+	for (unsigned i=0; i<children.children.size(); i++)
+		children.children[i]->mouse_down_func();
+
+	// now do the execution of the function
 	if (mouse_over)
 	{
 		mouse_down_on_over = true;
@@ -205,6 +248,11 @@ void FGUIWidget::mouse_down_func()
 
 void FGUIWidget::mouse_up_func()
 {
+	// call this function on the children first
+	for (unsigned i=0; i<children.children.size(); i++)
+		children.children[i]->mouse_up_func();
+
+	// then continue with the function on self
 	if (mouse_over && mouse_down_on_over)
 	{
 		// if the widget has a "on_click_send_message" key in its (DataAttr data), then send it to the parent
@@ -224,36 +272,57 @@ void FGUIWidget::mouse_up_func()
 
 void FGUIWidget::key_down_func()
 {
+	// call this function on the children first
+	for (unsigned i=0; i<children.children.size(); i++)
+		children.children[i]->key_down_func();
+
+	// then call on self
 	on_key_down();
 }
 
 
 void FGUIWidget::key_up_func()
 {
+	for (unsigned i=0; i<children.children.size(); i++)
+		children.children[i]->key_up_func();
+
 	on_key_up();
 }
 
 
 void FGUIWidget::key_char_func()
 {
+	for (unsigned i=0; i<children.children.size(); i++)
+		children.children[i]->key_char_func();
+	
 	on_key_char();
 }
 
 
 void FGUIWidget::joy_up_func()
 {
+	for (unsigned i=0; i<children.children.size(); i++)
+		children.children[i]->joy_up_func();
+
 	on_joy_up();
 }
 
 
 void FGUIWidget::joy_axis_func()
 {
+	for (unsigned i=0; i<children.children.size(); i++)
+		children.children[i]->joy_axis_func();
+
 	on_joy_axis();
 }
 
 
 void FGUIWidget::joy_down_func()
 {
+	for (unsigned i=0; i<children.children.size(); i++)
+		children.children[i]->joy_down_func();
+
+
 	if (mouse_over && af::current_event->joystick.button == 0)
 	{
 		set_as_focused();
@@ -321,7 +390,7 @@ void FGUIWidget::set_as_focused()
 	// if the widget is not already focused, then set to focused and on_focus() is called
 {
 	// todo: this might require that the superparent is iterated
-	if (parent) parent->set_focus_to(this);
+	if (family.parent) family.parent->family.set_focus_to_child(this);
 }
 
 

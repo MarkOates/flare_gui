@@ -7,7 +7,9 @@
 #include <deque>
 #include <vector>
 
-#include <flare_gui/widget.h>
+class FGUIWidget;
+
+
 
 class FGUIChildren
 {
@@ -21,7 +23,7 @@ public:
 	bool has_child(FGUIWidget *widget);
 	void register_as_child(FGUIWidget *widget);
 	void unregister_as_child(FGUIWidget *widget);
-	static bool assign_child_to_new_parent(FGUIWidget *child_widget, FGUIParent *new_parent); // warning, this function may require some 
+	static bool assign_child_to_new_parent(FGUIWidget *child_widget, FGUIWidget *new_parent); // warning, this function may require some 
 																				   // safety usage guidelines
 																				   // reassigning a parent in the middle of
 																				   // a loop in the children could cause

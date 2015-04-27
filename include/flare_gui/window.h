@@ -4,11 +4,10 @@
 
 
 
-#include <flare_gui/widget_parent.h>
-#include <allegro_flare/vec2d.h>
 #include <deque>
 
 
+#include <allegro_flare/vec2d.h>
 
 #include <flare_gui/widget.h>
 #include <flare_gui/collision_box.h>
@@ -17,12 +16,12 @@
 
 
 
-class FGUIWindow : public FGUIParent
+class FGUIWindow : public FGUIWidget
 {
 public:
 	ALLEGRO_COLOR background_color;
 
-	FGUIWindow(FGUIParent *parent, float x, float y, float w, float h);
+	FGUIWindow(FGUIWidget *parent, float x, float y, float w, float h);
 
 	void on_draw();
 	void on_focus();

@@ -5,7 +5,8 @@
 
 
 #include <allegro_flare/screen.h>
-#include <flare_gui/widget_parent.h>
+
+#include <flare_gui/widget.h>
 
 #include <allegro_flare/bins/bitmap_bin.h>
 #include <allegro_flare/bins/font_bin.h>
@@ -16,7 +17,7 @@
 
 
 
-class FGUIScreen : public Screen, public FGUIParent
+class FGUIScreen : public Screen, public FGUIWidget
 {
 public:
 	bool draw_focused_outline;

@@ -11,10 +11,12 @@
 
 #include <allegro_flare/bit_flags.h>
 
+#include <flare_gui/family.h>
 
 
-class FGUIParent;
+//class FGUIParent;
 class FGUIScreen;
+class FGUIFamily;
 class Motion;
 class FontBin;
 class SampleBin;
@@ -51,11 +53,16 @@ private:
 
 protected:
 
-	friend class FGUIParent;
+	//friend class FGUIParent;
 	friend class FGUIScreen;
 	friend class FGUIChildren;
+	friend class FGUIFamily;
+	friend class FGUIScrollView;
+	
+	FGUIFamily family;
+	FGUIFamily &children; // this is exactly the same as family, but for dev-deprec purposes children is here and will removed eventually
 
-	FGUIParent *parent;
+	//FGUIParent *parent;
 	static int widget_count; // a counter for numbering new widget ids
 	bool mouse_over, mouse_down_on_over, focused, dragging, no_focus; // should implement a flag system instead ;)
 		// ^^^ will need to add: skip_on_tab_focus (or no_focus), no_jumpout_on_tab
@@ -76,12 +83,13 @@ protected:
 public:
 	//BitFlags<int16_t> flags;    // << this should be added eventually
 	bool delete_me;
+	bool mouse_is_blocked; // was a part of FGUIParent
 	DataAttr attr;
 
 	FGUICollisionArea *collision_area;
 	placement2d &place;
 
-	FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area);
+	FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area);
 	virtual ~FGUIWidget();
 
 
@@ -93,6 +101,7 @@ public:
 	// ordering
 	void bring_to_front();
 	void send_message_to_parent(std::string message);
+	virtual void receive_message(std::string message);
 
 
 	// retrieval

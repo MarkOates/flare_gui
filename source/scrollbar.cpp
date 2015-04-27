@@ -10,29 +10,63 @@
 
 #include <allegro_flare/useful.h> // for limit
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
+class NewSlider : public FGUIWidget
+{
+private:
+
+	class ScrollUpButton : public FGUIButton
+	{
+	public:
+		ScrollUpButton(FGUIWidget *parent, float x, float y, float w, float h)
+=======
 
 
 		FGUIScrollBar::ScrollUpButton::ScrollUpButton(FGUIParent *parent, float x, float y, float w, float h)
+>>>>>>> master:source/scrollbar.cpp
 			: FGUIButton(parent, x, y, w, h, "") {}
 		void FGUIScrollBar::ScrollUpButton::on_click()
 		{
 			FGUIButton::on_click();
+<<<<<<< HEAD:examples/new_slider_dev.cpp
+			static_cast<NewSlider *>(family.parent)->step_up();
+=======
 			static_cast<FGUIScrollBar *>(parent)->step_up();
+>>>>>>> master:source/scrollbar.cpp
 		}
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
+	class ScrollDownButton : public FGUIButton
+	{
+	public:
+		ScrollDownButton(FGUIWidget *parent, float x, float y, float w, float h)
+=======
 
 
 		FGUIScrollBar::ScrollDownButton::ScrollDownButton(FGUIParent *parent, float x, float y, float w, float h)
+>>>>>>> master:source/scrollbar.cpp
 			: FGUIButton(parent, x, y, w, h, "") {}
 		void FGUIScrollBar::ScrollDownButton::on_click()
 		{
 			FGUIButton::on_click();
+<<<<<<< HEAD:examples/new_slider_dev.cpp
+			static_cast<NewSlider *>(family.parent)->step_down();
+=======
 			static_cast<FGUIScrollBar *>(parent)->step_down();
+>>>>>>> master:source/scrollbar.cpp
 		}
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
+	class ScrollRail : public FGUIWidget
+	{
+	public:
+		float current_mouse_y;
+		ScrollRail(FGUIWidget *parent, float x, float y, float w, float h)
+=======
 
 
 		FGUIScrollBar::ScrollRail::ScrollRail(FGUIParent *parent, float x, float y, float w, float h)
+>>>>>>> master:source/scrollbar.cpp
 			: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 			, current_mouse_y(0)
 		{}
@@ -48,14 +82,27 @@
 		void FGUIScrollBar::ScrollRail::on_click()
 		{
 			// find the direction of the jump based on the handle's position
+<<<<<<< HEAD:examples/new_slider_dev.cpp
+			NewSlider *slider_parent = static_cast<NewSlider *>(family.parent);
+=======
 			FGUIScrollBar *slider_parent = static_cast<FGUIScrollBar *>(parent);
+>>>>>>> master:source/scrollbar.cpp
 			if (slider_parent->handle->place.position.y < current_mouse_y) slider_parent->jump_down();	
 			else slider_parent->jump_up();	
 		}
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
+	class ScrollHandle : public FGUIWidget
+	{
+	private:
+		float min_y, max_y;
+	public:
+		ScrollHandle(FGUIWidget *parent, float x, float y, float w, float h)
+=======
 
 
 		FGUIScrollBar::ScrollHandle::ScrollHandle(FGUIParent *parent, float x, float y, float w, float h)
+>>>>>>> master:source/scrollbar.cpp
 			: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 			, min_y(0)
 			, max_y(0)
@@ -69,7 +116,7 @@
 		void FGUIScrollBar::ScrollHandle::on_drag(float x, float y, float dx, float dy)
 		{
 			place.position.y = limit<float>(min_y+place.size.y/2, max_y-place.size.y/2, place.position.y+dy);
-			parent->on_change();
+			family.parent->on_change();
 		}
 		void FGUIScrollBar::ScrollHandle::on_draw()
 		{
@@ -90,14 +137,19 @@
 			float new_pos = position_in_unit_value * (max_y - min_y - place.size.y) + (min_y + place.size.y/2.0);
 			place.position.y = new_pos; 
 
-			if (place.position.y != previous_pos) parent->on_change();
+			if (place.position.y != previous_pos) family.parent->on_change();
 		}
 
 
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
+	NewSlider(FGUIWidget *parent, float x, float y, float w, float h)
+		: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+=======
 
 	FGUIScrollBar::FGUIScrollBar(FGUIParent *parent, float x, float y, float w, float h)
 		: FGUIParent(parent, new FGUICollisionBox(x, y, w, h))
+>>>>>>> master:source/scrollbar.cpp
 		, rail(NULL)
 		, handle(NULL)
 		, up_button(NULL)

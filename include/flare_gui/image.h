@@ -15,7 +15,7 @@ private:
 public:
 	ALLEGRO_BITMAP *bitmap;
 
-	FGUIImage(FGUIParent *parent, float x, float y, ALLEGRO_BITMAP *bitmap);
+	FGUIImage(FGUIWidget *parent, float x, float y, ALLEGRO_BITMAP *bitmap);
 	void set_bitmap(ALLEGRO_BITMAP *bitmap);
 	void set_color(ALLEGRO_COLOR color);
 	void on_draw();

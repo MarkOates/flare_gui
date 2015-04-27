@@ -6,24 +6,24 @@
 
 #include <allegro5/bitmap.h>
 
-#include <flare_gui/widget_parent.h>
+#include <flare_gui/widget.h>
 
 
 class FGUIVerticalSlider;
 
 
-class FGUIScrollView : public FGUIParent
+class FGUIScrollView : public FGUIWidget
 {
 private:
 	FGUIVerticalSlider *v_slider;
-	FGUIParent *canvas;
+	FGUIWidget *canvas;
 	ALLEGRO_BITMAP *canvas_render;
 
 
 public:
-	FGUIScrollView(FGUIParent *parent, float x, float y, float w, float h, FGUIParent *content_parent);
+	FGUIScrollView(FGUIWidget *parent, float x, float y, float w, float h, FGUIWidget *content_parent);
 
-	FGUIParent *get_canvas();
+	FGUIWidget *get_canvas();
 	void render_canvas();
 	void mouse_axes_func(float mx, float my, float mdx, float mdy) override;
 	void on_timer() override;
