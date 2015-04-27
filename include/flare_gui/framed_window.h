@@ -9,7 +9,7 @@
 
 
 
-class FGUIFramedWindow : public FGUIParent
+class FGUIFramedWindow : public FGUIWidget
 {
 private:
 
@@ -23,7 +23,7 @@ private:
 
 public:
 
-	FGUIFramedWindow(FGUIParent *parent, float x, float y, float w, float h);
+	FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w, float h);
 	void receive_message(std::string message);
 
 	void on_draw() override;

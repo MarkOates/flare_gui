@@ -20,7 +20,7 @@ protected:
 	int num_notches;
 
 public:
-	FGUIVerticalSlider(FGUIParent *parent, float x, float y, float w, float h);
+	FGUIVerticalSlider(FGUIWidget *parent, float x, float y, float w, float h);
 
 	float wheel_sensitivity;
 

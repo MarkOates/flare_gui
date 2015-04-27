@@ -16,7 +16,7 @@ protected:
 	MusicNotation notation;
 public:
 	std::string content;
-	FGUIMusicNotation(FGUIParent *parent, float x, float y);
+	FGUIMusicNotation(FGUIWidget *parent, float x, float y);
 	void on_draw() override;
 };
 

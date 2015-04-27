@@ -16,7 +16,7 @@
 
 
 
-FGUICheckbox::FGUICheckbox(FGUIParent *parent, float x, float y, float size)
+FGUICheckbox::FGUICheckbox(FGUIWidget *parent, float x, float y, float size)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, size, size))
 	, checked(false)
 	, check_placement(0, 0, size, size, -0.4, 0.0, 0.0, 0.45, 0.75)

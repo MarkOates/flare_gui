@@ -15,7 +15,7 @@ private:
 	placement2d check_placement;
 	float check_opacity;
 public:
-	FGUICheckbox(FGUIParent *parent, float x, float y, float size);
+	FGUICheckbox(FGUIWidget *parent, float x, float y, float size);
 
 	// used
 	void on_mouse_down();

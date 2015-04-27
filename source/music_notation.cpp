@@ -15,7 +15,7 @@
 
 
 
-FGUIMusicNotation::FGUIMusicNotation(FGUIParent *parent, float x, float y)
+FGUIMusicNotation::FGUIMusicNotation(FGUIWidget *parent, float x, float y)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, 300, 80))
 	, notation(new DrawingInterfaceAllegro5())
 {

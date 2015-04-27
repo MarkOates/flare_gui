@@ -45,7 +45,7 @@ bool FGUIChildren::has_child(FGUIWidget *widget)
 
 
 
-bool FGUIChildren::assign_child_to_new_parent(FGUIWidget *child_widget, FGUIParent *new_parent)
+bool FGUIChildren::assign_child_to_new_parent(FGUIWidget *child_widget, FGUIWidget *new_parent)
 {
 	// have the current parent remove this child
 	if (!child_widget) { std::cout << "err1" << std::endl; return false; } // TODO: fix crappy error messages
@@ -141,9 +141,9 @@ FGUIWidget *FGUIChildren::__get_nth_child_recursive(FGUIChildren &children, int 
 	for (unsigned i=0; i<children.children.size(); i++)
 	{
 		_index_count++;
-		if (children.children[i]->attr.matches(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIParent")) // BUG: what about derived FGUIParents?
+		if (children.children[i]->attr.matches(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWidget")) // BUG: what about derived FGUIWidget?
 		{
-			FGUIParent *p = static_cast<FGUIParent *>(children.children[i]);
+			FGUIWidget *p = static_cast<FGUIWidget *>(children.children[i]);
 			widget = FGUIChildren::__get_nth_child_recursive(p->children, n);
 			if (widget) return widget;
 		}
@@ -168,7 +168,7 @@ int FGUIChildren::__get_num_widgets_recursive(FGUIChildren &children)
 		_index_count++;
 		if (children.children[i]->attr.matches(FGUI_ATTR__FGUI_IS_PARENT, "true"))
 		{
-			FGUIParent *p = static_cast<FGUIParent *>(children.children[i]);
+			FGUIWidget *p = static_cast<FGUIWidget *>(children.children[i]);
 			FGUIChildren::__get_num_widgets_recursive(p->children);
 		}
 	}

@@ -13,7 +13,7 @@
 
 
 
-FGUIVerticalSlider::FGUIVerticalSlider(FGUIParent *parent, float x, float y, float w, float h)
+FGUIVerticalSlider::FGUIVerticalSlider(FGUIWidget *parent, float x, float y, float w, float h)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, val(0.6)
 	, mouse_y(0)

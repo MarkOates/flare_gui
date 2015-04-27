@@ -16,7 +16,7 @@
 
 
 
-class FGUIScreen : public Screen, public FGUIParent
+class FGUIScreen : public Screen, public FGUIWidget
 {
 public:
 	bool draw_focused_outline;

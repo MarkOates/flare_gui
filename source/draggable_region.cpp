@@ -20,7 +20,7 @@ std::string tostring(int v); // so as not to have to declare  #include <allegro_
 
 
 
-FGUIDraggableRegion::FGUIDraggableRegion(FGUIParent *parent, float x, float y, float w, float h)
+FGUIDraggableRegion::FGUIDraggableRegion(FGUIWidget *parent, float x, float y, float w, float h)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIDraggableRegion");

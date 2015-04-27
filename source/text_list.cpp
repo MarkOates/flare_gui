@@ -20,7 +20,7 @@ FGUIListItem::FGUIListItem() {};
 
 
 
-FGUITextList::FGUITextList(FGUIParent *parent, float x, float y, float w)
+FGUITextList::FGUITextList(FGUIWidget *parent, float x, float y, float w)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, 20))
 	, currently_selected_item(0)
 {

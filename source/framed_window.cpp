@@ -9,8 +9,8 @@
 
 
 
-FGUIFramedWindow::FGUIFramedWindow(FGUIParent *parent, float x, float y, float w, float h)
-	: FGUIParent(parent, new FGUICollisionBoxPadded(x, y, w, h, 30+6, 6, 6, 6))
+FGUIFramedWindow::FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w, float h)
+	: FGUIWidget(parent, new FGUICollisionBoxPadded(x, y, w, h, 30+6, 6, 6, 6))
 	, titlebar_dragger(NULL)
 	, titlebar_height(30)
 	, frame_thickness(6)
