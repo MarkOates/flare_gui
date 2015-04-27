@@ -1,14 +1,16 @@
 
 
-
-
 #include <allegro_flare/allegro_flare.h>
-#include <flare_gui/flare_gui.h>
 
+#include <flare_gui/scrollbar.h>
 
+#include <allegro5/allegro_primitives.h>
 
+#include <flare_gui/collision_box.h>
 
+#include <allegro_flare/useful.h> // for limit
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
 class NewSlider : public FGUIWidget
 {
 private:
@@ -17,82 +19,114 @@ private:
 	{
 	public:
 		ScrollUpButton(FGUIWidget *parent, float x, float y, float w, float h)
+=======
+
+
+		FGUIScrollBar::ScrollUpButton::ScrollUpButton(FGUIParent *parent, float x, float y, float w, float h)
+>>>>>>> master:source/scrollbar.cpp
 			: FGUIButton(parent, x, y, w, h, "") {}
-		void on_click() override
+		void FGUIScrollBar::ScrollUpButton::on_click()
 		{
 			FGUIButton::on_click();
+<<<<<<< HEAD:examples/new_slider_dev.cpp
 			static_cast<NewSlider *>(family.parent)->step_up();
+=======
+			static_cast<FGUIScrollBar *>(parent)->step_up();
+>>>>>>> master:source/scrollbar.cpp
 		}
-	};
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
 	class ScrollDownButton : public FGUIButton
 	{
 	public:
 		ScrollDownButton(FGUIWidget *parent, float x, float y, float w, float h)
+=======
+
+
+		FGUIScrollBar::ScrollDownButton::ScrollDownButton(FGUIParent *parent, float x, float y, float w, float h)
+>>>>>>> master:source/scrollbar.cpp
 			: FGUIButton(parent, x, y, w, h, "") {}
-		void on_click() override
+		void FGUIScrollBar::ScrollDownButton::on_click()
 		{
 			FGUIButton::on_click();
+<<<<<<< HEAD:examples/new_slider_dev.cpp
 			static_cast<NewSlider *>(family.parent)->step_down();
+=======
+			static_cast<FGUIScrollBar *>(parent)->step_down();
+>>>>>>> master:source/scrollbar.cpp
 		}
-	};
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
 	class ScrollRail : public FGUIWidget
 	{
 	public:
 		float current_mouse_y;
 		ScrollRail(FGUIWidget *parent, float x, float y, float w, float h)
+=======
+
+
+		FGUIScrollBar::ScrollRail::ScrollRail(FGUIParent *parent, float x, float y, float w, float h)
+>>>>>>> master:source/scrollbar.cpp
 			: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 			, current_mouse_y(0)
 		{}
-		void on_draw() override
+		void FGUIScrollBar::ScrollRail::on_draw()
 		{
 			al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color::mix(color::transparent, color::hex("3a3c47"), 0.4));
 			al_draw_rectangle(0.5, 0.5, place.size.x-0.5, place.size.y-0.5, color::color(color::black, 0.2), 1.0);
 		}
-		void on_mouse_move(float x, float y, float dx, float dy) override
+		void FGUIScrollBar::ScrollRail::on_mouse_move(float x, float y, float dx, float dy)
 		{
 			current_mouse_y = y;
 		}
-		void on_click() override
+		void FGUIScrollBar::ScrollRail::on_click()
 		{
 			// find the direction of the jump based on the handle's position
+<<<<<<< HEAD:examples/new_slider_dev.cpp
 			NewSlider *slider_parent = static_cast<NewSlider *>(family.parent);
+=======
+			FGUIScrollBar *slider_parent = static_cast<FGUIScrollBar *>(parent);
+>>>>>>> master:source/scrollbar.cpp
 			if (slider_parent->handle->place.position.y < current_mouse_y) slider_parent->jump_down();	
 			else slider_parent->jump_up();	
 		}
-	};
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
 	class ScrollHandle : public FGUIWidget
 	{
 	private:
 		float min_y, max_y;
 	public:
 		ScrollHandle(FGUIWidget *parent, float x, float y, float w, float h)
+=======
+
+
+		FGUIScrollBar::ScrollHandle::ScrollHandle(FGUIParent *parent, float x, float y, float w, float h)
+>>>>>>> master:source/scrollbar.cpp
 			: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 			, min_y(0)
 			, max_y(0)
 		{
 		}
-		void set_min_max_coordinate_position(float min_val, float max_val)
+		void FGUIScrollBar::ScrollHandle::set_min_max_coordinate_position(float min_val, float max_val)
 		{
 			min_y = min_val;
 			max_y = max_val;
 		}
-		void on_drag(float x, float y, float dx, float dy) override
+		void FGUIScrollBar::ScrollHandle::on_drag(float x, float y, float dx, float dy)
 		{
 			place.position.y = limit<float>(min_y+place.size.y/2, max_y-place.size.y/2, place.position.y+dy);
 			family.parent->on_change();
 		}
-		void on_draw() override
+		void FGUIScrollBar::ScrollHandle::on_draw()
 		{
 			FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
 		}
-		float get_position()
+		float FGUIScrollBar::ScrollHandle::get_position()
 		{
 			return (place.position.y - min_y - place.size.y/2.0) / (max_y - min_y - place.size.y);
 		}
-		void set_position(float position_in_unit_value)
+		void FGUIScrollBar::ScrollHandle::set_position(float position_in_unit_value)
 		{
 			// TODO: check and see if an on_change is necessairy
 			// float previous_pos = place.position.y;
@@ -105,17 +139,17 @@ private:
 
 			if (place.position.y != previous_pos) family.parent->on_change();
 		}
-	};
 
-	ScrollRail *rail;
-	ScrollHandle *handle;
-   ScrollUpButton *up_button;
-	ScrollDownButton *down_button;
 
-public:
 
+<<<<<<< HEAD:examples/new_slider_dev.cpp
 	NewSlider(FGUIWidget *parent, float x, float y, float w, float h)
 		: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+=======
+
+	FGUIScrollBar::FGUIScrollBar(FGUIParent *parent, float x, float y, float w, float h)
+		: FGUIParent(parent, new FGUICollisionBox(x, y, w, h))
+>>>>>>> master:source/scrollbar.cpp
 		, rail(NULL)
 		, handle(NULL)
 		, up_button(NULL)
@@ -133,81 +167,41 @@ public:
 		handle = new ScrollHandle(this, w/2, h/2, w, w*3);
 		handle->set_min_max_coordinate_position(w, h-w);
 	}
-	float get_position()
+	float FGUIScrollBar::get_position()
 	{
 		return handle->get_position();
 	}
-	void jump_down()
+	void FGUIScrollBar::jump_down()
 	{
 		float jump_rate = 0.3;
 		handle->set_position(handle->get_position() + jump_rate);
 	}
-	void jump_up()
+	void FGUIScrollBar::jump_up()
 	{
 		float jump_rate = 0.3;
 		handle->set_position(handle->get_position() - jump_rate);
 	}
-	void step_up()
+	void FGUIScrollBar::step_up()
 	{
 		float step_rate = 0.1;
 		handle->set_position(handle->get_position() - step_rate);
 	}
-	void step_down()
+	void FGUIScrollBar::step_down()
 	{
 		float step_rate = 0.1;
 		handle->set_position(handle->get_position() + step_rate);
 	}
-	void set_position(float position_in_unit_value)
+	void FGUIScrollBar::set_position(float position_in_unit_value)
 	{
 		handle->set_position(position_in_unit_value);
 	}
-	void on_key_down() override
+	void FGUIScrollBar::on_key_down()
 	{
 		if (af::current_event->keyboard.keycode == ALLEGRO_KEY_DOWN) step_down();
 		else if (af::current_event->keyboard.keycode == ALLEGRO_KEY_UP) step_up();
 	}
-	void on_draw() override {}
-};
+	void FGUIScrollBar::on_draw() {}
 
-
-
-
-
-
-class Project : public FGUIScreen
-{
-public:
-	FGUIText *position_text;
-	NewSlider *slider;
-	Project(Display *display)
-		: FGUIScreen(display)
-		, position_text(NULL)
-		, slider(NULL)
-	{
-		this->draw_focused_outline = false;
-
-		slider = new NewSlider(this, 200, 200, 20, 200);
-
-		position_text = new FGUIText(this, 250, display->height()/2, "(position)");
-	}
-	void on_timer() override
-	{
-		position_text->set_text(tostring(slider->get_position()));
-	}
-};
-
-
-
-
-
-
-int main(int argc, char **argv)
-{
-	af::initialize();
-	Display *display = af::create_display();
-	Project *proj = new Project(display);
-	af::run_loop();
-}
 
 
 
