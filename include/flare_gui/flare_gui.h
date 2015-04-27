@@ -28,7 +28,6 @@
 #include <flare_gui/text_list.h>
 #include <flare_gui/draggable_region.h>
 
-#include <flare_gui/widget_parent.h>
 #include <flare_gui/scroll_area.h>
 #include <flare_gui/widget_screen.h>
 
