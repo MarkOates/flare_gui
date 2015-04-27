@@ -3,7 +3,7 @@
 
 
 
-#include <flare_gui/widget_parent.h>
+#include <flare_gui/widget.h>
 #include <flare_gui/draggable_region.h>
 #include <flare_gui/button.h>
 

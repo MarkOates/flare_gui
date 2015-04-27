@@ -12,7 +12,6 @@
 #include <allegro5/allegro_primitives.h>
 
 #include <flare_gui/collision_box.h>
-#include <flare_gui/widget_parent.h>
 
 
 std::string tostring(int v); // so as not to have to declare  #include <allegro_flare/useful.h>

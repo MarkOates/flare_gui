@@ -7,7 +7,6 @@
 #include <allegro_flare/color.h>
 
 #include <flare_gui/widget.h>
-#include <flare_gui/widget_parent.h>
 #include <flare_gui/collision_box.h>
 
 #include <allegro5/allegro_font.h>

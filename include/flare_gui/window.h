@@ -4,11 +4,10 @@
 
 
 
-#include <flare_gui/widget_parent.h>
-#include <allegro_flare/vec2d.h>
 #include <deque>
 
 
+#include <allegro_flare/vec2d.h>
 
 #include <flare_gui/widget.h>
 #include <flare_gui/collision_box.h>

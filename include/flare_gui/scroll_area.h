@@ -6,7 +6,7 @@
 
 #include <allegro5/bitmap.h>
 
-#include <flare_gui/widget_parent.h>
+#include <flare_gui/widget.h>
 
 
 class FGUIVerticalSlider;

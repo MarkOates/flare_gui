@@ -1,8 +1,8 @@
 
 
 #include <flare_gui/children.h>
-#include <flare_gui/widget_parent.h>
 
+#include <flare_gui/widget.h>
 
 
 void FGUIChildren::register_as_child(FGUIWidget *widget)

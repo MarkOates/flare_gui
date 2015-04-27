@@ -14,7 +14,7 @@
 #include <flare_gui/family.h>
 
 
-class FGUIParent;
+//class FGUIParent;
 class FGUIScreen;
 class FGUIFamily;
 class Motion;
@@ -53,7 +53,7 @@ private:
 
 protected:
 
-	friend class FGUIParent;
+	//friend class FGUIParent;
 	friend class FGUIScreen;
 	friend class FGUIChildren;
 	friend class FGUIFamily;

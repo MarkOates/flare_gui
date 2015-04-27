@@ -9,7 +9,6 @@
 
 #include <flare_gui/music_notation.h>
 #include <flare_gui/collision_box.h>
-#include <flare_gui/widget_parent.h>
 
 #include <allegro_flare/useful.h>
 
