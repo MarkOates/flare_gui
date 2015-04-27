@@ -61,7 +61,7 @@ public:
 	{
 		new FGUIImage(this, display->width()/2, display->height()/2, af::bitmaps["maybe_cooler2.png"]);
 
-		FGUIParent *canvas = build_canvas_for_scrollable_area();
+		FGUIWidget *canvas = build_canvas_for_scrollable_area();
 		scroll_view = new FGUIScrollView(this, display->width()/3, display->height()/2, canvas->place.size.x, 600, canvas);
 
 		(new FGUIText(this, 700, 140, "Scroll Area Example"))
@@ -97,10 +97,10 @@ public:
 			new FGUIText(this, cursor_x+36, cursor_y+spacing_y, "Allow click to focus on no_focus elements");
 
 	}
-	FGUIParent *build_canvas_for_scrollable_area()
+	FGUIWidget *build_canvas_for_scrollable_area()
 	{
 		// canvas should always be the first child
-		FGUIParent *canvas = new FGUIParent(this, new FGUICollisionBox(0, 0, 400, 600*1.5));
+		FGUIWidget *canvas = new FGUIWidget(this, new FGUICollisionBox(0, 0, 400, 600*1.5));
 		canvas->place.align = vec2d(0, 0);
 
 		//{
@@ -108,7 +108,7 @@ public:
 			FGUIImage *img = new FGUIImage(canvas, canvas->place.size.x/2, 120, af::bitmaps["pic1.jpg"]);
 				img->place.rotation = 0.2;
 			new FGUIImage(canvas, canvas->place.size.x/2, 330, af::bitmaps["pic2.png"]);
-			new FGUITextBox(canvas, canvas->place.size.x/2, 510, 300, 120,	"The content in this scroll area is a Parent widget.");  
+			new FGUITextBox(canvas, canvas->place.size.x/2, 510, 300, 120,	"The content in this scroll area is a parent widget.");  
 			FGUITextList *text_list = new FGUITextList(canvas, canvas->place.size.x/2, 700, 300);
 				text_list->add_item("Shoes");
 				text_list->add_item("Groceries");

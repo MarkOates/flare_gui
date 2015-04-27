@@ -9,14 +9,14 @@
 
 
 
-class NewSlider : public FGUIParent
+class NewSlider : public FGUIWidget
 {
 private:
 
 	class ScrollUpButton : public FGUIButton
 	{
 	public:
-		ScrollUpButton(FGUIParent *parent, float x, float y, float w, float h)
+		ScrollUpButton(FGUIWidget *parent, float x, float y, float w, float h)
 			: FGUIButton(parent, x, y, w, h, "") {}
 		void on_click() override
 		{
@@ -28,7 +28,7 @@ private:
 	class ScrollDownButton : public FGUIButton
 	{
 	public:
-		ScrollDownButton(FGUIParent *parent, float x, float y, float w, float h)
+		ScrollDownButton(FGUIWidget *parent, float x, float y, float w, float h)
 			: FGUIButton(parent, x, y, w, h, "") {}
 		void on_click() override
 		{
@@ -41,7 +41,7 @@ private:
 	{
 	public:
 		float current_mouse_y;
-		ScrollRail(FGUIParent *parent, float x, float y, float w, float h)
+		ScrollRail(FGUIWidget *parent, float x, float y, float w, float h)
 			: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 			, current_mouse_y(0)
 		{}
@@ -68,7 +68,7 @@ private:
 	private:
 		float min_y, max_y;
 	public:
-		ScrollHandle(FGUIParent *parent, float x, float y, float w, float h)
+		ScrollHandle(FGUIWidget *parent, float x, float y, float w, float h)
 			: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 			, min_y(0)
 			, max_y(0)
@@ -114,8 +114,8 @@ private:
 
 public:
 
-	NewSlider(FGUIParent *parent, float x, float y, float w, float h)
-		: FGUIParent(parent, new FGUICollisionBox(x, y, w, h))
+	NewSlider(FGUIWidget *parent, float x, float y, float w, float h)
+		: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 		, rail(NULL)
 		, handle(NULL)
 		, up_button(NULL)

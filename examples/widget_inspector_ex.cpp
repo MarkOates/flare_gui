@@ -68,7 +68,7 @@ public:
 	FGUIWidget *target_widget;
 	incrementer<float> y_cursor;
 
-	FGUIWidgetInspector(FGUIParent *parent)
+	FGUIWidgetInspector(FGUIWidget *parent)
 		: FGUIWindow(parent, 400, 300, 340, 340)
 		, target_widget(NULL)
 		, y_cursor(60, 26)
