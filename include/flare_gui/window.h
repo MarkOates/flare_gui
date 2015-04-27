@@ -17,12 +17,12 @@
 
 
 
-class FGUIWindow : public FGUIParent
+class FGUIWindow : public FGUIWidget
 {
 public:
 	ALLEGRO_COLOR background_color;
 
-	FGUIWindow(FGUIParent *parent, float x, float y, float w, float h);
+	FGUIWindow(FGUIWidget *parent, float x, float y, float w, float h);
 
 	void on_draw();
 	void on_focus();
