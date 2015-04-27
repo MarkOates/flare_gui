@@ -5,26 +5,25 @@
 
 
 
-#include <flare_gui/widget_parent.h>
 #include <flare_gui/button.h>
 
 
 
-class FGUIScrollBar : public FGUIParent
+class FGUIScrollBar : public FGUIWidget
 {
 private:
 
 	class ScrollUpButton : public FGUIButton
 	{
 	public:
-		ScrollUpButton(FGUIParent *parent, float x, float y, float w, float h);
+		ScrollUpButton(FGUIWidget *parent, float x, float y, float w, float h);
 		void on_click() override;
 	};
 
 	class ScrollDownButton : public FGUIButton
 	{
 	public:
-		ScrollDownButton(FGUIParent *parent, float x, float y, float w, float h);
+		ScrollDownButton(FGUIWidget *parent, float x, float y, float w, float h);
 		void on_click() override;
 	};
 
@@ -32,7 +31,7 @@ private:
 	{
 	public:
 		float current_mouse_y;
-		ScrollRail(FGUIParent *parent, float x, float y, float w, float h);
+		ScrollRail(FGUIWidget *parent, float x, float y, float w, float h);
 		void on_draw() override;
 		void on_mouse_move(float x, float y, float dx, float dy) override;
 		void on_click();
@@ -43,7 +42,7 @@ private:
 	private:
 		float min_y, max_y;
 	public:
-		ScrollHandle(FGUIParent *parent, float x, float y, float w, float h);
+		ScrollHandle(FGUIWidget *parent, float x, float y, float w, float h);
 		void set_min_max_coordinate_position(float min_val, float max_val);
 		void on_drag(float x, float y, float dx, float dy);
 		void on_draw();
@@ -58,7 +57,7 @@ private:
 
 public:
 
-	FGUIScrollBar(FGUIParent *parent, float x, float y, float w, float h);
+	FGUIScrollBar(FGUIWidget *parent, float x, float y, float w, float h);
 	float get_position();
 	void jump_down();
 	void jump_up();
