@@ -23,6 +23,8 @@ FGUIListItem::FGUIListItem() {};
 FGUITextList::FGUITextList(FGUIWidget *parent, float x, float y, float w)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, 20))
 	, currently_selected_item(0)
+	, item_padding(5)
+	, item_height(20)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUITextList");
 	attr.set("id", "TextList" + tostring(get_num_created_widgets()));
@@ -90,8 +92,6 @@ void FGUITextList::on_key_char()
 
 float FGUITextList::get_item_height(int index)
 {
-	float item_padding = 5;
-	float item_height = 20;
 	return item_height + item_padding*2;
 }
 
@@ -99,9 +99,7 @@ float FGUITextList::get_item_height(int index)
 
 int FGUITextList::get_item_index_at(float x, float y)
 {
-	float item_padding = 5;
-	float item_height = 20;
-	float padding_x = 16*2, padding_y = 8*2;
+	float padding_x = 16*2, padding_y = item_padding;
 
 	// transform the coordin
 	float cursor_y = padding_y;
@@ -172,7 +170,6 @@ void FGUITextList::draw_item(vec2d position, int index)
 {
 	if (index < 0 || index >= (int)items.size()) return;
 
-	float item_padding = 5;
 	position.y += item_padding;
 	bool item_is_selected = index == (this->currently_selected_item);
 
@@ -190,10 +187,6 @@ void FGUITextList::draw_item(vec2d position, int index)
 
 		width += 22;
 		height += 4;
-		/*
-		al_draw_filled_rounded_rectangle(text_center - width/2, text_middle - height/2,
-			text_center + width/2, text_middle + height/2, 3, 3, color::color(gimmie_super_screen()->focused_outline_color, 0.2));
-		*/
 	}
 
 	al_draw_text(font, color::color(color::black, item_is_selected ? 1.0 : 0.3), position.x, position.y+2, NULL, items[index].c_str());
@@ -205,13 +198,21 @@ void FGUITextList::draw_item(vec2d position, int index)
 void FGUITextList::on_draw()
 {
 	this->draw_inset(0, 0, place.size.x, place.size.y);
-	float padding_x = 16*2, padding_y = 8*2;
+	float padding_x = 16*2, padding_y = item_padding;
 
 	vec2d cursor = vec2d(padding_x, padding_y);
+	//al_draw_line(0, cursor.y, place.size.x, cursor.y, color::white, 1.0);
 	for (unsigned i=0; i<items.size(); i++)
 	{
+		bool item_is_selected = i == (this->currently_selected_item);
+		
+		if (item_is_selected)
+			al_draw_filled_rounded_rectangle(item_padding, cursor.y,
+				place.size.x-item_padding, cursor.y+item_height+item_padding*2, 3, 3, color::color(color::dodgerblue, 0.2));
+
 		draw_item(cursor, i);
 		cursor.y += get_item_height(i);
+		//al_draw_line(0, cursor.y, place.size.x, cursor.y, color::color(color::white, 0.4), 1.0);
 	}
 
 	cursor += vec2d(padding_x, padding_y);

@@ -33,6 +33,8 @@ public:
 class FGUITextList : public FGUIWidget
 {
 public:
+	float item_padding;
+	float item_height;
 	int currently_selected_item;
 	std::vector<std::string> items;
 
