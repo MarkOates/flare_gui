@@ -63,7 +63,7 @@ RubyScriptResult run_ruby_script(std::string script_filename, std::string args)
 
 
 #include <flare_gui/flare_gui.h>
-#include <flare_gui/music_notation.h>
+#include <flare_gui/widgets/music_notation.h>
 #include <allegro_flare/drawing_interfaces/drawing_interface_allegro5.h>
 
 #include <algorithm>

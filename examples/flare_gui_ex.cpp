@@ -7,10 +7,10 @@
 
 
 
-#include <flare_gui/progress_bar.h>
+#include <flare_gui/widgets/progress_bar.h>
 
 
-#include <flare_gui/music_notation.h>
+#include <flare_gui/widgets/music_notation.h>
 
 
 
