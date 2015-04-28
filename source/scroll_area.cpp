@@ -18,7 +18,7 @@ FGUIScrollView::FGUIScrollView(FGUIWidget *parent, float x, float y, float w, fl
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScrollView");
 	attr.set("id", "ScrollView" + tostring(widget_count));
 
-	v_slider = new FGUIVerticalSlider(this, w, 0, 16, h);
+	v_slider = new FGUIScrollBar(this, w, 0, 16, h);
 	v_slider->place.align = vec2d(1, 0);
 }
 
@@ -77,7 +77,7 @@ void FGUIScrollView::mouse_axes_func(float mx, float my, float mdx, float mdy)
 void FGUIScrollView::on_timer()
 {
 	if (canvas)
-		canvas->place.position.y = v_slider->get_val(-(canvas->place.size.y-place.size.y), 0);
+		canvas->place.position.y = v_slider->get_position() * -(canvas->place.size.y-place.size.y);
 	FGUIWidget::on_timer();
 }
 
@@ -85,8 +85,8 @@ void FGUIScrollView::on_timer()
 
 void FGUIScrollView::on_mouse_wheel()
 {
-	if (focused && !v_slider->is_focused())
-		v_slider->set_val(v_slider->get_val() + af::current_event->mouse.dz * v_slider->wheel_sensitivity);
+	//if (focused && !v_slider->is_focused())
+	//	v_slider->set_val(v_slider->get_val() + af::current_event->mouse.dz * v_slider->wheel_sensitivity);
 }
 
 

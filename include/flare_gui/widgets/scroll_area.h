@@ -9,13 +9,13 @@
 #include <flare_gui/widget.h>
 
 
-class FGUIVerticalSlider;
+class FGUIScrollBar;
 
 
 class FGUIScrollView : public FGUIWidget
 {
 private:
-	FGUIVerticalSlider *v_slider;
+	FGUIScrollBar *v_slider;
 	FGUIWidget *canvas;
 	ALLEGRO_BITMAP *canvas_render;
 
