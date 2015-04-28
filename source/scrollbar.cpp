@@ -2,7 +2,7 @@
 
 #include <allegro_flare/allegro_flare.h>
 
-#include <flare_gui/scrollbar.h>
+#include <flare_gui/widgets/scrollbar.h>
 
 #include <allegro5/allegro_primitives.h>
 
@@ -17,7 +17,7 @@ FGUIScrollBar::ScrollUpButton::ScrollUpButton(FGUIWidget *parent, float x, float
 void FGUIScrollBar::ScrollUpButton::on_click()
 {
 	FGUIButton::on_click();
-	static_cast<FGUIScrollBar *>(parent)->step_up();
+	static_cast<FGUIScrollBar *>(family.parent)->step_up();
 }
 
 
@@ -27,7 +27,7 @@ FGUIScrollBar::ScrollDownButton::ScrollDownButton(FGUIWidget *parent, float x, f
 void FGUIScrollBar::ScrollDownButton::on_click()
 {
 	FGUIButton::on_click();
-	static_cast<FGUIScrollBar *>(parent)->step_down();
+	static_cast<FGUIScrollBar *>(family.parent)->step_down();
 }
 
 
@@ -48,7 +48,7 @@ void FGUIScrollBar::ScrollRail::on_mouse_move(float x, float y, float dx, float 
 void FGUIScrollBar::ScrollRail::on_click()
 {
 	// find the direction of the jump based on the handle's position
-	FGUIScrollBar *slider_parent = static_cast<FGUIScrollBar *>(parent);
+	FGUIScrollBar *slider_parent = static_cast<FGUIScrollBar *>(family.parent);
 	if (slider_parent->handle->place.position.y < current_mouse_y) slider_parent->jump_down();	
 	else slider_parent->jump_up();	
 }
@@ -69,7 +69,7 @@ void FGUIScrollBar::ScrollHandle::set_min_max_coordinate_position(float min_val,
 void FGUIScrollBar::ScrollHandle::on_drag(float x, float y, float dx, float dy)
 {
 	place.position.y = limit<float>(min_y+place.size.y/2, max_y-place.size.y/2, place.position.y+dy);
-	parent->on_change();
+	family.parent->on_change();
 }
 void FGUIScrollBar::ScrollHandle::on_draw()
 {
@@ -90,7 +90,7 @@ void FGUIScrollBar::ScrollHandle::set_position(float position_in_unit_value)
 	float new_pos = position_in_unit_value * (max_y - min_y - place.size.y) + (min_y + place.size.y/2.0);
 	place.position.y = new_pos; 
 
-	if (place.position.y != previous_pos) parent->on_change();
+	if (place.position.y != previous_pos) family.parent->on_change();
 }
 
 
