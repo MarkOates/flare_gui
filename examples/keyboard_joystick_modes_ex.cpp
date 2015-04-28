@@ -85,7 +85,7 @@ public:
 	{
 		notification_screen->spawn_notification(notification);
 	}
-	void receive_message(std::string message) override
+	void on_message(std::string message) override
 	{
 		if (message=="submit_input")
 		{

@@ -80,7 +80,7 @@ public:
 
 		progress_bar = new FGUIProgressBar(this, 100, 70+4, 180, 18);
 	}
-	void receive_message(std::string message) override
+	void on_message(std::string message) override
 	{
 		if (message == "play") sound.play();
 		else if (message == "stop") sound.stop();
@@ -254,7 +254,7 @@ public:
 		}
 		return str;
 	}
-	virtual void receive_message(std::string message) override
+	virtual void on_message(std::string message) override
 	{
 		bool message_caught = false;
 		if (message_caught = (parses_as_variable_definition(message)))
