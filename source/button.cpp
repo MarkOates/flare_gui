@@ -45,6 +45,14 @@ void FGUIButton::set_icon(ALLEGRO_BITMAP *icon)
 }
 
 
+
+void FGUIButton::set_content_alignment(float _content_alignment)
+{
+	content_alignment = _content_alignment;
+}
+
+
+
 #include <flare_gui/widget_screen.h>
 
 void FGUIButton::on_draw()
@@ -55,28 +63,6 @@ void FGUIButton::on_draw()
 
 	// draw a hilight along the top
 	al_draw_filled_rounded_rectangle(4, 4, place.size.x-4, 4+place.size.y/3, 4, 4, color::color(color::white, 0.05));
-
-/*
-	// PREVIOUS STYLING:	
-
-	// the bottom shade
-	float shade_depth = 5;
-	al_draw_filled_rounded_rectangle(0, placement.size.y/2 + shade_depth, placement.size.x, placement.size.y+shade_depth, 2, 2, color::color(color::black, 0.1));
-
-	// the button face
-	al_draw_filled_rounded_rectangle(0, 0, placement.size.x, placement.size.y, 3, 3, color::hex("575962"));
-
-	// the button outline
-	al_draw_rounded_rectangle(0, 0, placement.size.x, placement.size.y, 3, 3, color::color(color::black, 0.2), 2);
-
-	// draw a hilight along the top
-	al_draw_line(3.5, 1, placement.size.x-3.5, 1, color::color(color::white, 0.3), 1);
-
-	// draw the shaded bitmap
-	// TODO: make this shade_down generated.
-	// preload some good stuff into FGUIScreen::bitmap_bin;
-	draw_stretched_bitmap(3, 3, placement.size.x-6, placement.size.y-6, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
-*/
 
 	// draw the icon and/or the text
 	// in this case, the icon is always drawn to the left of the text
@@ -165,7 +151,6 @@ void FGUIButton::on_key_down()
 		|| af::current_event->keyboard.keycode == ALLEGRO_KEY_SPACE
 		)
 	{
-		//set_as_focused();
 		on_click();
 	}
 }
@@ -179,10 +164,8 @@ void FGUIButton::on_joy_down()
 
 	if (af::current_event->joystick.button == 0)
 	{
-		//set_as_focused();
 		on_click();
 	}
 }
 
 
-//void FGUIButton::click_func() {}
