@@ -2,8 +2,8 @@
 
 
 
-#include <flare_gui/scroll_area.h>
-#include <flare_gui/slider.h>
+#include <flare_gui/widgets/scroll_area.h>
+#include <flare_gui/widgets/slider.h>
 
 
 

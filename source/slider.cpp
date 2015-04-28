@@ -4,7 +4,7 @@
 
 #include <allegro_flare/allegro_flare.h>
 
-#include <flare_gui/slider.h>
+#include <flare_gui/widgets/slider.h>
 
 
 

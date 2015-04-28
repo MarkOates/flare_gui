@@ -3,7 +3,7 @@
 
 
 
-#include <flare_gui/window.h>
+#include <flare_gui/widgets/window.h>
 
 #include <allegro_flare/allegro_flare.h> // for tostring and af:: bins
 

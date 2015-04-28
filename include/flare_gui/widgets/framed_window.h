@@ -4,8 +4,8 @@
 
 
 #include <flare_gui/widget.h>
-#include <flare_gui/draggable_region.h>
-#include <flare_gui/button.h>
+#include <flare_gui/widgets/draggable_region.h>
+#include <flare_gui/widgets/button.h>
 
 
 

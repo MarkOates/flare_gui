@@ -1,7 +1,7 @@
 
 
 
-#include <flare_gui/image.h>
+#include <flare_gui/widgets/image.h>
 #include <allegro_flare/color.h>
 #include <allegro_flare/useful.h> // for tostring
 

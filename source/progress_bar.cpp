@@ -4,7 +4,7 @@
 #include <flare_gui/flare_gui.h>
 #include <allegro5/allegro_primitives.h>
 
-#include <flare_gui/progress_bar.h>
+#include <flare_gui/widgets/progress_bar.h>
 
 #include <allegro_flare/color.h>
 #include <allegro_flare/useful.h>

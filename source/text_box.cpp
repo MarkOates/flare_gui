@@ -3,7 +3,7 @@
 
 
 
-#include <flare_gui/text_box.h>
+#include <flare_gui/widgets/text_box.h>
 #include <flare_gui/collision_box.h>
 
 #include <allegro_flare/useful.h> // just for tostring, meh

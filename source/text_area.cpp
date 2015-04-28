@@ -10,7 +10,7 @@
 #include <allegro_flare/useful.h>
 #include <allegro_flare/clipboard_win.h> // eventually should be replaced with a generic clipboard
 
-#include <flare_gui/text_area.h>
+#include <flare_gui/widgets/text_area.h>
 #include <flare_gui/collision_box.h>
 
 

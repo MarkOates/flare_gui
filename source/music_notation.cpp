@@ -7,7 +7,7 @@
 #include <allegro_flare/color.h>
 #include <allegro_flare/drawing_interfaces/drawing_interface_allegro5.h>
 
-#include <flare_gui/music_notation.h>
+#include <flare_gui/widgets/music_notation.h>
 #include <flare_gui/collision_box.h>
 
 #include <allegro_flare/useful.h>

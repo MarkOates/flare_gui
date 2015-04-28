@@ -2,7 +2,7 @@
 
 
 
-#include <flare_gui/text_input.h>
+#include <flare_gui/widgets/text_input.h>
 #include <flare_gui/collision_box.h>
 #include <allegro_flare/allegro_flare.h> // for af::current_event and af::fonts
 

@@ -3,7 +3,7 @@
 
 
 #include <flare_gui/flare_gui.h>
-#include <flare_gui/scaled_text.h>
+#include <flare_gui/widgets/scaled_text.h>
 
 #include <allegro_flare/useful.h> // for tostring
 #include <flare_gui/widget_screen.h>

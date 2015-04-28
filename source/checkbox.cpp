@@ -3,7 +3,7 @@
 
 #include <allegro_flare/allegro_flare.h>
 
-#include <flare_gui/checkbox.h>
+#include <flare_gui/widgets/checkbox.h>
 
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>
