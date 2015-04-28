@@ -23,7 +23,7 @@ std::string FGUIScaledText::_get_font_index_str()
 void FGUIScaledText::refresh_render()
 {
 	// for easy life
-	FGUIScreen *super_parent = static_cast<FGUIScreen *>(gimmie_super_parent());
+	//FGUIScreen *super_parent = static_cast<FGUIScreen *>(gimmie_super_parent());
 	ALLEGRO_FONT *scaled_font = af::fonts[_get_font_index_str()];
 	//placement2d *placement = gimmie_placement();
 

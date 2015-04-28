@@ -99,11 +99,6 @@ public:
 	virtual ~FGUIWidget();
 
 
-	// convience (these might become depreciated)
-	FGUIWidget *gimmie_super_parent();
-	FGUIScreen *gimmie_super_screen();
-
-
 	// ordering
 	void bring_to_front();
 	void send_message_to_parent(std::string message);

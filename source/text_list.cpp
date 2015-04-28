@@ -190,8 +190,10 @@ void FGUITextList::draw_item(vec2d position, int index)
 
 		width += 22;
 		height += 4;
+		/*
 		al_draw_filled_rounded_rectangle(text_center - width/2, text_middle - height/2,
 			text_center + width/2, text_middle + height/2, 3, 3, color::color(gimmie_super_screen()->focused_outline_color, 0.2));
+		*/
 	}
 
 	al_draw_text(font, color::color(color::black, item_is_selected ? 1.0 : 0.3), position.x, position.y+2, NULL, items[index].c_str());

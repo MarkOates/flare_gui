@@ -90,24 +90,6 @@ bool FGUIWidget::is_mouse_over()
 
 
 
-FGUIWidget *FGUIWidget::gimmie_super_parent()
-{
-	FGUIWidget *widget = this;
-	while(widget->family.parent) widget = widget->family.parent;
-	return static_cast<FGUIWidget *>(widget);
-}
-
-
-
-
-FGUIScreen *FGUIWidget::gimmie_super_screen()
-{
-	return static_cast<FGUIScreen *>(gimmie_super_parent());
-}
-
-
-
-
 void FGUIWidget::bring_to_front()
 {
 	if (!family.parent) return;
@@ -154,11 +136,13 @@ void FGUIWidget::draw_func()
 	family.draw_all(); // TODO: should be renamed to draw_children();
 	
 	// draws the focus rectangle if it's focused
+	/*
 	if (focused && gimmie_super_screen()->draw_focused_outline)
 	{
 		al_draw_rounded_rectangle(0, 0, collision_area->placement.size.x, collision_area->placement.size.y, 3, 3, color::color(color::black, 0.2), 5);
 		al_draw_rounded_rectangle(0, 0, collision_area->placement.size.x, collision_area->placement.size.y, 3, 3, color::mix(gimmie_super_screen()->focused_outline_color, color::purple, 0.6+0.4*sin(af::time_now*3)), 1.5);
 	}
+	*/
 
 	if (collision_area) collision_area->placement.restore_transform();
 
