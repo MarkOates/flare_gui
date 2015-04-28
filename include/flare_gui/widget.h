@@ -135,7 +135,7 @@ public:
 	virtual void on_drag(float x, float y, float dx, float dy);
 	virtual void on_drop();
 
-	// keybaord
+	// keyboard
 	virtual void on_key_down();
 	virtual void on_key_up();
 	virtual void on_key_char();
