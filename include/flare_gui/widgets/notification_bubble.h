@@ -32,7 +32,7 @@ public:
 		, opacity(0)
 	{
 		attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUINotificationBubble");
-		attr.set("id", "NotificationBubble" + tostring(widget_count));
+		attr.set("id", "NotificationBubble" + tostring(FGUIWidget::get_num_created_widgets()));
 
 		af::motion.cmove_to(&this->opacity, 1.0, 0.5);
 

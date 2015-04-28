@@ -26,7 +26,7 @@ FGUIProgressBar::FGUIProgressBar(FGUIWidget *parent, float x, float y, float w, 
 	, update_color(color::aquamarine)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIProgressBar");
-	attr.set("id", "ProgressBar" + tostring(widget_count));
+	attr.set("id", "ProgressBar" + tostring(FGUIWidget::get_num_created_widgets()));
 }
 
 

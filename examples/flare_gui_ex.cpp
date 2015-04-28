@@ -67,7 +67,7 @@ public:
 		, media_player_title(NULL)
 	{
 		filename_label = new FGUIText(this, 100, 34, filename);
-		filename_label->collision_area->placement.align.x = 0.5;
+		filename_label->place.align.x = 0.5;
 		filename_label->set_font_color(color::white);
 
 		new FGUIDraggableRegion(this, place.size.x/2, place.size.y/2, place.size.x, place.size.y);
@@ -154,10 +154,10 @@ public:
 
 
 		FGUIScaledText *title_text = new FGUIScaledText(this, 20, 12, "FlareGUI Example");
-		title_text->collision_area->placement.align.x = 0;
-		title_text->collision_area->placement.align.y = 0;
+		title_text->place.align.x = 0;
+		title_text->place.align.y = 0;
 				
-		float window_right = this->collision_area->placement.size.x;
+		float window_right = this->place.size.x;
 
 
 		float radius = 30;
@@ -353,8 +353,8 @@ public:
 		draw_focused_outline = false;
 
 		window = new MyFGUIWindow(this, display);
-		window->collision_area->placement.position.x = display->width()/2;
-		window->collision_area->placement.position.y = display->height()/2;
+		window->place.position.x = display->width()/2;
+		window->place.position.y = display->height()/2;
 
 		//std::cout << "this widget has " << get_num_ancestors() << " leaves" << std::endl;
 	}

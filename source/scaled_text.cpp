@@ -62,7 +62,7 @@ FGUIScaledText::FGUIScaledText(FGUIWidget *parent, float x, float y, std::string
 	, font_color(color::white)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScaledText");
-	attr.set("id", "ScaledText" + tostring(widget_count));
+	attr.set("id", "ScaledText" + tostring(FGUIWidget::get_num_created_widgets()));
 
 	this->collision_area->placement.align.x = 0.0;
 	this->no_focus = true;

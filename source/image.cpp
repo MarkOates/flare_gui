@@ -13,7 +13,7 @@ FGUIImage::FGUIImage(FGUIWidget *parent, float x, float y, ALLEGRO_BITMAP *_bitm
 	, color(color::white)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIImage");
-	attr.set("id", "Image" + tostring(widget_count));
+	attr.set("id", "Image" + tostring(FGUIWidget::get_num_created_widgets()));
 }
 
 

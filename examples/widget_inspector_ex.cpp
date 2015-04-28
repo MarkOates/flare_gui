@@ -74,7 +74,7 @@ public:
 		, y_cursor(60, 26)
 	{
 		attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWidgetInspector");
-		attr.set("id", "WidgetInspector" + tostring(widget_count));
+		attr.set("id", "WidgetInspector" + tostring(FGUIWidget::get_num_created_widgets()));
 
 		new FGUIDraggableRegion(this, place.size.x/2, place.size.y/2, place.size.x, place.size.y);
 	}

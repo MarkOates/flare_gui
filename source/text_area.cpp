@@ -90,7 +90,7 @@ FGUITextArea::FGUITextArea(FGUIWidget *parent, float x, float y, float w, float 
 	, cursor_blink_counter(1)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUITextArea");
-	attr.set("id", "TextArea" + tostring(widget_count));
+	attr.set("id", "TextArea" + tostring(get_num_created_widgets()));
 }
 
 void FGUITextArea::move_cursor(int delta)

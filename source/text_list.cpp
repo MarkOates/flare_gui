@@ -25,7 +25,7 @@ FGUITextList::FGUITextList(FGUIWidget *parent, float x, float y, float w)
 	, currently_selected_item(0)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUITextList");
-	attr.set("id", "TextList" + tostring(widget_count));
+	attr.set("id", "TextList" + tostring(get_num_created_widgets()));
 }
 
 

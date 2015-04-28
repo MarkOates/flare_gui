@@ -29,7 +29,7 @@ FGUIButton::FGUIButton(FGUIWidget *parent, float x, float y, float w, float h, s
 	, icon(NULL)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIButton");
-	attr.set("id", "Button" + tostring(widget_count));
+	attr.set("id", "Button" + tostring(get_num_created_widgets()));
 }
 
 

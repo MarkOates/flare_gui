@@ -23,7 +23,7 @@ FGUIDraggableRegion::FGUIDraggableRegion(FGUIWidget *parent, float x, float y, f
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIDraggableRegion");
-	attr.set("id", "DraggableRegion" + tostring<int>(widget_count));
+	attr.set("id", "DraggableRegion" + tostring<int>(FGUIWidget::get_num_created_widgets()));
 }
 
 

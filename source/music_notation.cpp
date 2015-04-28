@@ -19,7 +19,7 @@ FGUIMusicNotation::FGUIMusicNotation(FGUIWidget *parent, float x, float y)
 	, notation(new DrawingInterfaceAllegro5())
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIMusicNotation");
-	attr.set("id", "MusicNotation" + tostring(widget_count));
+	attr.set("id", "MusicNotation" + tostring(FGUIWidget::get_num_created_widgets()));
 }
 
 

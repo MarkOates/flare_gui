@@ -15,7 +15,7 @@ FGUIWindow::FGUIWindow(FGUIWidget *parent, float x, float y, float w, float h)
 	, background_color(color::hex("3a3c47"))
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWindow");
-	attr.set("id", "Window" + tostring(widget_count));
+	attr.set("id", "Window" + tostring(get_num_created_widgets()));
 
 	no_focus = true;
 }

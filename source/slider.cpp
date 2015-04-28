@@ -21,7 +21,7 @@ FGUIVerticalSlider::FGUIVerticalSlider(FGUIWidget *parent, float x, float y, flo
 	, wheel_sensitivity(0.1)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIVerticalSlider");
-	attr.set("id", "VerticalSlider" + tostring(widget_count));
+	attr.set("id", "VerticalSlider" + tostring(get_num_created_widgets()));
 }
 
 

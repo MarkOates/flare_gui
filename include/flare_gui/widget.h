@@ -14,7 +14,6 @@
 #include <flare_gui/family.h>
 
 
-//class FGUIParent;
 class FGUIScreen;
 class FGUIFamily;
 class Motion;
@@ -50,10 +49,10 @@ class FGUIWidget
 {
 private:
 	static int num_active_widgets; // holds the number of widgets that are currently being managed
+	static int widget_count; // a counter for numbering new widget ids
 
 protected:
 
-	//friend class FGUIParent;
 	friend class FGUIScreen;
 	friend class FGUIChildren;
 	friend class FGUIFamily;
@@ -62,10 +61,19 @@ protected:
 	FGUIFamily family;
 	FGUIFamily &children; // this is exactly the same as family, but for dev-deprec purposes children is here and will removed eventually
 
-	//FGUIParent *parent;
-	static int widget_count; // a counter for numbering new widget ids
-	bool mouse_over, mouse_down_on_over, focused, dragging, no_focus; // should implement a flag system instead ;)
-		// ^^^ will need to add: skip_on_tab_focus (or no_focus), no_jumpout_on_tab
+	FGUICollisionArea *collision_area;
+
+	// TODO these might need to be implemented in a flag system
+	bool mouse_over;
+	bool mouse_down_on_over;
+	bool focused;
+	bool dragging;
+	bool no_focus; // should implement a flag system instead ;)
+	bool mouse_is_blocked; // was a part of FGUIParent
+	// maybe will need to add:
+	// bool skip_on_tab_focus (or no_focus);
+	// bool no_jumpout_on_tab;
+
 
 	// widget *developer* functions:
 	virtual void draw_func();
@@ -83,10 +91,8 @@ protected:
 public:
 	//BitFlags<int16_t> flags;    // << this should be added eventually
 	bool delete_me;
-	bool mouse_is_blocked; // was a part of FGUIParent
 	DataAttr attr;
 
-	FGUICollisionArea *collision_area;
 	placement2d &place;
 
 	FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area);

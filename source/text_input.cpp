@@ -27,7 +27,7 @@ FGUITextInput::FGUITextInput(FGUIWidget *parent, float x, float y, float w, floa
 	, mouse_cursor_y(0)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUITextInput");
-	attr.set("id", "TextInput" + tostring(widget_count));
+	attr.set("id", "TextInput" + tostring(get_num_created_widgets()));
 	set_text(text);
 
 	_text_render = al_create_bitmap(w, h);

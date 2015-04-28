@@ -24,7 +24,7 @@ FGUICheckbox::FGUICheckbox(FGUIWidget *parent, float x, float y, float size)
 	, check_opacity(0)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUICheckbox");
-	attr.set("id", "Checkbox" + tostring(widget_count));
+	attr.set("id", "Checkbox" + tostring(FGUIWidget::get_num_created_widgets()));
 }
 
 

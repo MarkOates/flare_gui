@@ -38,7 +38,7 @@ FGUITextBox::FGUITextBox(FGUIWidget *parent, float x, float y, float w, float h,
 	, text_color(color::black)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUITextBox");
-	attr.set("id", "TextBox" + tostring(widget_count));
+	attr.set("id", "TextBox" + tostring(get_num_created_widgets()));
 
 	no_focus = true;
 	create_word_width_pairs(text, font);

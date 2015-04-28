@@ -20,7 +20,7 @@ FGUIText::FGUIText(FGUIWidget *parent, float x, float y, std::string text)
 	, font_color(color::white)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIText");
-	attr.set("id", "Text" + tostring(widget_count));
+	attr.set("id", "Text" + tostring(get_num_created_widgets()));
 
 	// text elements do not recieve focus when ALLEGRO_KEY_TABbing
 	no_focus = true;
