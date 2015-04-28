@@ -62,14 +62,14 @@ public:
 
 
 
-class FGUIWidgetInspector : public FGUIWindow
+class FGUIWidgetInspector : public FGUIFramedWindow
 {
 public:
 	FGUIWidget *target_widget;
 	incrementer<float> y_cursor;
 
 	FGUIWidgetInspector(FGUIWidget *parent)
-		: FGUIWindow(parent, 400, 300, 340, 340)
+		: FGUIFramedWindow(parent, 400, 300, 340, 340)
 		, target_widget(NULL)
 		, y_cursor(60, 26)
 	{
@@ -80,7 +80,7 @@ public:
 	}
 	void on_draw()
 	{
-		FGUIWindow::on_draw();
+		FGUIFramedWindow::on_draw();
 
 		ALLEGRO_FONT *font = af::fonts["DroidSans.ttf 15"];
 		ALLEGRO_FONT *font2 = af::fonts["DroidSans.ttf 15"];
