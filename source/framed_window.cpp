@@ -52,7 +52,7 @@ void FGUIFramedWindow::draw_window_frame_around(float x1, float y1, float x2, fl
 
 
 
-void FGUIFramedWindow::receive_message(std::string message)
+void FGUIFramedWindow::on_message(std::string message)
 	// when implemented in FGUIWindowFrame, on_draw() should not need to be overridden at all
 {
 	if (message == "close") this->delete_me = true;
