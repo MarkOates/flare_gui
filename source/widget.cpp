@@ -71,7 +71,7 @@ FGUIWidget::~FGUIWidget()
 
 
 
-void FGUIWidget::receive_message(std::string message) {};
+void FGUIWidget::on_message(std::string message) {};
 
 
 
@@ -133,7 +133,7 @@ void FGUIWidget::bring_to_front()
 
 void FGUIWidget::send_message_to_parent(std::string message)
 {
-	if (family.parent) family.parent->receive_message(message);
+	if (family.parent) family.parent->on_message(message);
 }
 
 
