@@ -71,11 +71,6 @@ FGUIWidget::~FGUIWidget()
 
 
 
-void FGUIWidget::on_message(std::string message) {};
-
-
-
-
 
 bool FGUIWidget::is_focused()
 {
@@ -361,6 +356,8 @@ void FGUIWidget::on_draw()
 }
 void FGUIWidget::on_drag(float x, float y, float dx, float dy) {}
 void FGUIWidget::on_change() {}
+void FGUIWidget::on_message(std::string message) {};
+
 
 
 int FGUIWidget::num_active_widgets = 0;
