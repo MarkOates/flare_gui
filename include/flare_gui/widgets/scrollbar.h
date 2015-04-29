@@ -52,7 +52,7 @@ private:
 
 	ScrollRail *rail;
 	ScrollHandle *handle;
-   ScrollUpButton *up_button;
+	ScrollUpButton *up_button;
 	ScrollDownButton *down_button;
 
 public:
