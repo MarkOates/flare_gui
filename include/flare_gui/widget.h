@@ -160,8 +160,8 @@ public:
 	// for now, this simple solution is intended to be the first steps to detaching style
 	// from widget drawing - if the user want it.
 
-	void FGUIWidget::draw_inset(float x, float y, float w, float h);
-	void FGUIWidget::draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"));
+	void draw_inset(float x, float y, float w, float h);
+	void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"));
 };
 
 

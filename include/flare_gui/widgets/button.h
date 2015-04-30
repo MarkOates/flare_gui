@@ -26,16 +26,17 @@ public:
 	void set_icon(ALLEGRO_BITMAP *icon);
 	void set_content_alignment(float alignment=0.5);
 
-	virtual void on_timer();
-	virtual void on_draw();
-	virtual void on_click();
-	virtual void on_mouse_enter();
-	virtual void on_mouse_leave();
-	virtual void on_key_down() override;
-	virtual void on_joy_down() override;
+	void on_timer() override;
+	void on_draw() override;
+	void on_click() override;
+	void on_mouse_enter() override;
+	void on_mouse_leave() override;
+	void on_key_down() override;
+	void on_joy_down() override;
 };
 
 
 
 
 #endif
+

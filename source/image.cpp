@@ -21,7 +21,7 @@ FGUIImage::FGUIImage(FGUIWidget *parent, float x, float y, ALLEGRO_BITMAP *_bitm
 
 void FGUIImage::on_draw()
 {
-	if (bitmap) al_draw_tinted_bitmap(bitmap, color, 0, 0, NULL);
+	if (bitmap) al_draw_tinted_bitmap(bitmap, color, 0, 0, ALLEGRO_FLAGS_EMPTY);
 }
 
 

@@ -136,8 +136,8 @@ void FGUICheckbox::on_draw()
 	}
 	check_placement.start_transform();
 
-	al_draw_ustr(font_awesome, color::color(color::black, 0.3), 0, 3, NULL, ustr);
-	al_draw_ustr(font_awesome, check_color, 0, 0, NULL, ustr);
+	al_draw_ustr(font_awesome, color::color(color::black, 0.3), 0, 3, ALLEGRO_FLAGS_EMPTY, ustr);
+	al_draw_ustr(font_awesome, check_color, 0, 0, ALLEGRO_FLAGS_EMPTY, ustr);
 
 	check_placement.restore_transform();
 }

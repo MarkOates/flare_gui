@@ -79,7 +79,7 @@ void FGUIButton::on_draw()
 	// draw the stuff
 	if (icon)
 	{
-		al_draw_bitmap(icon, start_x, placement.size.y/2 - al_get_bitmap_height(icon)/2, NULL);
+		al_draw_bitmap(icon, start_x, placement.size.y/2 - al_get_bitmap_height(icon)/2, ALLEGRO_FLAGS_EMPTY);
 		start_x += al_get_bitmap_width(icon);
 	}
 	if (font && !text.empty() && icon)

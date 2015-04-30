@@ -365,8 +365,8 @@ void FGUITextInput::_update_text_and_selection_render(float len_to_cursor, float
 	ALLEGRO_COLOR cursor_select_color = color::hex("c6e2ff");
 	al_draw_filled_rectangle(padding+len_to_cursor+text_x_offset, padding, padding+len_to_cursor_end+text_x_offset, padding+al_get_font_line_height(font), focused ? cursor_select_color : color::color(cursor_select_color, 0.4));
 
-	if (text.empty() && attr.has("default_text_when_empty")) al_draw_text(font, color::color(font_color, 0.2), padding+text_x_offset, padding, NULL, attr.get("default_text_when_empty").c_str());
-	else al_draw_text(font, font_color, padding+text_x_offset, padding, NULL, text.c_str());
+	if (text.empty() && attr.has("default_text_when_empty")) al_draw_text(font, color::color(font_color, 0.2), padding+text_x_offset, padding, ALLEGRO_FLAGS_EMPTY, attr.get("default_text_when_empty").c_str());
+	else al_draw_text(font, font_color, padding+text_x_offset, padding, ALLEGRO_FLAGS_EMPTY, text.c_str());
 
 
 
@@ -412,7 +412,7 @@ void FGUITextInput::on_draw()
 
 	// draw the text
 	_update_text_and_selection_render(len_to_cursor, len_to_cursor_end);
-	al_draw_bitmap(_text_render, 0, 0, NULL);
+	al_draw_bitmap(_text_render, 0, 0, ALLEGRO_FLAGS_EMPTY);
 
 	// draw the cursor
 	if (focused) al_draw_line(len_to_cursor+padding+text_x_offset, padding-padding*0.25, len_to_cursor+padding+text_x_offset, padding+padding*0.25+font_height, color::color(color::dodgerblue, cursor_blink_counter), 2.0);

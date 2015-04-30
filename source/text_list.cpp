@@ -189,8 +189,8 @@ void FGUITextList::draw_item(vec2d position, int index)
 		height += 4;
 	}
 
-	al_draw_text(font, color::color(color::black, item_is_selected ? 1.0 : 0.3), position.x, position.y+2, NULL, items[index].c_str());
-	al_draw_text(font, item_is_selected ? color::mix(color::white, color::yellow, 0.0) : color::white, position.x, position.y, NULL, items[index].c_str());
+	al_draw_text(font, color::color(color::black, item_is_selected ? 1.0 : 0.3), position.x, position.y+2, ALLEGRO_FLAGS_EMPTY, items[index].c_str());
+	al_draw_text(font, item_is_selected ? color::mix(color::white, color::yellow, 0.0) : color::white, position.x, position.y, ALLEGRO_FLAGS_EMPTY, items[index].c_str());
 }
 
 

@@ -14,8 +14,8 @@ class FGUIDraggableRegion : public FGUIWidget
 public:
 	FGUIDraggableRegion(FGUIWidget *parent, float x, float y, float w, float h);
 
-	void on_draw();
-	void on_drag(float x, float y, float dx, float dy);
+	void on_draw() override;
+	void on_drag(float x, float y, float dx, float dy) override;
 };
 
 

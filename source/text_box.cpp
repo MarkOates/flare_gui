@@ -175,7 +175,7 @@ void FGUITextBox::on_draw()
 			y_cursor += line_height;
 			continue;
 		}
-		al_draw_text(font, text_color, x_cursor, y_cursor, NULL, word_width_pairs[i].word.c_str());
+		al_draw_text(font, text_color, x_cursor, y_cursor, ALLEGRO_FLAGS_EMPTY, word_width_pairs[i].word.c_str());
 		x_cursor = x_cursor + word_width_pairs[i].width + width_of_space;
 	}
 }

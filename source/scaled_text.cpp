@@ -77,7 +77,7 @@ void FGUIScaledText::on_draw()
 	if (!render) return;
 
 	al_draw_tinted_scaled_bitmap(render, font_color, 0, 0, al_get_bitmap_width(render), al_get_bitmap_height(render),
-		0, 0, place.size.x, place.size.y, NULL);
+		0, 0, place.size.x, place.size.y, ALLEGRO_FLAGS_EMPTY);
 }
 
 
