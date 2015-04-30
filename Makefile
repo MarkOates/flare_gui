@@ -35,7 +35,7 @@ CFLAGS=-c -std=gnu++11
 
 # all builds the static library
 
-all: button.o checkbox.o children.o collision_area.o collision_bitmap.o collision_box.o collision_box_padded.o collision_circle.o collision_column.o collision_row.o console.o draggable_region.o framed_window.o image.o music_notation.o notification_bubble.o progress_bar.o scaled_text.o scroll_area.o text_box.o text_input.o text_list.o widget.o widget_screen.o window.o
+all: button.o checkbox.o children.o collision_area.o collision_bitmap.o collision_box.o collision_box_padded.o collision_circle.o collision_column.o collision_row.o console.o draggable_region.o family.o framed_window.o image.o music_notation.o notification_bubble.o progress_bar.o scaled_text.o scroll_area.o text_box.o text_input.o text_list.o widget.o widget_screen.o window.o
 	ar rvs $(FGUI_LIB_DIR)/$(FGUI_LIB_NAME) $(OBJ_DIR)/*.$(OBJ_EXT)	
 
 
