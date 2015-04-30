@@ -1,4 +1,12 @@
 /msvc-10.0
 /lib
+/build
+
+# ignore vim swap files
 *.swp
 *.swo
+
+# ignore object files from build
+*.o
+*.obj
+
