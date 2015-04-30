@@ -9,34 +9,34 @@
 
 // Text
 
-FGUIText(FGUIParent *parent, float x, float y, std::string text);
-FGUIScaledText(FGUIParent *parent, float x, float y, std::string text);
-FGUITextBox(FGUIParent *parent, float x, float y, float w, float h, std::string text);
-FGUINotificationBubble(FGUIParent *parent, float x, float y, std::string text);
-FGUITextList(FGUIParent *parent, float x, float y, float w);
+FGUIText(FGUIWidget *parent, float x, float y, std::string text);
+FGUIScaledText(FGUIWidget *parent, float x, float y, std::string text);
+FGUITextBox(FGUIWidget *parent, float x, float y, float w, float h, std::string text);
+FGUINotificationBubble(FGUIWidget *parent, float x, float y, std::string text);
+FGUITextList(FGUIWidget *parent, float x, float y, float w);
 
 
 // Containers and Frames
 
-FGUIWindow(FGUIParent *parent, float x, float y, float w, float h);
-FGUIFramedWindow(FGUIParent *parent, float x, float y, float w, float h);
-FGUIScrollView(FGUIParent *parent, float x, float y, float w, float h, FGUIParent *content_parent);
+FGUIWindow(FGUIWidget *parent, float x, float y, float w, float h);
+FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w, float h);
+FGUIScrollView(FGUIWidget *parent, float x, float y, float w, float h, FGUIWidget *content_parent);
 
 
 // Inputs and Controls
 
-FGUITextArea(FGUIParent *parent, float x, float y, float w, float h, std::string text);
-FGUITextInput(FGUIParent *parent, float x, float y, float w, float h, std::string initial_text);
-FGUIButton(FGUIParent *parent, float x, float y, float w, float h, std::string text);
-FGUICheckbox(FGUIParent *parent, float x, float y, float size);
-FGUIVerticalSlider(FGUIParent *parent, float x, float y, float w, float h);
+FGUITextArea(FGUIWidget *parent, float x, float y, float w, float h, std::string text);
+FGUITextInput(FGUIWidget *parent, float x, float y, float w, float h, std::string initial_text);
+FGUIButton(FGUIWidget *parent, float x, float y, float w, float h, std::string text);
+FGUICheckbox(FGUIWidget *parent, float x, float y, float size);
+FGUIVerticalSlider(FGUIWidget *parent, float x, float y, float w, float h);
 
 
 // Graphics and Data Visualization
 
-FGUIImage(FGUIParent *parent, float x, float y, ALLEGRO_BITMAP *bitmap);
-FGUIMusicNotation(FGUIParent *parent, float x, float y);
-FGUIProgressBar(FGUIParent *parent, float x, float y, float w, float h, float val);
+FGUIImage(FGUIWidget *parent, float x, float y, ALLEGRO_BITMAP *bitmap);
+FGUIMusicNotation(FGUIWidget *parent, float x, float y);
+FGUIProgressBar(FGUIWidget *parent, float x, float y, float w, float h, float val);
 
 
 
@@ -47,8 +47,7 @@ FGUIProgressBar(FGUIParent *parent, float x, float y, float w, float h, float va
 // Base Widgets in FGUI
 //
 
-FGUIWidget(FGUIParent *parent, FGUICollisionArea *collision_area);
-FGUIParent(FGUIParent *parent, FGUICollisionArea *collision_area);
+FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area);
 FGUIScreen(Display *display);
 
 
@@ -71,7 +70,7 @@ FGUICollisionRow(float y, float h);
 
 FGUIChildren();
 
-FGUIDraggableRegion(FGUIParent *parent, float x, float y, float w, float h);
+FGUIDraggableRegion(FGUIWidget *parent, float x, float y, float w, float h);
 
 
 

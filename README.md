@@ -63,6 +63,14 @@ Base Widgets
 ------------
 
 * FGUIWidget
-* FGUIParent
 * FGUIScreen
+
+
+Build Instructions
+------------------
+
+FlareGUI requires Allegro 5.1.8 or greater and Allegro Flare 0.8.5.
+
+If you're building with `g++`, you might want to use the makefile.  Before using, open `Makefile` and modify `ALLEGRO_DIR`, `ALLEGRO_FLARE_DIR`, and `FGUI_DIR` to point to the respective project's directories.  You will also need to create two folders, `lib/` and `obj/`, in your `allegro_flare` directory.  Then run `make` from the command line.
+
 
