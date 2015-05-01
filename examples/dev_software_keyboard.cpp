@@ -155,10 +155,11 @@ float SoftKeyKey::key_roundness = 0.0;
 
 
 
-class SoftKeyboard : public Screen
+#include <flare_gui/flare_gui.h>
+
+class FGUISoftwareKeyboard : public FGUIWidget
 {
 public:
-	placement2d placement;
 	Motion motion_manager;
 	Display *display;
 	// 43 keys
@@ -173,15 +174,15 @@ public:
 
 	bool shift_pressed;
 
-	SoftKeyboard(Display *display)
-		: Screen(display)
+	FGUISoftwareKeyboard(FGUIWidget *parent, float x, float y)
+		: FGUIWidget(parent, new FGUICollisionBox(x, y, 850, 250))
 		, num_cols(12)
 		, num_rows(4)
 		, display(display)
 		, motion_manager(3)
 		, visible(true)
-		, w(display->width())
-		, h(display->height()*0.4)
+		, w(850)
+		, h(250)
 		, shift_pressed(false)
 	{
 		key[0].set(0, 0, 1, 1, NULL, NULL, true, true, "q", ALLEGRO_KEY_Q);
@@ -247,20 +248,11 @@ public:
 			//key[i].x -= w/2;
 			//key[i].y -= h;
 		}
-		
-		placement.position.x = display->width()/2;
-		placement.position.y = display->height()/2;
-		placement.align = vec2d(0.5, 0.5);
-		placement.size = vec2d(w, h);
-		placement.scale.x = 0.9;
-		placement.scale.y = 0.9;
-		//camera.rotation = 0.2;
 	}
 
-	void primary_timer_func() override
+	void on_draw() override
 	{
 		motion_manager.update(af::time_now);
-		placement.start_transform();
 	
 		al_draw_filled_rectangle(0, 0, w, h, color::black);
 		al_draw_rounded_rectangle(0, 0, w, h, 4, 4, color::black, 4.0);
@@ -270,12 +262,11 @@ public:
 			key[i].update_press_fx();
 			key[i].draw();
 		}
-		placement.restore_transform();
 	}
 
 	void toggle_visibility()
 	{
-		
+	/*	
 		motion_manager.clear_animations_on(&placement.position.y);
 		motion_manager.clear_animations_on(&placement.scale.x);
 		motion_manager.clear_animations_on(&placement.scale.y); //TODO should this be .y?
@@ -297,7 +288,7 @@ public:
 			motion_manager.animate(&placement.scale.y, placement.scale.y, 0.9, time_now, time_now+0.4, interpolator::quadrupleFastIn, NULL, NULL);
 			for (int i=0; i<43; i++) key[i].mouse_over = false;
 		}
-		
+	*/	
 		visible = !visible;
 	}
 
@@ -314,14 +305,14 @@ public:
 		shift_pressed = !shift_pressed;
 	}
 
-	void key_char_func()
+	void on_key_char() override
 	{
 		int allegro_key = af::current_event->keyboard.keycode;
 		for (unsigned i=0; i<43; i++)
 			if (key[i].allegro_key_code == allegro_key) key[i].trigger();
 	}
 
-	void key_down_func()
+	void on_key_down() override
 	{
 		if (!visible) return;
 
@@ -330,20 +321,20 @@ public:
 			toggle_shift();
 	}
 
-	void mouse_axes_func()
+	void on_mouse_move(float x, float y, float dx, float dy) override
 	{
 		if (!visible) return;
 
-		mouse_screen = vec2d(af::current_event->mouse.x, af::current_event->mouse.y);
+		mouse_screen = vec2d(x, y);
 		mouse_world = mouse_screen;
-		placement.transform_coordinates(&mouse_world.x, &mouse_world.y);
+		place.transform_coordinates(&mouse_world.x, &mouse_world.y);
 
 		for (unsigned i=0; i<43; i++)
 			key[i].on_mouse_move(mouse_world.x, mouse_world.y);
 	}
 
 
-	void mouse_down_func()
+	void on_mouse_down() override
 	{
 		if (!visible) return;
 
@@ -362,13 +353,32 @@ public:
 
 
 
+
+
+
+class SoftKeyboardExample : public FGUIScreen
+{
+private:
+	FGUISoftwareKeyboard *keyboard;
+public:
+	SoftKeyboardExample(Display *display)
+		: FGUIScreen(display)
+		, keyboard(NULL)
+	{
+		keyboard = new FGUISoftwareKeyboard(this, display->width()/2, display->height()/2);
+	}
+};
+
+
+
+
+
+
+
 int main(int argc, char *argv[])
 {
 	af::initialize();
-
 	Display *display = af::create_display(1100, 600);
-
-	SoftKeyboard *soft_keyboard = new SoftKeyboard(display);
-
+	SoftKeyboardExample *example = new SoftKeyboardExample(display);
 	af::run_loop();
 }
