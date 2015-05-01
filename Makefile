@@ -165,5 +165,10 @@ dev_software_keyboard.exe: ./examples/dev_software_keyboard.cpp
 	g++ $(CFLAGS) $(EXAMPLESDIR)/$(basename $@).cpp -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 	g++ $(basename $@).o -o $(EXAMPLESDIR)/$(basename $@).exe -l$(FGUI_LIB) -l$(ALLEGRO_FLARE_LIB) -l$(ALLEGRO_MONOLITH_LIB) -L$(ALLEGRO_FLARE_DIR)/lib -L$(ALLEGRO_DIR)/lib -L$(FGUI_DIR)/lib
 
+dev_piano_keyboard.exe: ./examples/dev_piano_keyboard.cpp
+	g++ $(CFLAGS) $(EXAMPLESDIR)/$(basename $@).cpp -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+	g++ $(basename $@).o -o $(EXAMPLESDIR)/$(basename $@).exe -l$(FGUI_LIB) -l$(ALLEGRO_FLARE_LIB) -l$(ALLEGRO_MONOLITH_LIB) -L$(ALLEGRO_FLARE_DIR)/lib -L$(ALLEGRO_DIR)/lib -L$(FGUI_DIR)/lib
+	examples/dev_piano_keyboard.exe
+
 
 
