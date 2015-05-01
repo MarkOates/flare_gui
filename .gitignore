@@ -10,4 +10,5 @@
 # ignore object files from build
 *.o
 *.obj
+*.exe
 

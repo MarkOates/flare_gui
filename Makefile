@@ -147,3 +147,22 @@ clean_linux:
 	rm $(OBJ_DIR)/*.$(OBJ_EXT)
 
 
+
+
+
+#
+# example programs
+#
+
+EXAMPLESDIR=./examples
+
+# these are the names of the libs you are linking
+ALLEGRO_MONOLITH_LIB=allegro-5.1.8-monolith-md
+ALLEGRO_FLARE_LIB=allegro_flare-0.8.5-mingw-4.8.1
+
+dev_software_keyboard.exe: ./examples/dev_software_keyboard.cpp
+	g++ $(CFLAGS) $(EXAMPLESDIR)/$(basename $@).cpp -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+	g++ $(basename $@).o -o $(EXAMPLESDIR)/$(basename $@).exe -l$(ALLEGRO_FLARE_LIB) -l$(ALLEGRO_MONOLITH_LIB) -L$(ALLEGRO_FLARE_DIR)/lib -L$(ALLEGRO_DIR)/lib
+
+
+
