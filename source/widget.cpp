@@ -187,7 +187,7 @@ void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 		if (family.parent && mouse_over) family.parent->mouse_is_blocked = true;
 	}
 
-	on_mouse_move(x, y, dx, dy);
+	on_mouse_move(x, y, dx, dy); // TODO I think this needs to be the translated coordinates, and maybe even should be on the on_drag() call below as well
 	if (mouse_down_on_over)
 	{
 		dragging = true;
