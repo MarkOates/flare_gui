@@ -25,7 +25,7 @@ public:
 
 	FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w, float h);
 
-	void on_message(std::string message) override;
+	void on_message(FGUIWidget *sender, std::string message) override;
 	void on_draw() override;
 	void on_focus() override;
 

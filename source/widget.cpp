@@ -110,7 +110,7 @@ void FGUIWidget::bring_to_front()
 
 void FGUIWidget::send_message_to_parent(std::string message)
 {
-	if (family.parent) family.parent->on_message(message);
+	if (family.parent) family.parent->on_message(this, message);
 }
 
 
@@ -340,7 +340,7 @@ void FGUIWidget::on_draw()
 }
 void FGUIWidget::on_drag(float x, float y, float dx, float dy) {}
 void FGUIWidget::on_change() {}
-void FGUIWidget::on_message(std::string message) {};
+void FGUIWidget::on_message(FGUIWidget *sender, std::string message) {};
 
 
 

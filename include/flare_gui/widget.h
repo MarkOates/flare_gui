@@ -145,7 +145,7 @@ public:
 
 	// state
 	virtual void on_change();
-	virtual void on_message(std::string message);
+	virtual void on_message(FGUIWidget *sender, std::string message);
 
 
 	// static functions
