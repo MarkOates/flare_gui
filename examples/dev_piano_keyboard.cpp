@@ -67,7 +67,7 @@ class PianoKeyboardScreen : public Screen
 {
 public:
 	Display *display;
-	Camera2D camera;
+	placement2d placement;
 	Motion motion_manager;
 	vec2d mouse_screen, mouse_world;
 	#define NUM_KEYS 48
@@ -294,7 +294,6 @@ void PianoControlButton::draw()
 
 PianoKeyboardScreen::PianoKeyboardScreen(Display *display)
 	: Screen(display)
-	, camera()
 	, motion_manager()
 {
 	set_keys_to_pentatonic();
@@ -415,7 +414,7 @@ void PianoKeyboardScreen::set_keys_to_scale(std::vector<int> &set)
 void PianoKeyboardScreen::primary_timer_func()
 {
 	motion_manager.update(af::time_now);
-	camera.start_transform();
+	placement.start_transform();
 
 	al_draw_filled_rectangle(0, 0, w, h, color::hex("876833")); // dark tan
 	//al_draw_filled_rectangle(0, 0, w, h, color::hex("172b43")); // dark blue
@@ -428,14 +427,14 @@ void PianoKeyboardScreen::primary_timer_func()
 	for (int i=0; i<NUM_KEYS; i++)
 		if (keys[i].black_key) keys[i].draw();
 
-	camera.restore_transform();
+	placement.restore_transform();
 }
 
 void PianoKeyboardScreen::mouse_axes_func()
 {
 	mouse_screen = vec2d(af::current_event->mouse.x, af::current_event->mouse.y);
 	mouse_world = mouse_screen;
-	camera.placement.transform_coordinates(&mouse_world.x, &mouse_world.y);
+	placement.transform_coordinates(&mouse_world.x, &mouse_world.y);
 		
 	bool collided = false;
 	for (int i=0; i<NUM_KEYS; i++)
@@ -532,47 +531,48 @@ int main(int argc, char *argv[])
 
 
 	PianoKeyboardScreen *piano_keyboard1 = new PianoKeyboardScreen(display);
-	piano_keyboard1->camera.placement.position.x -= 200;
-	piano_keyboard1->camera.placement.scale.x = 0.7;
-	piano_keyboard1->camera.placement.scale.y = 0.7;
+	piano_keyboard1->placement.position.x = -200 + display->width()/2;
+	piano_keyboard1->placement.position.y = display->height()/2;
+	piano_keyboard1->placement.scale.x = 0.7;
+	piano_keyboard1->placement.scale.y = 0.7;
 
 	PianoKeyboardScreen *piano_keyboard5 = new PianoKeyboardScreen(display);
 	piano_keyboard5->set_keys_to_scale(major7);
-	piano_keyboard5->camera.placement.position.y = 300;
-	piano_keyboard5->camera.placement.position.x -= 200;
-	piano_keyboard5->camera.placement.scale.x = 0.7;
-	piano_keyboard5->camera.placement.scale.y = 0.7;
+	piano_keyboard5->placement.position.y = 300 + display->height()/2;
+	piano_keyboard5->placement.position.x = -200 + display->width()/2;
+	piano_keyboard5->placement.scale.x = 0.7;
+	piano_keyboard5->placement.scale.y = 0.7;
 
 	PianoKeyboardScreen *piano_keyboard4 = new PianoKeyboardScreen(display);
 	piano_keyboard4->set_keys_to_whole_tone();
-	piano_keyboard4->camera.placement.position.y = 150;
-	piano_keyboard4->camera.placement.position.x -= 200;
-	piano_keyboard4->camera.placement.scale.x = 0.7;
-	piano_keyboard4->camera.placement.scale.y = 0.7;
+	piano_keyboard4->placement.position.y = 150 + display->height()/2;
+	piano_keyboard4->placement.position.x = -200 + display->width()/2;
+	piano_keyboard4->placement.scale.x = 0.7;
+	piano_keyboard4->placement.scale.y = 0.7;
 	
 	PianoKeyboardScreen *piano_keyboard2 = new PianoKeyboardScreen(display);
 	piano_keyboard2->set_keys_to_diatonic();
-	piano_keyboard2->camera.placement.position.y = -150;
-	piano_keyboard2->camera.placement.position.x -= 200;
-	piano_keyboard2->camera.placement.scale.x = 0.7;
-	piano_keyboard2->camera.placement.scale.y = 0.7;
+	piano_keyboard2->placement.position.y = -150 + display->height()/2;
+	piano_keyboard2->placement.position.x = -200 + display->width()/2;
+	piano_keyboard2->placement.scale.x = 0.7;
+	piano_keyboard2->placement.scale.y = 0.7;
 
 	PianoKeyboardScreen *piano_keyboard3 = new PianoKeyboardScreen(display);
 	piano_keyboard3->set_keys_to_octatonic1();
-	piano_keyboard3->camera.placement.position.y = -300;
-	piano_keyboard3->camera.placement.position.x -= 200;
-	piano_keyboard3->camera.placement.scale.x = 0.7;
-	piano_keyboard3->camera.placement.scale.y = 0.7;
+	piano_keyboard3->placement.position.y = -300 + display->height()/2;
+	piano_keyboard3->placement.position.x = -200 + display->width()/2;
+	piano_keyboard3->placement.scale.x = 0.7;
+	piano_keyboard3->placement.scale.y = 0.7;
 
 	std::vector<int> this_set; this_set.push_back(0); this_set.push_back(4); this_set.push_back(6);
 		this_set.push_back(10); this_set.push_back(11);
 	PianoKeyboardScreen *piano_keyboard6 = new PianoKeyboardScreen(display);
 	piano_keyboard6->set_keys_to_scale(this_set);
-	piano_keyboard6->camera.placement.position.x = 350;
-	piano_keyboard6->camera.placement.position.y = -300;
-	piano_keyboard6->camera.placement.rotation = 0.2;
-	piano_keyboard6->camera.placement.scale.x = 0.7;
-	piano_keyboard6->camera.placement.scale.y = 0.7;
+	piano_keyboard6->placement.position.x = 250 + display->width()/2;
+	piano_keyboard6->placement.position.y = 200 + display->height()/2;
+	piano_keyboard6->placement.rotation = 0.2;
+	piano_keyboard6->placement.scale.x = 0.7;
+	piano_keyboard6->placement.scale.y = 0.7;
 	//piano_keyboard5->camera.x -= 200;
 
 
