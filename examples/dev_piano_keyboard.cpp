@@ -43,22 +43,6 @@ public:
 
 
 
-class PianoControlButton
-{
-public:
-	float x, y, w, h;
-	bool mouse_over;
-
-	bool collide(float mouse_x, float mouse_y);
-	virtual void switch_out();
-	virtual void on_mouse_enter();
-	virtual void on_mouse_leave();
-	virtual void on_mouse_click();
-	virtual void on_mouse_down();
-	virtual void on_mouse_up();
-	void on_mouse_move(float mouse_x, float mouse_y);
-	virtual void draw();
-};
 
 
 #include <flare_gui/flare_gui.h>
@@ -210,46 +194,6 @@ void PianoKeyboardKey::on_mouse_up()
 
 
 
-
-
-
-
-bool PianoControlButton::collide(float mouse_x, float mouse_y)
-{
-	if (mouse_x < x) return false;
-	if (mouse_y < y) return false;
-	if (mouse_x >= x+w) return false;
-	if (mouse_y >= y+h) return false;
-	return true;
-}
-
-void PianoControlButton::switch_out()
-{
-	if (mouse_over) on_mouse_leave();
-	mouse_over = false;
-}
-
-void PianoControlButton::on_mouse_enter() {}
-
-void PianoControlButton::on_mouse_leave() {}
-
-void PianoControlButton::on_mouse_click() {}
-
-void PianoControlButton::on_mouse_down() {}
-
-void PianoControlButton::on_mouse_up() {}
-
-void PianoControlButton::on_mouse_move(float mouse_x, float mouse_y)
-{
-	bool collide_now = collide(mouse_x, mouse_y);
-	if (collide_now && !mouse_over) on_mouse_enter();
-	if (!collide_now && mouse_over) on_mouse_leave();
-	mouse_over = collide_now;
-}
-
-void PianoControlButton::draw()
-{
-}
 
 
 
