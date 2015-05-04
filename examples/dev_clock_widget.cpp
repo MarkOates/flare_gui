@@ -12,7 +12,8 @@
 //
 
 
-#include <af_factory.h>
+#include <flare_gui/flare_gui.h>
+#include <time.h>
 
 
 float max_clock_radius = 80;
@@ -42,16 +43,16 @@ void draw_clock(float x, float y, float radius=100, float opacity=1.0)
 
 	// draw clock face
 
-	al_draw_filled_circle(x, y, radius*1.04, color("white", opacity));
+	al_draw_filled_circle(x, y, radius*1.04, color::name("white", opacity));
 
-	al_draw_circle(x, y, radius*1.04, color("black", opacity), scale);
+	al_draw_circle(x, y, radius*1.04, color::name("black", opacity), scale);
 	for (int i=0; i<60; i++)
 	{
 		offset_x = cos(i/60.0*FULL_ROTATION)*radius*((opacity*0.3)+0.7);
 		offset_y = sin(i/60.0*FULL_ROTATION)*radius*((opacity*0.3)+0.7);
 
-		if (i%5 == 0) al_draw_filled_circle(x+offset_x, y+offset_y, scale*2, color("black", opacity*opacity));
-		else al_draw_filled_circle(x+offset_x, y+offset_y, scale, color("black", opacity*opacity));
+		if (i%5 == 0) al_draw_filled_circle(x+offset_x, y+offset_y, scale*2, color::name("black", opacity*opacity));
+		else al_draw_filled_circle(x+offset_x, y+offset_y, scale, color::name("black", opacity*opacity));
 	}
 
 	// draw date
@@ -65,58 +66,58 @@ void draw_clock(float x, float y, float radius=100, float opacity=1.0)
 	float num_sec = timeinfo->tm_sec;
 	offset_x = cos(num_sec/60.0*FULL_ROTATION-FULL_ROTATION/4)*radius;
 	offset_y = sin(num_sec/60.0*FULL_ROTATION-FULL_ROTATION/4)*radius;
-	al_draw_line(x, y, x+offset_x, y+offset_y, color("black", opacity), scale*1.0);
+	al_draw_line(x, y, x+offset_x, y+offset_y, color::name("black", opacity), scale*1.0);
 
 	float num_minutes = timeinfo->tm_min + num_sec/60.0;
 	offset_x = cos(num_minutes/60.0*FULL_ROTATION-FULL_ROTATION/4)*radius*0.85;
 	offset_y = sin(num_minutes/60.0*FULL_ROTATION-FULL_ROTATION/4)*radius*0.85;
-	al_draw_line(x, y, x+offset_x, y+offset_y, color("black", opacity), scale*3.0);
-	al_draw_filled_circle(x+offset_x, y+offset_y, scale*1.5, color("black", opacity));
+	al_draw_line(x, y, x+offset_x, y+offset_y, color::name("black", opacity), scale*3.0);
+	al_draw_filled_circle(x+offset_x, y+offset_y, scale*1.5, color::name("black", opacity));
 
 	float num_hrs = timeinfo->tm_hour/2 + num_minutes/60.0;
 	offset_x = cos(num_hrs/12.0*FULL_ROTATION-FULL_ROTATION/4)*radius*0.6;
 	offset_y = sin(num_hrs/12.0*FULL_ROTATION-FULL_ROTATION/4)*radius*0.6;
-	al_draw_line(x, y, x+offset_x, y+offset_y, color("black", opacity), scale*3.0);
-	al_draw_filled_circle(x+offset_x, y+offset_y, scale*1.5, color("black", opacity));
+	al_draw_line(x, y, x+offset_x, y+offset_y, color::name("black", opacity), scale*3.0);
+	al_draw_filled_circle(x+offset_x, y+offset_y, scale*1.5, color::name("black", opacity));
 
-	al_draw_filled_circle(x, y, scale*1.5, color("black", opacity));
+	al_draw_filled_circle(x, y, scale*1.5, color::name("black", opacity));
 
 	if (true)
 	{
-		ALLEGRO_BITMAP *clock_overlay = get_image("clock_overlay.png");
+		ALLEGRO_BITMAP *clock_overlay = af::bitmaps["clock_overlay.png"];
 		float clock_overlay_scale = scale/2;
-		al_draw_tinted_scaled_bitmap(clock_overlay, color("white", opacity),
+		al_draw_tinted_scaled_bitmap(clock_overlay, color::name("white", opacity),
 			0, 0, al_get_bitmap_width(clock_overlay), al_get_bitmap_height(clock_overlay),
 			x-al_get_bitmap_width(clock_overlay)*0.5*clock_overlay_scale, y-al_get_bitmap_height(clock_overlay)*0.5*clock_overlay_scale,
-			al_get_bitmap_width(clock_overlay)*clock_overlay_scale, al_get_bitmap_height(clock_overlay)*clock_overlay_scale, NULL);
+			al_get_bitmap_width(clock_overlay)*clock_overlay_scale, al_get_bitmap_height(clock_overlay)*clock_overlay_scale, ALLEGRO_FLAGS_EMPTY);
 	}	
 
 	// border outline
-	al_draw_circle(x, y, radius*1.09 + inv(opacity)*60, color("darkblue", opacity*0.2), radius/100.0*3);
-	al_draw_circle(x, y, radius*1.235 + inv(opacity)*30, color("darkblue", opacity*0.1), radius/100.0*2);
+	al_draw_circle(x, y, radius*1.09 + inv(opacity)*60, color::name("darkblue", opacity*0.2), radius/100.0*3);
+	al_draw_circle(x, y, radius*1.235 + inv(opacity)*30, color::name("darkblue", opacity*0.1), radius/100.0*2);
 }
 
 
 
 void hide_clock(void *obj, ALLEGRO_MOUSE_EVENT *ev, void *user)
 {
-	animate(&clock_opacity, clock_opacity, 0.0);
-	animate(&clock_radius, clock_radius, max_clock_radius*0.9, 0.0, 0.6);
-	if (clock_opacity == 1.0) al_play_sample(get_sample("clock_hide.wav"), 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+	af::motion.cmove_to(&clock_opacity, 0.0, 0.6);
+	af::motion.cmove_to(&clock_radius, max_clock_radius*0.9, 0.6);
+	if (clock_opacity == 1.0) al_play_sample(af::samples["clock_hide.wav"], 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 }
 
 
 
 void show_clock(void *obj, ALLEGRO_MOUSE_EVENT *ev, void *user)
 {
-	animate(&clock_opacity, clock_opacity, 1.0, 0.0, 0.3, interpolator::slowInOut);
-	animate(&clock_radius, clock_radius, max_clock_radius, 0.0, 0.3, interpolator::slowInOut);
-	if (clock_opacity == 0.0) al_play_sample(get_sample("clock_show.wav"), 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
+	af::motion.cmove_to(&clock_opacity, 1.0, 0.3, interpolator::slowInOut);
+	af::motion.cmove_to(&clock_radius, max_clock_radius, 0.3, interpolator::slowInOut);
+	if (clock_opacity == 0.0) al_play_sample(af::samples["clock_show.wav"], 1.0, 0.0, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
 }
 
 
 
-
+/*
 void draw_button(void *obj, void *user)
 {
 	UIButton *b = static_cast<UIButton *>(obj);
@@ -139,23 +140,50 @@ void draw_button(void *obj, void *user)
 	//if (b->click_in)
 	//	al_draw_rounded_rectangle(b->x+off+1, b->y+off+1, b->x+b->w-off-1, b->y+b->h-off-1, b->roundness, b->roundness, al_color_name("yellow"), 1.0);
 }
+*/
 
 
-
-
+/*
 void timer_func(Framework *f, ALLEGRO_TIMER_EVENT *ev)
 {
-	update_animated();
 	draw_clock(af_get_screen_width()/2, af_get_screen_height()/2, clock_radius, clock_opacity);
 }
+*/
 
 
 
-void main()
+class ClockExampleProgram : public FGUIScreen
 {
+private:
+	bool clock_showing;
+public:
+	ClockExampleProgram(Display *display)
+		: FGUIScreen(display)
+		, clock_showing(false)
+	{}
+	void primary_timer_func()
+	{
+		draw_clock(display->width()/2, display->height()/2, clock_radius, clock_opacity);
+	}
+	void key_down_func() override
+	{
+		if (!clock_showing) show_clock(NULL, NULL, NULL);
+		else hide_clock(NULL, NULL, NULL);
+
+		clock_showing = !clock_showing;
+	}
+};
+
+
+int main(int argc, char **argv)
+{
+	af::initialize();
+	Display *display = af::create_display();
+	ClockExampleProgram *program = new ClockExampleProgram(display);
+	af::run_loop();
+/*
 	UIFramework *framework = af_create_ui_framework();
 
-	/* setup program */
 
 	UIButton *button = af_create_ui_button(100, 100, "Hide Clock");
 	af_set_click_func(button, hide_clock);
@@ -171,8 +199,8 @@ void main()
 
 	af_set_timer_func(framework, timer_func);
 	af_start_loop(framework);
-
-	return;
+*/
+	return 0;
 }
 
 
