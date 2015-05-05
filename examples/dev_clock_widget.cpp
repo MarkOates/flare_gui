@@ -156,21 +156,26 @@ class ClockExampleProgram : public FGUIScreen
 {
 private:
 	bool clock_showing;
+	FGUIButton *show_button;
+	FGUIButton *hide_button;
 public:
 	ClockExampleProgram(Display *display)
 		: FGUIScreen(display)
 		, clock_showing(false)
-	{}
-	void primary_timer_func()
+		, show_button(NULL)
+		, hide_button(NULL)
+	{
+		show_button = new FGUIButton(this, 200, 200, 80, 50, "Show");
+		hide_button = new FGUIButton(this, 200, 300, 80, 50, "Hide");
+	}
+	void on_timer() override
 	{
 		draw_clock(display->width()/2, display->height()/2, clock_radius, clock_opacity);
 	}
-	void key_down_func() override
+	void on_message(FGUIWidget *sender, std::string message) override
 	{
-		if (!clock_showing) show_clock(NULL, NULL, NULL);
-		else hide_clock(NULL, NULL, NULL);
-
-		clock_showing = !clock_showing;
+		if (sender == show_button) show_clock(NULL, NULL, NULL);
+		else if (sender == hide_button) hide_clock(NULL, NULL, NULL);	
 	}
 };
 
@@ -181,25 +186,6 @@ int main(int argc, char **argv)
 	Display *display = af::create_display();
 	ClockExampleProgram *program = new ClockExampleProgram(display);
 	af::run_loop();
-/*
-	UIFramework *framework = af_create_ui_framework();
-
-
-	UIButton *button = af_create_ui_button(100, 100, "Hide Clock");
-	af_set_click_func(button, hide_clock);
-	af_set_draw_func(button, draw_button);
-	af_set_button_roundness(button, 9);
-	button->background_color = al_color_name("darkgray");
-
-	UIButton *button2 = af_create_ui_button(100, 170, "Show Clock");
-	af_set_click_func(button2, show_clock);
-	af_set_draw_func(button2, draw_button);
-	af_set_button_roundness(button2, 9);
-	button2->background_color = al_color_name("darkgray");
-
-	af_set_timer_func(framework, timer_func);
-	af_start_loop(framework);
-*/
 	return 0;
 }
 
