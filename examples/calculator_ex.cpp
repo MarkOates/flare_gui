@@ -48,7 +48,7 @@ class Calculator : public FGUIWindow
 public:
 	GridHelper grid;
 	FGUITextInput *result_display;
-	Calculator(FGUIParent *parent)
+	Calculator(FGUIWidget *parent)
 		: FGUIWindow(parent, 400, 400, 100, 100)
 		, grid()
 		, result_display(NULL)
@@ -61,7 +61,7 @@ public:
 		new FGUIDraggableRegion(this, place.size.x/2, place.size.y/2, place.size.x, place.size.y);
 
 
-		result_display = new FGUITextInput(this, af::fonts["DroidSans.ttf 21"], "0", 0, 0, 0, 0);
+		result_display = new FGUITextInput(this, 0, 0, 0, 0, "0");
 		result_display->set_font_color(color::aliceblue);
 		grid.fit_in_cells(1, 1, 9, 1, result_display);
 
@@ -95,19 +95,19 @@ public:
 	}
 	FGUIButton *m_make_button(std::string label, float cell_x, float cell_y)
 	{
-		FGUIButton *button = new FGUIButton(this, label, af::fonts["DroidSans.ttf 25"], 0, 0, 0, 0);
+		FGUIButton *button = new FGUIButton(this, 0, 0, 0, 0, label);
 		grid.fit_in_cell(cell_x, cell_y, button);
 		button->attr.set("on_click_send_message", label);
 		return button;
 	}
 	FGUIButton *m_make_button(std::string label, float cell1_x, float cell1_y, float cell2_x, float cell2_y)
 	{
-		FGUIButton *button = new FGUIButton(this, label, af::fonts["DroidSans.ttf 25"], 0, 0, 0, 0);
+		FGUIButton *button = new FGUIButton(this, 0, 0, 0, 0, label);
 		grid.fit_in_cells(cell1_x, cell1_y, cell2_x, cell2_y, button);
 		button->attr.set("on_click_send_message", label);
 		return button;
 	}
-	void receive_message(std::string message) override
+	void on_message(FGUIWidget *sender, std::string message) override
 	{
 		if (message == "=")
 		{
@@ -230,7 +230,7 @@ public:
 		this->draw_focused_outline = false;
 
 		// make a nice background image
-		FGUIImage *img = new FGUIImage(this, af::bitmaps["veddy_nice.png"], 0, 0);
+		FGUIImage *img = new FGUIImage(this, 0, 0, af::bitmaps["veddy_nice.png"]);
 			img->set_color(color::color(color::white, 0.2));
 			img->place.position = vec2d(display->center(), display->middle());
 
@@ -252,10 +252,11 @@ public:
 };
 
 
-void main()
+int main(int argc, char **argv)
 {
-    af::initialize();
-    Display *display = af::create_display(1000, 600, NULL);
-    Project *project = new Project(display);
+	af::initialize();
+	Display *display = af::create_display(1000, 600);
+	Project *project = new Project(display);
 	af::run_loop();
+	return 0;
 }
