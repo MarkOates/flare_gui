@@ -154,6 +154,8 @@ clean_linux:
 # example programs
 #
 
+examples: dev_software_keyboard.exe dev_piano_keyboard.exe dev_clock_widget.exe calculator_ex.exe
+
 EXAMPLESDIR=./examples
 
 # these are the names of the libs you are linking
