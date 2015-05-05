@@ -48,8 +48,8 @@ enum WIDGET_FLAGS
 class FGUIWidget
 {
 private:
-	static int num_active_widgets; // holds the number of widgets that are currently being managed
-	static int widget_count; // a counter for numbering new widget ids
+	static int num_active_widgets; // holds the number of widgets that have been created but not destroyed
+	static int widget_count; // a counter that is incremented each time a new widget is created
 
 protected:
 
