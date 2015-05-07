@@ -1,20 +1,7 @@
+
+
 #include <allegro_flare/allegro_flare.h>
 #include <flare_gui/flare_gui.h>
-
-
-
-
-
-
-class FGUIButtonSet : public FGUIWidget
-{
-public:
-	void add_button_option(std::string text)
-	{
-
-	}
-};
-
 
 
 
@@ -39,10 +26,13 @@ public:
 
 
 
-void main()
+int main(int argc, char **argv)
 {
 	af::initialize();
-	Display *display = af::create_display(800, 600, NULL);
+	Display *display = af::create_display();
 	Project *project = new Project(display);
 	af::run_loop();
+	return 0;
 }
+
+

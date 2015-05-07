@@ -80,7 +80,7 @@ public:
 
 		progress_bar = new FGUIProgressBar(this, 100, 70+4, 180, 18);
 	}
-	void on_message(std::string message) override
+	void on_message(FGUIWidget *sender, std::string message) override
 	{
 		if (message == "play") sound.play();
 		else if (message == "stop") sound.stop();
@@ -213,7 +213,8 @@ public:
 		if (message.empty()) return false;
 		size_t pos = message.find_first_of('=');
 		if (pos == std::string::npos) return false;
-		return is_valid_variable_name(php::trim(message.substr(0, pos)));
+		std::string alleged_variable = message.substr(0, pos);
+		return is_valid_variable_name(php::trim(alleged_variable));
 	}
 	std::pair<std::string, std::string> parse_key_value(std::string message)
 	{
@@ -254,7 +255,7 @@ public:
 		}
 		return str;
 	}
-	virtual void on_message(std::string message) override
+	void on_message(FGUIWidget *sender, std::string message) override
 	{
 		bool message_caught = false;
 		if (message_caught = (parses_as_variable_definition(message)))
@@ -268,7 +269,8 @@ public:
 		else if (message_caught = (message == "close_window")) af::shutdown_program = true;
 		else if (message_caught = Screen::signal_has_header("set_progress_bar", message))
 		{
-			std::string val = php::trim(Screen::strip_signal_header("set_progress_bar", message));
+			std::string val = Screen::strip_signal_header("set_progress_bar", message);
+			val = php::trim(val);
 			val = attempt_to_evaluate(val);
 			
 			if (progress_bar) progress_bar->set_val(atof(val.c_str()));
@@ -289,9 +291,8 @@ public:
 		}
 		else if (message_caught = Screen::signal_has_header("set_music", message))
 		{
-			std::string val = php::trim(Screen::strip_signal_header("set_music", message));
-			music_render->content = val;
-			//if (progress_bar) progress_bar->set_val(atof(val.c_str()));
+			std::string val = Screen::strip_signal_header("set_music", message);
+			music_render->content = php::trim(val);
 		}
 		
 		if (message_caught)

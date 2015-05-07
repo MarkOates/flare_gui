@@ -150,8 +150,9 @@ public:
 		(new FGUIButton(this, 100, button_y+60*9, 160, 50, "Frame9"))->attr.set("on_click_send_message", "data/skeleton_ex/frame9.bfs");
 	}
 
-	void on_message(std::string message) override
+	void on_message(FGUIWidget *sender, std::string message) override
 	{
+		if (message.empty()) return;
 		//simple_notification_screen->spawn_notification("message recieved\n\"" + message + "\"");
 		SkeletonState state;
 		state.load(message);

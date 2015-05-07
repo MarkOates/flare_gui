@@ -102,7 +102,7 @@ public:
 			"{staff_color=white color=white spacing=fixed ignore_spaces}" + result_text);
 	}
 
-	void on_message(std::string message) override
+	void on_message(FGUIWidget *parent, std::string message) override
 	{
 		// on any message, reset the result_text
 		result_text = get_result_from_script(text_input->get_text());

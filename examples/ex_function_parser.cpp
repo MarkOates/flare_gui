@@ -270,7 +270,7 @@ public:
 	{
 		for (unsigned i=0; i<variables.size(); i++)
 			if (variables[i]->identifier == identifier) return "";
-		return false;
+		return ""; // << wtf?  maybe this whole VirtualMemory thing was improved in a different implementation
 	}
 };
 

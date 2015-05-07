@@ -30,7 +30,7 @@ public:
 	{
 		draw_focused_outline = false;
 
-		launch_button = new FGUIButton(this, 300, 200, 200, 170, "launch a window!");
+		launch_button = new FGUIButton(this, 300, 200, 200, 100, "launch a window!");
 		launch_button->attr.set("on_click_send_message", "launch window");
 
 		new FGUIFramedWindow(this, 200, 200, 300, 200);
@@ -46,14 +46,14 @@ public:
 				delete children.children[i--];
 		}
 	}
-	void receive_message(std::string message)
+	void on_message(FGUIWidget *sender, std::string message) override
 	{
 		if (message == "launch window")
 		{
 			FGUIFramedWindow *window = new FGUIFramedWindow(this,
 					random_int(-100, -100), random_int(-100, 100),
 					random_int(200, 400), random_int(150, 300));
-			window->place.position += vec2d(place.size.x, place.size.y);
+			window->place.position += vec2d(this->place.size.x/2, this->place.size.y/2);
 		}
 	}
 
@@ -65,7 +65,11 @@ public:
 int main(int argc, char **argv)
 {
 	af::initialize();
-	Display *display = af::create_display(800, 500);
+	Display *display = af::create_display();
 	Project *proj = new Project(display);
 	af::run_loop();
 }
+
+
+
+
