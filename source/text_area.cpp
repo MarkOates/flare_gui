@@ -220,7 +220,7 @@ void FGUITextArea::on_draw()
 				selection_line_end = _number_of_lines;
 			}
 
-			al_draw_text(font, color::white, draw_cursor_x, draw_cursor_y, NULL, text_packet_to_draw.c_str());
+			al_draw_text(font, color::white, draw_cursor_x, draw_cursor_y, ALLEGRO_FLAGS_EMPTY, text_packet_to_draw.c_str());
 			draw_cursor_x += text_width;
 		}
 	}
