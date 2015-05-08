@@ -35,19 +35,8 @@ void FGUIVerticalSlider::on_draw()
 		place.size.x-hilight_inset, place.size.y-hilight_inset, 3, 3, color::color(color::dodgerblue, 1.0));
 	al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::color(color::black, 0.2), 2);
 
-
-	//
-	// draw the knob
-	//
-
-	float shade_depth = 3;
-	float knob_radius = place.size.x*1.25/2;
-
-	// shade
-	al_draw_filled_circle(place.size.x/2, place.size.y*(1-val) + shade_depth, knob_radius, color::color(color::black, 0.1));
-	al_draw_filled_circle(place.size.x/2, place.size.y*(1-val), knob_radius, color::hex("697784"));
-	al_draw_circle(place.size.x/2, place.size.y*(1-val), knob_radius, color::color(color::black, 0.2), 2);
-	//al_draw_text(fonts["consola.ttf 18"], color::white, place.w/2, place.h + 9, ALLEGRO_ALIGN_CENTRE, tostring((int)(val*100)).c_str());
+	// draw the dividing line
+	l_draw_line(0, place.size.y*(1-val), place.size.x, place.size.y*(1-val), color::color(color::black, 0.2), 1.0);
 }
 
 
