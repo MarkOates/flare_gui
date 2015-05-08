@@ -3,8 +3,10 @@
 
 
 
+
 #include <flare_gui/widget.h>
 #include <allegro5/allegro_font.h>
+
 
 
 
@@ -12,8 +14,6 @@ class FGUITextInput : public FGUIWidget
 {
 protected:
 	float mouse_cursor_x, mouse_cursor_y;
-	void _insert_text(const char *str);
-	void _handle_erase();
 	std::string text;
 	int cursor_pos;
 	int cursor_end;
@@ -24,6 +24,8 @@ protected:
 	float padding;
 
 	ALLEGRO_BITMAP *_text_render;
+	void _insert_text(const char *str);
+	void _handle_erase();
 	void _update_text_and_selection_render(float len_to_cursor, float len_to_cursor_end);
 
 public:
@@ -40,12 +42,13 @@ public:
 	void insert_text(std::string text);
 	void clear_selection();
 
-	void on_click() override;
-	void on_mouse_move(float x, float y, float dx, float dy);
-	void on_key_char();
-	void on_draw();
-	void on_focus() override;
 	virtual void on_submit(); // usually instigated by the ENTER key
+
+	void on_click() override;
+	void on_mouse_move(float x, float y, float dx, float dy) override;
+	void on_key_char() override;
+	void on_draw() override;
+	void on_focus() override;
 };
 
 

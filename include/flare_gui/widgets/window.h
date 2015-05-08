@@ -4,15 +4,8 @@
 
 
 
-#include <deque>
-
-
-#include <allegro_flare/vec2d.h>
-
 #include <flare_gui/widget.h>
-#include <flare_gui/collision_box.h>
-#include <allegro_flare/color.h>
-#include <allegro5/allegro_primitives.h>
+
 
 
 
@@ -23,8 +16,8 @@ public:
 
 	FGUIWindow(FGUIWidget *parent, float x, float y, float w, float h);
 
-	void on_draw();
-	void on_focus();
+	void on_draw() override;
+	void on_focus() override;
 };
 
 

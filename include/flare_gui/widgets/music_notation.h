@@ -4,9 +4,10 @@
 
 
 
+#include <allegro_flare/music_notation.h>
+
 #include <flare_gui/widget.h>
 
-#include <allegro_flare/music_notation.h>
 
 
 

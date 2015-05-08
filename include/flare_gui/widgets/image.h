@@ -8,6 +8,8 @@
 #include <flare_gui/collision_box.h>
 
 
+
+
 class FGUIImage : public FGUIWidget
 {
 private:

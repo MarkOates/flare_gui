@@ -68,8 +68,8 @@ protected:
 	bool mouse_down_on_over;
 	bool focused;
 	bool dragging;
-	bool no_focus; // should implement a flag system instead ;)
-	bool mouse_is_blocked; // was a part of FGUIParent
+	bool no_focus; // possibly implemented in a flag system instead
+	bool mouse_is_blocked;
 	// maybe will need to add:
 	// bool skip_on_tab_focus (or no_focus);
 	// bool no_jumpout_on_tab;

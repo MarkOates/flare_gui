@@ -4,9 +4,11 @@
 
 
 
+#include <allegro5/allegro_font.h>
 
 #include <flare_gui/widget.h>
-#include <allegro5/allegro_font.h>
+
+
 
 
 class FGUITextArea : public FGUIWidget
