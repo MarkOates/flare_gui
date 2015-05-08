@@ -14,9 +14,14 @@ class FGUIMusicNotation : public FGUIWidget
 {
 protected:
 	MusicNotation notation;
+	std::string val;
+
 public:
-	std::string content;
 	FGUIMusicNotation(FGUIWidget *parent, float x, float y);
+
+	std::string get_val();
+	void set_val(std::string);
+
 	void on_draw() override;
 };
 
