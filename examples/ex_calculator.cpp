@@ -123,6 +123,8 @@ public:
 			std::string txt = result_display->get_text();
 			result_display->set_text(txt.substr(0, txt.length()-1)); // is this out of bounds?
 		}
+		else if (message == "on_click")
+		{}
 		else
 		{
 			result_display->set_text(result_display->get_text() + message);
