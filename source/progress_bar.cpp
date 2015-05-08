@@ -21,9 +21,7 @@ FGUIProgressBar::FGUIProgressBar(FGUIWidget *parent, float x, float y, float w, 
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, val(0)
 	, update_speed(0.4)
-	, current_color(color::dodgerblue)
-	, normal_color(color::dodgerblue)
-	, update_color(color::aquamarine)
+	, bar_color(color::dodgerblue)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIProgressBar");
 	attr.set("id", "ProgressBar" + tostring(FGUIWidget::get_num_created_widgets()));
@@ -35,11 +33,6 @@ void FGUIProgressBar::set_val(float normalized_val)
 {
 	normalized_val = limit<float>(0, 1, normalized_val);
 	af::motion.cmove_to(&val, normalized_val, update_speed, interpolator::doubleFastIn);
-
-	current_color = color::mix(update_color, normal_color, 0.5);
-	af::motion.cmove_to(&current_color.r, normal_color.r, update_speed);
-	af::motion.cmove_to(&current_color.g, normal_color.g, update_speed);
-	af::motion.cmove_to(&current_color.b, normal_color.b, update_speed);
 }
 
 
@@ -74,15 +67,10 @@ void FGUIProgressBar::on_draw()
 	// draw the progress bar
 	al_draw_filled_rounded_rectangle(inset_padding, inset_padding,
 		place.size.x*_val - inset_padding, place.size.y - inset_padding,
-		roundness, roundness, color::color(current_color, 0.8));
+		roundness, roundness, bar_color);
 
 	// draw the shaded bitmap
 	draw_stretched_bitmap(3, 3, place.size.x-6, place.size.y-6, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
-
-	// draw the progress bar outline
-	//al_draw_rounded_rectangle(inset_padding, inset_padding,
-	//	place.size.x*val - inset_padding*2, place.size.y - inset_padding,
-	//	roundness, roundness, color::color(color::aliceblue, 0.3), 2.0);
 }
 
 

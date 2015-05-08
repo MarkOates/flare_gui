@@ -14,9 +14,7 @@ class FGUIProgressBar : public FGUIWidget
 private:
 	float val; // val from [0 - 1]
 	float update_speed;
-	ALLEGRO_COLOR current_color;
-	ALLEGRO_COLOR normal_color;
-	ALLEGRO_COLOR update_color;
+	ALLEGRO_COLOR bar_color;
 
 public:
 	FGUIProgressBar(FGUIWidget *parent, float x, float y, float w, float h);
