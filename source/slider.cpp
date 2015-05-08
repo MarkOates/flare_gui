@@ -19,6 +19,7 @@ FGUIVerticalSlider::FGUIVerticalSlider(FGUIWidget *parent, float x, float y, flo
 	, mouse_y(0)
 	, num_notches(0)
 	, wheel_sensitivity(0.1)
+	, slider_color(color::dodgerblue)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIVerticalSlider");
 	attr.set("id", "VerticalSlider" + tostring(get_num_created_widgets()));
@@ -32,11 +33,11 @@ void FGUIVerticalSlider::on_draw()
 
 	float hilight_inset = 1;
 	al_draw_filled_rounded_rectangle(0+hilight_inset, place.size.y*(1.0-val)+hilight_inset,
-		place.size.x-hilight_inset, place.size.y-hilight_inset, 3, 3, color::color(color::dodgerblue, 1.0));
+		place.size.x-hilight_inset, place.size.y-hilight_inset, 3, 3, slider_color);
 	al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::color(color::black, 0.2), 2);
 
 	// draw the dividing line
-	l_draw_line(0, place.size.y*(1-val), place.size.x, place.size.y*(1-val), color::color(color::black, 0.2), 1.0);
+	al_draw_line(0, place.size.y*(1-val), place.size.x, place.size.y*(1-val), color::color(color::black, 0.2), 1.0);
 }
 
 
@@ -61,6 +62,13 @@ void FGUIVerticalSlider::set_val(float val)
 	if (num_notches >= 3) val = (round(val * num_notches)) / (float)num_notches;
 	this->val = limit<float>(0.0, 1.0, val);
 	on_change();
+}
+
+
+
+void FGUIVerticalSlider::set_color(ALLEGRO_COLOR col)
+{
+	slider_color = col;
 }
 
 

@@ -16,6 +16,7 @@ protected:
 	float mouse_y;
 	int num_notches;
 	float wheel_sensitivity;
+	ALLEGRO_COLOR slider_color;
 
 public:
 	FGUIVerticalSlider(FGUIWidget *parent, float x, float y, float w, float h);
@@ -25,6 +26,7 @@ public:
 	void set_val(float val);
 	float get_val();
 	float get_val(float min, float max); // a helper function, places the normalized value within the [min-max] domain.
+	void set_color(ALLEGRO_COLOR col);
 
 	void on_draw() override;
 	void on_mouse_move(float x, float y, float dx, float dy) override;
