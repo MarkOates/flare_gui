@@ -4,15 +4,20 @@
 
 
 
-
 #include <flare_gui/widget.h>
+
 
 
 
 class FGUIDraggableRegion : public FGUIWidget
 {
+private:
+	ALLEGRO_COLOR background_color;
+
 public:
 	FGUIDraggableRegion(FGUIWidget *parent, float x, float y, float w, float h);
+
+	void set_color(ALLEGRO_COLOR col);
 
 	void on_draw() override;
 	void on_drag(float x, float y, float dx, float dy) override;

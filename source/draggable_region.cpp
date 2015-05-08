@@ -21,6 +21,7 @@ std::string tostring(int v); // so as not to have to declare  #include <allegro_
 
 FGUIDraggableRegion::FGUIDraggableRegion(FGUIWidget *parent, float x, float y, float w, float h)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	, background_color(color::color(color::black, 0.1))
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIDraggableRegion");
 	attr.set("id", "DraggableRegion" + tostring<int>(FGUIWidget::get_num_created_widgets()));
@@ -28,9 +29,16 @@ FGUIDraggableRegion::FGUIDraggableRegion(FGUIWidget *parent, float x, float y, f
 
 
 
+void FGUIDraggableRegion::set_color(ALLEGRO_COLOR new_color)
+{
+	col = new_color;
+}
+
+
+
 void FGUIDraggableRegion::on_draw()
 {
-	al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 5, 5, color::color(color::black, 0.1));
+	al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 5, 5, background_color);
 }
 
 
