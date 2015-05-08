@@ -35,7 +35,7 @@ CFLAGS=-c -std=gnu++11
 
 # all builds the static library
 
-all: button.o checkbox.o children.o collision_area.o collision_bitmap.o collision_box.o collision_box_padded.o collision_circle.o collision_column.o collision_row.o console.o draggable_region.o family.o framed_window.o image.o music_notation.o notification_bubble.o progress_bar.o scaled_text.o scroll_area.o scrollbar.o slider.o text.o text_area.o text_box.o text_input.o text_list.o widget.o widget_screen.o window.o
+all: button.o checkbox.o children.o collision_area.o collision_bitmap.o collision_box.o collision_box_padded.o collision_circle.o collision_column.o collision_row.o console.o draggable_region.o family.o framed_window.o image.o music_notation.o progress_bar.o scaled_text.o scroll_area.o scrollbar.o slider.o text.o text_area.o text_box.o text_input.o text_list.o widget.o widget_screen.o window.o
 	make lib	
 
 lib: $(OBJ_DIR)/*.o
@@ -90,9 +90,6 @@ image.o:
 	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
 music_notation.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-notification_bubble.o:
 	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
 progress_bar.o:
@@ -153,7 +150,7 @@ clean_linux:
 # example programs
 #
 
-examples: dev_automation_controller.exe dev_clock_widget.exe dev_piano_keyboard.exe dev_software_keyboard.exe ex_calculator.exe ex_flare_gui.exe ex_framed_window.exe ex_function_parser.exe ex_keyboard_joystick_modes.exe ex_music_calculator.exe ex_scroll_area.exe ex_scrollbar.exe ex_skeleton.exe ex_text_list.exe ex_widget_inspector.exe ex_widgets.exe
+examples: dev_automation_controller.exe dev_clock_widget.exe dev_piano_keyboard.exe dev_software_keyboard.exe ex_calculator.exe ex_flare_gui.exe ex_framed_window.exe ex_function_parser.exe ex_keyboard_joystick_modes.exe ex_music_calculator.exe ex_scroll_area.exe ex_scrollbar.exe ex_skeleton.exe ex_text_list.exe ex_widget_inspector.exe ex_widgets.exe dev_notification_bubble.exe
 
 EXAMPLESDIR=./examples
 
@@ -223,6 +220,10 @@ ex_widget_inspector.exe: ./examples/ex_widget_inspector.cpp
 	g++ $(basename $@).o -o $(EXAMPLESDIR)/$(basename $@).exe -l$(FGUI_LIB) -l$(ALLEGRO_FLARE_LIB) -l$(ALLEGRO_MONOLITH_LIB) -L$(ALLEGRO_FLARE_DIR)/lib -L$(ALLEGRO_DIR)/lib -L$(FGUI_DIR)/lib
 
 ex_widgets.exe: ./examples/ex_widgets.cpp
+	g++ $(CFLAGS) $(EXAMPLESDIR)/$(basename $@).cpp -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+	g++ $(basename $@).o -o $(EXAMPLESDIR)/$(basename $@).exe -l$(FGUI_LIB) -l$(ALLEGRO_FLARE_LIB) -l$(ALLEGRO_MONOLITH_LIB) -L$(ALLEGRO_FLARE_DIR)/lib -L$(ALLEGRO_DIR)/lib -L$(FGUI_DIR)/lib
+
+dev_notification_bubble.exe: ./examples/dev_notification_bubble.cpp
 	g++ $(CFLAGS) $(EXAMPLESDIR)/$(basename $@).cpp -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 	g++ $(basename $@).o -o $(EXAMPLESDIR)/$(basename $@).exe -l$(FGUI_LIB) -l$(ALLEGRO_FLARE_LIB) -l$(ALLEGRO_MONOLITH_LIB) -L$(ALLEGRO_FLARE_DIR)/lib -L$(ALLEGRO_DIR)/lib -L$(FGUI_DIR)/lib
 

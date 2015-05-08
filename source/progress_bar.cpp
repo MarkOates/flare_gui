@@ -8,9 +8,9 @@
 
 #include <allegro_flare/color.h>
 #include <allegro_flare/useful.h>
+#include <allegro_flare/allegro_flare.h>
 
 #include <flare_gui/collision_box.h>
-
 
 #include <flare_gui/widget_screen.h>
 

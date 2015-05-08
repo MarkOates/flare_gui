@@ -12,7 +12,7 @@
 class FGUIScrollBar;
 
 
-class FGUIScrollView : public FGUIWidget
+class FGUIScrollArea : public FGUIWidget
 {
 private:
 	FGUIScrollBar *v_slider;
@@ -21,7 +21,7 @@ private:
 
 
 public:
-	FGUIScrollView(FGUIWidget *parent, float x, float y, float w, float h, FGUIWidget *content_parent);
+	FGUIScrollArea(FGUIWidget *parent, float x, float y, float w, float h, FGUIWidget *content_parent);
 
 	FGUIWidget *get_canvas();
 	void render_canvas();

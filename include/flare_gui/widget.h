@@ -56,7 +56,7 @@ protected:
 	friend class FGUIScreen;
 	friend class FGUIChildren;
 	friend class FGUIFamily;
-	friend class FGUIScrollView;
+	friend class FGUIScrollArea;
 	
 	FGUIFamily family;
 	FGUIFamily &children; // this is exactly the same as family, but for dev-deprec purposes children is here and will removed eventually

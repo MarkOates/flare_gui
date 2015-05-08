@@ -116,8 +116,6 @@ private:
 	DataAttr virtual_memory;
 	std::string virtual_memory_filename;
 
-	FGUINotificationBubble *notification_bubble;
-
 	int mouse_down_x, mouse_down_y;
 
 public:
@@ -129,7 +127,6 @@ public:
 		, progress_bar(NULL)
 		, text(NULL)
 		, media_player(NULL)
-		, notification_bubble(NULL)
 		, virtual_memory_filename("virtual_memory_file.txt")
 		, mouse_down_x(0)
 		, mouse_down_y(0)
@@ -203,10 +200,6 @@ public:
 
 		media_player = new MyMediaPlayer(this);
 	}
-	void spawn_notification_bubble()
-	{
-		if (!notification_bubble) notification_bubble = new FGUINotificationBubble(this, this->place.size.x-20, this->place.size.y-20, "Notification Text");
-	}
 	bool parses_as_variable_definition(std::string message)
 	{
 		message = php::trim(message);
@@ -265,7 +258,6 @@ public:
 			virtual_memory.set(parsed_key_val.first, parsed_key_val.second);
 			virtual_memory.save(virtual_memory_filename);
 		}
-		else if (message_caught = (message == "show_notification")) spawn_notification_bubble();
 		else if (message_caught = (message == "close_window")) af::shutdown_program = true;
 		else if (message_caught = Screen::signal_has_header("set_progress_bar", message))
 		{
@@ -292,7 +284,7 @@ public:
 		else if (message_caught = Screen::signal_has_header("set_music", message))
 		{
 			std::string val = Screen::strip_signal_header("set_music", message);
-			music_render->content = php::trim(val);
+			music_render->set_val(php::trim(val));
 		}
 		
 		if (message_caught)

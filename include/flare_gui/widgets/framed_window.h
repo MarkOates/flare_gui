@@ -12,7 +12,6 @@
 class FGUIFramedWindow : public FGUIWidget
 {
 private:
-
 	FGUIDraggableRegion *titlebar_dragger;
 	float titlebar_height;
 	float frame_thickness;
@@ -22,14 +21,13 @@ private:
 	void draw_window_frame_around(float x1, float y1, float x2, float y2);
 
 public:
-
 	FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w, float h);
+
+	void set_title(std::string title);
 
 	void on_message(FGUIWidget *sender, std::string message) override;
 	void on_draw() override;
 	void on_focus() override;
-
-	void set_title(std::string title);
 };
 
 

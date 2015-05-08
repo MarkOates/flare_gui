@@ -4,6 +4,7 @@
 
 
 
+#include <allegro_flare/allegro_flare.h>
 
 #include <flare_gui/collision_box.h>
 #include <flare_gui/collision_box_padded.h>
@@ -26,17 +27,11 @@
 #include <flare_gui/widgets/slider.h>
 #include <flare_gui/widgets/scrollbar.h>
 #include <flare_gui/widgets/image.h>
-#include <flare_gui/widgets/notification_bubble.h>
 #include <flare_gui/widgets/text_list.h>
 #include <flare_gui/widgets/window.h>
 #include <flare_gui/widgets/framed_window.h>
 #include <flare_gui/widgets/scroll_area.h>
 
-
-
-
-
-//int main(int argc, char *argv[]); // awe snap... probably going to find that I need to take this out later... maybe in a new version
 
 
 

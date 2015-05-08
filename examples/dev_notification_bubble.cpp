@@ -21,6 +21,7 @@ private:
 	float spawn_time, lifespan;
 	float opacity;
 	ALLEGRO_FONT *font;
+
 public:
 	FGUINotificationBubble(FGUIWidget *parent, float x, float y, std::string text)
 		: FGUIWidget(parent, new FGUICollisionBox(x, y, 280, 90))
@@ -88,3 +89,24 @@ public:
 
 
 #endif
+
+
+
+
+// TODO: write a FGUIScreen project
+
+
+
+
+int main(int argc, char *argv[])
+{
+	af::initialize();
+	Display *display = af::create_display(1280, 800, false);
+
+
+	af::run_loop();
+}
+
+
+
+

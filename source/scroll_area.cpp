@@ -1,13 +1,14 @@
 
 
 
+#include <allegro_flare/allegro_flare.h> // for bins
 
 #include <flare_gui/widgets/scroll_area.h>
 #include <flare_gui/widgets/slider.h>
 
 
 
-FGUIScrollView::FGUIScrollView(FGUIWidget *parent, float x, float y, float w, float h, FGUIWidget *content_parent)
+FGUIScrollArea::FGUIScrollArea(FGUIWidget *parent, float x, float y, float w, float h, FGUIWidget *content_parent)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, canvas(content_parent)
 	, v_slider(NULL)
@@ -15,8 +16,8 @@ FGUIScrollView::FGUIScrollView(FGUIWidget *parent, float x, float y, float w, fl
 {
 	if (canvas) FGUIChildren::assign_child_to_new_parent(canvas, this); // I believe this usage is the proper design.
 
-	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScrollView");
-	attr.set("id", "ScrollView" + tostring(widget_count));
+	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScrollArea");
+	attr.set("id", "ScrollArea" + tostring(FGUIWidget::get_num_created_widgets()));
 
 	v_slider = new FGUIScrollBar(this, w, 0, 16, h);
 	v_slider->place.align = vec2d(1, 0);
@@ -24,14 +25,14 @@ FGUIScrollView::FGUIScrollView(FGUIWidget *parent, float x, float y, float w, fl
 
 
 
-FGUIWidget *FGUIScrollView::get_canvas()
+FGUIWidget *FGUIScrollArea::get_canvas()
 {
 	return canvas;
 }
 
 
 
-void FGUIScrollView::render_canvas()
+void FGUIScrollArea::render_canvas()
 {
 	ALLEGRO_STATE state;
 	al_store_state(&state, ALLEGRO_STATE_TARGET_BITMAP | ALLEGRO_STATE_TRANSFORM);
@@ -52,7 +53,7 @@ void FGUIScrollView::render_canvas()
 
 
 
-void FGUIScrollView::mouse_axes_func(float mx, float my, float mdx, float mdy)
+void FGUIScrollArea::mouse_axes_func(float mx, float my, float mdx, float mdy)
 {
 	float tmx = mx;
 	float tmy = my;
@@ -74,7 +75,7 @@ void FGUIScrollView::mouse_axes_func(float mx, float my, float mdx, float mdy)
 
 
 
-void FGUIScrollView::on_timer()
+void FGUIScrollArea::on_timer()
 {
 	if (canvas)
 		canvas->place.position.y = v_slider->get_position() * -(canvas->place.size.y-place.size.y);
@@ -83,7 +84,7 @@ void FGUIScrollView::on_timer()
 
 
 
-void FGUIScrollView::on_mouse_wheel()
+void FGUIScrollArea::on_mouse_wheel()
 {
 	//if (focused && !v_slider->is_focused())
 	//	v_slider->set_val(v_slider->get_val() + af::current_event->mouse.dz * v_slider->wheel_sensitivity);
@@ -91,7 +92,7 @@ void FGUIScrollView::on_mouse_wheel()
 
 
 
-void FGUIScrollView::draw_func()
+void FGUIScrollArea::draw_func()
 {
 	// render the canvas
 	if (canvas) render_canvas();

@@ -45,15 +45,15 @@ public:
 
 
 
-class ScrollViewExpampleProgram : public FGUIScreen
+class ScrollAreaExpampleProgram : public FGUIScreen
 {
 private:
-	FGUIScrollView *scroll_view;
+	FGUIScrollArea *scroll_view;
 	FGUITextArea *text_box;
 	//FGUISettingsWindow *settings_window;
 
 public:
-	ScrollViewExpampleProgram(Display *display)
+	ScrollAreaExpampleProgram(Display *display)
 		: FGUIScreen(display)
 		, text_box(NULL)
 		, scroll_view(NULL)
@@ -62,7 +62,7 @@ public:
 		new FGUIImage(this, display->width()/2, display->height()/2, af::bitmaps["maybe_cooler2.png"]);
 
 		FGUIWidget *canvas = build_canvas_for_scrollable_area();
-		scroll_view = new FGUIScrollView(this, display->width()/3, display->height()/2, canvas->place.size.x, 600, canvas);
+		scroll_view = new FGUIScrollArea(this, display->width()/3, display->height()/2, canvas->place.size.x, 600, canvas);
 
 		(new FGUIText(this, 700, 140, "Scroll Area Example"))
 			->place.align.x = 0;
@@ -142,6 +142,6 @@ int main(int argc, char *argv[])
 {
 	af::initialize();
 	Display *display = af::create_display(Display::RESOLUTION_WXGA);
-	ScrollViewExpampleProgram *proj = new ScrollViewExpampleProgram(display);
+	ScrollAreaExpampleProgram *proj = new ScrollAreaExpampleProgram(display);
 	af::run_loop();
 }//

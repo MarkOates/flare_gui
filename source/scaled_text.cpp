@@ -2,12 +2,15 @@
 
 
 
-#include <flare_gui/flare_gui.h>
 #include <flare_gui/widgets/scaled_text.h>
 
-#include <allegro_flare/useful.h> // for tostring
-#include <flare_gui/widget_screen.h>
 #include <allegro5/allegro_font.h>
+
+#include <allegro_flare/allegro_flare.h> // for bins
+#include <allegro_flare/useful.h> // for tostring
+
+#include <flare_gui/flare_gui.h>
+#include <flare_gui/widget_screen.h>
 #include <flare_gui/collision_box.h>
 
 
@@ -23,9 +26,7 @@ std::string FGUIScaledText::_get_font_index_str()
 void FGUIScaledText::refresh_render()
 {
 	// for easy life
-	//FGUIScreen *super_parent = static_cast<FGUIScreen *>(gimmie_super_parent());
 	ALLEGRO_FONT *scaled_font = af::fonts[_get_font_index_str()];
-	//placement2d *placement = gimmie_placement();
 
 	// save the previous state
 	ALLEGRO_STATE previous_state;
