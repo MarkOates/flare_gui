@@ -31,7 +31,7 @@ FGUIDraggableRegion::FGUIDraggableRegion(FGUIWidget *parent, float x, float y, f
 
 void FGUIDraggableRegion::set_color(ALLEGRO_COLOR new_color)
 {
-	col = new_color;
+	background_color = new_color;
 }
 
 

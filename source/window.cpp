@@ -7,6 +7,8 @@
 
 #include <allegro_flare/allegro_flare.h> // for tostring and af:: bins
 
+#include <flare_gui/collision_box.h>
+
 
 
 
