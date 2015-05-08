@@ -22,6 +22,7 @@ FGUIFramedWindow::FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w
 
 	titlebar_dragger = new FGUIDraggableRegion(this, 0, -titlebar_height, place.size.x, titlebar_height);
 	titlebar_dragger->place.align = vec2d(0, 0);
+	titlebar_dragger->set_color(color::transparent);
 
 	// create the close button in the top right of the window
 	float close_button_width = 16;
