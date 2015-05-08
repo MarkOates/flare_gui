@@ -35,7 +35,8 @@ FGUIFramedWindow::FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w
 
 void FGUIFramedWindow::draw_window_frame_around(float x1, float y1, float x2, float y2)
 {
-	ALLEGRO_COLOR frame_color = color::color(color::hex("8e283e"), 0.6);
+	ALLEGRO_COLOR frame_base_color = color::hex("8e283e");
+	ALLEGRO_COLOR frame_color = color::color(frame_base_color, 0.8);
 
 	// titlebar
 	al_draw_filled_rectangle(x1-frame_thickness, y1-frame_thickness-titlebar_height, x2+frame_thickness, y1, frame_color);
@@ -46,7 +47,7 @@ void FGUIFramedWindow::draw_window_frame_around(float x1, float y1, float x2, fl
 	al_draw_filled_rectangle(x1-frame_thickness, y2, x2+frame_thickness, y2+frame_thickness, frame_color); // bottom
 
 	// inset frame shadow
-	ALLEGRO_COLOR frame_outline_color = color::color(color::white, 0.2);
+	ALLEGRO_COLOR frame_outline_color = frame_base_color;
 	al_draw_rectangle(x1-frame_thickness+0.5, y1-frame_thickness-titlebar_height+0.5,
 		x2+frame_thickness-0.5, y2+frame_thickness-0.5, frame_outline_color, 1.0);
 }
