@@ -24,10 +24,11 @@ public:
 	bool is_checked();
 	void set_color(ALLEGRO_COLOR color);
 
-	void on_mouse_down() override;
+	void on_click() override;
 	void on_key_char() override;
 	void on_joy_down() override;
 	void on_draw() override;
+	void on_change() override;
 };
 
 

@@ -70,7 +70,7 @@ void FGUICheckbox::toggle()
 
 
 
-void FGUICheckbox::on_mouse_down()
+void FGUICheckbox::on_click()
 {
 	toggle();
 }
@@ -144,6 +144,9 @@ void FGUICheckbox::on_draw()
 
 
 
-
+FGUICheckbox::on_change()
+{
+	send_message_to_parent("on_change");
+}
 
 
