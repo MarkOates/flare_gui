@@ -167,7 +167,7 @@ void FGUICheckbox::on_draw()
 
 
 
-FGUICheckbox::on_change()
+void FGUICheckbox::on_change()
 {
 	send_message_to_parent("on_change");
 }
