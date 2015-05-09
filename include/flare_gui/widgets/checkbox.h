@@ -22,6 +22,8 @@ public:
 
 	void toggle();
 	bool is_checked();
+	bool set_as_checked();
+	bool set_as_unchecked();
 	void set_color(ALLEGRO_COLOR color);
 
 	void on_click() override;

@@ -70,6 +70,29 @@ void FGUICheckbox::toggle()
 
 
 
+bool FGUICheckbox::set_as_checked()
+{
+	// returns true if the value is or was changed to checked
+	// the behavior for these return values might change based on some
+	// future experience
+	if (checked) return true;
+	toggle();
+	return is_checked();
+}
+
+
+bool FGUICheckbox::set_as_unchecked()
+{
+	// returns true if the value IS or WAS CHANGED TO unchecked
+	// the behavior for these return values might change based on some
+	// future experience
+	if (!checked) return true;
+	toggle();
+	return !is_checked();
+}
+
+
+
 void FGUICheckbox::on_click()
 {
 	toggle();
@@ -143,5 +166,10 @@ void FGUICheckbox::on_draw()
 }
 
 
+
+FGUICheckbox::on_change()
+{
+	send_message_to_parent("on_change");
+}
 
 
