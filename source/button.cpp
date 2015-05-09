@@ -34,10 +34,6 @@ FGUIButton::FGUIButton(FGUIWidget *parent, float x, float y, float w, float h, s
 
 
 
-void FGUIButton::on_timer() {}
-
-
-
 void FGUIButton::set_icon(ALLEGRO_BITMAP *icon)
 {
 	if (!icon) return;
