@@ -12,40 +12,55 @@
 
 
 
-FGUIScrollBar::ScrollUpButton::ScrollUpButton(FGUIWidget *parent, float x, float y, float w, float h)
-	: FGUIButton(parent, x, y, w, h, "") {}
-void FGUIScrollBar::ScrollUpButton::on_click()
+FGUIScrollBar::UpButton::UpButton(FGUIWidget *parent, float x, float y, float w, float h)
+	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 {
-	FGUIButton::on_click();
+	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScrollBar::UpButton");
+	attr.set("id", "ScrollBar::UpButton" + tostring(get_num_created_widgets()));
+
+}
+void FGUIScrollBar::UpButton::on_click()
+{
 	static_cast<FGUIScrollBar *>(family.parent)->step_up();
 }
-
-
-
-FGUIScrollBar::ScrollDownButton::ScrollDownButton(FGUIWidget *parent, float x, float y, float w, float h)
-	: FGUIButton(parent, x, y, w, h, "") {}
-void FGUIScrollBar::ScrollDownButton::on_click()
+void FGUIScrollBar::UpButton::on_draw()
 {
-	FGUIButton::on_click();
-	static_cast<FGUIScrollBar *>(family.parent)->step_down();
+	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
 }
 
 
 
-FGUIScrollBar::ScrollRail::ScrollRail(FGUIWidget *parent, float x, float y, float w, float h)
+FGUIScrollBar::DownButton::DownButton(FGUIWidget *parent, float x, float y, float w, float h)
+	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+{
+	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScrollBar::DownButton");
+	attr.set("id", "ScrollBar::DownButton" + tostring(get_num_created_widgets()));
+}
+void FGUIScrollBar::DownButton::on_click()
+{
+	static_cast<FGUIScrollBar *>(family.parent)->step_down();
+}
+void FGUIScrollBar::DownButton::on_draw()
+{
+	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+}
+
+
+
+FGUIScrollBar::Rail::Rail(FGUIWidget *parent, float x, float y, float w, float h)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, current_mouse_y(0)
 {}
-void FGUIScrollBar::ScrollRail::on_draw()
+void FGUIScrollBar::Rail::on_draw()
 {
 	al_draw_filled_rectangle(0, 0, place.size.x, place.size.y, color::mix(color::transparent, color::hex("3a3c47"), 0.4));
 	al_draw_rectangle(0.5, 0.5, place.size.x-0.5, place.size.y-0.5, color::color(color::black, 0.2), 1.0);
 }
-void FGUIScrollBar::ScrollRail::on_mouse_move(float x, float y, float dx, float dy)
+void FGUIScrollBar::Rail::on_mouse_move(float x, float y, float dx, float dy)
 {
 	current_mouse_y = y;
 }
-void FGUIScrollBar::ScrollRail::on_click()
+void FGUIScrollBar::Rail::on_click()
 {
 	// find the direction of the jump based on the handle's position
 	FGUIScrollBar *slider_parent = static_cast<FGUIScrollBar *>(family.parent);
@@ -55,31 +70,31 @@ void FGUIScrollBar::ScrollRail::on_click()
 
 
 
-FGUIScrollBar::ScrollHandle::ScrollHandle(FGUIWidget *parent, float x, float y, float w, float h)
+FGUIScrollBar::Handle::Handle(FGUIWidget *parent, float x, float y, float w, float h)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
 	, min_y(0)
 	, max_y(0)
 {
 }
-void FGUIScrollBar::ScrollHandle::set_min_max_coordinate_position(float min_val, float max_val)
+void FGUIScrollBar::Handle::set_min_max_coordinate_position(float min_val, float max_val)
 {
 	min_y = min_val;
 	max_y = max_val;
 }
-void FGUIScrollBar::ScrollHandle::on_drag(float x, float y, float dx, float dy)
+void FGUIScrollBar::Handle::on_drag(float x, float y, float dx, float dy)
 {
 	place.position.y = limit<float>(min_y+place.size.y/2, max_y-place.size.y/2, place.position.y+dy);
 	family.parent->on_change();
 }
-void FGUIScrollBar::ScrollHandle::on_draw()
+void FGUIScrollBar::Handle::on_draw()
 {
 	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
 }
-float FGUIScrollBar::ScrollHandle::get_position()
+float FGUIScrollBar::Handle::get_position()
 {
 	return (place.position.y - min_y - place.size.y/2.0) / (max_y - min_y - place.size.y);
 }
-void FGUIScrollBar::ScrollHandle::set_position(float position_in_unit_value)
+void FGUIScrollBar::Handle::set_position(float position_in_unit_value)
 {
 	// TODO: check and see if an on_change is necessairy
 	// float previous_pos = place.position.y;
@@ -104,15 +119,15 @@ FGUIScrollBar::FGUIScrollBar(FGUIWidget *parent, float x, float y, float w, floa
 	, down_button(NULL)
 {
 	// create the rail
-	rail = new ScrollRail(this, 0, 0, w, h);
+	rail = new FGUIScrollBar::Rail(this, 0, 0, w, h);
 	rail->place.align = vec2d(0, 0);
 
 	// create the up and down buttons
-	up_button = new ScrollUpButton(this, w/2, w/2, w, w);
-	down_button = new ScrollDownButton(this, w/2, h-w/2, w, w);
+	up_button = new FGUIScrollBar::UpButton(this, w/2, w/2, w, w);
+	down_button = new FGUIScrollBar::DownButton(this, w/2, h-w/2, w, w);
 
 	// create the handle
-	handle = new ScrollHandle(this, w/2, h/2, w, w*3);
+	handle = new FGUIScrollBar::Handle(this, w/2, h/2, w, w*3);
 	handle->set_min_max_coordinate_position(w, h-w);
 }
 float FGUIScrollBar::get_position()

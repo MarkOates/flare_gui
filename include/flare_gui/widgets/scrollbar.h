@@ -4,7 +4,7 @@
 
 
 
-#include <flare_gui/widgets/button.h>
+#include <flare_gui/widget.h>
 
 
 
@@ -13,36 +13,38 @@ class FGUIScrollBar : public FGUIWidget
 {
 private:
 
-	class ScrollUpButton : public FGUIButton
+	class UpButton : public FGUIWidget
 	{
 	public:
-		ScrollUpButton(FGUIWidget *parent, float x, float y, float w, float h);
+		UpButton(FGUIWidget *parent, float x, float y, float w, float h);
 		void on_click() override;
+		void on_draw() override;
 	};
 
-	class ScrollDownButton : public FGUIButton
+	class DownButton : public FGUIWidget
 	{
 	public:
-		ScrollDownButton(FGUIWidget *parent, float x, float y, float w, float h);
+		DownButton(FGUIWidget *parent, float x, float y, float w, float h);
 		void on_click() override;
+		void on_draw() override;
 	};
 
-	class ScrollRail : public FGUIWidget
+	class Rail : public FGUIWidget
 	{
 	public:
 		float current_mouse_y;
-		ScrollRail(FGUIWidget *parent, float x, float y, float w, float h);
+		Rail(FGUIWidget *parent, float x, float y, float w, float h);
 		void on_draw() override;
 		void on_mouse_move(float x, float y, float dx, float dy) override;
 		void on_click();
 	};
 
-	class ScrollHandle : public FGUIWidget
+	class Handle : public FGUIWidget
 	{
 	private:
 		float min_y, max_y;
 	public:
-		ScrollHandle(FGUIWidget *parent, float x, float y, float w, float h);
+		Handle(FGUIWidget *parent, float x, float y, float w, float h);
 		void set_min_max_coordinate_position(float min_val, float max_val);
 		void on_drag(float x, float y, float dx, float dy);
 		void on_draw();
@@ -50,24 +52,26 @@ private:
 		void set_position(float position_in_unit_value);
 	};
 
-	ScrollRail *rail;
-	ScrollHandle *handle;
-	ScrollUpButton *up_button;
-	ScrollDownButton *down_button;
+	Rail *rail;
+	Handle *handle;
+	UpButton *up_button;
+	DownButton *down_button;
 
 public:
-
 	FGUIScrollBar(FGUIWidget *parent, float x, float y, float w, float h);
-	float get_position();
-	void jump_down();
-	void jump_up();
+
 	void step_up();
 	void step_down();
+	void jump_down();
+	void jump_up();
+	float get_position();
 	void set_position(float position_in_unit_value);
-	void on_key_down(); 
-	void on_draw();
+
+	void on_key_down() override;
+	void on_draw() override;
 };
 
 
 
 #endif
+
