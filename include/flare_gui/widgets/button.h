@@ -26,7 +26,6 @@ public:
 	void set_icon(ALLEGRO_BITMAP *icon);
 	void set_content_alignment(float alignment=0.5);
 
-	void on_timer() override;
 	void on_draw() override;
 	void on_click() override;
 	void on_mouse_enter() override;
