@@ -24,6 +24,7 @@
 #include <flare_gui/widgets/scaled_text.h>
 #include <flare_gui/widgets/text_area.h>
 #include <flare_gui/widgets/checkbox.h>
+#include <flare_gui/widgets/dial.h>
 #include <flare_gui/widgets/toggle_button.h>
 #include <flare_gui/widgets/slider.h>
 #include <flare_gui/widgets/scrollbar.h>
