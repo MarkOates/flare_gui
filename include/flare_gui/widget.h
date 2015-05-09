@@ -158,7 +158,7 @@ public:
 	// and any other graphic elements that might be needed.  This design technique might
 	// eventually be replaced with a more robust and configurable styling method.  But
 	// for now, this simple solution is intended to be the first steps to detaching style
-	// from widget drawing - if the user want it.
+	// from widget drawing.
 
 	void draw_inset(float x, float y, float w, float h);
 	void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"));
