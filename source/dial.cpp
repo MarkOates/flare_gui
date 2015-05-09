@@ -127,6 +127,9 @@ void FGUIDial::on_draw()
 
 	// draw a bounding rectangle
 	//al_draw_rectangle(0, 0, place.size.x, place.size.y, color::dodgerblue, 1.0);
+
+	// draw bounding circle
+	al_draw_circle(radius, radius, radius, color::color(color::black, 0.2), 2.0);
 }
 
 
