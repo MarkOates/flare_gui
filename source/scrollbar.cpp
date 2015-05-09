@@ -137,26 +137,27 @@ float FGUIScrollBar::get_position()
 void FGUIScrollBar::jump_down()
 {
 	float jump_rate = 0.3;
-	handle->set_position(handle->get_position() + jump_rate);
+	set_position(handle->get_position() + jump_rate);
 }
 void FGUIScrollBar::jump_up()
 {
 	float jump_rate = 0.3;
-	handle->set_position(handle->get_position() - jump_rate);
+	set_position(handle->get_position() - jump_rate);
 }
 void FGUIScrollBar::step_up()
 {
 	float step_rate = 0.1;
-	handle->set_position(handle->get_position() - step_rate);
+	set_position(handle->get_position() - step_rate);
 }
 void FGUIScrollBar::step_down()
 {
 	float step_rate = 0.1;
-	handle->set_position(handle->get_position() + step_rate);
+	set_position(handle->get_position() + step_rate);
 }
 void FGUIScrollBar::set_position(float position_in_unit_value)
 {
 	handle->set_position(position_in_unit_value);
+	on_change();
 }
 void FGUIScrollBar::on_key_down()
 {
@@ -164,7 +165,10 @@ void FGUIScrollBar::on_key_down()
 	else if (af::current_event->keyboard.keycode == ALLEGRO_KEY_UP) step_up();
 }
 void FGUIScrollBar::on_draw() {}
-
+void FGUIScrollBar::on_change()
+{
+	send_message_to_parent("on_change");
+}
 
 
 

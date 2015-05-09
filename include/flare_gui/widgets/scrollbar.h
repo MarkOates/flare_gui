@@ -69,6 +69,7 @@ public:
 
 	void on_key_down() override;
 	void on_draw() override;
+	void on_change() override;
 };
 
 
