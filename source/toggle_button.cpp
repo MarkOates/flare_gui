@@ -12,6 +12,7 @@
 
 FGUIToggleButton::FGUIToggleButton(FGUIWidget *parent, float x, float y, float w, float h, std::string _text)
 	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	, pressed(false)
 	, text(_text)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIToggleButton");
