@@ -115,6 +115,9 @@ public:
 	// widget behavior functions
 	///
 
+	// state
+	virtual void on_change();
+	virtual void on_message(FGUIWidget *sender, std::string message);
 	virtual void on_focus();
 	virtual void on_blur();
 
@@ -143,10 +146,6 @@ public:
 	virtual void on_timer();
 	virtual void on_draw();
 
-	// state
-	virtual void on_change();
-	virtual void on_message(FGUIWidget *sender, std::string message);
-
 
 	// static functions
 	static int get_num_created_widgets();
@@ -160,8 +159,8 @@ public:
 	// for now, this simple solution is intended to be the first steps to detaching style
 	// from widget drawing.
 
-	void draw_inset(float x, float y, float w, float h);
-	void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"));
+	static void draw_inset(float x, float y, float w, float h);
+	static void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"));
 };
 
 
