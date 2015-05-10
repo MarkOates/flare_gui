@@ -6,16 +6,16 @@
 
 #include <allegro_flare/allegro_flare.h>
 
-#include <flare_gui/collision_box.h>
-#include <flare_gui/collision_box_padded.h>
-#include <flare_gui/collision_circle.h>
-#include <flare_gui/collision_bitmap.h>
-#include <flare_gui/collision_column.h>
-#include <flare_gui/collision_row.h>
+#include <flare_gui/surface_areas/box.h>
+#include <flare_gui/surface_areas/box_padded.h>
+#include <flare_gui/surface_areas/circle.h>
+#include <flare_gui/surface_areas/alpha_bitmap.h>
+#include <flare_gui/surface_areas/column.h>
+#include <flare_gui/surface_areas/row.h>
 #include <flare_gui/widgets/draggable_region.h>
 
 #include <flare_gui/widget.h>
-#include <flare_gui/widget_screen.h>
+#include <flare_gui/gui_screen.h>
 
 #include <flare_gui/widgets/button.h>
 #include <flare_gui/widgets/text.h>

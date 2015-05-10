@@ -5,7 +5,7 @@
 #include <allegro_flare/allegro_flare.h> // for bins
 #include <allegro_flare/useful.h> // for tostring
 
-#include <flare_gui/collision_circle.h>
+#include <flare_gui/surface_areas/circle.h>
 
 
 

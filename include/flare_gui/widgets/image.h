@@ -5,7 +5,6 @@
 
 
 #include <flare_gui/widget.h>
-#include <flare_gui/collision_box.h>
 
 
 

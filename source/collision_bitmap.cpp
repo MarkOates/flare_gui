@@ -3,7 +3,7 @@
 
 
 
-#include <flare_gui/collision_bitmap.h>
+#include <flare_gui/surface_areas/alpha_bitmap.h>
 #include <allegro_flare/color.h>
 
 

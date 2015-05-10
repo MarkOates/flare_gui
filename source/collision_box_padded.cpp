@@ -3,7 +3,7 @@
 
 
 
-#include <flare_gui/collision_box_padded.h>
+#include <flare_gui/surface_areas/box_padded.h>
 #include <allegro_flare/color.h>
 
 

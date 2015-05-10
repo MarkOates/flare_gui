@@ -5,8 +5,8 @@
 #include <allegro_flare/allegro_flare.h>
 
 #include <flare_gui/widgets/text_list.h>
-#include <flare_gui/collision_box.h>
-#include <flare_gui/widget_screen.h>
+#include <flare_gui/surface_areas/box.h>
+#include <flare_gui/gui_screen.h>
 
 
 

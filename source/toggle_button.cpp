@@ -4,7 +4,7 @@
 
 #include <allegro_flare/allegro_flare.h> // for af::fonts
 
-#include <flare_gui/collision_box.h>
+#include <flare_gui/surface_areas/box.h>
 
 
 

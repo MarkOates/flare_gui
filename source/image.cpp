@@ -2,6 +2,7 @@
 
 
 #include <flare_gui/widgets/image.h>
+#include <flare_gui/surface_areas/box.h>
 #include <allegro_flare/color.h>
 #include <allegro_flare/useful.h> // for tostring
 

@@ -1,5 +1,5 @@
 
-#include <flare_gui/collision_column.h>
+#include <flare_gui/surface_areas/column.h>
 
 
 

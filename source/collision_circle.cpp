@@ -3,7 +3,7 @@
 
 
 
-#include <flare_gui/collision_circle.h>
+#include <flare_gui/surface_areas/circle.h>
 #include <allegro_flare/color.h>
 #include <allegro_flare/useful.h> // for distance
 

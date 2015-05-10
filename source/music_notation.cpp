@@ -8,7 +8,7 @@
 #include <allegro_flare/drawing_interfaces/drawing_interface_allegro5.h>
 
 #include <flare_gui/widgets/music_notation.h>
-#include <flare_gui/collision_box.h>
+#include <flare_gui/surface_areas/box.h>
 
 #include <allegro_flare/useful.h>
 

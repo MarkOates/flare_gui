@@ -5,7 +5,7 @@
 #include <allegro_flare/allegro_flare.h>
 
 #include <flare_gui/widgets/framed_window.h>
-#include <flare_gui/collision_box_padded.h>
+#include <flare_gui/surface_areas/box_padded.h>
 
 
 

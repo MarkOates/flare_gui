@@ -7,9 +7,9 @@
 
 #include <allegro5/allegro_primitives.h>
 #include <allegro_flare/color.h>
-#include <flare_gui/collision_box.h>
+#include <flare_gui/surface_areas/box.h>
 
-#include <flare_gui/widget_screen.h>
+#include <flare_gui/gui_screen.h>
 
 #include <allegro_flare/fonts/font_font_awesome.h>
 

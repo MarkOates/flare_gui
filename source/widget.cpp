@@ -2,7 +2,7 @@
 
 #include <flare_gui/widget.h>
 #include <allegro_flare/allegro_flare.h>
-#include <flare_gui/widget_screen.h>
+#include <flare_gui/gui_screen.h>
 #include <allegro_flare/motion.h>
 
 #include <flare_gui/family.h>

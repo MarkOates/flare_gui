@@ -5,7 +5,7 @@
 #include <flare_gui/widgets/text.h>
 
 #include <allegro_flare/color.h>
-#include <flare_gui/collision_box.h>
+#include <flare_gui/surface_areas/box.h>
 
 #include <allegro_flare/useful.h>
 

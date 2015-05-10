@@ -3,7 +3,7 @@
 
 
 #include <flare_gui/widgets/text_input.h>
-#include <flare_gui/collision_box.h>
+#include <flare_gui/surface_areas/box.h>
 #include <allegro_flare/allegro_flare.h> // for af::current_event and af::fonts
 
 #include <flare_gui/widget.h>

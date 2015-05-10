@@ -13,7 +13,7 @@
 #include <allegro_flare/color.h>
 
 #include <flare_gui/widget.h>
-#include <flare_gui/collision_box.h>
+#include <flare_gui/surface_areas/box.h>
 
 #include <allegro_flare/allegro_flare.h> // for af::time_now
 
@@ -49,7 +49,7 @@ void FGUIButton::set_content_alignment(float _content_alignment)
 
 
 
-#include <flare_gui/widget_screen.h>
+#include <flare_gui/gui_screen.h>
 
 void FGUIButton::on_draw()
 {

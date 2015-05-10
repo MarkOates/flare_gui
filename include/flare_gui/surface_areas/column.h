@@ -4,7 +4,7 @@
 
 
 
-#include <flare_gui/collision_area.h>
+#include <flare_gui/surface_area.h>
 
 
 
