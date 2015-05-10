@@ -106,7 +106,7 @@ void FGUIScrollArea::draw_func()
 	// draw the overhead shade
 	draw_stretched_bitmap(1, 1, place.size.x-1, std::min(place.size.y, 16.0f), af::bitmaps["shade_down.png"], ::ALLEGRO_FLIP_VERTICAL, color::color(color::white, 0.2));
 		
-	children.draw_all_except(canvas); // except the canvas?
+	family.draw_all_except(canvas); // except the canvas?
 
 	place.restore_transform();
 }

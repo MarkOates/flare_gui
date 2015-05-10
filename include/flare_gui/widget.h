@@ -41,7 +41,6 @@ enum WIDGET_FLAGS
 
 
 #define FGUI_ATTR__FGUI_WIDGET_TYPE "FGUI_WIDGET_TYPE"
-#define FGUI_ATTR__FGUI_IS_PARENT "FGUI_IS_PARENT"
 
 
 
@@ -59,7 +58,6 @@ protected:
 	friend class FGUIScrollArea;
 	
 	FGUIFamily family;
-	FGUIFamily &children; // this is exactly the same as family, but for dev-deprec purposes children is here and will removed eventually
 
 	FGUICollisionArea *collision_area;
 

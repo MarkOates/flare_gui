@@ -52,18 +52,18 @@ bool FGUIChildren::assign_child_to_new_parent(FGUIWidget *child_widget, FGUIWidg
 
 	if (child_widget->family.parent)
 	{
-		child_widget->family.parent->children.unregister_as_child(child_widget);
+		child_widget->family.parent->family.unregister_as_child(child_widget);
 	}
 
 	// assign the parent to the new parent
 	if (new_parent)
 	{
-		new_parent->children.register_as_child(child_widget);
+		new_parent->family.register_as_child(child_widget);
 	}
 	else
 	{
 		std::cout << "warning: registering a child to a NULL parent - (TODO: implement this functionality)" << std::endl;
-		new_parent->children.register_as_child(NULL); //< is this ok?? right now, nothing really happens with this functionality
+		new_parent->family.register_as_child(NULL); //< is this ok?? right now, nothing really happens with this functionality
 													  // it's akin to a dangling pointer and the child is left without
 	}
 
@@ -141,12 +141,9 @@ FGUIWidget *FGUIChildren::__get_nth_child_recursive(FGUIChildren &children, int 
 	for (unsigned i=0; i<children.children.size(); i++)
 	{
 		_index_count++;
-		if (children.children[i]->attr.matches(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWidget")) // BUG: what about derived FGUIWidget?
-		{
-			FGUIWidget *p = static_cast<FGUIWidget *>(children.children[i]);
-			widget = FGUIChildren::__get_nth_child_recursive(p->children, n);
-			if (widget) return widget;
-		}
+		FGUIWidget *p = children.children[i];
+		widget = FGUIChildren::__get_nth_child_recursive(p->family, n);
+		if (widget) return widget;
 	}
 	return NULL;
 }
@@ -166,11 +163,9 @@ int FGUIChildren::__get_num_widgets_recursive(FGUIChildren &children)
 	for (unsigned i=0; i<children.children.size(); i++)
 	{
 		_index_count++;
-		if (children.children[i]->attr.matches(FGUI_ATTR__FGUI_IS_PARENT, "true"))
-		{
-			FGUIWidget *p = static_cast<FGUIWidget *>(children.children[i]);
-			FGUIChildren::__get_num_widgets_recursive(p->children);
-		}
+
+		FGUIWidget *p = children.children[i];
+		FGUIChildren::__get_num_widgets_recursive(p->family);
 	}
 	return _index_count;
 }

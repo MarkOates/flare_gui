@@ -59,7 +59,7 @@ void FGUIVerticalSlider::set_val_by_y(float y)
 void FGUIVerticalSlider::set_val(float val)
 {
 	val = limit<float>(0.0, 1.0, val);
-	if (num_notches >= 3) val = (round(val * num_notches)) / (float)num_notches;
+	if (num_notches >= 3) val = (round_up(val * num_notches)) / (float)num_notches;
 	this->val = limit<float>(0.0, 1.0, val);
 	on_change();
 }

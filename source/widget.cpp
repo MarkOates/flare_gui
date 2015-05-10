@@ -13,7 +13,6 @@
 FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area)
 	//: parent(parent)
 	: family(parent)
-	, children(family)
 	, collision_area(collision_area)
 	, place(collision_area->placement)
 	, mouse_down_on_over(false)
@@ -27,7 +26,7 @@ FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area)
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWidget");
 	attr.set("id", "Widget" + tostring(widget_count));
 
-	if (parent) parent->children.register_as_child(this);
+	if (parent) parent->family.register_as_child(this);
 	num_active_widgets++;
 	widget_count++;
 }
@@ -38,10 +37,10 @@ FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area)
 
 FGUIWidget::~FGUIWidget()
 {
-	children.delete_all(); // from FGUIParent
+	family.delete_all(); // from FGUIParent
 
 	if (collision_area) delete collision_area;
-	if (family.parent) family.parent->children.unregister_as_child(this);
+	if (family.parent) family.parent->family.unregister_as_child(this);
 	num_active_widgets--;
 	
 	std::cout << "~FGUIWidget() { type=" << attr.get(FGUI_ATTR__FGUI_WIDGET_TYPE) << " }" << std::endl;
@@ -94,12 +93,14 @@ void FGUIWidget::bring_to_front()
 {
 	if (!family.parent) return;
 		// hmm.. the logic of this should be executed by the parent, not this child
-	for (unsigned i=0; i<family.parent->children.children.size(); i++)
+		// TODO: this function should simply call something like family->bring_to_front(this)
+		// and not all this stuff:
+	for (unsigned i=0; i<family.parent->family.children.size(); i++)
 	{
-		if (family.parent->children.children[i] == this)
+		if (family.parent->family.children[i] == this)
 		{
-			family.parent->children.children.erase(family.parent->children.children.begin() + i);
-			family.parent->children.children.push_back(this);
+			family.parent->family.children.erase(family.parent->family.children.begin() + i);
+			family.parent->family.children.push_back(this);
 			return;
 		}
 	}
@@ -120,8 +121,8 @@ void FGUIWidget::primary_timer_func()
 {
 	on_timer();
 
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->primary_timer_func();
+	for (unsigned i=0; i<family.children.size(); i++)
+		family.children[i]->primary_timer_func();
 }
 
 
@@ -168,8 +169,8 @@ void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 	if (family.parent && family.parent->mouse_is_blocked) mouse_is_blocked = true;
 	else mouse_is_blocked = false;
 
-	for (int i=(int)children.children.size()-1; i>=0; i--)
-		children.children[i]->mouse_axes_func(tmx, tmy, dx, dy);  // I'm not sure why these are dx/dy, but it works correctly this way
+	for (int i=(int)family.children.size()-1; i>=0; i--)
+		family.children[i]->mouse_axes_func(tmx, tmy, dx, dy);  // I'm not sure why these are dx/dy, but it works correctly this way
 
 
 
@@ -202,8 +203,8 @@ void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 void FGUIWidget::mouse_down_func()
 {
 	// call this function on the children first
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->mouse_down_func();
+	for (unsigned i=0; i<family.children.size(); i++)
+		family.children[i]->mouse_down_func();
 
 	// now do the execution of the function
 	if (mouse_over)
@@ -228,8 +229,8 @@ void FGUIWidget::mouse_down_func()
 void FGUIWidget::mouse_up_func()
 {
 	// call this function on the children first
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->mouse_up_func();
+	for (unsigned i=0; i<family.children.size(); i++)
+		family.children[i]->mouse_up_func();
 
 	// then continue with the function on self
 	if (mouse_over && mouse_down_on_over)
@@ -252,8 +253,8 @@ void FGUIWidget::mouse_up_func()
 void FGUIWidget::key_down_func()
 {
 	// call this function on the children first
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->key_down_func();
+	for (unsigned i=0; i<family.children.size(); i++)
+		family.children[i]->key_down_func();
 
 	// then call on self
 	on_key_down();
@@ -262,8 +263,8 @@ void FGUIWidget::key_down_func()
 
 void FGUIWidget::key_up_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->key_up_func();
+	for (unsigned i=0; i<family.children.size(); i++)
+		family.children[i]->key_up_func();
 
 	on_key_up();
 }
@@ -271,8 +272,8 @@ void FGUIWidget::key_up_func()
 
 void FGUIWidget::key_char_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->key_char_func();
+	for (unsigned i=0; i<family.children.size(); i++)
+		family.children[i]->key_char_func();
 	
 	on_key_char();
 }
@@ -280,8 +281,8 @@ void FGUIWidget::key_char_func()
 
 void FGUIWidget::joy_up_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->joy_up_func();
+	for (unsigned i=0; i<family.children.size(); i++)
+		family.children[i]->joy_up_func();
 
 	on_joy_up();
 }
@@ -289,8 +290,8 @@ void FGUIWidget::joy_up_func()
 
 void FGUIWidget::joy_axis_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->joy_axis_func();
+	for (unsigned i=0; i<family.children.size(); i++)
+		family.children[i]->joy_axis_func();
 
 	on_joy_axis();
 }
@@ -298,8 +299,8 @@ void FGUIWidget::joy_axis_func()
 
 void FGUIWidget::joy_down_func()
 {
-	for (unsigned i=0; i<children.children.size(); i++)
-		children.children[i]->joy_down_func();
+	for (unsigned i=0; i<family.children.size(); i++)
+		family.children[i]->joy_down_func();
 
 
 	if (mouse_over && af::current_event->joystick.button == 0)
