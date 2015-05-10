@@ -12,7 +12,6 @@
 #include <flare_gui/surface_areas/alpha_bitmap.h>
 #include <flare_gui/surface_areas/column.h>
 #include <flare_gui/surface_areas/row.h>
-#include <flare_gui/widgets/draggable_region.h>
 
 #include <flare_gui/widget.h>
 #include <flare_gui/gui_screen.h>
@@ -33,7 +32,7 @@
 #include <flare_gui/widgets/window.h>
 #include <flare_gui/widgets/framed_window.h>
 #include <flare_gui/widgets/scroll_area.h>
-
+#include <flare_gui/widgets/draggable_region.h>
 
 
 
