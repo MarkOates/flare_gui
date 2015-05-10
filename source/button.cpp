@@ -22,7 +22,7 @@
 
 
 FGUIButton::FGUIButton(FGUIWidget *parent, float x, float y, float w, float h, std::string text)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, text(text)
 	, content_alignment(0.5)
 	, font(af::fonts["DroidSans.ttf 20"])
@@ -53,7 +53,7 @@ void FGUIButton::set_content_alignment(float _content_alignment)
 
 void FGUIButton::on_draw()
 {
-	placement2d &placement = collision_area->placement;
+	placement2d &placement = surface_area->placement;
 
 	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
 
@@ -107,7 +107,7 @@ void FGUIButton::on_click()
 	// parents for their most common purpose event.  In this case, a button. You click it.
 	if (family.parent) family.parent->on_message(this, "on_click");
 
-	placement2d &placement = collision_area->placement;
+	placement2d &placement = surface_area->placement;
 
 	af::motion.clear_animations_on(&placement.scale.x);
 	af::motion.clear_animations_on(&placement.scale.y);
@@ -121,7 +121,7 @@ void FGUIButton::on_click()
 
 void FGUIButton::on_mouse_enter()
 {
-	placement2d &placement = collision_area->placement;
+	placement2d &placement = surface_area->placement;
 
 	af::motion.clear_animations_on(&placement.scale.x);
 	af::motion.clear_animations_on(&placement.scale.y);

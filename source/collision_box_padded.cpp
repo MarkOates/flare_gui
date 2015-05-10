@@ -12,8 +12,8 @@
 
 #include <iostream>
 
-FGUICollisionBoxPadded::FGUICollisionBoxPadded(float x, float y, float w, float h, float pt, float pr, float pb, float pl)
-	: FGUICollisionArea(x, y, w, h)
+FGUISurfaceAreaBoxPadded::FGUISurfaceAreaBoxPadded(float x, float y, float w, float h, float pt, float pr, float pb, float pl)
+	: FGUISurfaceArea(x, y, w, h)
 	, padding_top(pt)
 	, padding_right(pr)
 	, padding_bottom(pb)
@@ -23,20 +23,20 @@ FGUICollisionBoxPadded::FGUICollisionBoxPadded(float x, float y, float w, float 
 
 
 
-FGUICollisionBoxPadded::~FGUICollisionBoxPadded()
+FGUISurfaceAreaBoxPadded::~FGUISurfaceAreaBoxPadded()
 {
 }
 
 
 
-bool FGUICollisionBoxPadded::collides(float x, float y)
+bool FGUISurfaceAreaBoxPadded::collides(float x, float y)
 {
 	return placement.collide(x, y, padding_top, padding_right, padding_bottom, padding_left);
 }
 
 
 
-void FGUICollisionBoxPadded::draw_bounding_area()
+void FGUISurfaceAreaBoxPadded::draw_bounding_area()
 {
 	placement.draw_box_with_padding(color::color(color::aliceblue, 0.2), true,
 		padding_top, padding_right, padding_bottom, padding_left);
@@ -44,7 +44,7 @@ void FGUICollisionBoxPadded::draw_bounding_area()
 
 
 
-void FGUICollisionBoxPadded::get_padding(float *pt, float *pr, float *pb, float *pl)
+void FGUISurfaceAreaBoxPadded::get_padding(float *pt, float *pr, float *pb, float *pl)
 {
 	*pt = padding_top;
 	*pr = padding_right;
@@ -54,7 +54,7 @@ void FGUICollisionBoxPadded::get_padding(float *pt, float *pr, float *pb, float 
 
 
 
-void FGUICollisionBoxPadded::set_padding(float pt, float pr, float pb, float pl)
+void FGUISurfaceAreaBoxPadded::set_padding(float pt, float pr, float pb, float pl)
 {
 	padding_top = pt;
 	padding_right = pr;

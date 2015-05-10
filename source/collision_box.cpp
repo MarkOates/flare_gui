@@ -12,29 +12,29 @@
 
 #include <iostream>
 
-FGUICollisionBox::FGUICollisionBox(float x, float y, float w, float h)
-	: FGUICollisionArea(x, y, w, h)
+FGUISurfaceAreaBox::FGUISurfaceAreaBox(float x, float y, float w, float h)
+	: FGUISurfaceArea(x, y, w, h)
 {
-	//std::cout << "FGUICollisionBox()" << std::endl;
+	//std::cout << "FGUISurfaceAreaBox()" << std::endl;
 }
 
 
 
-FGUICollisionBox::~FGUICollisionBox()
+FGUISurfaceAreaBox::~FGUISurfaceAreaBox()
 {
-	//std::cout << "~FGUICollisionBox()" << std::endl;
+	//std::cout << "~FGUISurfaceAreaBox()" << std::endl;
 }
 
 
 
-bool FGUICollisionBox::collides(float x, float y)
+bool FGUISurfaceAreaBox::collides(float x, float y)
 {
 	return placement.collide(x, y);
 }
 
 
 
-void FGUICollisionBox::draw_bounding_area()
+void FGUISurfaceAreaBox::draw_bounding_area()
 {
 	placement.draw_box(color::color(color::aliceblue, 0.2), true);
 }

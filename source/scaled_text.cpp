@@ -47,14 +47,14 @@ void FGUIScaledText::refresh_render()
 	al_restore_state(&previous_state);
 
 	// update the placement data
-	collision_area->placement.size.x = al_get_bitmap_width(render) / render_scale;
-	collision_area->placement.size.y = al_get_bitmap_height(render) / render_scale;
+	surface_area->placement.size.x = al_get_bitmap_width(render) / render_scale;
+	surface_area->placement.size.y = al_get_bitmap_height(render) / render_scale;
 }
 
 
 
 FGUIScaledText::FGUIScaledText(FGUIWidget *parent, float x, float y, std::string text)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, 100, 100))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, 100, 100))
 	, font_filename("DroidSans.ttf")
 	, font_size(14)
 	, render_scale(3.0)
@@ -65,7 +65,7 @@ FGUIScaledText::FGUIScaledText(FGUIWidget *parent, float x, float y, std::string
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScaledText");
 	attr.set("id", "ScaledText" + tostring(FGUIWidget::get_num_created_widgets()));
 
-	this->collision_area->placement.align.x = 0.0;
+	this->surface_area->placement.align.x = 0.0;
 	this->no_focus = true;
 
 	refresh_render();

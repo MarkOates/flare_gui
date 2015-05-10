@@ -18,7 +18,7 @@
 
 
 FGUIProgressBar::FGUIProgressBar(FGUIWidget *parent, float x, float y, float w, float h)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, val(0)
 	, update_speed(0.4)
 	, bar_color(color::dodgerblue)

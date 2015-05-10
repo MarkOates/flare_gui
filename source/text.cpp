@@ -14,7 +14,7 @@
 
 
 FGUIText::FGUIText(FGUIWidget *parent, float x, float y, std::string text)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, 200, 20)) // just set arbitrary width and height
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, 200, 20)) // just set arbitrary width and height
 	, text(text)
 	, font(af::fonts["DroidSans.ttf 20"])
 	, font_color(color::white)
@@ -26,7 +26,7 @@ FGUIText::FGUIText(FGUIWidget *parent, float x, float y, std::string text)
 	no_focus = true;
 	
 	// unlike other widgets, text will always align left by default
-	this->collision_area->placement.align.x = 0.0;
+	this->surface_area->placement.align.x = 0.0;
 	
 	// update the dimentions of the box
 	place.size.x = al_get_text_width(font, text.c_str());

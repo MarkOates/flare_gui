@@ -83,7 +83,7 @@ bool FGUITextArea::Cursor::selection_active() { return head_pos != _anchor_pos; 
 
 
 FGUITextArea::FGUITextArea(FGUIWidget *parent, float x, float y, float w, float h, std::string text)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, cursor(0, 0)
 	, full_text(text)
 	, font(af::fonts["DroidSans.ttf 20"])

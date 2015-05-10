@@ -14,7 +14,7 @@
 
 
 FGUIVerticalSlider::FGUIVerticalSlider(FGUIWidget *parent, float x, float y, float w, float h)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, val(0.6)
 	, mouse_y(0)
 	, num_notches(0)

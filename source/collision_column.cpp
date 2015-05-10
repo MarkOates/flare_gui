@@ -8,8 +8,8 @@
 
 
 
-FGUICollisionColumn::FGUICollisionColumn(float x, float w)
-	: FGUICollisionArea(x, 0, w, 0)
+FGUISurfaceAreaColumn::FGUISurfaceAreaColumn(float x, float w)
+	: FGUISurfaceArea(x, 0, w, 0)
 {
 }
 
@@ -17,7 +17,7 @@ FGUICollisionColumn::FGUICollisionColumn(float x, float w)
 
 
 
-void FGUICollisionColumn::draw_bounding_area()
+void FGUISurfaceAreaColumn::draw_bounding_area()
 {
 	
 }
@@ -26,7 +26,7 @@ void FGUICollisionColumn::draw_bounding_area()
 
 
 
-bool FGUICollisionColumn::collides(float x, float y)
+bool FGUISurfaceAreaColumn::collides(float x, float y)
 {
 	if (x < placement.position.x) return false;
 	if (x > placement.position.x + placement.size.x) return false;

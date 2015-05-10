@@ -9,7 +9,7 @@
 
 
 FGUIScrollArea::FGUIScrollArea(FGUIWidget *parent, float x, float y, float w, float h, FGUIWidget *content_parent)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, canvas(content_parent)
 	, v_slider(NULL)
 	, canvas_render(al_create_bitmap(w, h))
@@ -60,7 +60,7 @@ void FGUIScrollArea::mouse_axes_func(float mx, float my, float mdx, float mdy)
 	float tmdx = mdx;
 	float tmdy = mdy;
 
-	if (!collision_area->collides(mx, my))
+	if (!surface_area->collides(mx, my))
 	{
 		family.parent->mouse_is_blocked = true; // TODO: this works, but I don't think it's "correct"
 										// e.g. what if there is no parent?

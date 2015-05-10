@@ -13,7 +13,7 @@
 
 
 FGUIScrollBar::UpButton::UpButton(FGUIWidget *parent, float x, float y, float w, float h)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScrollBar::UpButton");
 	attr.set("id", "ScrollBar::UpButton" + tostring(get_num_created_widgets()));
@@ -31,7 +31,7 @@ void FGUIScrollBar::UpButton::on_draw()
 
 
 FGUIScrollBar::DownButton::DownButton(FGUIWidget *parent, float x, float y, float w, float h)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScrollBar::DownButton");
 	attr.set("id", "ScrollBar::DownButton" + tostring(get_num_created_widgets()));
@@ -48,7 +48,7 @@ void FGUIScrollBar::DownButton::on_draw()
 
 
 FGUIScrollBar::Rail::Rail(FGUIWidget *parent, float x, float y, float w, float h)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, current_mouse_y(0)
 {}
 void FGUIScrollBar::Rail::on_draw()
@@ -71,7 +71,7 @@ void FGUIScrollBar::Rail::on_click()
 
 
 FGUIScrollBar::Handle::Handle(FGUIWidget *parent, float x, float y, float w, float h)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, min_y(0)
 	, max_y(0)
 {
@@ -112,7 +112,7 @@ void FGUIScrollBar::Handle::set_position(float position_in_unit_value)
 
 
 FGUIScrollBar::FGUIScrollBar(FGUIWidget *parent, float x, float y, float w, float h)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, rail(NULL)
 	, handle(NULL)
 	, up_button(NULL)

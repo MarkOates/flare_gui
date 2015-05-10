@@ -13,7 +13,7 @@
 
 
 FGUITextInput::FGUITextInput(FGUIWidget *parent, float x, float y, float w, float h, std::string text)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, text("")
 	, cursor_pos(0)
 	, cursor_end(0)
@@ -378,7 +378,7 @@ void FGUITextInput::_update_text_and_selection_render(float len_to_cursor, float
 
 void FGUITextInput::on_draw()
 {
-	placement2d &placement = collision_area->placement;
+	placement2d &placement = surface_area->placement;
 
 	//float roundness = 2;
 

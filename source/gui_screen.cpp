@@ -13,7 +13,7 @@
 
 FGUIScreen::FGUIScreen(Display *display)
 	: Screen(display)
-	, FGUIWidget(NULL, new FGUICollisionBox(0, 0, display->width(), display->height()))
+	, FGUIWidget(NULL, new FGUISurfaceAreaBox(0, 0, display->width(), display->height()))
 	, draw_focused_outline(true)
 	, use_joystick_as_mouse(true)
 	, clear_to_background_color(true)
@@ -23,8 +23,8 @@ FGUIScreen::FGUIScreen(Display *display)
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScreen");
 	attr.set("id", "Screen" + tostring(widget_count));
 
-	collision_area->placement.align.x = 0;
-	collision_area->placement.align.y = 0;
+	surface_area->placement.align.x = 0;
+	surface_area->placement.align.y = 0;
 }
 
 

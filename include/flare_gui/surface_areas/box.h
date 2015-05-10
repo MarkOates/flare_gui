@@ -9,11 +9,11 @@
 
 
 
-class FGUICollisionBox : public FGUICollisionArea
+class FGUISurfaceAreaBox : public FGUISurfaceArea
 {
 public:
-	FGUICollisionBox(float x, float y, float w, float h);
-	~FGUICollisionBox();
+	FGUISurfaceAreaBox(float x, float y, float w, float h);
+	~FGUISurfaceAreaBox();
 
 	void draw_bounding_area();
 	bool collides(float x, float y);

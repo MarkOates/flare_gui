@@ -13,15 +13,15 @@
 
 #include <iostream>
 
-FGUICollisionArea::FGUICollisionArea(float x, float y, float w, float h)
+FGUISurfaceArea::FGUISurfaceArea(float x, float y, float w, float h)
 	: placement(x, y, w, h)
 {
-	//std::cout << "FGUICollisionArea()" << std::endl;
+	//std::cout << "FGUISurfaceArea()" << std::endl;
 }
 
 
 
-FGUICollisionArea::~FGUICollisionArea()
+FGUISurfaceArea::~FGUISurfaceArea()
 {
-	//std::cout << "~FGUICollisionArea()" << std::endl;
+	//std::cout << "~FGUISurfaceArea()" << std::endl;
 }

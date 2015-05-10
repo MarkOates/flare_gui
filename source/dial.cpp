@@ -11,7 +11,7 @@
 
 
 FGUIDial::FGUIDial(FGUIWidget *parent, float x, float y, float diameter)
-	: FGUIWidget(parent, new FGUICollisionCircle(x, y, diameter/2))
+	: FGUIWidget(parent, new FGUISurfaceAreaCircle(x, y, diameter/2))
 	, val(0.4)
 	, radius(diameter/2)
 	, sensitivity(0.002)

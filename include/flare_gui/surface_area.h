@@ -9,12 +9,12 @@
 
 
 
-class FGUICollisionArea
+class FGUISurfaceArea
 {
 public:
 	placement2d placement;
-	FGUICollisionArea(float x, float y, float w, float h);
-	virtual ~FGUICollisionArea();
+	FGUISurfaceArea(float x, float y, float w, float h);
+	virtual ~FGUISurfaceArea();
 
 	virtual void draw_bounding_area() = 0;
 	virtual bool collides(float x, float y) = 0;

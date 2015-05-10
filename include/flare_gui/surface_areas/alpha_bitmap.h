@@ -9,12 +9,12 @@
 
 
 
-class FGUICollisionBitmap : public FGUICollisionArea
+class FGUISurfaceAreaBitmap : public FGUISurfaceArea
 {
 private:
 	ALLEGRO_BITMAP *bitmap;
 public:
-	FGUICollisionBitmap(float x, float y, ALLEGRO_BITMAP *bitmap);
+	FGUISurfaceAreaBitmap(float x, float y, ALLEGRO_BITMAP *bitmap);
 
 	void draw_bounding_area();
 	bool collides(float x, float y);

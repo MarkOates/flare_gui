@@ -9,10 +9,10 @@
 
 
 
-class FGUICollisionCircle : public FGUICollisionArea
+class FGUISurfaceAreaCircle : public FGUISurfaceArea
 {
 public:
-	FGUICollisionCircle(float x, float y, float r);
+	FGUISurfaceAreaCircle(float x, float y, float r);
 
 	void draw_bounding_area();
 	bool collides(float x, float y);

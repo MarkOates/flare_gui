@@ -58,7 +58,7 @@ protected:
 	
 	FGUIFamily family;
 
-	FGUICollisionArea *collision_area;
+	FGUISurfaceArea *surface_area;
 
 	// TODO these might need to be implemented in a flag system
 	bool mouse_over;
@@ -92,7 +92,7 @@ public:
 
 	placement2d &place;
 
-	FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area);
+	FGUIWidget(FGUIWidget *parent, FGUISurfaceArea *surface_area);
 	virtual ~FGUIWidget();
 
 

@@ -10,11 +10,11 @@
 
 
 
-FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUICollisionArea *collision_area)
+FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUISurfaceArea *surface_area)
 	//: parent(parent)
 	: family(parent)
-	, collision_area(collision_area)
-	, place(collision_area->placement)
+	, surface_area(surface_area)
+	, place(surface_area->placement)
 	, mouse_down_on_over(false)
 	, mouse_over(false)
 	, focused(false)
@@ -39,7 +39,7 @@ FGUIWidget::~FGUIWidget()
 {
 	family.delete_all(); // from FGUIParent
 
-	if (collision_area) delete collision_area;
+	if (surface_area) delete surface_area;
 	if (family.parent) family.parent->family.unregister_as_child(this);
 	num_active_widgets--;
 	
@@ -51,14 +51,14 @@ FGUIWidget::~FGUIWidget()
 	// so there aren't any dangling pointers.  This is an attempt to offer one type
 	// of solution, but it only covers the widget.placement elements.
 
-	if (collision_area)
+	if (surface_area)
 	{
 		float* _elem[] = {
-			&collision_area->placement.position.x, &collision_area->placement.position.y,
-			&collision_area->placement.size.x, &collision_area->placement.size.y,
-			&collision_area->placement.scale.x, &collision_area->placement.scale.y,
-			&collision_area->placement.anchor.x, &collision_area->placement.anchor.y,
-			&collision_area->placement.rotation
+			&surface_area->placement.position.x, &surface_area->placement.position.y,
+			&surface_area->placement.size.x, &surface_area->placement.size.y,
+			&surface_area->placement.scale.x, &surface_area->placement.scale.y,
+			&surface_area->placement.anchor.x, &surface_area->placement.anchor.y,
+			&surface_area->placement.rotation
 		};
 
 		std::vector<float*> pacement_elements (_elem, _elem + sizeof(_elem) / sizeof(float*) );
@@ -130,7 +130,7 @@ void FGUIWidget::primary_timer_func()
 
 void FGUIWidget::draw_func()
 {
-	if (collision_area) collision_area->placement.start_transform();
+	if (surface_area) surface_area->placement.start_transform();
 
 	on_draw();
 
@@ -140,15 +140,15 @@ void FGUIWidget::draw_func()
 	/*
 	if (focused && gimmie_super_screen()->draw_focused_outline)
 	{
-		al_draw_rounded_rectangle(0, 0, collision_area->placement.size.x, collision_area->placement.size.y, 3, 3, color::color(color::black, 0.2), 5);
-		al_draw_rounded_rectangle(0, 0, collision_area->placement.size.x, collision_area->placement.size.y, 3, 3, color::mix(gimmie_super_screen()->focused_outline_color, color::purple, 0.6+0.4*sin(af::time_now*3)), 1.5);
+		al_draw_rounded_rectangle(0, 0, surface_area->placement.size.x, surface_area->placement.size.y, 3, 3, color::color(color::black, 0.2), 5);
+		al_draw_rounded_rectangle(0, 0, surface_area->placement.size.x, surface_area->placement.size.y, 3, 3, color::mix(gimmie_super_screen()->focused_outline_color, color::purple, 0.6+0.4*sin(af::time_now*3)), 1.5);
 	}
 	*/
 
-	if (collision_area) collision_area->placement.restore_transform();
+	if (surface_area) surface_area->placement.restore_transform();
 
 	// draws the collision shape (for debugging)
-	//collision_area->draw_bounding_area();
+	//surface_area->draw_bounding_area();
 }
 
 
@@ -163,8 +163,8 @@ void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 	float tmdx = dx;
 	float tmdy = dy;
 
-	collision_area->placement.transform_coordinates(&tmx, &tmy);
-	collision_area->placement.transform_coordinates(&tmdx, &tmdy);
+	surface_area->placement.transform_coordinates(&tmx, &tmy);
+	surface_area->placement.transform_coordinates(&tmdx, &tmdy);
 
 	if (family.parent && family.parent->mouse_is_blocked) mouse_is_blocked = true;
 	else mouse_is_blocked = false;
@@ -176,9 +176,9 @@ void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 
 	// then proceed with the execution of the function
 
-	if (collision_area)
+	if (surface_area)
 	{
-		bool mouse_over_now = collision_area->collides(x, y);
+		bool mouse_over_now = surface_area->collides(x, y);
 		if (family.parent && family.parent->mouse_is_blocked) mouse_over_now = false;
 
 		if (mouse_over_now && !mouse_over) on_mouse_enter();
@@ -336,8 +336,8 @@ void FGUIWidget::on_joy_axis() {}
 void FGUIWidget::on_timer() {}
 void FGUIWidget::on_draw()
 {
-	if (collision_area)
-		al_draw_rounded_rectangle(0, 0, collision_area->placement.size.x, collision_area->placement.size.y, 4, 4, color::color(color::aliceblue, 0.2), 2.0);
+	if (surface_area)
+		al_draw_rounded_rectangle(0, 0, surface_area->placement.size.x, surface_area->placement.size.y, 4, 4, color::color(color::aliceblue, 0.2), 2.0);
 }
 void FGUIWidget::on_drag(float x, float y, float dx, float dy) {}
 void FGUIWidget::on_change() {}

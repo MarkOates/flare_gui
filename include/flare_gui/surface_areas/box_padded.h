@@ -9,7 +9,7 @@
 
 
 
-class FGUICollisionBoxPadded : public FGUICollisionArea
+class FGUISurfaceAreaBoxPadded : public FGUISurfaceArea
 {
 private:
 	float padding_top;
@@ -18,8 +18,8 @@ private:
 	float padding_left;
 
 public:
-	FGUICollisionBoxPadded(float x, float y, float w, float h, float pt, float pr, float pb, float pl);
-	~FGUICollisionBoxPadded();
+	FGUISurfaceAreaBoxPadded(float x, float y, float w, float h, float pt, float pr, float pb, float pl);
+	~FGUISurfaceAreaBoxPadded();
 
 	void draw_bounding_area();
 	bool collides(float x, float y);
