@@ -14,7 +14,7 @@ FGUIScrollArea::FGUIScrollArea(FGUIWidget *parent, float x, float y, float w, fl
 	, v_slider(NULL)
 	, canvas_render(al_create_bitmap(w, h))
 {
-	if (canvas) FGUIChildren::assign_child_to_new_parent(canvas, this); // I believe this usage is the proper design.
+	if (canvas) FGUIFamily::assign_child_to_new_parent(canvas, this); // I believe this usage is the proper design.
 
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScrollArea");
 	attr.set("id", "ScrollArea" + tostring(FGUIWidget::get_num_created_widgets()));

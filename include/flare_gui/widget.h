@@ -53,7 +53,6 @@ private:
 protected:
 
 	friend class FGUIScreen;
-	friend class FGUIChildren;
 	friend class FGUIFamily;
 	friend class FGUIScrollArea;
 	
