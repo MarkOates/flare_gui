@@ -3,7 +3,7 @@
 
 
 
-
+#include <allegro5/allegro.h>
 #include <flare_gui/surface_area.h>
 #include <allegro_flare/data_attr.h>
 #include <allegro_flare/clipboard_win.h> // this should eventually be replaced with a cross-platform clipboard solution
@@ -49,6 +49,7 @@ class FGUIWidget
 private:
 	static int num_active_widgets; // holds the number of widgets that have been created but not destroyed
 	static int widget_count; // a counter that is incremented each time a new widget is created
+	static ALLEGRO_BITMAP *widget_icon;
 
 protected:
 
@@ -158,6 +159,7 @@ public:
 
 	static void draw_inset(float x, float y, float w, float h);
 	static void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"));
+	static ALLEGRO_BITMAP *create_widget_icon(int size=64, const ALLEGRO_COLOR &front_color=color::white, const ALLEGRO_COLOR &back_color=color::transparent);
 };
 
 

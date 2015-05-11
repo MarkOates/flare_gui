@@ -29,6 +29,9 @@ FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUISurfaceArea *surface_area)
 	if (parent) parent->family.register_as_child(this);
 	num_active_widgets++;
 	widget_count++;
+
+	if (!FGUIWidget::widget_icon)
+		FGUIWidget::widget_icon = FGUIWidget::create_widget_icon(32);
 }
 
 
@@ -337,7 +340,10 @@ void FGUIWidget::on_timer() {}
 void FGUIWidget::on_draw()
 {
 	if (surface_area)
+	{
 		al_draw_rounded_rectangle(0, 0, surface_area->placement.size.x, surface_area->placement.size.y, 4, 4, color::color(color::aliceblue, 0.2), 2.0);
+		if (FGUIWidget::widget_icon) al_draw_tinted_bitmap(FGUIWidget::widget_icon, color::color(color::white, 0.1), place.size.x/2-al_get_bitmap_width(FGUIWidget::widget_icon)/2, place.size.y/2-al_get_bitmap_height(FGUIWidget::widget_icon)/2, 0);
+	}
 }
 void FGUIWidget::on_drag(float x, float y, float dx, float dy) {}
 void FGUIWidget::on_change() {}
@@ -350,6 +356,10 @@ int FGUIWidget::num_active_widgets = 0;
 
 
 int FGUIWidget::widget_count = 0;
+
+
+
+ALLEGRO_BITMAP *FGUIWidget::widget_icon = NULL;
 
 
 
@@ -431,3 +441,53 @@ void FGUIWidget::draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR c
 	// draw the shaded bitmap
 	draw_stretched_bitmap(x+3, y+3, x+w-6, y+h-6, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
 }
+
+
+
+#include <allegro_flare/image_processing.h>
+
+ALLEGRO_BITMAP *FGUIWidget::create_widget_icon(int size, const ALLEGRO_COLOR &front_color, const ALLEGRO_COLOR &back_color)
+{
+	float scale = 4.0; // 4.0 is essentially equivelent to 4x FSAA
+	size *= scale;
+
+	ALLEGRO_BITMAP *surface = al_create_bitmap(size, size);
+	ALLEGRO_STATE state;
+	al_store_state(&state, ALLEGRO_STATE_TARGET_BITMAP);
+	al_set_target_bitmap(surface);
+	al_clear_to_color(back_color);
+
+	// draw stuff here
+	float gear_scale = size / 64.0;
+	float gear_radius = size/2;
+	float inner_gear_thickness = 10.5 * gear_scale;
+	float hw = 4 * gear_scale;
+	float hh = 2.5 * gear_scale;
+
+	int num_gears = 9;
+
+	placement2d gear_place;
+	gear_place.position = vec2d(size/2, size/2);
+	gear_place.anchor = vec2d(0, gear_radius);
+
+	al_draw_circle(size/2, size/2, gear_radius-hh*2-inner_gear_thickness/2, front_color, inner_gear_thickness);
+	for (unsigned i=0; i<num_gears; i++)
+	{
+		gear_place.start_transform();
+		al_draw_filled_rectangle(-hw, -hh*2-inner_gear_thickness*0.05, hw, 0, front_color);
+		gear_place.restore_transform();
+		gear_place.rotation += TAU/num_gears;
+	}
+
+	al_restore_state(&state);
+
+	
+	ALLEGRO_BITMAP *scaled = create_scaled_render(surface, size/scale, size/scale);
+
+	al_destroy_bitmap(surface);
+
+	return scaled;
+}
+
+
+
