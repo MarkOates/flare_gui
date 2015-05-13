@@ -11,7 +11,7 @@
 
 class FGUIImage : public FGUIWidget
 {
-private:
+protected:
 	ALLEGRO_COLOR color;
 	ALLEGRO_BITMAP *bitmap;
 

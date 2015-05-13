@@ -15,7 +15,7 @@ class FGUIScrollBar;
 
 class FGUIScrollArea : public FGUIWidget
 {
-private:
+protected:
 	FGUIScrollBar *v_slider;
 	FGUIWidget *canvas;
 	ALLEGRO_BITMAP *canvas_render;

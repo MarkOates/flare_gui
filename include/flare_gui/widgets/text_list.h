@@ -17,7 +17,7 @@
 
 class FGUIListItem // TODO: maybe.. abstract FGUITextList into a FGUIList<T> template 
 {
-private:
+protected:
 	std::string item;
 
 public:

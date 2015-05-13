@@ -13,7 +13,7 @@
 
 class FGUIScaledText : public FGUIWidget
 {
-private:
+protected:
 	ALLEGRO_BITMAP *render;
 	std::string font_filename;
 	int font_size;

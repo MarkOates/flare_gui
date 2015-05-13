@@ -13,7 +13,7 @@
 
 class FGUITextBox : public FGUIWidget
 {
-private:
+protected:
 	class word_width_pair
 	{
 	public:

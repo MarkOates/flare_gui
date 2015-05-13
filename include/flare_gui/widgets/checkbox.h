@@ -11,7 +11,7 @@
 
 class FGUICheckbox : public FGUIWidget
 {
-private:
+protected:
 	bool checked;
 	placement2d check_placement;
 	ALLEGRO_COLOR check_color;

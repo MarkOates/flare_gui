@@ -11,7 +11,7 @@
 
 class FGUIDraggableRegion : public FGUIWidget
 {
-private:
+protected:
 	ALLEGRO_COLOR background_color;
 
 public:

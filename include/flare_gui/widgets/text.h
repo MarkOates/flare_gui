@@ -14,7 +14,7 @@
 
 class FGUIText : public FGUIWidget
 {
-private:
+protected:
 	std::string text;
 	ALLEGRO_FONT *font;
 	ALLEGRO_COLOR font_color;

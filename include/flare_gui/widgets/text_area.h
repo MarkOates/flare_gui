@@ -13,7 +13,7 @@
 
 class FGUITextArea : public FGUIWidget
 {
-private:
+protected:
 	class Cursor
 	{
 	private:
@@ -41,7 +41,7 @@ private:
 		bool selection_active();
 	};
 
-private:
+protected:
 	std::string full_text;
 	ALLEGRO_FONT *font;
 	float cursor_blink_counter;

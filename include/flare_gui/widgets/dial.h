@@ -11,7 +11,7 @@
 
 class FGUIDial : public FGUIWidget
 {
-private:
+protected:
 	float val;
 	float radius;
 	float sensitivity;

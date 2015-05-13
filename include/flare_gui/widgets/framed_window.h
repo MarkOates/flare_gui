@@ -13,7 +13,7 @@
 
 class FGUIFramedWindow : public FGUIWidget
 {
-private:
+protected:
 	FGUIDraggableRegion *titlebar_dragger;
 	float titlebar_height;
 	float frame_thickness;

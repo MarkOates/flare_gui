@@ -13,7 +13,7 @@
 
 class FGUIButton : public FGUIWidget
 {
-private:
+protected:
 	ALLEGRO_BITMAP *icon;
 	ALLEGRO_FONT *font;
 	std::string text;

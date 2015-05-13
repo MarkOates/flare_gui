@@ -13,7 +13,7 @@
 
 class FGUIToggleButton : public FGUIWidget
 {
-private:
+protected:
 	bool pressed;
 	std::string text;
 

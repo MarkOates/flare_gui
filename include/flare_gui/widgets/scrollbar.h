@@ -11,7 +11,7 @@
 
 class FGUIScrollBar : public FGUIWidget
 {
-private:
+protected:
 
 	class UpButton : public FGUIWidget
 	{
