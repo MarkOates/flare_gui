@@ -404,10 +404,8 @@ void FGUIWidget::set_as_unfocused()
 // some drawing primitives, I think these should go somewhere else and/or be implemented in a more
 // customizable way :)  But for now this will get us started :)
 
-void FGUIWidget::draw_inset(float x, float y, float w, float h)
+void FGUIWidget::draw_inset(float x, float y, float w, float h, ALLEGRO_COLOR col, float roundness)
 {
-	float roundness = 2;
-
 	// draw the background
 	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2));
 
@@ -423,17 +421,16 @@ void FGUIWidget::draw_inset(float x, float y, float w, float h)
 }
 
 
-void FGUIWidget::draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col)
+void FGUIWidget::draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col, float roundness)
 {
 	// the bottom shade
-	float shade_depth = 5;
-	al_draw_filled_rounded_rectangle(x, y+h/2 + shade_depth, x, y+shade_depth, 2, 2, color::color(color::black, 0.1));
+	al_draw_filled_rounded_rectangle(x, y+h/2, x, y, 2, 2, color::color(color::black, 0.1));
 
 	// the button face
-	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, 3, 3, col);//color::hex("575962"));
+	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, col);//color::hex("575962"));
 
 	// the button outline
-	al_draw_rounded_rectangle(x, y, x+w, y+h, 3, 3, color::color(color::black, 0.2), 2);
+	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2), 2);
 
 	// draw a hilight along the top
 	al_draw_line(x+3.5, y+1, x+w-3.5, y+1, color::color(color::white, 0.1), 1);

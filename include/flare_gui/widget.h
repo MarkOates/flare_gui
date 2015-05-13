@@ -157,8 +157,9 @@ public:
 	// for now, this simple solution is intended to be the first steps to detaching style
 	// from widget drawing.
 
-	static void draw_inset(float x, float y, float w, float h);
-	static void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"));
+	static void draw_inset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"), float roundness=2);
+	static void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"), float roundness=2);
+
 	static ALLEGRO_BITMAP *create_widget_icon(int size=64, const ALLEGRO_COLOR &front_color=color::white, const ALLEGRO_COLOR &back_color=color::transparent);
 };
 
