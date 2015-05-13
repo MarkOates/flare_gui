@@ -204,7 +204,7 @@ void PianoKeyboardKey::on_mouse_up()
 
 
 FGUIPianoKeyboard::FGUIPianoKeyboard(FGUIWidget *parent, float x, float y)
-	: FGUIWidget(parent, new FGUICollisionBox(x, y, 500, 100))
+	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, 500, 100))
 {
 	set_keys_to_pentatonic();
 	//init_midi();

@@ -100,7 +100,7 @@ public:
 	FGUIWidget *build_canvas_for_scrollable_area()
 	{
 		// canvas should always be the first child
-		FGUIWidget *canvas = new FGUIWidget(this, new FGUICollisionBox(0, 0, 400, 600*1.5));
+		FGUIWidget *canvas = new FGUIWidget(this, new FGUISurfaceAreaBox(0, 0, 400, 600*1.5));
 		canvas->place.align = vec2d(0, 0);
 
 		//{

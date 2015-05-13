@@ -29,7 +29,7 @@ private:
 
 public:
 	AutomationController(FGUIWidget *parent, float x, float y, float w, float h)
-		: FGUIWidget(parent, new FGUICollisionBox(x, y, w, h))
+		: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 		, mouse_pos(0)
 		, points()
 		, guide_color(color::white)

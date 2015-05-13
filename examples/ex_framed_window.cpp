@@ -40,10 +40,10 @@ public:
 	void primary_timer_func() override
 	{
 		FGUIScreen::primary_timer_func();
-		for (unsigned i=0; i<children.children.size(); i++)
+		for (unsigned i=0; i<family.children.size(); i++)
 		{
-			if (children.children[i]->delete_me == true)
-				delete children.children[i--];
+			if (family.children[i]->delete_me == true)
+				delete family.children[i--];
 		}
 	}
 	void on_message(FGUIWidget *sender, std::string message) override

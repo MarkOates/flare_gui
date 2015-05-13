@@ -25,7 +25,7 @@ public:
 	ALLEGRO_COLOR icon_color;
 
 	FGUICircleButton(FGUIWidget *parent, float x, float y, float radius, int32_t icon, std::string message_to_parent)
-		: FGUIWidget(parent, new FGUICollisionCircle(x-(radius)+10, y+(radius)-10, radius))
+		: FGUIWidget(parent, new FGUISurfaceAreaCircle(x-(radius)+10, y+(radius)-10, radius))
 		, icon(icon)
 		, icon_color(color::gray)
 	{

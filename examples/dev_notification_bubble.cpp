@@ -7,7 +7,7 @@
 #include <allegro_flare/color.h>
 
 #include <flare_gui/widget.h>
-#include <flare_gui/collision_box.h>
+#include <flare_gui/surface_areas/box.h>
 
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
@@ -24,7 +24,7 @@ private:
 
 public:
 	FGUINotificationBubble(FGUIWidget *parent, float x, float y, std::string text)
-		: FGUIWidget(parent, new FGUICollisionBox(x, y, 280, 90))
+		: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, 280, 90))
 		, text(text)
 		, font(af::fonts["DroidSerif.ttf 20"])
 		, spawn_time(af::time_now)
@@ -37,8 +37,8 @@ public:
 
 		af::motion.cmove_to(&this->opacity, 1.0, 0.5);
 
-		this->collision_area->placement.align.x = 1.0;
-		this->collision_area->placement.align.y = 1.0;
+		this->surface_area->placement.align.x = 1.0;
+		this->surface_area->placement.align.y = 1.0;
 	}
 
 	~FGUINotificationBubble()

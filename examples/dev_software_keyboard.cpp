@@ -175,7 +175,7 @@ public:
 	bool shift_pressed;
 
 	FGUISoftwareKeyboard(FGUIWidget *parent, float x, float y)
-		: FGUIWidget(parent, new FGUICollisionBox(x, y, 850, 250))
+		: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, 850, 250))
 		, num_cols(12)
 		, num_rows(4)
 		, display(display)

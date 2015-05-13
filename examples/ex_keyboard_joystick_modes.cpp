@@ -89,7 +89,7 @@ public:
 	{
 		if (message=="submit_input")
 		{
-			FGUITextInput *input = static_cast<FGUITextInput *>(children.get_1st_element_with_attr_val("name", "input_val"));
+			FGUITextInput *input = static_cast<FGUITextInput *>(family.get_1st_element_with_attr_val("name", "input_val"));
 			if (input) notification_screen->spawn_notification(input->get_text());
 		}
 	}
