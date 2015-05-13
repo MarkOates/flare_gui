@@ -1,19 +1,17 @@
 FlareGUI
 ========
 
-FlareGUI is an extension for AllegroFlare that adds GUI functionality.
+FlareGUI is a GUI extension for AllegroFlare.
 
 
 ```cpp
-#include <allegro_flare/allegro_flare.h>
 #include <flare_gui/flare_gui.h>
 
 
 class Project : public FGUIScreen
 {
 public:
-	Project(Display *display)
-		: FGUIScreen(display)
+	Project(Display *display) : FGUIScreen(display)
 	{
 		new FGUIText(this, 100, 100, "This is a normal text box.");
 		new FGUIScaledText(this, 100, 150, "This is a scaled text box.  It renders smoothly when in motion.");
@@ -41,29 +39,25 @@ void main()
 Standard Widgets
 ----------------
 
-* FGUICheckbox
 * FGUIButton
+* FGUICheckbox
+* FGUIDial
 * FGUIFramedWindow
 * FGUIImage
 * FGUIMusicNotation
-* FGUINotificationBubble
 * FGUIProgressBar
 * FGUIScaledText
-* FGUIScrollView
+* FGUIScreen
+* FGUIScrollArea
 * FGUIVerticalSlider
 * FGUIText
 * FGUITextArea
 * FGUITextBox
 * FGUITextInput
 * FGUITextList
-* FGUIWindow
-
-
-Base Widgets
-------------
-
+* FGUIToggleButton
 * FGUIWidget
-* FGUIScreen
+* FGUIWindow
 
 
 Build Instructions
@@ -71,6 +65,22 @@ Build Instructions
 
 FlareGUI requires Allegro 5.1.8 or greater and Allegro Flare 0.8.5.
 
-If you're building with `g++`, you might want to use the makefile.  Before using, open `Makefile` and modify `ALLEGRO_DIR`, `ALLEGRO_FLARE_DIR`, and `FGUI_DIR` to point to the respective project's directories.  You will also need to create two folders, `lib/` and `obj/`, in your `allegro_flare` directory.  Then run `make` from the command line.
+#### 1. Clone the repo
 
+`git clone https://github.com/MarkOates/allegro_flare`
 
+#### 2. Make the project
+
+If you're building with `g++`, you might want to use the makefile.  Before using, open `Makefile` and modify `ALLEGRO_DIR`, `ALLEGRO_FLARE_DIR`, and `FGUI_DIR` to point to the respective project's directories.  You will also need to create two folders, `lib/` and `obj/`, in your `flare_gui` directory.  Then run `make` from the command line.
+
+`make`
+
+#### 3. Make the example
+
+`make examples`
+
+#### 4. Clone the flare_gui_bootstrap project on GitHub (optional)
+
+The [`flare_gui_bootstrap`](https://github.com/MarkOates/flare_gui_bootstrap) comes with basic empty project and a Makefile.  Get that here:
+
+`git clone https://github.com/MarkOates/flare_gui_bootstrap`
