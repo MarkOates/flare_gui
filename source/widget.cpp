@@ -423,20 +423,22 @@ void FGUIWidget::draw_inset(float x, float y, float w, float h, ALLEGRO_COLOR co
 
 void FGUIWidget::draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col, float roundness)
 {
+	float border_thickness = 2.0;
+	float texture_inset = border_thickness/2;
 	// the bottom shade
 	al_draw_filled_rounded_rectangle(x, y+h/2, x, y, 2, 2, color::color(color::black, 0.1));
 
 	// the button face
 	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, col);//color::hex("575962"));
 
-	// the button outline
-	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2), 2);
-
 	// draw a hilight along the top
-	al_draw_line(x+3.5, y+1, x+w-3.5, y+1, color::color(color::white, 0.1), 1);
+	al_draw_line(x+1, y+1, x+w-1, y+1, color::color(color::white, 0.1), 1);
+
+	// the button outline
+	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2), border_thickness);
 
 	// draw the shaded bitmap
-	draw_stretched_bitmap(x+3, y+3, x+w-6, y+h-6, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
+	draw_stretched_bitmap(x+texture_inset, y+texture_inset, x+w-texture_inset*2, y+h-texture_inset*2, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
 }
 
 
