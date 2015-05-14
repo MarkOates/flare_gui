@@ -126,9 +126,8 @@ void FGUICheckbox::on_joy_down()
 
 void FGUICheckbox::on_draw()
 {
-	float check_inset = place.size.x*0.2;
-	ALLEGRO_BITMAP *gradient = af::bitmaps["shade_down.png"];
-	
+	float check_inset = place.size.x*0.2;	
+
 
 	// draw the background shape
 	al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::color(color::black, 0.2));
@@ -137,8 +136,8 @@ void FGUICheckbox::on_draw()
 
 
 	// draw the gradient
-	if (gradient)
-		al_draw_tinted_scaled_bitmap(gradient, color::color(color::white, 1.0), 0, 0, al_get_bitmap_width(gradient), al_get_bitmap_height(gradient),
+	if (FGUIWidget::shade_down)
+		al_draw_tinted_scaled_bitmap(FGUIWidget::shade_down, color::color(color::white, 1.0), 0, 0, al_get_bitmap_width(FGUIWidget::shade_down), al_get_bitmap_height(FGUIWidget::shade_down),
 			check_inset, check_inset, place.size.x-check_inset*2, place.size.y-check_inset*2, ALLEGRO_FLIP_VERTICAL);
 
 

@@ -57,6 +57,8 @@ protected:
 	friend class FGUIFamily;
 	friend class FGUIScrollArea;
 	
+	static ALLEGRO_BITMAP *shade_down;
+	
 	FGUIFamily family;
 
 	FGUISurfaceArea *surface_area;

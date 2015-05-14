@@ -70,7 +70,7 @@ void FGUIProgressBar::on_draw()
 		roundness, roundness, bar_color);
 
 	// draw the shaded bitmap
-	draw_stretched_bitmap(3, 3, place.size.x-6, place.size.y-6, af::bitmaps["shade_down.png"], 0, color::color(color::white, 0.2));
+	draw_stretched_bitmap(3, 3, place.size.x-6, place.size.y-6, FGUIWidget::shade_down, 0, color::color(color::white, 0.2));
 }
 
 
