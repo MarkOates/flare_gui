@@ -63,24 +63,37 @@ Standard Widgets
 Build Instructions
 ------------------
 
-FlareGUI requires Allegro 5.1.8 or greater and Allegro Flare 0.8.5.
+FlareGUI requires Allegro 5.1.10 or greater and AllegroFlare 0.8.5.
 
 #### 1. Clone the repo
 
-`git clone https://github.com/MarkOates/allegro_flare`
+```bash
+$ git clone https://github.com/MarkOates/flare_gui
+```
 
 #### 2. Make the project
 
-If you're building with `g++`, you might want to use the makefile.  Before using, open `Makefile` and modify `ALLEGRO_DIR`, `ALLEGRO_FLARE_DIR`, and `FGUI_DIR` to point to the respective project's directories.  You will also need to create two folders, `lib/` and `obj/`, in your `flare_gui` directory.  Then run `make` from the command line.
+If you're building with `g++`, you might want to use the makefile.  Before running `make`, open `Makefile` and modify `ALLEGRO_DIR`, `ALLEGRO_FLARE_DIR`, and `FGUI_DIR` to point to the respective project's directories.  You will also need to create two folders, `lib/` and `obj/`, in your `flare_gui` directory.  After you've done that, then run `make` from the command line.
 
-`make`
+```bash
+$ cd flare_gui
+$ mkdir lib
+$ mkdir obj
+$ make
+```
 
 #### 3. Make the example
 
-`make examples`
+FlareGUI comes with some cool example programs in the `examples/` directory.  They're great for getting a feel of how a typical FlareGUI program might work.  Build the examples by typing `make examples` while still in the project's root folder.
 
-#### 4. Clone the flare_gui_bootstrap project on GitHub (optional)
+```bash
+$ make examples
+```
 
-The [`flare_gui_bootstrap`](https://github.com/MarkOates/flare_gui_bootstrap) comes with basic empty project and a Makefile.  Get that here:
+#### 4. (optional) Use the the [`flare_gui_bootstrap`](https://github.com/MarkOates/flare_gui_bootstrap) project on GitHub
 
-`git clone https://github.com/MarkOates/flare_gui_bootstrap`
+After you have the libraries ready, you might want to try the [`flare_gui_bootstrap`](https://github.com/MarkOates/flare_gui_bootstrap) project, which has basic boilerplate AllegroFlare  and an FlareGUI projects along with a Makefile.  Get that here:
+
+```bash
+$ git clone https://github.com/MarkOates/flare_gui_bootstrap
+```
