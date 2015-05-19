@@ -1,7 +1,4 @@
 /msvc-10.0
-/lib
-/build
-/obj
 
 # ignore vim swap files
 *.swp

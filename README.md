@@ -73,12 +73,10 @@ $ git clone https://github.com/MarkOates/flare_gui
 
 #### 2. Make the project
 
-If you're building with `g++`, you might want to use the makefile.  Before running `make`, open `Makefile` and modify `ALLEGRO_DIR`, `ALLEGRO_FLARE_DIR`, and `FGUI_DIR` to point to the respective project's directories.  You will also need to create two folders, `lib/` and `obj/`, in your `flare_gui` directory.  After you've done that, then run `make` from the command line.
+If you're building with `g++`, you might want to use the makefile.  Before running `make`, open `Makefile` and modify `ALLEGRO_DIR`, `ALLEGRO_FLARE_DIR`, and `FGUI_DIR` to point to the respective project's directories.  After you've done that, then run `make` from the command line.
 
 ```bash
 $ cd flare_gui
-$ mkdir lib
-$ mkdir obj
 $ make
 ```
 
