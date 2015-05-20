@@ -90,7 +90,7 @@ $ make examples
 
 #### 4. (optional) Use the the [`flare_gui_bootstrap`](https://github.com/MarkOates/flare_gui_bootstrap) project on GitHub
 
-After you have the libraries ready, you might want to try the [`flare_gui_bootstrap`](https://github.com/MarkOates/flare_gui_bootstrap) project, which has basic boilerplate AllegroFlare  and an FlareGUI projects along with a Makefile.  Get that here:
+After you have the libraries ready, you might want to try the [`flare_gui_bootstrap`](https://github.com/MarkOates/flare_gui_bootstrap) project, which has basic boilerplate AllegroFlare and FlareGUI projects along with a Makefile.  Get that here:
 
 ```bash
 $ git clone https://github.com/MarkOates/flare_gui_bootstrap
