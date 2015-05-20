@@ -21,7 +21,12 @@ FGUIXYController::FGUIXYController(FGUIWidget *parent, float x, float y, float w
 
 void FGUIXYController::set_point(float x, float y)
 {
+	vec2d prev_marker = marker;
 	marker = vec2d(limit<float>(0.0f, 1.0f, x), limit<float>(0.0f, 1.0f, y));
+
+	// check if there was a change
+	if (basically_equal(marker.x, prev_marker.x) || !basically_equal(marker.y, prev_marker.y))
+		on_change();
 }
 
 
@@ -68,6 +73,14 @@ void FGUIXYController::on_draw()
 
 	al_draw_circle(local_marker.x, local_marker.y, 10, color::color(color::dodgerblue, 0.2), 6);
 }
+
+
+
+void FGUIXYController::on_change()
+{
+	this->send_message_to_parent("on_change");
+}
+
 
 
 

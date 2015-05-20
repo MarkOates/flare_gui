@@ -26,6 +26,7 @@ public:
 	void on_mouse_down() override;
 	void on_mouse_move(float x, float y, float dx, float dy) override;
 	void on_draw() override;
+	void on_change() override;
 };
 
 
