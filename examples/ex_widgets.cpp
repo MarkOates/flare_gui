@@ -21,6 +21,7 @@ public:
 		new FGUIVerticalSlider(this, 170, 340, 20, 80);
 		new FGUITextInput(this, 250, 450, 360, 40, "Input some text here");
 		new FGUIDial(this, 400, 300, 80);
+		new FGUIXYController(this, 600, 400, 200, 200);
 	}
 };
 
