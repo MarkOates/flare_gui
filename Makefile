@@ -155,7 +155,7 @@ clean_linux:
 # example programs
 #
 
-examples: dev_automation_controller.exe dev_clock_widget.exe dev_piano_keyboard.exe dev_software_keyboard.exe ex_calculator.exe ex_flare_gui.exe ex_framed_window.exe ex_function_parser.exe ex_keyboard_joystick_modes.exe ex_music_calculator.exe ex_scroll_area.exe ex_scrollbar.exe ex_skeleton.exe ex_text_list.exe ex_widget_inspector.exe ex_widgets.exe dev_notification_bubble.exe
+examples: dev_automation_controller.exe dev_clock_widget.exe dev_piano_keyboard.exe dev_software_keyboard.exe ex_calculator.exe ex_flare_gui.exe ex_framed_window.exe ex_function_parser.exe ex_keyboard_joystick_modes.exe ex_music_calculator.exe ex_scroll_area.exe ex_scrollbar.exe ex_skeleton.exe ex_text_list.exe ex_widget_inspector.exe ex_widgets.exe dev_notification_bubble.exe dev_xy_controller.exe
 
 EXAMPLESDIR=./examples
 
@@ -229,6 +229,10 @@ ex_widgets.exe: ./examples/ex_widgets.cpp
 	g++ $(basename $@).o -o $(EXAMPLESDIR)/$(basename $@).exe -l$(FGUI_LIB) -l$(ALLEGRO_FLARE_LIB) -l$(ALLEGRO_MONOLITH_LIB) -L$(ALLEGRO_FLARE_DIR)/lib -L$(ALLEGRO_DIR)/lib -L$(FGUI_DIR)/lib
 
 dev_notification_bubble.exe: ./examples/dev_notification_bubble.cpp
+	g++ $(CFLAGS) $(EXAMPLESDIR)/$(basename $@).cpp -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+	g++ $(basename $@).o -o $(EXAMPLESDIR)/$(basename $@).exe -l$(FGUI_LIB) -l$(ALLEGRO_FLARE_LIB) -l$(ALLEGRO_MONOLITH_LIB) -L$(ALLEGRO_FLARE_DIR)/lib -L$(ALLEGRO_DIR)/lib -L$(FGUI_DIR)/lib
+
+dev_xy_controller.exe: ./examples/dev_xy_controller.cpp
 	g++ $(CFLAGS) $(EXAMPLESDIR)/$(basename $@).cpp -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 	g++ $(basename $@).o -o $(EXAMPLESDIR)/$(basename $@).exe -l$(FGUI_LIB) -l$(ALLEGRO_FLARE_LIB) -l$(ALLEGRO_MONOLITH_LIB) -L$(ALLEGRO_FLARE_DIR)/lib -L$(ALLEGRO_DIR)/lib -L$(FGUI_DIR)/lib
 
