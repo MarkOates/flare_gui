@@ -68,9 +68,6 @@ void FGUIFramedWindow::on_draw()
 	// draw the background of the window
 	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
 
-	// draw the window's regular widgets
-	FGUIWidget::on_draw();
-
 	// draw the frame
 	draw_window_frame_around(0, 0, place.size.x, place.size.y);
 
