@@ -29,7 +29,7 @@ protected:
 	void _update_text_and_selection_render(float len_to_cursor, float len_to_cursor_end);
 
 public:
-	explicit FGUITextInput(FGUIWidget *parent, float x, float y, float w, float h, std::string initial_text);
+	explicit FGUITextInput(FGUIWidget *parent, float x, float y, float w, float h, std::string initial_text="");
 	~FGUITextInput();
 
 	void set_text(std::string text);
