@@ -35,7 +35,7 @@ CFLAGS=-c -std=gnu++11
 
 # all builds the static library
 
-all: button.o checkbox.o console.o dial.o draggable_region.o family.o framed_window.o image.o music_notation.o progress_bar.o scaled_text.o scroll_area.o scrollbar.o slider.o surface_area.o text.o text_area.o text_box.o text_input.o text_list.o toggle_button.o widget.o gui_screen.o window.o bitmap.o box.o box_padded.o circle.o column.o row.o
+all: button.o checkbox.o console.o dial.o draggable_region.o family.o framed_window.o image.o music_notation.o progress_bar.o scaled_text.o scroll_area.o scrollbar.o slider.o surface_area.o text.o text_area.o text_box.o text_input.o text_list.o toggle_button.o widget.o gui_screen.o window.o xy_controller.o bitmap.o box.o box_padded.o circle.o column.o row.o
 	make lib	
 
 lib: $(OBJ_DIR)/*.o
@@ -114,6 +114,9 @@ gui_screen.o:
 	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
 window.o:
+	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+
+xy_controller.o:
 	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
 # surface areas

@@ -33,6 +33,7 @@
 #include <flare_gui/widgets/framed_window.h>
 #include <flare_gui/widgets/scroll_area.h>
 #include <flare_gui/widgets/draggable_region.h>
+#include <flare_gui/widgets/xy_controller.h>
 
 
 
