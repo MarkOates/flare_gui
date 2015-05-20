@@ -11,7 +11,7 @@
 
 class FGUIXYController : public FGUIWidget
 {
-private:
+protected:
 	vec2d mouse_pos;
 	vec2d marker;
 	ALLEGRO_COLOR guide_color;
