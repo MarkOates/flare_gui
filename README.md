@@ -49,6 +49,7 @@ Standard Widgets
 * FGUIScaledText
 * FGUIScreen
 * FGUIScrollArea
+* FGUIScrollBar
 * FGUIVerticalSlider
 * FGUIText
 * FGUITextArea
@@ -58,6 +59,7 @@ Standard Widgets
 * FGUIToggleButton
 * FGUIWidget
 * FGUIWindow
+* FGUIXYController
 
 
 Build Instructions
