@@ -184,17 +184,17 @@ void FGUITextInput::on_key_char()
 		}
 		else if (keycode == ALLEGRO_KEY_X)
 		{
-			WinClipboard::set(get_selection());
+			Clipboard::set(get_selection());
 			clear_selection();
 		}
 		else if (keycode == ALLEGRO_KEY_C)
 		{
-			WinClipboard::set(get_selection());
+			Clipboard::set(get_selection());
 		}
 		else if (keycode == ALLEGRO_KEY_V)
 		{
 			clear_selection();
-			insert_text(WinClipboard::get());
+			insert_text(Clipboard::get());
 		}
 
 		return;

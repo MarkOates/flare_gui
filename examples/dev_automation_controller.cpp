@@ -151,3 +151,5 @@ int main(int argc, char **argv)
 	RubberBandDev *rubber_band_dev = new RubberBandDev(display);
 	af::run_loop();
 }
+
+

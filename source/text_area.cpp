@@ -342,17 +342,17 @@ void FGUITextArea::on_key_char()
 		}
 		else if (keycode == ALLEGRO_KEY_X)
 		{
-			WinClipboard::set(get_selection());
+			Clipboard::set(get_selection());
 			erase_selection();
 		}
 		else if (keycode == ALLEGRO_KEY_C)
 		{
-			WinClipboard::set(get_selection());
+			Clipboard::set(get_selection());
 		}
 		else if (keycode == ALLEGRO_KEY_V)
 		{
 			erase_selection();
-			insert_text(WinClipboard::get());
+			insert_text(Clipboard::get());
 		}
 
 		return;
