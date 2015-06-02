@@ -68,7 +68,7 @@ void FGUITextBox::set_text_color(ALLEGRO_COLOR col)
 
 void FGUITextBox::on_draw()
 {
-	if (font) al_draw_multiline_text(font, text_color, 0, 0, place.size.x, ALLEGRO_ALIGN_LEFT, text.c_str());
+	if (font) al_draw_multiline_text(font, text_color, 0, 0, place.size.x, al_get_font_line_height(font), ALLEGRO_ALIGN_LEFT, text.c_str());
 }
 
 
