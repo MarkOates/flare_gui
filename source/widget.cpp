@@ -476,7 +476,7 @@ ALLEGRO_BITMAP *FGUIWidget::create_widget_icon(int size, const ALLEGRO_COLOR &fr
 	gear_place.anchor = vec2d(0, gear_radius);
 
 	al_draw_circle(size/2, size/2, gear_radius-hh*2-inner_gear_thickness/2, front_color, inner_gear_thickness);
-	for (unsigned i=0; i<num_gears; i++)
+	for (auto i=0; i<num_gears; i++)
 	{
 		gear_place.start_transform();
 		al_draw_filled_rectangle(-hw, -hh*2-inner_gear_thickness*0.05, hw, 0, front_color);
