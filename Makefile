@@ -8,7 +8,7 @@
 
 # ENVIRONMENT
 
-ALLEGRO_DIR=E:/allegro-5.1.8-mingw-4.7.0
+ALLEGRO_DIR=E:/allegro-5.1.11-mingw-edgar
 ALLEGRO_FLARE_DIR=E:/allegro_flare
 FGUI_DIR=E:/flare_gui
 
@@ -19,8 +19,18 @@ FGUI_SRC_DIR=source
 OBJ_DIR=obj
 OBJ_EXT=o
 FGUI_LIB_DIR=$(FGUI_DIR)/lib
-FGUI_LIB_NAME=libflare_gui-0.6.5-mingw-4.8.1.a
 
+
+# LINKED LIBRARIES
+# these are the names of the libs you are linking in the example programs
+ALLEGRO_MONOLITH_LIB=allegro_monolith-debug.dll
+ALLEGRO_FLARE_LIB=allegro_flare-0.8.6-mingw-4.8.1
+FGUI_LIB=flare_gui-0.6.6-mingw-4.8.1
+
+
+# GENERATED
+
+FGUI_LIB_NAME=lib$(FGUI_LIB).a
 
 # COMPILER SETTINGS
 
@@ -161,11 +171,6 @@ clean_linux:
 examples: dev_automation_controller.exe dev_clock_widget.exe dev_piano_keyboard.exe dev_software_keyboard.exe ex_calculator.exe ex_flare_gui.exe ex_framed_window.exe ex_function_parser.exe ex_keyboard_joystick_modes.exe ex_music_calculator.exe ex_scroll_area.exe ex_scrollbar.exe ex_skeleton.exe ex_text_list.exe ex_widget_inspector.exe ex_widgets.exe dev_notification_bubble.exe
 
 EXAMPLESDIR=./examples
-
-# these are the names of the libs you are linking
-ALLEGRO_MONOLITH_LIB=allegro-5.1.8-monolith-md
-ALLEGRO_FLARE_LIB=allegro_flare-0.8.5-mingw-4.8.1
-FGUI_LIB=flare_gui-0.6.5-mingw-4.8.1
 
 dev_automation_controller.exe: ./examples/dev_automation_controller.cpp
 	g++ $(CFLAGS) $(EXAMPLESDIR)/$(basename $@).cpp -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
