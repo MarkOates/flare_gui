@@ -5,7 +5,7 @@
 
 
 
-StyleAssets::StyleAssets()
+FGUIStyleAssets::FGUIStyleAssets()
 	: shade_down_circle_gradient(NULL)
 	, shade_down_gradient(NULL)
 {
@@ -14,7 +14,7 @@ StyleAssets::StyleAssets()
 
 
 
-StyleAssets::~StyleAssets()
+FGUIStyleAssets::~FGUIStyleAssets()
 {
 	al_destroy_bitmap(shade_down_circle_gradient);
 	al_destroy_bitmap(shade_down_gradient);
@@ -22,25 +22,35 @@ StyleAssets::~StyleAssets()
 
 
 
-ALLEGRO_BITMAP *StyleAssets::get_shade_down_circle_gradient()
+FGUIStyleAssets *FGUIStyleAssets::get_instance()
 {
-	if (!shade_down_circle_gradient)
-		shade_down_circle_gradient = generate_circle_gradient_bitmap();
-	return shade_down_circle_gradient;
+	if (!instance) instance = new FGUIStyleAssets();
+	return instance;
+}
+
+
+
+ALLEGRO_BITMAP *FGUIStyleAssets::get_shade_down_circle_gradient()
+{
+	FGUIStyleAssets *inst = get_instance();
+	if (!inst->shade_down_circle_gradient)
+		inst->shade_down_circle_gradient = generate_circle_gradient_bitmap();
+	return inst->shade_down_circle_gradient;
 }	
 
 
 
-ALLEGRO_BITMAP *StyleAssets::get_shade_down_gradient()
+ALLEGRO_BITMAP *FGUIStyleAssets::get_shade_down_gradient()
 {
-	if (!shade_down_gradient)
-		shade_down_gradient = generate_gradient_bitmap();
-	return shade_down_gradient;
+	FGUIStyleAssets *inst = get_instance();
+	if (!inst->shade_down_gradient)
+		inst->shade_down_gradient = generate_gradient_bitmap();
+	return inst->shade_down_gradient;
 }	
 
 
 
-StyleAssets *StyleAssets::instance = NULL;
+FGUIStyleAssets *FGUIStyleAssets::instance = NULL;
 
 
 

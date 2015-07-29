@@ -7,19 +7,21 @@
 #include <allegro5/allegro.h>
 
 
-class StyleAssets
+class FGUIStyleAssets
 {
 private:
 	ALLEGRO_BITMAP *shade_down_circle_gradient;
 	ALLEGRO_BITMAP *shade_down_gradient;
-	static StyleAssets *instance;
+	static FGUIStyleAssets *instance;
 
-	StyleAssets();
-	~StyleAssets();
+	FGUIStyleAssets();
+	~FGUIStyleAssets();
+
+	static FGUIStyleAssets *get_instance();
 
 public:
-	ALLEGRO_BITMAP *get_shade_down_circle_gradient();
-	ALLEGRO_BITMAP *get_shade_down_gradient();
+	static ALLEGRO_BITMAP *get_shade_down_circle_gradient();
+	static ALLEGRO_BITMAP *get_shade_down_gradient();
 };
 
 
