@@ -1,6 +1,7 @@
 
 
 #include <flare_gui/widgets/dial.h>
+#include <flare_gui/style_assets.h>
 
 #include <allegro_flare/allegro_flare.h> // for bins
 #include <allegro_flare/useful.h> // for tostring
@@ -119,7 +120,7 @@ void FGUIDial::on_draw()
 
 	// draw the shade down
 	float shade_inset = 3;
-	ALLEGRO_BITMAP *shade = af::bitmaps["shade_down_circle.png"];
+	ALLEGRO_BITMAP *shade = FGUIStyleAssets::get_shade_down_circle_gradient();
 	al_draw_tinted_scaled_bitmap(shade, color::color(color::white, 0.2),
 		0, 0, al_get_bitmap_width(shade), al_get_bitmap_height(shade),
 		shade_inset + radius-inner_radius, shade_inset + radius-inner_radius,
