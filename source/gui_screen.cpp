@@ -16,8 +16,6 @@ FGUIScreen::FGUIScreen(Display *display)
 	, FGUIWidget(NULL, new FGUISurfaceAreaBox(0, 0, display->width(), display->height()))
 	, draw_focused_outline(true)
 	, use_joystick_as_mouse(true)
-	, clear_to_background_color(true)
-	, background_color(color::hex("3a473c"))
 	, focused_outline_color(color::dodgerblue)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIScreen");
@@ -31,10 +29,6 @@ FGUIScreen::FGUIScreen(Display *display)
 
 void FGUIScreen::primary_timer_func()
 {
-	if (clear_to_background_color) al_clear_to_color(background_color);
-
-//	if (true) al_draw_bitmap(bitmaps["veddy_nice.png"], 0, 0, NULL);
-
 	if (use_joystick_as_mouse)
 	{
 		if (af::joystick)

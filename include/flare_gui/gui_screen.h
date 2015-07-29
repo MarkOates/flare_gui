@@ -22,9 +22,7 @@ class FGUIScreen : public Screen, public FGUIWidget
 public:
 	bool draw_focused_outline;
 	ALLEGRO_COLOR focused_outline_color;
-	ALLEGRO_COLOR background_color;
 	bool use_joystick_as_mouse;
-	bool clear_to_background_color;
 	// here are some ideas:
 	// bool esc_key_unfocuses_all_widgets
 	// bool use_joystick_as_mouse_cursor
