@@ -37,6 +37,17 @@ FGUI_LIB_NAME=lib$(FGUI_LIB).a
 CFLAGS=-c -std=gnu++11
 
 
+
+# CORE FILES
+
+WIDGET_ITEMS=style_assets button checkbox console dial draggable_region family framed_window image music_notation progress_bar scaled_text scroll_area scrollbar slider surface_area text text_area text_box text_input text_list toggle_button widget gui_screen window xy_controller 
+SURFACE_AREA_ITEMS=bitmap box box_padded circle column row
+
+WIDGET_OBJ_FILES=$(WIDGET_ITEMS:%=obj/%.o)
+SURFACE_AREA_OBJ_FILES=$(SURFACE_AREA_ITEMS:%=obj/%.o)
+
+
+
 # MAKE
 
 .PHONY: all clean_win clean_linux
@@ -45,112 +56,22 @@ CFLAGS=-c -std=gnu++11
 
 # all builds the static library
 
-all: style_assets.o button.o checkbox.o console.o dial.o draggable_region.o family.o framed_window.o image.o music_notation.o progress_bar.o scaled_text.o scroll_area.o scrollbar.o slider.o surface_area.o text.o text_area.o text_box.o text_input.o text_list.o toggle_button.o widget.o gui_screen.o window.o xy_controller.o bitmap.o box.o box_padded.o circle.o column.o row.o
+all: $(WIDGET_OBJ_FILES) $(SURFACE_AREA_OBJ_FILES)
 	make lib	
 
 lib: $(OBJ_DIR)/*.o
 	ar rvs $(FGUI_LIB_DIR)/$(FGUI_LIB_NAME) $(OBJ_DIR)/*.$(OBJ_EXT)	
 
 
-# below are the build targets for the individual objects, listed in alphabetical order by filename
 
-style_assets.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
-button.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+# below are the build targets for the objects
 
-checkbox.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+$(WIDGET_OBJ_FILES): obj/%.o : source/%.cpp
+	g++ -c -Wall -std=gnu++11 -o obj/$(notdir $@) $< -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
-console.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-dial.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-draggable_region.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-family.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-framed_window.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-image.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-music_notation.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-progress_bar.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-scaled_text.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-scroll_area.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-scrollbar.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-slider.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-surface_area.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-text.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-text_area.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-text_box.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-text_input.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-text_list.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-toggle_button.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-widget.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-gui_screen.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-window.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-xy_controller.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-# surface areas
-
-bitmap.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/surface_areas/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-box.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/surface_areas/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-box_padded.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/surface_areas/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-circle.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/surface_areas/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-column.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/surface_areas/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
-
-row.o:
-	g++ $(CFLAGS) $(FGUI_SRC_DIR)/surface_areas/$(basename $@).cpp -o $(OBJ_DIR)/$(basename $@).$(OBJ_EXT) -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+$(SURFACE_AREA_OBJ_FILES): obj/%.o : source/surface_areas/%.cpp
+	g++ -c -Wall -std=gnu++11 -o obj/$(notdir $@) $< -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
 
 
@@ -176,7 +97,7 @@ EXAMPLE_OBJS=$(EXAMPLES:examples/%.cpp=bin/%.exe)
 
 examples: $(EXAMPLE_OBJS)
 
-bin/%.exe: examples/%.cpp
+bin/%.exe: examples/%.cpp lib/lib$(FGUI_LIB).a
 	g++ -std=gnu++11 $< -o $@ -IE:/allegro_flare/include -IE:/allegro-5.1.11-mingw-edgar/include -IE:/flare_gui/include -LE:/flare_gui/lib -lflare_gui-0.6.6-mingw-4.8.1 -LE:/allegro_flare/lib -lallegro_flare-0.8.6-mingw-4.8.1 -LE:/allegro-5.1.11-mingw-edgar/lib -lallegro_monolith-debug.dll
 
 
