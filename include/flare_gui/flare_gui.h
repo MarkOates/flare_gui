@@ -15,6 +15,7 @@
 
 #include <flare_gui/widget.h>
 #include <flare_gui/gui_screen.h>
+#include <flare_gui/style_assets.h>
 
 #include <flare_gui/widgets/button.h>
 #include <flare_gui/widgets/text.h>

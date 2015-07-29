@@ -159,6 +159,8 @@ public:
 	// for now, this simple solution is intended to be the first steps to detaching style
 	// from widget drawing.
 
+	// TODO: move these things to StyleAssets
+
 	static void draw_inset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"), float roundness=2);
 	static void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"), float roundness=2);
 
