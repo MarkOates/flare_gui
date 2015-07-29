@@ -14,6 +14,7 @@
 
 #include <flare_gui/widget.h>
 #include <flare_gui/surface_areas/box.h>
+#include <flare_gui/style_assets.h>
 
 #include <allegro_flare/allegro_flare.h> // for af::time_now
 
@@ -25,7 +26,7 @@ FGUIButton::FGUIButton(FGUIWidget *parent, float x, float y, float w, float h, s
 	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, w, h))
 	, text(text)
 	, content_alignment(0.5)
-	, font(af::fonts["DroidSans.ttf 20"])
+	, font(FGUIStyleAssets::get_ui_font())
 	, icon(NULL)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIButton");
@@ -84,8 +85,8 @@ void FGUIButton::on_draw()
 	}
 	if (font && !text.empty())
 	{
-		al_draw_text(font, color::black, start_x, placement.size.y/2-al_get_font_line_height(font)/2+3, ALLEGRO_ALIGN_LEFT, text.c_str());
-		al_draw_text(font, color::white, start_x, placement.size.y/2-al_get_font_line_height(font)/2, ALLEGRO_ALIGN_LEFT, text.c_str());
+		al_draw_text(font, color::color(color::black, 0.4), start_x, placement.size.y/2-al_get_font_line_height(font)/2+1, ALLEGRO_ALIGN_LEFT, text.c_str());
+		al_draw_text(font, color::white, start_x, placement.size.y/2-al_get_font_line_height(font)/2-1, ALLEGRO_ALIGN_LEFT, text.c_str());
 	}
 }
 
