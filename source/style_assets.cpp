@@ -84,7 +84,7 @@ ALLEGRO_FONT *FGUIStyleAssets::get_ui_font()
 	FGUIStyleAssets *inst = get_instance();
 	if (!inst->ui_font)
 	{
-		inst->ui_font = al_load_font("data/fonts/DroidSans.ttf", 16, 0);
+		inst->ui_font = al_load_font("data/fonts/DroidSans.ttf", 15, 0);
 		if (!inst->ui_font)
 		{
 			std::cout << "get_ui_font(): Could not load font file. using fallback font." << std::endl;
