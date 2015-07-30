@@ -11,6 +11,10 @@ FGUIStyleAssets::FGUIStyleAssets()
 	: shade_down_circle_gradient(NULL)
 	, shade_down_gradient(NULL)
 	, widget_icon(NULL)
+	, title_font(NULL)
+	, ui_font(NULL)
+	, mini_font(NULL)
+	, micro_font(NULL)
 {
 	instance = this;
 }
