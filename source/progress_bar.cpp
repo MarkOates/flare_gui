@@ -1,18 +1,19 @@
 
 
 
-#include <flare_gui/flare_gui.h>
-#include <allegro5/allegro_primitives.h>
-
 #include <flare_gui/widgets/progress_bar.h>
+
+
+#include <allegro5/allegro_primitives.h>
 
 #include <allegro_flare/color.h>
 #include <allegro_flare/useful.h>
 #include <allegro_flare/allegro_flare.h>
 
+#include <flare_gui/flare_gui.h>
 #include <flare_gui/surface_areas/box.h>
-
 #include <flare_gui/gui_screen.h>
+#include <flare_gui/style_assets.h>
 
 
 
@@ -70,7 +71,8 @@ void FGUIProgressBar::on_draw()
 		roundness, roundness, bar_color);
 
 	// draw the shaded bitmap
-	draw_stretched_bitmap(3, 3, place.size.x-6, place.size.y-6, FGUIWidget::shade_down, 0, color::color(color::white, 0.2));
+	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
+	draw_stretched_bitmap(3, 3, place.size.x-6, place.size.y-6, shade_down, 0, color::color(color::white, 0.2));
 }
 
 

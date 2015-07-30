@@ -1,12 +1,13 @@
 
 
 #include <flare_gui/widget.h>
-#include <allegro_flare/allegro_flare.h>
-#include <flare_gui/gui_screen.h>
-#include <allegro_flare/motion.h>
-#include <allegro_flare/generate_textures.h>
-#include <flare_gui/family.h>
 
+
+#include <allegro_flare/allegro_flare.h>
+
+#include <flare_gui/gui_screen.h>
+#include <flare_gui/family.h>
+#include <flare_gui/style_assets.h>
 
 
 
@@ -32,8 +33,6 @@ FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUISurfaceArea *surface_area)
 
 	if (!FGUIWidget::widget_icon)
 		FGUIWidget::widget_icon = FGUIWidget::create_widget_icon(32);
-	if (!FGUIWidget::shade_down)
-		FGUIWidget::shade_down = generate_gradient_bitmap(64, color::transparent, color::color(color::black, 0.5));
 }
 
 
@@ -365,10 +364,6 @@ ALLEGRO_BITMAP *FGUIWidget::widget_icon = NULL;
 
 
 
-ALLEGRO_BITMAP *FGUIWidget::shade_down = NULL;
-
-
-
 int FGUIWidget::get_num_created_widgets()
 {
 	return widget_count;
@@ -431,8 +426,6 @@ void FGUIWidget::draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR c
 {
 	float border_thickness = 2.0;
 	float texture_inset = border_thickness/2;
-	// the bottom shade
-	al_draw_filled_rounded_rectangle(x, y+h/2, x, y, 2, 2, color::color(color::black, 0.1));
 
 	// the button face
 	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, col);//color::hex("575962"));
@@ -444,7 +437,8 @@ void FGUIWidget::draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR c
 	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2), border_thickness);
 
 	// draw the shaded bitmap
-	draw_stretched_bitmap(x+texture_inset, y+texture_inset, x+w-texture_inset*2, y+h-texture_inset*2, FGUIWidget::shade_down, 0, color::color(color::white, 0.2));
+	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
+	draw_stretched_bitmap(x+texture_inset, y+texture_inset, x+w-texture_inset*2, y+h-texture_inset*2, shade_down, 0, color::color(color::white, 0.2));
 }
 
 

@@ -1,17 +1,20 @@
 
 
 
-#include <allegro_flare/allegro_flare.h>
 
 #include <flare_gui/widgets/checkbox.h>
 
+
 #include <allegro5/allegro_primitives.h>
-#include <allegro_flare/color.h>
-#include <flare_gui/surface_areas/box.h>
 
-#include <flare_gui/gui_screen.h>
-
+#include <allegro_flare/allegro_flare.h>
 #include <allegro_flare/fonts/font_font_awesome.h>
+#include <allegro_flare/color.h>
+
+#include <flare_gui/surface_areas/box.h>
+#include <flare_gui/gui_screen.h>
+#include <flare_gui/style_assets.h>
+
 
 
 
@@ -136,8 +139,8 @@ void FGUICheckbox::on_draw()
 
 
 	// draw the gradient
-	if (FGUIWidget::shade_down)
-		al_draw_tinted_scaled_bitmap(FGUIWidget::shade_down, color::color(color::white, 1.0), 0, 0, al_get_bitmap_width(FGUIWidget::shade_down), al_get_bitmap_height(FGUIWidget::shade_down),
+	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
+	al_draw_tinted_scaled_bitmap(shade_down, color::color(color::white, 1.0), 0, 0, al_get_bitmap_width(shade_down), al_get_bitmap_height(shade_down),
 			check_inset, check_inset, place.size.x-check_inset*2, place.size.y-check_inset*2, ALLEGRO_FLIP_VERTICAL);
 
 
