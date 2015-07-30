@@ -68,10 +68,10 @@ lib: $(OBJ_DIR)/*.o
 # below are the build targets for the objects
 
 $(WIDGET_OBJ_FILES): obj/%.o : source/%.cpp
-	g++ -c -Wall -std=gnu++11 -o obj/$(notdir $@) $< -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+	g++ -c -std=gnu++11 -o obj/$(notdir $@) $< -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
 $(SURFACE_AREA_OBJ_FILES): obj/%.o : source/surface_areas/%.cpp
-	g++ -c -Wall -std=gnu++11 -o obj/$(notdir $@) $< -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
+	g++ -c -std=gnu++11 -o obj/$(notdir $@) $< -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
 
 
