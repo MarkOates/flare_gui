@@ -3,10 +3,13 @@
 
 
 #include <flare_gui/widgets/text_input.h>
-#include <flare_gui/surface_areas/box.h>
+
+
 #include <allegro_flare/allegro_flare.h> // for af::current_event and af::fonts
 
 #include <flare_gui/widget.h>
+#include <flare_gui/surface_areas/box.h>
+#include <flare_gui/style_assets.h>
 
 
 
@@ -398,7 +401,7 @@ void FGUITextInput::on_draw()
 
 
 
-	draw_inset(0, 0, placement.size.x, placement.size.y);
+	FGUIStyleAssets::draw_inset(0, 0, placement.size.x, placement.size.y);
 	// draw the border-box
 	if (focused) al_draw_rounded_rectangle(0, 0, placement.size.x, placement.size.y, 3, 3, color::dodgerblue, 2.0);	
 

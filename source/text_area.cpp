@@ -12,6 +12,7 @@
 
 #include <flare_gui/widgets/text_area.h>
 #include <flare_gui/surface_areas/box.h>
+#include <flare_gui/style_assets.h>
 
 
 
@@ -159,7 +160,7 @@ void FGUITextArea::on_draw()
 	//al_draw_rectangle(0, 0, place.size.x, place.size.y, color::color(color::white, 0.3), 1.0);
 
 
-	this->draw_inset(-6, -6, place.size.x+6, place.size.y+6);  // change to FGUIWidget::draw_inset(...)
+	FGUIStyleAssets::draw_inset(-6, -6, place.size.x+6, place.size.y+6);
 	if (focused) al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::dodgerblue, 2.0);	
 
 

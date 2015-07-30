@@ -7,6 +7,7 @@
 #include <flare_gui/widgets/text_list.h>
 #include <flare_gui/surface_areas/box.h>
 #include <flare_gui/gui_screen.h>
+#include <flare_gui/style_assets.h>
 
 
 
@@ -197,7 +198,7 @@ void FGUITextList::draw_item(vec2d position, int index)
 
 void FGUITextList::on_draw()
 {
-	this->draw_inset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
 	float padding_x = 16*2, padding_y = item_padding;
 
 	vec2d cursor = vec2d(padding_x, padding_y);

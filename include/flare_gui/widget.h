@@ -49,7 +49,6 @@ class FGUIWidget
 private:
 	static int num_active_widgets; // holds the number of widgets that have been created but not destroyed
 	static int widget_count; // a counter that is incremented each time a new widget is created
-	static ALLEGRO_BITMAP *widget_icon;
 
 protected:
 
@@ -144,25 +143,9 @@ public:
 	virtual void on_timer();
 	virtual void on_draw();
 
-
 	// static functions
 	static int get_num_created_widgets();
 	static int get_num_active_widgets();
-
-public:
-	// Down here are some static functions for drawing basic graphic elements for the GUI.
-	// Insets (textarea, textinput, group frames), outsets (buttons, window bodys, etc)
-	// and any other graphic elements that might be needed.  This design technique might
-	// eventually be replaced with a more robust and configurable styling method.  But
-	// for now, this simple solution is intended to be the first steps to detaching style
-	// from widget drawing.
-
-	// TODO: move these things to StyleAssets
-
-	static void draw_inset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"), float roundness=2);
-	static void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"), float roundness=2);
-
-	static ALLEGRO_BITMAP *create_widget_icon(int size=64, const ALLEGRO_COLOR &front_color=color::white, const ALLEGRO_COLOR &back_color=color::transparent);
 };
 
 

@@ -1,14 +1,16 @@
 
 
-#include <allegro_flare/allegro_flare.h>
 
 #include <flare_gui/widgets/scrollbar.h>
 
 #include <allegro5/allegro_primitives.h>
 
-#include <flare_gui/surface_areas/box.h>
-
+#include <allegro_flare/allegro_flare.h>
 #include <allegro_flare/useful.h> // for limit
+
+#include <flare_gui/surface_areas/box.h>
+#include <flare_gui/style_assets.h>
+
 
 
 
@@ -25,7 +27,7 @@ void FGUIScrollBar::UpButton::on_click()
 }
 void FGUIScrollBar::UpButton::on_draw()
 {
-	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_outset(0, 0, place.size.x, place.size.y);
 }
 
 
@@ -42,7 +44,7 @@ void FGUIScrollBar::DownButton::on_click()
 }
 void FGUIScrollBar::DownButton::on_draw()
 {
-	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_outset(0, 0, place.size.x, place.size.y);
 }
 
 
@@ -88,7 +90,7 @@ void FGUIScrollBar::Handle::on_drag(float x, float y, float dx, float dy)
 }
 void FGUIScrollBar::Handle::on_draw()
 {
-	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_outset(0, 0, place.size.x, place.size.y);
 }
 float FGUIScrollBar::Handle::get_position()
 {

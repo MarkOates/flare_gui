@@ -1,10 +1,13 @@
 
 
+
 #include <flare_gui/widgets/toggle_button.h>
+
 
 #include <allegro_flare/allegro_flare.h> // for af::fonts
 
 #include <flare_gui/surface_areas/box.h>
+#include <flare_gui/style_assets.h>
 
 
 
@@ -41,8 +44,8 @@ void FGUIToggleButton::toggle()
 
 void FGUIToggleButton::on_draw()
 {
-	if (pressed) FGUIWidget::draw_inset(0, 0, place.size.x, place.size.y);
-	else FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+	if (pressed) FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
+	else FGUIStyleAssets::draw_outset(0, 0, place.size.x, place.size.y);
 	
 	ALLEGRO_FONT *font = af::fonts["DroidSans.ttf 18"];
 	al_draw_text(font, color::white, place.size.x/2, place.size.y/2-al_get_font_line_height(font)/2, ALLEGRO_ALIGN_CENTRE, text.c_str());

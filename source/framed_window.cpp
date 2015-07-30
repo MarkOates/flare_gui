@@ -6,6 +6,8 @@
 
 #include <flare_gui/widgets/framed_window.h>
 #include <flare_gui/surface_areas/box_padded.h>
+#include <flare_gui/style_assets.h>
+
 
 
 
@@ -66,7 +68,7 @@ void FGUIFramedWindow::on_draw()
 	// ultimately when implemented as FGUIWindowFrame, on_draw() should not need to be overridden at all
 {
 	// draw the background of the window
-	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_outset(0, 0, place.size.x, place.size.y);
 
 	// draw the frame
 	draw_window_frame_around(0, 0, place.size.x, place.size.y);

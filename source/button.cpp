@@ -56,7 +56,7 @@ void FGUIButton::on_draw()
 {
 	placement2d &placement = surface_area->placement;
 
-	FGUIWidget::draw_outset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_outset(0, 0, place.size.x, place.size.y);
 
 	// draw a gloss along the top
 	// al_draw_filled_rounded_rectangle(4, 4, place.size.x-4, 4+place.size.y/3, 4, 4, color::color(color::white, 0.05));

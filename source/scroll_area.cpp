@@ -100,7 +100,7 @@ void FGUIScrollArea::draw_func()
 	// draw the inset, canvas_render, and children, but do not draw the canvas child widget;
 	place.start_transform();
 
-	FGUIWidget::draw_inset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
 	if (canvas) al_draw_bitmap(canvas_render, 0, 0, ALLEGRO_FLAGS_EMPTY);
 
 	// draw the overhead shade

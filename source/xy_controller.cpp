@@ -4,6 +4,8 @@
 #include <flare_gui/widgets/xy_controller.h>
 
 
+#include <flare_gui/style_assets.h>
+
 
 
 
@@ -62,7 +64,7 @@ void FGUIXYController::on_mouse_move(float x, float y, float dx, float dy)
 
 void FGUIXYController::on_draw()
 {
-	FGUIWidget::draw_inset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
 
 	// draw the guides
 	vec2d local_marker = vec2d(marker.x * place.size.x, marker.y * place.size.y);
