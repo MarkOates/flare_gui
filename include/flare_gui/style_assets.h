@@ -19,6 +19,7 @@ private:
 	ALLEGRO_BITMAP *widget_icon;
 
 	ALLEGRO_FONT *title_font;
+	ALLEGRO_FONT *text_font;
 	ALLEGRO_FONT *ui_font;
 	ALLEGRO_FONT *mini_font;
 	ALLEGRO_FONT *micro_font;
@@ -37,6 +38,7 @@ public:
 	static ALLEGRO_BITMAP *get_shade_down_gradient();
 
 	static ALLEGRO_FONT *get_title_font();
+	static ALLEGRO_FONT *get_text_font();
 	static ALLEGRO_FONT *get_ui_font();
 	static ALLEGRO_FONT *get_mini_font();
 	static ALLEGRO_FONT *get_micro_font();

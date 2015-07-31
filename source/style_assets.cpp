@@ -12,6 +12,7 @@ FGUIStyleAssets::FGUIStyleAssets()
 	, shade_down_gradient(NULL)
 	, widget_icon(NULL)
 	, title_font(NULL)
+	, text_font(NULL)
 	, ui_font(NULL)
 	, mini_font(NULL)
 	, micro_font(NULL)
@@ -92,6 +93,23 @@ ALLEGRO_FONT *FGUIStyleAssets::get_title_font()
 		} 
 	}
 	return inst->title_font;
+}
+
+
+
+ALLEGRO_FONT *FGUIStyleAssets::get_text_font()
+{
+	FGUIStyleAssets *inst = get_instance();
+	if (!inst->text_font)
+	{
+		inst->text_font = al_load_font("data/fonts/DroidSans.ttf", 18, 0);
+		if (!inst->text_font)
+		{
+			std::cout << "get_text_font(): Could not load font file. using fallback font." << std::endl;
+			inst->text_font = al_create_builtin_font();
+		}
+	}
+	return inst->text_font;
 }
 
 
