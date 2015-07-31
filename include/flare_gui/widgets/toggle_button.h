@@ -21,7 +21,14 @@ public:
 	FGUIToggleButton(FGUIWidget *parent, float x, float y, float w, float h, std::string _text="");
 
 	void set_text(std::string text);
-	void toggle();
+
+	bool toggle();
+	bool set_as_pressed();
+	bool set_as_unpressed();
+	void silently_set_as_pressed();
+	void silently_set_as_unpressed();
+
+	bool is_pressed();
 
 	void on_draw() override;
 	void on_click() override;
