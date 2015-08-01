@@ -172,7 +172,7 @@ ALLEGRO_FONT *FGUIStyleAssets::get_micro_font()
 //
 
 
-void FGUIStyleAssets::draw_inset(float x, float y, float w, float h, ALLEGRO_COLOR col, float roundness)
+void FGUIStyleAssets::draw_dugout(float x, float y, float w, float h, ALLEGRO_COLOR col, float roundness)
 {
 	// draw the background
 	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2));
@@ -186,6 +186,34 @@ void FGUIStyleAssets::draw_inset(float x, float y, float w, float h, ALLEGRO_COL
 
 	// draw the bottom line hilight
 	al_draw_line(x+roundness, y+h+1, x+w-roundness, y+h+1, color::color(color::white, 0.3), 1.0);
+}
+
+
+
+void FGUIStyleAssets::draw_inset(float x, float y, float w, float h, ALLEGRO_COLOR col, float roundness)
+{
+	float border_thickness = 2.0;
+	float texture_inset = border_thickness/2;
+
+	// the button face
+	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::mix(color::black, col, 0.9));
+
+	// the button outline
+	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2), border_thickness);
+
+	// draw the top line shadow
+	al_draw_line(x+roundness, y, x+w-roundness, y, color::color(color::black, 0.3), 1.0);
+
+	// draw the bottom line hilight
+	al_draw_line(x+roundness, y+h+1, x+w-roundness, y+h+1, color::color(color::white, 0.3), 1.0);
+
+	// draw the shaded bitmap
+	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
+	draw_stretched_bitmap(x+texture_inset, y+texture_inset, x+w-texture_inset*2, y+h-texture_inset*2, shade_down, 0, color::color(color::white, 0.2));
+
+	// draw the shade at the top of the button
+	int shade_height = 5;
+	draw_stretched_bitmap(x+texture_inset, y+texture_inset, x+w-texture_inset*2, y+shade_height-texture_inset*2, shade_down, ALLEGRO_FLIP_VERTICAL, color::color(color::white, 0.2));
 }
 
 
@@ -208,6 +236,46 @@ void FGUIStyleAssets::draw_outset(float x, float y, float w, float h, ALLEGRO_CO
 	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
 	draw_stretched_bitmap(x+texture_inset, y+texture_inset, x+w-texture_inset*2, y+h-texture_inset*2, shade_down, 0, color::color(color::white, 0.2));
 }
+
+
+
+
+
+//
+// text
+//
+
+void FGUIStyleAssets::draw_styled_text(std::string style, float x, float y, float align_x, float align_y, std::string text)
+{
+
+	if (style=="ui")
+	{
+		ALLEGRO_FONT *font = FGUIStyleAssets::get_ui_font();
+
+		float w = al_get_text_width(font, text.c_str()); // < not ideal or optimum for speed
+																				//   consider some alternatives.
+		float h = al_get_font_line_height(font);
+
+		// draw the dropshadow
+		al_draw_text(font, color::color(color::black, 0.4), x-w*align_x, y-h*align_y-1+2, 0, text.c_str());
+
+		// and finally draw the text
+		al_draw_text(font, color::hex("EFEFEF"), x-w*align_x, y-h*align_y-1, 0, text.c_str());
+	}
+	else
+		// draw the default style, default text
+	{
+		ALLEGRO_FONT *font = FGUIStyleAssets::get_text_font();
+
+		float w = al_get_text_width(font, text.c_str()); // < not ideal or optimum for speed
+																				//   consider some alternatives.
+		float h = al_get_font_line_height(font);
+
+		al_draw_text(font, color::white, x-w*align_x, y-h*align_y-1, 0, text.c_str());
+	}
+}
+
+
 
 
 

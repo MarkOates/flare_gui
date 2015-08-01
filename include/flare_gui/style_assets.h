@@ -43,8 +43,12 @@ public:
 	static ALLEGRO_FONT *get_mini_font();
 	static ALLEGRO_FONT *get_micro_font();
 
+	static void draw_dugout(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"), float roundness=2);
 	static void draw_inset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"), float roundness=2);
 	static void draw_outset(float x, float y, float w, float h, ALLEGRO_COLOR col=color::hex("575962"), float roundness=2);
+
+	static void draw_styled_text(std::string style, float x, float y, float align_x, float align_y, std::string text);
+
 	static ALLEGRO_BITMAP *get_widget_icon();
 };
 
