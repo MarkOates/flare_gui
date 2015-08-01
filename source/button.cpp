@@ -85,8 +85,11 @@ void FGUIButton::on_draw()
 	}
 	if (font && !text.empty())
 	{
+		FGUIStyleAssets::draw_styled_text("ui", placement.size.x/2, placement.size.y/2, 0.5, 0.5, text);
+/*
 		al_draw_text(font, color::color(color::black, 0.4), start_x, placement.size.y/2-al_get_font_line_height(font)/2+1, ALLEGRO_ALIGN_LEFT, text.c_str());
 		al_draw_text(font, color::white, start_x, placement.size.y/2-al_get_font_line_height(font)/2-1, ALLEGRO_ALIGN_LEFT, text.c_str());
+*/
 	}
 }
 

@@ -89,9 +89,9 @@ void FGUIToggleButton::on_draw()
 {
 	if (pressed) FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
 	else FGUIStyleAssets::draw_outset(0, 0, place.size.x, place.size.y);
-	
-	ALLEGRO_FONT *font = FGUIStyleAssets::get_ui_font();
-	al_draw_text(font, color::white, place.size.x/2, place.size.y/2-al_get_font_line_height(font)/2, ALLEGRO_ALIGN_CENTRE, text.c_str());
+
+	FGUIStyleAssets::draw_styled_text("ui", place.size.x/2, place.size.y/2 + (pressed ? 1 : 0),
+		0.5, 0.5, text.c_str());
 }
 
 
