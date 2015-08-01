@@ -16,6 +16,7 @@ public:
 		new FGUIScaledText(this, 100, 150, "This is a scaled text box.  It renders smoothly when in motion.");
 		new FGUICheckbox(this, 100, 200, 20);
 		new FGUIButton(this, 150, 250, 100, 40, "Click Me!");
+		new FGUIToggleButton(this, 270, 250, 100, 40, "Toggle Me!");
 		new FGUIVerticalSlider(this, 110, 340, 20, 80);
 		new FGUIVerticalSlider(this, 140, 340, 20, 80);
 		new FGUIVerticalSlider(this, 170, 340, 20, 80);
