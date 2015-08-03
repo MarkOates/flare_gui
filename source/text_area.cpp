@@ -160,14 +160,16 @@ void FGUITextArea::on_draw()
 	//al_draw_rectangle(0, 0, place.size.x, place.size.y, color::color(color::white, 0.3), 1.0);
 
 
-	FGUIStyleAssets::draw_inset(-6, -6, place.size.x+12, place.size.y+12, color::color(color::black, 0.1));
+	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y, color::color(color::black, 0.1));
 	if (focused) al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::dodgerblue, 2.0);	
 
 
 	if ((cursor_blink_counter -= 0.025) < 0) cursor_blink_counter = 1;
 
-	float draw_cursor_x = 0;
-	float draw_cursor_y = 0;
+	float PADDING = 6;
+	float draw_cursor_x = PADDING;
+	float draw_cursor_y = PADDING;
+	float text_bbox_width = place.size.x - PADDING * 2;
 	std::string word;
 	std::size_t pos = 0;
 	std::size_t found_pos = 0;
@@ -186,7 +188,7 @@ void FGUITextArea::on_draw()
 		if (full_text[i] == '\n')
 		{
 			// move the drawing cursor down on newlines
-			draw_cursor_x = 0;
+			draw_cursor_x = PADDING;
 			draw_cursor_y += al_get_font_line_height(font);
 			_number_of_lines++;
 		}
@@ -197,10 +199,10 @@ void FGUITextArea::on_draw()
 			std::string text_packet_to_draw = tostring(full_text[i]).c_str();
 			float text_width = al_get_text_width(font, text_packet_to_draw.c_str()); // < this is the process that should be cached
 
-			if (draw_cursor_x + text_width > place.size.x)
+			if (draw_cursor_x + text_width > text_bbox_width)
 			{
 				// wrap if the text width is beyond the edge
-				draw_cursor_x = 0;
+				draw_cursor_x = PADDING;
 				draw_cursor_y += al_get_font_line_height(font);
 				_number_of_lines++;
 			}
@@ -267,20 +269,20 @@ void FGUITextArea::on_draw()
 		ALLEGRO_COLOR selection_color = color::color(color::aliceblue, 0.2);
 		if (selection_line_start == selection_line_end)
 		{
-			al_draw_filled_rectangle(selection_x_start, selection_line_start*line_height, selection_x_end, (selection_line_end+1)*line_height, selection_color);
+			al_draw_filled_rectangle(selection_x_start, selection_line_start*line_height+PADDING, selection_x_end, (selection_line_end+1)*line_height+PADDING, selection_color);
 		}
 		else
 		{
 			// draw the first selection line
-			al_draw_filled_rectangle(selection_x_start, selection_line_start*line_height, place.size.x, (selection_line_start+1)*line_height, selection_color);
+			al_draw_filled_rectangle(selection_x_start, selection_line_start*line_height+PADDING, text_bbox_width, (selection_line_start+1)*line_height+PADDING, selection_color);
 
 			// draw the last selection line
-			al_draw_filled_rectangle(0, selection_line_end*line_height, selection_x_end, (selection_line_end+1)*line_height, selection_color);
+			al_draw_filled_rectangle(PADDING, selection_line_end*line_height+PADDING, selection_x_end, (selection_line_end+1)*line_height+PADDING, selection_color);
 
 			// if the selection box is larger than 2 lines
 			if (abs(selection_line_start - selection_line_end) > 1)
 			{
-				al_draw_filled_rectangle(0, (selection_line_start+1)*line_height, place.size.x, (selection_line_end)*line_height, selection_color);
+				al_draw_filled_rectangle(PADDING, (selection_line_start+1)*line_height+PADDING, text_bbox_width, (selection_line_end)*line_height+PADDING, selection_color);
 			}
 		}
 	}
