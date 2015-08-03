@@ -140,7 +140,7 @@ void FGUICheckbox::on_draw()
 
 	// draw the gradient
 	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
-	al_draw_tinted_scaled_bitmap(shade_down, color::color(color::white, 1.0), 0, 0, al_get_bitmap_width(shade_down), al_get_bitmap_height(shade_down),
+	al_draw_tinted_scaled_bitmap(shade_down, color::color(color::white, 0.3), 0, 0, al_get_bitmap_width(shade_down), al_get_bitmap_height(shade_down),
 			check_inset, check_inset, place.size.x-check_inset*2, place.size.y-check_inset*2, ALLEGRO_FLIP_VERTICAL);
 
 

@@ -209,11 +209,11 @@ void FGUIStyleAssets::draw_inset(float x, float y, float w, float h, ALLEGRO_COL
 
 	// draw the shaded bitmap
 	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
-	draw_stretched_bitmap(x+texture_inset, y+texture_inset, x+w-texture_inset*2, y+h-texture_inset*2, shade_down, 0, color::color(color::white, 0.2));
+	draw_stretched_bitmap(x+texture_inset, y+texture_inset, w-texture_inset*2, std::min(20.0f, h-texture_inset*2), shade_down, ALLEGRO_FLIP_VERTICAL, color::color(color::white, 0.05));
 
 	// draw the shade at the top of the button
-	int shade_height = 5;
-	draw_stretched_bitmap(x+texture_inset, y+texture_inset, x+w-texture_inset*2, y+shade_height-texture_inset*2, shade_down, ALLEGRO_FLIP_VERTICAL, color::color(color::white, 0.2));
+	int shade_height = 8;
+	draw_stretched_bitmap(x+texture_inset, y+texture_inset, w-texture_inset*2, shade_height, shade_down, ALLEGRO_FLIP_VERTICAL, color::color(color::white, 0.1));
 }
 
 
@@ -234,7 +234,7 @@ void FGUIStyleAssets::draw_outset(float x, float y, float w, float h, ALLEGRO_CO
 
 	// draw the shaded bitmap
 	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
-	draw_stretched_bitmap(x+texture_inset, y+texture_inset, x+w-texture_inset*2, y+h-texture_inset*2, shade_down, 0, color::color(color::white, 0.2));
+	draw_stretched_bitmap(x+texture_inset, y+texture_inset, w-texture_inset*2, h-texture_inset*2, shade_down, 0, color::color(color::white, 0.2));
 }
 
 

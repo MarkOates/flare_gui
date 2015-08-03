@@ -103,10 +103,6 @@ void FGUIScrollArea::draw_func()
 	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y, color::color(color::black, 0.1));
 	if (canvas) al_draw_bitmap(canvas_render, 0, 0, ALLEGRO_FLAGS_EMPTY);
 
-	// draw the overhead shade
-	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
-	draw_stretched_bitmap(1, 1, place.size.x-1, std::min(place.size.y, 16.0f), shade_down, ::ALLEGRO_FLIP_VERTICAL, color::color(color::white, 0.2));
-		
 	family.draw_all_except(canvas); // except the canvas?
 
 	place.restore_transform();
