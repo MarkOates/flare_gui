@@ -68,7 +68,7 @@ public:
 	void on_draw() override
 	{
 		float pdg = 7; // padding
-		FGUIStyleAssets::draw_inset(-pdg, -pdg, place.size.x+pdg*2, place.size.y+pdg*2);
+		FGUIStyleAssets::draw_inset(-pdg, -pdg, place.size.x+pdg*2, place.size.y+pdg*2, color::color(color::black, 0.1));
 
 		ALLEGRO_VERTEX v[4];
 		v[0] = build_vertex(0, 0, 0, tl, 0, 0);
@@ -163,7 +163,7 @@ public:
 	void on_draw() override
 	{
 		float pdg = 7; // padding
-		FGUIStyleAssets::draw_inset(-pdg, -pdg, place.size.x+pdg*2, place.size.y+pdg*2);
+		FGUIStyleAssets::draw_inset(-pdg, -pdg, place.size.x+pdg*2, place.size.y+pdg*2, color::color(color::black, 0.1));
 	
 		ALLEGRO_VERTEX v[16]; // gives a limit of 8 stops
 		for (unsigned i=0; i<color_stops.size(); i++)

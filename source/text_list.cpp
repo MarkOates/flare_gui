@@ -198,7 +198,7 @@ void FGUITextList::draw_item(vec2d position, int index)
 
 void FGUITextList::on_draw()
 {
-	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y, color::color(color::black, 0.1));
 	float padding_x = 16*2, padding_y = item_padding;
 
 	vec2d cursor = vec2d(padding_x, padding_y);

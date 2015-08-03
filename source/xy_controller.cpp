@@ -64,7 +64,7 @@ void FGUIXYController::on_mouse_move(float x, float y, float dx, float dy)
 
 void FGUIXYController::on_draw()
 {
-	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
+	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y, color::color(color::black, 0.1));
 
 	// draw the guides
 	vec2d local_marker = vec2d(marker.x * place.size.x, marker.y * place.size.y);

@@ -160,7 +160,7 @@ void FGUITextArea::on_draw()
 	//al_draw_rectangle(0, 0, place.size.x, place.size.y, color::color(color::white, 0.3), 1.0);
 
 
-	FGUIStyleAssets::draw_inset(-6, -6, place.size.x+6, place.size.y+6);
+	FGUIStyleAssets::draw_inset(-6, -6, place.size.x+12, place.size.y+12, color::color(color::black, 0.1));
 	if (focused) al_draw_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::dodgerblue, 2.0);	
 
 

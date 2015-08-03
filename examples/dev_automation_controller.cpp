@@ -76,7 +76,7 @@ public:
 	}
 	void on_draw() override
 	{
-		FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
+		FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y, color::color(color::black, 0.1));
 
 		// draw the guides
 		if (mouse_over)

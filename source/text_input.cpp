@@ -401,7 +401,7 @@ void FGUITextInput::on_draw()
 
 
 
-	FGUIStyleAssets::draw_inset(0, 0, placement.size.x, placement.size.y);
+	FGUIStyleAssets::draw_inset(0, 0, placement.size.x, placement.size.y, color::color(color::black, 0.1));
 	// draw the border-box
 	if (focused) al_draw_rounded_rectangle(0, 0, placement.size.x, placement.size.y, 3, 3, color::dodgerblue, 2.0);	
 
