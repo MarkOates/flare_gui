@@ -328,7 +328,8 @@ void FGUITextInput::on_key_char()
 			}
 		}
 	}
-	else if (keycode == ALLEGRO_KEY_ENTER)
+	else if (keycode == ALLEGRO_KEY_ENTER
+			|| keycode == ALLEGRO_KEY_PAD_ENTER)
 	{
 		on_submit();
 		//_insert_text(tostring('\n').c_str());
@@ -440,13 +441,9 @@ void FGUITextInput::on_focus()
 
 void FGUITextInput::on_submit()
 {
-	// If the widget has a "on_submit_send_message" key in its (DataAttr data), then send it to the parent.
-	// This is a default action and is for convience and usability.  Having this allows a person to
-	// create a FGUITextInput and provide (basic) functionality without having to create a whole new
-	// derived class.
-	if (attr.has("on_submit_send_text"))
-	{
-		send_message_to_parent(get_text());
-		if (attr.has("clear_on_submit")) set_text("");
-	}
+	if (family.parent) family.parent->on_message(this, "on_submit");
+	on_change();
 }
+
+
+
