@@ -49,6 +49,9 @@ public:
 
 	static void draw_styled_text(std::string style, float x, float y, float align_x, float align_y, std::string text);
 
+	static ALLEGRO_COLOR get_surface_color();
+	static ALLEGRO_COLOR get_hilight_color();
+
 	static ALLEGRO_BITMAP *get_widget_icon();
 };
 

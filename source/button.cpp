@@ -34,6 +34,7 @@ FGUIButton::FGUIButton(FGUIWidget *parent, float x, float y, float w, float h, s
 
 
 
+
 void FGUIButton::set_icon(ALLEGRO_BITMAP *icon)
 {
 	if (!icon) return;
@@ -59,6 +60,9 @@ void FGUIButton::on_draw()
 
 	// draw a gloss along the top
 	// al_draw_filled_rounded_rectangle(4, 4, place.size.x-4, 4+place.size.y/3, 4, 4, color::color(color::white, 0.05));
+
+	al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 5, 5,
+		color::mix(color::transparent, FGUIStyleAssets::get_hilight_color(), mouse_over * 0.1));
 
 	// draw the icon and/or the text
 	// in this case, the icon is always drawn to the left of the text

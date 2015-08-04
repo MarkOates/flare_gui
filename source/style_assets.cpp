@@ -196,7 +196,7 @@ void FGUIStyleAssets::draw_inset(float x, float y, float w, float h, ALLEGRO_COL
 	float texture_inset = border_thickness/2;
 
 	// the button face
-	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::mix(color::black, col, 0.9));
+	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::mix(color::black, col, 0.95));
 
 	// the button outline
 	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2), border_thickness);
@@ -222,9 +222,14 @@ void FGUIStyleAssets::draw_outset(float x, float y, float w, float h, ALLEGRO_CO
 {
 	float border_thickness = 2.0;
 	float texture_inset = border_thickness/2;
+	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
+
+	// draw the shade cast by the button
+	int shade_height = 8;
+	draw_stretched_bitmap(x+texture_inset, y+h, w-texture_inset*2, shade_height, shade_down, ALLEGRO_FLIP_VERTICAL, color::color(color::white, 0.2));
 
 	// the button face
-	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, col);//color::hex("575962"));
+	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::mix(color::white, col, 0.93));//color::hex("575962"));
 
 	// draw a hilight along the top
 	al_draw_line(x+1, y+1, x+w-1, y+1, color::color(color::white, 0.1), 1);
@@ -233,7 +238,6 @@ void FGUIStyleAssets::draw_outset(float x, float y, float w, float h, ALLEGRO_CO
 	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2), border_thickness);
 
 	// draw the shaded bitmap
-	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
 	draw_stretched_bitmap(x+texture_inset, y+texture_inset, w-texture_inset*2, h-texture_inset*2, shade_down, 0, color::color(color::white, 0.2));
 }
 
@@ -273,6 +277,24 @@ void FGUIStyleAssets::draw_styled_text(std::string style, float x, float y, floa
 
 		al_draw_text(font, color::white, x-w*align_x, y-h*align_y-1, 0, text.c_str());
 	}
+}
+
+
+
+
+
+//
+// colors
+//
+
+ALLEGRO_COLOR FGUIStyleAssets::get_surface_color()
+{
+	return color::hex("575962");
+}
+
+ALLEGRO_COLOR FGUIStyleAssets::get_hilight_color()
+{
+	return color::dodgerblue;
 }
 
 

@@ -37,7 +37,7 @@ FGUIFramedWindow::FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w
 
 void FGUIFramedWindow::draw_window_frame_around(float x1, float y1, float x2, float y2)
 {
-	ALLEGRO_COLOR frame_base_color = color::hex("8e283e");
+	ALLEGRO_COLOR frame_base_color = FGUIStyleAssets::get_hilight_color();
 	ALLEGRO_COLOR frame_color = color::color(frame_base_color, 0.8);
 
 	// titlebar
