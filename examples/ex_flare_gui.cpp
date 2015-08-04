@@ -140,7 +140,6 @@ public:
 
 		text_input = new FGUITextInput(this, place.size.x/2, 80, place.size.x-30, 50, "");
 		text_input->set_as_focused();
-		text_input->attr.set("on_submit_send_text", "true");
 		text_input->attr.set("default_text_when_empty", "type a command");
 
 		text = new FGUIText(this, 27, text_input->place.position.y + text_input->place.size.y + 4, "last:");
@@ -250,6 +249,12 @@ public:
 	}
 	void on_message(FGUIWidget *sender, std::string message) override
 	{
+		if (sender == text_input && message == "on_submit")
+		{
+			message = text_input->get_text();
+			text_input->set_text("");
+		}
+
 		bool message_caught = false;
 		if (message_caught = (parses_as_variable_definition(message)))
 		{
