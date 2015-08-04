@@ -50,8 +50,8 @@ void FGUIListSpinner::increment()
 {
 	if (items.empty()) return;
 
-	it++;
-	if (it >= items.end()) it = items.begin();
+	it--;
+	if (it < items.begin()) it = items.end()-1;
 	text_input->set_text(*it);
 	on_change();
 }
@@ -63,8 +63,8 @@ void FGUIListSpinner::decrement()
 {
 	if (items.empty()) return;
 
-	it--;
-	if (it < items.begin()) it = items.end()-1;
+	it++;
+	if (it >= items.end()) it = items.begin();
 	text_input->set_text(*it);
 	on_change();
 }	
