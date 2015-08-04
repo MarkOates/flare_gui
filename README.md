@@ -44,12 +44,15 @@ Standard Widgets
 * FGUIDial
 * FGUIFramedWindow
 * FGUIImage
+* FGUIIntSpinner
+* FGUIListSpinner
 * FGUIMusicNotation
 * FGUIProgressBar
 * FGUIScaledText
 * FGUIScreen
 * FGUIScrollArea
 * FGUIScrollBar
+* FGUISpinner
 * FGUIVerticalSlider
 * FGUIText
 * FGUITextArea
@@ -57,9 +60,9 @@ Standard Widgets
 * FGUITextInput
 * FGUITextList
 * FGUIToggleButton
+* FGUIXYController
 * FGUIWidget
 * FGUIWindow
-* FGUIXYController
 
 
 Build Instructions
@@ -90,10 +93,10 @@ FlareGUI comes with some cool example programs in the `examples/` directory.  Th
 $ make examples
 ```
 
-#### 4. (optional) Use the the [`flare_gui_bootstrap`](https://github.com/MarkOates/flare_gui_bootstrap) project on GitHub
+#### 4. (optional) Use the the [`flare_bootstrap`](https://github.com/MarkOates/flare_bootstrap) project on GitHub
 
-After you have the libraries ready, you might want to try the [`flare_gui_bootstrap`](https://github.com/MarkOates/flare_gui_bootstrap) project, which has basic boilerplate AllegroFlare and FlareGUI projects along with a Makefile.  Get that here:
+After you have the libraries ready, you might want to try the [`flare_bootstrap`](https://github.com/MarkOates/flare_bootstrap) project, which has basic boilerplate project code for AllegroFlare, FlareGUI, and vanilla Allegro projects along with a Makefile.  Also included is a boilerplate project that combines AllegroFlare and FlareGUI into a 3D Pipeline.  Get that here:
 
 ```bash
-$ git clone https://github.com/MarkOates/flare_gui_bootstrap
+$ git clone https://github.com/MarkOates/flare_bootstrap
 ```
