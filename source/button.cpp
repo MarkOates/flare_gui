@@ -9,7 +9,6 @@
 #include <allegro5/allegro_font.h>
 #include <allegro5/allegro_primitives.h>
 
-#include <allegro_flare/motion.h>
 #include <allegro_flare/color.h>
 
 #include <flare_gui/widget.h>
@@ -54,9 +53,9 @@ void FGUIButton::set_content_alignment(float _content_alignment)
 
 void FGUIButton::on_draw()
 {
-	placement2d &placement = surface_area->placement;
-
-	FGUIStyleAssets::draw_outset(0, 0, place.size.x, place.size.y);
+	bool is_depressed = mouse_over && mouse_down_on_over;
+	if (is_depressed) FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
+	else FGUIStyleAssets::draw_outset(0, 0, place.size.x, place.size.y);
 
 	// draw a gloss along the top
 	// al_draw_filled_rounded_rectangle(4, 4, place.size.x-4, 4+place.size.y/3, 4, 4, color::color(color::white, 0.05));
@@ -71,12 +70,12 @@ void FGUIButton::on_draw()
 	if (icon) inner_content_width += al_get_bitmap_width(icon); // the width of the icon
 	if (font && !text.empty() && icon) inner_content_width += 10; // the padding between the icon and the text
 	if (font && !text.empty()) inner_content_width += al_get_text_width(font, text.c_str());
-	start_x = placement.size.x * content_alignment - inner_content_width * content_alignment;
+	start_x = place.size.x * content_alignment - inner_content_width * content_alignment;
 
 	// draw the stuff
 	if (icon)
 	{
-		al_draw_bitmap(icon, start_x, placement.size.y/2 - al_get_bitmap_height(icon)/2, ALLEGRO_FLAGS_EMPTY);
+		al_draw_bitmap(icon, start_x, place.size.y/2 - al_get_bitmap_height(icon)/2, ALLEGRO_FLAGS_EMPTY);
 		start_x += al_get_bitmap_width(icon);
 	}
 	if (font && !text.empty() && icon)
@@ -85,7 +84,7 @@ void FGUIButton::on_draw()
 	}
 	if (font && !text.empty())
 	{
-		FGUIStyleAssets::draw_styled_text("ui", placement.size.x/2, placement.size.y/2, 0.5, 0.5, text);
+		FGUIStyleAssets::draw_styled_text("ui", place.size.x/2, place.size.y/2 + is_depressed*1, 0.5, 0.5, text);
 /*
 		al_draw_text(font, color::color(color::black, 0.4), start_x, placement.size.y/2-al_get_font_line_height(font)/2+1, ALLEGRO_ALIGN_LEFT, text.c_str());
 		al_draw_text(font, color::white, start_x, placement.size.y/2-al_get_font_line_height(font)/2-1, ALLEGRO_ALIGN_LEFT, text.c_str());
@@ -110,40 +109,15 @@ void FGUIButton::on_click()
 	// represents a new use-friendly concept where widgets automatically send messages to their
 	// parents for their most common purpose event.  In this case, a button. You click it.
 	if (family.parent) family.parent->on_message(this, "on_click");
-
-	placement2d &placement = surface_area->placement;
-
-	af::motion.clear_animations_on(&placement.scale.x);
-	af::motion.clear_animations_on(&placement.scale.y);
-	af::motion.animate(&placement.scale.x, placement.scale.x, placement.scale.x*0.9, af::time_now, af::time_now+0.05, interpolator::doubleFastIn, NULL, NULL);
-	af::motion.animate(&placement.scale.y, placement.scale.y, placement.scale.y*0.9, af::time_now, af::time_now+0.05, interpolator::doubleFastIn, NULL, NULL);
-	af::motion.animate(&placement.scale.x, placement.scale.x*0.9, placement.scale.x, af::time_now+0.05, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
-	af::motion.animate(&placement.scale.y, placement.scale.y*0.9, placement.scale.y, af::time_now+0.05, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
 }
 
 
 
-void FGUIButton::on_mouse_enter()
-{
-	placement2d &placement = surface_area->placement;
-
-	af::motion.clear_animations_on(&placement.scale.x);
-	af::motion.clear_animations_on(&placement.scale.y);
-	af::motion.animate(&placement.scale.x, placement.scale.x, 1.1, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
-	af::motion.animate(&placement.scale.y, placement.scale.y, 1.1, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
-
-	al_play_sample(af::samples["ui_hover.wav"], 0.2, 0.5, 1.0, ALLEGRO_PLAYMODE_ONCE, NULL);
-}
+void FGUIButton::on_mouse_enter() {}
 
 
 
-void FGUIButton::on_mouse_leave()
-{
-	af::motion.clear_animations_on(&place.scale.x);
-	af::motion.clear_animations_on(&place.scale.y);
-	af::motion.animate(&place.scale.x, place.scale.x, 1.0, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
-	af::motion.animate(&place.scale.y, place.scale.y, 1.0, af::time_now, af::time_now+0.1, interpolator::doubleFastIn, NULL, NULL);
-}
+void FGUIButton::on_mouse_leave() {}
 
 
 
