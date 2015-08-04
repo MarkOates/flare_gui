@@ -202,10 +202,16 @@ void FGUIStyleAssets::draw_inset(float x, float y, float w, float h, ALLEGRO_COL
 	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2), border_thickness);
 
 	// draw the top line shadow
-	al_draw_line(x+roundness, y, x+w-roundness, y, color::color(color::black, 0.3), 1.0);
+	al_draw_line(x+roundness, y+0.5, x+w-roundness, y+0.5, color::color(color::black, 0.3), 1.0);
 
 	// draw the bottom line hilight
-	al_draw_line(x+roundness, y+h+1, x+w-roundness, y+h+1, color::color(color::white, 0.3), 1.0);
+	ALLEGRO_COLOR hilight_color = color::mix(color::white, color::transparent, 0.6);
+	al_draw_line(x+roundness, y+h+1.5, x+w-roundness, y+h+1.5, hilight_color, 1.0);
+		// left arc
+		float arc_unit_amount = 0.8;
+		float arc_roundness = roundness + 0.5;
+		al_draw_arc(x+arc_roundness/2 + 0.75, y+h+1-arc_roundness/2-0.75, arc_roundness, FULL_ROTATION*0.25, FULL_ROTATION*0.25*arc_unit_amount, hilight_color, 1.0);
+		al_draw_arc(x+w-arc_roundness/2 - 0.75, y+h+1-arc_roundness/2-0.75, arc_roundness, FULL_ROTATION*0.25, -FULL_ROTATION*0.25*arc_unit_amount, hilight_color, 1.0);
 
 	// draw the shaded bitmap
 	ALLEGRO_BITMAP *shade_down = FGUIStyleAssets::get_shade_down_gradient();
@@ -232,7 +238,7 @@ void FGUIStyleAssets::draw_outset(float x, float y, float w, float h, ALLEGRO_CO
 	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::mix(color::white, col, 0.93));//color::hex("575962"));
 
 	// draw a hilight along the top
-	al_draw_line(x+1, y+1, x+w-1, y+1, color::color(color::white, 0.1), 1);
+	al_draw_line(x+1, y+1.5, x+w-1, y+1.5, color::color(color::white, 0.1), 1.0);
 
 	// the button outline
 	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2), border_thickness);
