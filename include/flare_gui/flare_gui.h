@@ -21,6 +21,9 @@
 #include <flare_gui/widgets/text.h>
 #include <flare_gui/widgets/text_input.h>
 #include <flare_gui/widgets/text_box.h>
+#include <flare_gui/widgets/spinner.h>
+#include <flare_gui/widgets/int_spinner.h>
+#include <flare_gui/widgets/list_spinner.h>
 #include <flare_gui/widgets/scaled_text.h>
 #include <flare_gui/widgets/text_area.h>
 #include <flare_gui/widgets/checkbox.h>
