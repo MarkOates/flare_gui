@@ -22,6 +22,7 @@ FGUIWidget::FGUIWidget(FGUIWidget *parent, FGUISurfaceArea *surface_area)
 	, no_focus(false)
 	, delete_me(false)
 	, mouse_is_blocked(false)
+	, disabled(false)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUIWidget");
 	attr.set("id", "Widget" + tostring(widget_count));
@@ -79,10 +80,17 @@ bool FGUIWidget::is_focused()
 
 
 
-
 bool FGUIWidget::is_mouse_over()
 {
 	return mouse_over;
+}
+
+
+
+
+bool FGUIWidget::is_disabled()
+{
+	return disabled;
 }
 
 
@@ -111,6 +119,8 @@ void FGUIWidget::bring_to_front()
 
 void FGUIWidget::send_message_to_parent(std::string message)
 {
+	if (disabled) return;
+
 	if (family.parent) family.parent->on_message(this, message);
 }
 
@@ -119,6 +129,8 @@ void FGUIWidget::send_message_to_parent(std::string message)
 
 void FGUIWidget::primary_timer_func()
 {
+	if (disabled) return;
+
 	on_timer();
 
 	for (unsigned i=0; i<family.children.size(); i++)
@@ -156,6 +168,8 @@ void FGUIWidget::draw_func()
 // widget developer functions:
 void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 {
+	if (disabled) return;
+
 	// start by transforming the coordinates for the children
 
 	float tmx = x;
@@ -202,6 +216,8 @@ void FGUIWidget::mouse_axes_func(float x, float y, float dx, float dy)
 
 void FGUIWidget::mouse_down_func()
 {
+	if (disabled) return;
+
 	// call this function on the children first
 	for (unsigned i=0; i<family.children.size(); i++)
 		family.children[i]->mouse_down_func();
@@ -228,6 +244,8 @@ void FGUIWidget::mouse_down_func()
 
 void FGUIWidget::mouse_up_func()
 {
+	if (disabled) return;
+
 	// call this function on the children first
 	for (unsigned i=0; i<family.children.size(); i++)
 		family.children[i]->mouse_up_func();
@@ -252,6 +270,8 @@ void FGUIWidget::mouse_up_func()
 
 void FGUIWidget::key_down_func()
 {
+	if (disabled) return;
+
 	// call this function on the children first
 	for (unsigned i=0; i<family.children.size(); i++)
 		family.children[i]->key_down_func();
@@ -263,6 +283,8 @@ void FGUIWidget::key_down_func()
 
 void FGUIWidget::key_up_func()
 {
+	if (disabled) return;
+
 	for (unsigned i=0; i<family.children.size(); i++)
 		family.children[i]->key_up_func();
 
@@ -272,6 +294,8 @@ void FGUIWidget::key_up_func()
 
 void FGUIWidget::key_char_func()
 {
+	if (disabled) return;
+
 	for (unsigned i=0; i<family.children.size(); i++)
 		family.children[i]->key_char_func();
 	
@@ -281,6 +305,8 @@ void FGUIWidget::key_char_func()
 
 void FGUIWidget::joy_up_func()
 {
+	if (disabled) return;
+
 	for (unsigned i=0; i<family.children.size(); i++)
 		family.children[i]->joy_up_func();
 
@@ -290,6 +316,8 @@ void FGUIWidget::joy_up_func()
 
 void FGUIWidget::joy_axis_func()
 {
+	if (disabled) return;
+
 	for (unsigned i=0; i<family.children.size(); i++)
 		family.children[i]->joy_axis_func();
 
@@ -299,6 +327,8 @@ void FGUIWidget::joy_axis_func()
 
 void FGUIWidget::joy_down_func()
 {
+	if (disabled) return;
+
 	for (unsigned i=0; i<family.children.size(); i++)
 		family.children[i]->joy_down_func();
 
@@ -375,6 +405,7 @@ void FGUIWidget::set_as_focused()
 	// iterates through all siblings and sets all parent's children to unfocused.
 	// if the widget is not already focused, then set to focused and on_focus() is called
 {
+	if (disabled) return;
 	// todo: this might require that the superparent is iterated
 	if (family.parent) family.parent->family.set_focus_to_child(this);
 }
@@ -384,6 +415,8 @@ void FGUIWidget::set_as_focused()
 void FGUIWidget::set_as_unfocused()
 	// if the widget is currently focused, chages the state to !focused and calls on_blur().
 {
+	if (disabled) return;
+
 	if (is_focused())
 	{
 		focused=false;
@@ -393,5 +426,21 @@ void FGUIWidget::set_as_unfocused()
 
 
 
+void FGUIWidget::set_as_disabled()
+{
+	if (disabled) return; // no change
+
+	if (focused) set_as_unfocused();
+	disabled = true;
+}
+
+
+
+void FGUIWidget::set_as_enabled()
+{
+	if (!disabled) return; // no change
+
+	disabled = false;
+}
 
 

@@ -67,6 +67,7 @@ protected:
 	bool dragging;
 	bool no_focus; // possibly implemented in a flag system instead
 	bool mouse_is_blocked;
+	bool disabled;
 	// maybe will need to add:
 	// bool skip_on_tab_focus (or no_focus);
 	// bool no_jumpout_on_tab;
@@ -104,9 +105,11 @@ public:
 	// retrieval
 	bool is_mouse_over();
 	bool is_focused();
+	bool is_disabled();
 	void set_as_focused();
 	void set_as_unfocused();
-
+	void set_as_enabled();
+	void set_as_disabled();
 
 	///
 	// widget behavior functions
