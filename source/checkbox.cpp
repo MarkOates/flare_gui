@@ -23,7 +23,7 @@ FGUICheckbox::FGUICheckbox(FGUIWidget *parent, float x, float y, float size)
 	: FGUIWidget(parent, new FGUISurfaceAreaBox(x, y, size, size))
 	, checked(false)
 	, check_placement(0, 0, size, size, -0.4, 0.0, 0.0, 0.45, 0.75)
-	, check_color(color::color(color::mix(color::deepskyblue, color::cyan, 0.9)))
+	, check_color(color::mix(FGUIStyleAssets::get_hilight_color(), color::white, 0.6))
 	, check_opacity(0)
 {
 	attr.set(FGUI_ATTR__FGUI_WIDGET_TYPE, "FGUICheckbox");
@@ -133,9 +133,7 @@ void FGUICheckbox::on_draw()
 
 
 	// draw the background shape
-	al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3, color::color(color::black, 0.2));
-	al_draw_rounded_rectangle(1, 1, place.size.x-1, place.size.y-1, 3, 3, color::color(color::black, 0.2), 2.0);
-	al_draw_line(2, place.size.y, place.size.x-2, place.size.y, color::color(color::white, 0.2), 1.0);
+	FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y, color::color(color::black, 0.1));
 
 
 	// draw the gradient
