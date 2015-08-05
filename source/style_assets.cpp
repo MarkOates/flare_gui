@@ -11,6 +11,7 @@ FGUIStyleAssets::FGUIStyleAssets()
 	: shade_down_circle_gradient(NULL)
 	, shade_down_gradient(NULL)
 	, widget_icon(NULL)
+	, pixel_pattern_3(NULL)
 	, title_font(NULL)
 	, text_font(NULL)
 	, ui_font(NULL)
@@ -70,6 +71,16 @@ ALLEGRO_BITMAP *FGUIStyleAssets::get_widget_icon()
 	if (!inst->widget_icon)
 		inst->widget_icon = generate_widget_icon(64, color::white, color::transparent);
 	return inst->widget_icon;
+}
+
+
+
+ALLEGRO_BITMAP *FGUIStyleAssets::get_pixel_pattern_3()
+{
+	FGUIStyleAssets *inst = get_instance();
+	if (!inst->pixel_pattern_3)
+		inst->pixel_pattern_3 = create_pixel_pattern_3(color::black, color::transparent);
+	return inst->pixel_pattern_3;
 }
 
 
@@ -172,24 +183,6 @@ ALLEGRO_FONT *FGUIStyleAssets::get_micro_font()
 //
 
 
-void FGUIStyleAssets::draw_dugout(float x, float y, float w, float h, ALLEGRO_COLOR col, float roundness)
-{
-	// draw the background
-	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.2));
-
-	// draw a nice shade at the top (maybe this shoud be a 9-patch?... maybe not :)
-	//draw_stretched_bitmap(1, 1, w-1, min(h, 16), (gimmie_super_screen()->bitmaps)["shade_down.png"], ::ALLEGRO_FLIP_VERTICAL, color::color(color::white, 0.2));
-
-
-	// draw the top line shadow
-	al_draw_line(x+roundness, y, x+w-roundness, y, color::color(color::black, 0.3), 1.0);
-
-	// draw the bottom line hilight
-	al_draw_line(x+roundness, y+h+1, x+w-roundness, y+h+1, color::color(color::white, 0.3), 1.0);
-}
-
-
-
 void FGUIStyleAssets::draw_inset(float x, float y, float w, float h, ALLEGRO_COLOR col, float roundness)
 {
 	float border_thickness = 2.0;
@@ -249,6 +242,14 @@ void FGUIStyleAssets::draw_outset(float x, float y, float w, float h, ALLEGRO_CO
 
 
 
+void FGUIStyleAssets::draw_flatset(float x, float y, float w, float h, ALLEGRO_COLOR col, float roundness)
+{
+	float border_thickness = 2.0;
+	al_draw_filled_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, col);
+	al_draw_rounded_rectangle(x, y, x+w, y+h, roundness, roundness, color::color(color::black, 0.1), border_thickness);
+}
+
+
 
 
 //
@@ -258,7 +259,7 @@ void FGUIStyleAssets::draw_outset(float x, float y, float w, float h, ALLEGRO_CO
 void FGUIStyleAssets::draw_styled_text(std::string style, float x, float y, float align_x, float align_y, std::string text)
 {
 
-	if (style=="ui")
+	if (style=="ui" || style=="ui_disabled")
 	{
 		ALLEGRO_FONT *font = FGUIStyleAssets::get_ui_font();
 
@@ -267,10 +268,12 @@ void FGUIStyleAssets::draw_styled_text(std::string style, float x, float y, floa
 		float h = al_get_font_line_height(font);
 
 		// draw the dropshadow
-		al_draw_text(font, color::color(color::black, 0.4), x-w*align_x, y-h*align_y-1+2, 0, text.c_str());
+		if (style!="ui_disabled")
+			al_draw_text(font, color::color(color::black, 0.4), x-w*align_x, y-h*align_y-1+2, 0, text.c_str());
 
 		// and finally draw the text
-		al_draw_text(font, color::hex("EFEFEF"), x-w*align_x, y-h*align_y-1, 0, text.c_str());
+		al_draw_text(font, color::mix(color::hex("EFEFEF"), color::transparent, (style=="ui_disabled") ? 0.6 : 0.0),
+				x-w*align_x, y-h*align_y-1, 0, text.c_str());
 	}
 	else
 		// draw the default style, default text
