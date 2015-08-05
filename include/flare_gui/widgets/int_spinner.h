@@ -18,6 +18,8 @@ public:
 	void set_val(std::string strval) override;
 	void increment() override;
 	void decrement() override;
+
+	int get_val();
 };
 
 

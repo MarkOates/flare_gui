@@ -34,6 +34,14 @@ void FGUIIntSpinner::set_val(std::string strval)
 
 
 
+int FGUIIntSpinner::get_val()
+{
+	return val;
+}
+
+
+
+
 void FGUIIntSpinner::increment()
 {
 	val++;
