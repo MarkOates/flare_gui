@@ -45,6 +45,7 @@ Standard Widgets
 * FGUIFramedWindow
 * FGUIImage
 * FGUIIntSpinner
+* FGUILabeledCheckbox
 * FGUIListSpinner
 * FGUIMusicNotation
 * FGUIProgressBar

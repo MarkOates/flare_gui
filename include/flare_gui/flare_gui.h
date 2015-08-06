@@ -24,6 +24,7 @@
 #include <flare_gui/widgets/framed_window.h>
 #include <flare_gui/widgets/image.h>
 #include <flare_gui/widgets/int_spinner.h>
+#include <flare_gui/widgets/labeled_checkbox.h>
 #include <flare_gui/widgets/list_spinner.h>
 #include <flare_gui/widgets/music_notation.h>
 #include <flare_gui/widgets/progress_bar.h>

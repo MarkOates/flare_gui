@@ -40,7 +40,7 @@ CFLAGS=-c -std=gnu++11
 
 # CORE FILES
 
-WIDGET_ITEMS=style_assets button checkbox console dial draggable_region family framed_window image int_spinner list_spinner music_notation progress_bar scaled_text scroll_area scrollbar slider spinner surface_area text text_area text_box text_input text_list toggle_button widget gui_screen window xy_controller 
+WIDGET_ITEMS=style_assets button checkbox console dial draggable_region family framed_window image int_spinner labeled_checkbox list_spinner music_notation progress_bar scaled_text scroll_area scrollbar slider spinner surface_area text text_area text_box text_input text_list toggle_button widget gui_screen window xy_controller 
 SURFACE_AREA_ITEMS=bitmap box box_padded circle column row
 
 WIDGET_OBJ_FILES=$(WIDGET_ITEMS:%=obj/%.o)
