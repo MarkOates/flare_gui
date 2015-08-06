@@ -97,37 +97,19 @@ public:
 	{
 		FGUIButton *button = new FGUIButton(this, 0, 0, 0, 0, label);
 		grid.fit_in_cell(cell_x, cell_y, button);
-		button->attr.set("on_click_send_message", label);
 		return button;
 	}
 	FGUIButton *m_make_button(std::string label, float cell1_x, float cell1_y, float cell2_x, float cell2_y)
 	{
 		FGUIButton *button = new FGUIButton(this, 0, 0, 0, 0, label);
 		grid.fit_in_cells(cell1_x, cell1_y, cell2_x, cell2_y, button);
-		button->attr.set("on_click_send_message", label);
 		return button;
 	}
 	void on_message(FGUIWidget *sender, std::string message) override
 	{
-		if (message == "=")
+		if (message == "on_click")
 		{
-			// interpret!
-			result_display->set_text("[todo: calculate]");
-		}
-		else if (message == "CE")
-		{
-			result_display->set_text("");
-		}
-		else if (message == "<-")
-		{
-			std::string txt = result_display->get_text();
-			result_display->set_text(txt.substr(0, txt.length()-1)); // is this out of bounds?
-		}
-		else if (message == "on_click")
-		{}
-		else
-		{
-			result_display->set_text(result_display->get_text() + message);
+			result_display->set_text("TODO: calculate");
 		}
 	}
 	void build_grid()

@@ -122,6 +122,8 @@ public:
 
 	SimpleNotificationScreen *simple_notification_screen;
 
+	FGUIButton *presets[9];
+
 	SkeletonExampleProgram(Display *disp)
 		: FGUIScreen(disp)
 		, bone_test(NULL)
@@ -139,25 +141,39 @@ public:
 
 		//ALLEGRO_FONT *button_font = fonts["consola.ttf 19"];
 		float button_y = 140;
-		(new FGUIButton(this, 100, button_y+60*1, 160, 50, "Frame1"))->attr.set("on_click_send_message", "data/skeleton_ex/frame1.bfs");
-		(new FGUIButton(this, 100, button_y+60*2, 160, 50, "Frame2"))->attr.set("on_click_send_message", "data/skeleton_ex/frame2.bfs");
-		(new FGUIButton(this, 100, button_y+60*3, 160, 50, "Frame3"))->attr.set("on_click_send_message", "data/skeleton_ex/frame3.bfs");
-		(new FGUIButton(this, 100, button_y+60*4, 160, 50, "Frame4"))->attr.set("on_click_send_message", "data/skeleton_ex/frame4.bfs");
-		(new FGUIButton(this, 100, button_y+60*5, 160, 50, "Frame5"))->attr.set("on_click_send_message", "data/skeleton_ex/frame5.bfs");
-		(new FGUIButton(this, 100, button_y+60*6, 160, 50, "Frame6"))->attr.set("on_click_send_message", "data/skeleton_ex/frame6.bfs");
-		(new FGUIButton(this, 100, button_y+60*7, 160, 50, "Frame7"))->attr.set("on_click_send_message", "data/skeleton_ex/frame7.bfs");
-		(new FGUIButton(this, 100, button_y+60*8, 160, 50, "Frame8"))->attr.set("on_click_send_message", "data/skeleton_ex/frame8.bfs");
-		(new FGUIButton(this, 100, button_y+60*9, 160, 50, "Frame9"))->attr.set("on_click_send_message", "data/skeleton_ex/frame9.bfs");
+		presets[0] = new FGUIButton(this, 100, button_y+60*1, 160, 50, "Frame1");
+			presets[0]->attr.set("filename", "frame1.bfs");
+		presets[1] = new FGUIButton(this, 100, button_y+60*2, 160, 50, "Frame2");
+			presets[1]->attr.set("filename", "frame2.bfs");
+		presets[2] = new FGUIButton(this, 100, button_y+60*3, 160, 50, "Frame3");
+			presets[2]->attr.set("filename", "frame3.bfs");
+		presets[3] = new FGUIButton(this, 100, button_y+60*4, 160, 50, "Frame4");
+			presets[3]->attr.set("filename", "frame4.bfs");
+		presets[4] = new FGUIButton(this, 100, button_y+60*5, 160, 50, "Frame5");
+			presets[4]->attr.set("filename", "frame5.bfs");
+		presets[5] = new FGUIButton(this, 100, button_y+60*6, 160, 50, "Frame6");
+			presets[5]->attr.set("filename", "frame6.bfs");
+		presets[6] = new FGUIButton(this, 100, button_y+60*7, 160, 50, "Frame7");
+			presets[6]->attr.set("filename", "frame7.bfs");
+		presets[7] = new FGUIButton(this, 100, button_y+60*8, 160, 50, "Frame8");
+			presets[7]->attr.set("filename", "frame8.bfs");
+		presets[8] = new FGUIButton(this, 100, button_y+60*9, 160, 50, "Frame9");
+			presets[8]->attr.set("filename", "frame9.bfs");
 	}
 
 	void on_message(FGUIWidget *sender, std::string message) override
 	{
 		if (message.empty()) return;
 		//simple_notification_screen->spawn_notification("message recieved\n\"" + message + "\"");
-		SkeletonState state;
-		state.load(message);
-		move_skeleton_to_state(bone_test, &state, 0.5);
-		simple_notification_screen->spawn_notification("file loaded\n\"" + message + "\"");
+
+		if (sender)
+		{
+			std::string filename = sender->attr.get("filename");
+			SkeletonState state;
+			state.load(filename);
+			move_skeleton_to_state(bone_test, &state, 0.5);
+			simple_notification_screen->spawn_notification("file loaded\n\"" + filename + "\"");
+		}
 	}
 
 	void on_timer() override

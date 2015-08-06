@@ -28,9 +28,7 @@ public:
 		: FGUIWidget(parent, new FGUISurfaceAreaCircle(x-(radius)+10, y+(radius)-10, radius))
 		, icon(icon)
 		, icon_color(color::gray)
-	{
-		attr.set("on_click_send_message", message_to_parent);
-	}
+	{}
 	void on_draw() override
 	{
 		ALLEGRO_FONT *font = af::fonts["FontAwesome.otf -" + tostring(place.size.x/3)];
@@ -73,17 +71,15 @@ public:
 		new FGUIDraggableRegion(this, place.size.x/2, place.size.y/2, place.size.x, place.size.y);
 
 		play_button = new FGUIButton(this, 100-45, 120+4, 80, 50, "play");
-		play_button->attr.set("on_click_send_message", "play");
 
 		stop_button = new FGUIButton(this, 190-45, 120+4, 80, 50, "stop");
-		stop_button->attr.set("on_click_send_message", "stop");
 
 		progress_bar = new FGUIProgressBar(this, 100, 70+4, 180, 18);
 	}
 	void on_message(FGUIWidget *sender, std::string message) override
 	{
-		if (message == "play") sound.play();
-		else if (message == "stop") sound.stop();
+		if (sender == play_button) sound.play();
+		else if (sender == stop_button) sound.stop();
 	}
 	void primary_timer_func() override
 	{
@@ -158,39 +154,23 @@ public:
 
 		float radius = 30;
 		new FGUICircleButton(this, window_right - 14, 0, radius, font_awesome::remove, "close_window");
-		//new FGUICircleButton(this, window_right - 14 -(radius*2-6), 0, radius, 0xf0c9, "toggle_menu");
 
 
 		
-		(new FGUIButton(this, 100, 200+60*0, 80, 50, "0.0"))
-			->attr.set("on_click_send_message", "set_progress_bar 0.0");
+		new FGUIButton(this, 100, 200+60*0, 80, 50, "0.0");
+		new FGUIButton(this, 100, 200+60*1, 80, 50, "0.2");
+		new FGUIButton(this, 100, 200+60*2, 80, 50, "0.5");
+		new FGUIButton(this, 100, 200+60*3, 80, 50, "1.0");
 
-		(new FGUIButton(this, 100, 200+60*1, 80, 50, "0.2"))
-			->attr.set("on_click_send_message", "set_progress_bar 0.2");
+		new FGUIButton(this, 100, 200+60*4+20, 110, 50, "set music");
 
-		(new FGUIButton(this, 100, 200+60*2, 80, 50, "0.5"))
-			->attr.set("on_click_send_message", "set_progress_bar 0.5");
-
-		(new FGUIButton(this, 100, 200+60*3, 80, 50, "1.0"))
-			->attr.set("on_click_send_message", "set_progress_bar 1.0");
-
-		(new FGUIButton(this, 100, 200+60*4+20, 110, 50, "set music"))
-			->attr.set("on_click_send_message", "set_music 123456");
-
-
-		(new FGUIButton(this, 100, 200+60*5+40, 80, 50, "shrink"))
-			->attr.set("on_click_send_message", "shrink");
-
-		(new FGUIButton(this, 100, 200+60*6+40, 80, 50, "grow"))
-			->attr.set("on_click_send_message", "grow");
+		new FGUIButton(this, 100, 200+60*5+40, 80, 50, "shrink");
+		new FGUIButton(this, 100, 200+60*6+40, 80, 50, "grow");
 
 		
-		(new FGUICheckbox(this, 600, 200-40, 24));
-			(new FGUIScaledText(this, 600+30, 200-40, "Option 1"));
-		(new FGUICheckbox(this, 600, 230-40, 24));
-			(new FGUIScaledText(this, 600+30, 230-40, "Option 2"));
-		(new FGUICheckbox(this, 600, 260-40, 24));
-			(new FGUIScaledText(this, 600+30, 260-40, "Option 3"));
+		new FGUILabeledCheckbox(this, 600, 160, "Option 1");
+		new FGUILabeledCheckbox(this, 600, 210, "Option 2");
+		new FGUILabeledCheckbox(this, 600, 260, "Option 3");
 
 
 		progress_bar = new FGUIProgressBar(this, 225, 400, 160, 20);

@@ -26,6 +26,9 @@ private:
 	SimpleNotificationScreen *notification_screen;
 	ALLEGRO_FONT *font;
 
+	FGUITextInput *text_input;
+	FGUIButton *submit_button;
+
 //	bool joystick_navigation;
 //	bool keyboard_navigation;
 
@@ -46,6 +49,8 @@ public:
 		//, joy_vertical_pos(0)
 		//, joy_horizontal_pos(0)
 		//, hide_mouse_cursor_on_widget_jump(false)
+		, text_input(NULL)
+		, submit_button(NULL)
 	{
 		//FGUIScreen::draw_focused_outline = false;
 		notification_screen = new SimpleNotificationScreen(display, af::fonts["DroidSerif.ttf 16"]);
@@ -61,8 +66,8 @@ public:
 		new FGUIButton(this, button_x, button_y+button_spacing*cur++, 170, 50, "Button5");
 
 
-		(new FGUITextInput(this, 400, 500, 300, 45, "This is a text input"))->attr.set("name", "input_val"); 
-		(new FGUIButton(this, 400+170+30, 500, 80, 50, "send"))->attr.set("on_click_send_message", "submit_input");
+		text_input = new FGUITextInput(this, 400, 500, 300, 45, "This is a text input"); 
+		submit_button = new FGUIButton(this, 400+170+30, 500, 80, 50, "send");
 
 
 		new FGUITextArea(this, 800, 320, 200, 300, "This is a textarea");
@@ -87,10 +92,9 @@ public:
 	}
 	void on_message(FGUIWidget *sender, std::string message) override
 	{
-		if (message=="submit_input")
+		if (sender == submit_button)
 		{
-			FGUITextInput *input = static_cast<FGUITextInput *>(family.get_1st_element_with_attr_val("name", "input_val"));
-			if (input) notification_screen->spawn_notification(input->get_text());
+			notification_screen->spawn_notification(text_input->get_text());
 		}
 	}
 	

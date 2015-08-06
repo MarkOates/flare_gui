@@ -31,7 +31,6 @@ public:
 		draw_focused_outline = false;
 
 		launch_button = new FGUIButton(this, 300, 200, 200, 100, "launch a window!");
-		launch_button->attr.set("on_click_send_message", "launch window");
 
 		new FGUIFramedWindow(this, 200, 200, 300, 200);
 		new FGUIFramedWindow(this, 280, 300, 100, 80);
@@ -48,7 +47,7 @@ public:
 	}
 	void on_message(FGUIWidget *sender, std::string message) override
 	{
-		if (message == "launch window")
+		if (sender == launch_button)
 		{
 			FGUIFramedWindow *window = new FGUIFramedWindow(this,
 					random_int(-100, -100), random_int(-100, 100),
