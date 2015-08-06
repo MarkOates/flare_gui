@@ -101,7 +101,7 @@ void FGUIButton::on_draw()
 
 	if (is_disabled())
 	{
-		draw_textured_rectangle(1, 1, place.size.x-2, place.size.y-2, FGUIStyleAssets::get_pixel_pattern_1(), color::color(color::white, 0.2));
+		draw_textured_rectangle(1, 1, place.size.x-2, place.size.y-2, FGUIStyleAssets::get_pixel_pattern_3(), color::color(color::white, 0.2));
 		//al_draw_filled_rounded_rectangle(0, 0, place.size.x, place.size.y, 3, 3,
 		//	color::mix(color::gray, color::transparent, 0.5));
 	}
