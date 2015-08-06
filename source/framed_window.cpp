@@ -30,7 +30,6 @@ FGUIFramedWindow::FGUIFramedWindow(FGUIWidget *parent, float x, float y, float w
 	float close_button_width = 16;
 	close_button = new FGUIButton(this, place.size.x-close_button_width/2, 0-frame_thickness*2-close_button_width/2,
 		close_button_width, close_button_width, "");
-	close_button->attr.set("on_click_send_message", "close");
 }
 
 
@@ -59,7 +58,7 @@ void FGUIFramedWindow::draw_window_frame_around(float x1, float y1, float x2, fl
 void FGUIFramedWindow::on_message(FGUIWidget *sender, std::string message)
 	// when implemented in FGUIWindowFrame, on_draw() should not need to be overridden at all
 {
-	if (message == "close") this->delete_me = true;
+	if (sender == close_button) this->delete_me = true;
 }
 
 

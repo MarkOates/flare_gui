@@ -253,8 +253,6 @@ void FGUIWidget::mouse_up_func()
 	// then continue with the function on self
 	if (mouse_over && mouse_down_on_over)
 	{
-		// if the widget has a "on_click_send_message" key in its (DataAttr data), then send it to the parent
-		if (attr.has("on_click_send_message")) send_message_to_parent(attr.get("on_click_send_message"));
 		on_click();
 	}
 	mouse_down_on_over = false;
