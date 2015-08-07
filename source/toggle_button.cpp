@@ -85,6 +85,13 @@ void FGUIToggleButton::silently_set_as_unpressed()
 
 
 
+bool FGUIToggleButton::is_pressed()
+{
+	return pressed;
+}
+
+
+
 void FGUIToggleButton::on_draw()
 {
 	if (pressed) FGUIStyleAssets::draw_inset(0, 0, place.size.x, place.size.y);
