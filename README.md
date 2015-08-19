@@ -69,7 +69,7 @@ Standard Widgets
 Build Instructions
 ------------------
 
-FlareGUI requires Allegro 5.1.10 or greater and AllegroFlare 0.8.5.
+FlareGUI requires Allegro 5.1.11 or greater and AllegroFlare 0.8.6.
 
 #### 1. Clone the repo
 
