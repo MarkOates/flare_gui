@@ -47,7 +47,7 @@ void FGUIScreen::primary_timer_func()
 			// and/or multiple joysticks could also be used
 			if (joystick_state.stick[0].axis[0] != 0.0 || joystick_state.stick[0].axis[1] != 0.0)
 			{
-				al_set_mouse_xy(display->display,
+				al_set_mouse_xy(display->al_display,
 					mouse_state.x + joystick_state.stick[0].axis[0]*sensitivity,
 					mouse_state.y + joystick_state.stick[0].axis[1]*sensitivity);
 			}
@@ -66,7 +66,7 @@ void FGUIScreen::primary_timer_func()
 
 void FGUIScreen::mouse_axes_func()
 {
-	if (af::current_event->mouse.display != display->display) return;
+	if (af::current_event->mouse.display != display->al_display) return;
 
 	float mx = af::current_event->mouse.x;
 	float my = af::current_event->mouse.y;
@@ -80,7 +80,7 @@ void FGUIScreen::mouse_axes_func()
 
 void FGUIScreen::mouse_down_func()
 {
-	if (af::current_event->mouse.display != display->display) return;
+	if (af::current_event->mouse.display != display->al_display) return;
 	FGUIWidget::mouse_down_func();
 }
 
@@ -88,7 +88,7 @@ void FGUIScreen::mouse_down_func()
 
 void FGUIScreen::mouse_up_func()
 {
-	if (af::current_event->mouse.display != display->display) return;
+	if (af::current_event->mouse.display != display->al_display) return;
 	FGUIWidget::mouse_up_func();
 }
 
@@ -96,7 +96,7 @@ void FGUIScreen::mouse_up_func()
 
 void FGUIScreen::key_down_func()
 {
-	if (af::current_event->keyboard.display != display->display) return;
+	if (af::current_event->keyboard.display != display->al_display) return;
 
 
 	// these next two conditionals are for keyboard/joystick navigation of widgets
@@ -121,7 +121,7 @@ void FGUIScreen::key_down_func()
 
 void FGUIScreen::key_up_func()
 {
-	if (af::current_event->keyboard.display != display->display) return;
+	if (af::current_event->keyboard.display != display->al_display) return;
 	FGUIWidget::key_up_func();
 }
 
@@ -129,7 +129,7 @@ void FGUIScreen::key_up_func()
 
 void FGUIScreen::key_char_func()
 {
-	if (af::current_event->keyboard.display != display->display) return;
+	if (af::current_event->keyboard.display != display->al_display) return;
 
 	FGUIWidget::key_char_func();
 }
@@ -174,3 +174,5 @@ void FGUIScreen::on_draw() {}
 
 
 void FGUIScreen::on_draw_after_children() {}
+
+

@@ -117,7 +117,7 @@ private:
 public:
 	MyFGUIWindow(FGUIWidget *parent, Display *display)
 		: FGUIWindow(parent, 0, 0, display->width(), display->height())
-		, display(display->display)
+		, display(display->al_display)
 		, text_input(NULL)
 		, music_render(NULL)
 		, progress_bar(NULL)
@@ -349,7 +349,7 @@ int main(int argc, char *argv[])
 	//Display *display = af::create_display(800, 720);
 
 	Display *display = new Display(800, 720, ALLEGRO_NOFRAME);
-	al_register_event_source(af::event_queue, al_get_display_event_source(display->display));
+	al_register_event_source(af::event_queue, al_get_display_event_source(display->al_display));
 
 	Project *main = new Project(display);
 	af::run_loop();
