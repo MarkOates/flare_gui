@@ -42,6 +42,13 @@ void FGUIText::on_draw()
 
 
 
+std::string FGUIText::get_text()
+{
+	return text;
+}
+
+
+
 void FGUIText::set_font_and_text(ALLEGRO_FONT *font, std::string text)
 {
 	this->text = text;

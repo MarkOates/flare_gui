@@ -22,6 +22,8 @@ protected:
 public:
 	FGUIText(FGUIWidget *parent, float x, float y, std::string text);
 
+	std::string get_text();
+
 	void set_font_and_text(ALLEGRO_FONT *font, std::string text); // used to be set()
 	void set_text(std::string text);
 	void set_font(ALLEGRO_FONT *font);
