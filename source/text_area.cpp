@@ -195,11 +195,21 @@ void FGUITextArea::on_draw()
 	int selection_x_end = 0;
 	int line_height = al_get_font_line_height(font);
 
+	float cursor_draw_pos_x = 0; // the actual x,y location where the input cursor is to be drawn
+	float cursor_draw_pos_y = 0;
+
 	unsigned i=0;
 	for (i=0; i<full_text.length(); i++)
 	{
 		if (full_text[i] == '\n')
 		{
+			if (cursor.pos() == i)
+			{
+				// if the cursor is at this position
+				cursor_draw_pos_x = draw_cursor_x;
+				cursor_draw_pos_y = draw_cursor_y;
+			}
+
 			// move the drawing cursor down on newlines
 			draw_cursor_x = PADDING;
 			draw_cursor_y += al_get_font_line_height(font);
@@ -231,7 +241,8 @@ void FGUITextArea::on_draw()
 			if (cursor.pos() == i)
 			{
 				// draw the cursor
-				if (focused) al_draw_line(draw_cursor_x, draw_cursor_y, draw_cursor_x, draw_cursor_y+line_height, color::color(color::aliceblue, cursor_blink_counter), 2.0);
+				cursor_draw_pos_x = draw_cursor_x;
+				cursor_draw_pos_y = draw_cursor_y;
 				selection_x_end = draw_cursor_x;
 				selection_line_end = _number_of_lines;
 			}
@@ -245,18 +256,28 @@ void FGUITextArea::on_draw()
 	// just the one exception where the cursor is in the last place
 	if (cursor.pos() == full_text.length())
 	{
-		if (focused) al_draw_line(draw_cursor_x, draw_cursor_y, draw_cursor_x, draw_cursor_y+line_height, color::color(color::aliceblue, cursor_blink_counter), 2.0);
+		cursor_draw_pos_x = draw_cursor_x;
+		cursor_draw_pos_y = draw_cursor_y;
 		selection_x_end = draw_cursor_x;
 		selection_line_end = _number_of_lines;
 	}
 	if (selection_active && cursor.anchor_pos() == full_text.length())
 	{
 		// draw the anchor
-		if (focused) al_draw_line(draw_cursor_x, draw_cursor_y, draw_cursor_x, draw_cursor_y+line_height, color::color(color::aliceblue, 0.5), 2.0);
+		cursor_draw_pos_x = draw_cursor_x;
+		cursor_draw_pos_y = draw_cursor_y;
 		selection_x_start = draw_cursor_x;
 		selection_line_start = _number_of_lines;
 	}
 
+
+	// draw the input cursor
+	if (focused)
+	{
+		al_draw_line(cursor_draw_pos_x, cursor_draw_pos_y,
+			cursor_draw_pos_x, cursor_draw_pos_y+line_height,
+			color::color(color::aliceblue, 0.5), 2.0);
+	}
 
 
 	// swap the selection_x_start and selection_x_end if the anchor is *after* the cursor
@@ -269,7 +290,7 @@ void FGUITextArea::on_draw()
 
 		selection_line_start ^= selection_line_end;
 		selection_line_end ^= selection_line_start;
-		selection_line_start ^= selection_line_end;			
+		selection_line_start ^= selection_line_end;
 	}
 
 
