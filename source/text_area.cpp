@@ -131,6 +131,19 @@ void FGUITextArea::erase_selection()
 	cursor.move_anchor_to_cursor();
 }
 
+
+void FGUITextArea::set_font(ALLEGRO_FONT *font)
+{
+	this->font = font;
+}
+
+
+ALLEGRO_FONT *FGUITextArea::get_font()
+{
+	return font;
+}
+
+
 void FGUITextArea::set_text(std::string text)
 {
 	this->full_text = text;

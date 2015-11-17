@@ -57,6 +57,8 @@ public:
 	void move_cursor_to_previous_not_of(std::string chars); // not fully implemented, mostly used for internal
 	void erase_selection();
 
+	void set_font(ALLEGRO_FONT *font);
+	ALLEGRO_FONT *get_font();
 	void set_text(std::string text);
 	std::string get_text();
 	std::string get_selection();
