@@ -8,7 +8,7 @@
 #include <allegro_flare/allegro_flare.h>
 #include <allegro_flare/color.h>
 #include <allegro_flare/useful.h>
-#include <allegro_flare/clipboard_win.h> // eventually should be replaced with a generic clipboard
+#include <allegro_flare/clipboard.h>
 
 #include <flare_gui/widgets/text_area.h>
 #include <flare_gui/surface_areas/box.h>
@@ -208,6 +208,8 @@ void FGUITextArea::on_draw()
 				// if the cursor is at this position
 				cursor_draw_pos_x = draw_cursor_x;
 				cursor_draw_pos_y = draw_cursor_y;
+				selection_x_end = draw_cursor_x;
+				selection_line_end = _number_of_lines;
 			}
 
 			// move the drawing cursor down on newlines
@@ -271,13 +273,9 @@ void FGUITextArea::on_draw()
 	}
 
 
-	// draw the input cursor
-	if (focused)
-	{
-		al_draw_line(cursor_draw_pos_x, cursor_draw_pos_y,
-			cursor_draw_pos_x, cursor_draw_pos_y+line_height,
-			color::color(color::aliceblue, 0.5), 2.0);
-	}
+	//
+	// Draw
+	//
 
 
 	// swap the selection_x_start and selection_x_end if the anchor is *after* the cursor
@@ -291,6 +289,15 @@ void FGUITextArea::on_draw()
 		selection_line_start ^= selection_line_end;
 		selection_line_end ^= selection_line_start;
 		selection_line_start ^= selection_line_end;
+	}
+
+
+	// draw the input cursor
+	if (focused)
+	{
+		al_draw_line(cursor_draw_pos_x, cursor_draw_pos_y,
+			cursor_draw_pos_x, cursor_draw_pos_y+line_height,
+			color::color(color::aliceblue, 0.5), 2.0);
 	}
 
 

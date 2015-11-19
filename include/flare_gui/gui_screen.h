@@ -13,8 +13,6 @@
 #include <allegro_flare/bins/sample_bin.h>
 #include <allegro_flare/motion.h>
 
-#include <allegro_flare/clipboard_win.h> // should eventually make this just the clipboard
-
 
 
 class FGUIScreen : public Screen, public FGUIWidget

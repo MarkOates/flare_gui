@@ -6,7 +6,6 @@
 #include <allegro5/allegro.h>
 #include <flare_gui/surface_area.h>
 #include <allegro_flare/data_attr.h>
-#include <allegro_flare/clipboard_win.h> // this should eventually be replaced with a cross-platform clipboard solution
 #include <allegro_flare/color.h>
 
 #include <allegro_flare/bit_flags.h>
