@@ -8,9 +8,9 @@
 
 # ENVIRONMENT
 
-ALLEGRO_DIR=E:/allegro-5.1.11-mingw-edgar
-ALLEGRO_FLARE_DIR=E:/allegro_flare
-FGUI_DIR=E:/flare_gui
+ALLEGRO_DIR=/users/markoates/Repos/allegro
+ALLEGRO_FLARE_DIR=/users/markoates/Repos/allegro_flare
+FGUI_DIR=/users/markoates/Repos/flare_gui
 
 
 # BUILD TREE
@@ -98,7 +98,7 @@ EXAMPLE_OBJS=$(EXAMPLES:examples/%.cpp=bin/%.exe)
 examples: $(EXAMPLE_OBJS)
 
 bin/%.exe: examples/%.cpp lib/lib$(FGUI_LIB).a
-	g++ -std=gnu++11 $< -o $@ -IE:/allegro_flare/include -IE:/allegro-5.1.11-mingw-edgar/include -IE:/flare_gui/include -LE:/flare_gui/lib -lflare_gui-0.6.6-mingw-4.8.1 -LE:/allegro_flare/lib -lallegro_flare-0.8.6-mingw-4.8.1 -LE:/allegro-5.1.11-mingw-edgar/lib -lallegro_monolith-debug.dll
+	g++ -std=gnu++11 $< -o $@ -I$(ALLEGRO_FLARE_DIR)/include -I$(ALLEGRO_DIR)/include -I$(FGUI_DIR)/include -L$(FGUI_DIR)/lib -lflare_gui-0.6.6-mingw-4.8.1 -L$(ALLEGRO_FLARE_DIR)/lib -lallegro_flare-0.8.6-mingw-4.8.1 -L$(ALLEGRO_DIR)/lib -lallegro_monolith-debug.dll
 
 
 
