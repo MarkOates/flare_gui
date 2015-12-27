@@ -36,7 +36,7 @@ protected:
 		Rail(FGUIWidget *parent, float x, float y, float w, float h);
 		void on_draw() override;
 		void on_mouse_move(float x, float y, float dx, float dy) override;
-		void on_click();
+		void on_click() override;
 	};
 
 	class Handle : public FGUIWidget
