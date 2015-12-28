@@ -19,6 +19,7 @@ public:
 	int add_item(std::string item);
 	void sort();
 
+	std::string get_val();
 	void set_val(std::string strval) override;
 	void increment() override;
 	void decrement() override;

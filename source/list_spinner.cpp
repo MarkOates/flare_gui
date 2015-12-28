@@ -37,6 +37,13 @@ void FGUIListSpinner::sort()
 
 
 
+std::string FGUIListSpinner::get_val()
+{
+	if (items.empty()) return "";
+	return (*it);
+}
+
+
 
 void FGUIListSpinner::set_val(std::string strval)
 {
