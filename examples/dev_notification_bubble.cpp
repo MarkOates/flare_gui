@@ -92,9 +92,46 @@ public:
 
 
 
+#include <flare_gui/flare_gui.h>
 
-// TODO: write a FGUIScreen project
+class NotificationBubbleTestProject : public FGUIScreen
+{
+public:
+	float mouse_x;
+	float mouse_y;
+	FGUIText *bubble_count_text;
+	NotificationBubbleTestProject(Display *display)
+		: FGUIScreen(display)
+		, mouse_x(display->width()/2)
+		, mouse_y(display->height()/2)
+		, bubble_count_text(NULL)
+	{
+		al_set_mouse_xy(display->al_display, mouse_x, mouse_y);
+		new FGUIText(this, 40, 30, "Move the mouse and press any key to spawn a NotificationBubble.");
+		bubble_count_text = new FGUIText(this, 40, 60, "Number of active bubbles: 0");
+	}
+	std::string get_random_quote()
+	{
+		return "Anyone who considers protocol unimportant has never dealt with a cat.\n-- R. Heinlein";
+	}
+	void on_mouse_move(float x, float y, float dx, float dy) override
+	{
+		mouse_x = x;
+		mouse_y = y;
+	}
+	void on_mouse_down() override
+	{
+		new FGUINotificationBubble(this, mouse_x, mouse_y, get_random_quote());
+	}
+	void primary_timer_func() override
+	{
+		std::string message = "Number of active bubbles: ";
+		message += tostring(this->family.children.size());
+		bubble_count_text->set_text(message);
 
+		FGUIScreen::primary_timer_func();
+	}
+};
 
 
 
@@ -103,8 +140,10 @@ int main(int argc, char *argv[])
 	af::initialize();
 	Display *display = af::create_display(1280, 800, false);
 
+	NotificationBubbleTestProject *proj = new NotificationBubbleTestProject(display);
 
 	af::run_loop();
+	return 0;
 }
 
 
