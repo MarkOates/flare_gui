@@ -18,7 +18,6 @@ FGUIStyleAssets::FGUIStyleAssets()
 	, mini_font(NULL)
 	, micro_font(NULL)
 {
-	instance = this;
 }
 
 
