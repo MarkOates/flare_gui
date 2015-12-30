@@ -135,6 +135,22 @@ void FGUIWidget::primary_timer_func()
 
 	for (unsigned i=0; i<family.children.size(); i++)
 		family.children[i]->primary_timer_func();
+
+	// delete the widgets who request deletion
+	for (unsigned i=0; i<family.children.size(); i++)
+	{
+		if (family.children[i]->delete_me)
+		{
+			std::cout << "Deleting child object...";
+			// NOTE: when a FGUIWidget is deleted, it automatically
+			// removes itself from the parent, so that step
+			// does not need to be done here.  Also, widgets will
+			// automatically delete thier children as well.
+			delete family.children[i];
+			std::cout << "deleted." << std::endl;
+			i--;
+		}
+	}
 }
 
 
