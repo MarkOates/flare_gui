@@ -24,8 +24,13 @@ struct RubyScriptResult
 // use "_popen" and "_pclose" for windows
 // and "popen" and "pclose" for other systems
 
+#ifdef _WIN32
+#define popen _popen
+#define poclose _pclose
+#endif
+
 static std::string exec(const char* cmd) {
-    FILE* pipe = _popen(cmd, "r");
+    FILE* pipe = popen(cmd, "r");
     if (!pipe) return "ERROR";
     char buffer[128];
     std::string result = "";
@@ -33,14 +38,18 @@ static std::string exec(const char* cmd) {
     	if(fgets(buffer, 128, pipe) != NULL)
     		result += buffer;
     }
-    _pclose(pipe);
+    pclose(pipe);
     return result;
 }
 
 RubyScriptResult run_ruby_script(std::string script_filename, std::string args)
 {
 	RubyScriptResult result;
+#ifdef _WIN32
 	std::string exec_command = "C:/Ruby200/bin/setrbvars.bat & ruby ./data/scripts/" + script_filename + " " + args;
+#else
+	std::string exec_command = "ruby ./data/scripts/" + script_filename + " " + args;
+#endif
 	result.output = exec(exec_command.c_str());
 	// profiling on my computer demonstrates that this method takes 0.09sec to 0.11sec to execute.
 	// That's setting the environment vars, starting the interpreter, and running a simple script.
