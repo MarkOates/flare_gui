@@ -1,2 +1,6 @@
-# Ignore all of the exe files in this directory
-*.exe
+# Ignore anything files in this directory
+# except files in the data/ folder
+# these are typically going to be executables
+# (.exe in windows or without an extension in mac)
+*
+data/

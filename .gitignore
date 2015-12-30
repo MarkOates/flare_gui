@@ -9,5 +9,9 @@
 *.obj
 *.exe
 
+# ignore those pesky .DS_Store image caches
+.DS_Store
+
+# ignore allegro's massive log
 allegro.log
 
