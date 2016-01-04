@@ -11,24 +11,27 @@
 ALLEGRO_DIR=/users/markoates/Repos/allegro
 ALLEGRO_FLARE_DIR=/users/markoates/Repos/allegro_flare
 FGUI_DIR=/users/markoates/Repos/flare_gui
+# ALLEGRO_DIR=E:/allegro-5.1.11-mingw-edgar
+# ALLEGRO_FLARE_DIR=E:/allegro_flare
+# FGUI_DIR=E:/flare_gui
+
 
 
 # BUILD TREE
 
-FGUI_SRC_DIR=source
-OBJ_DIR=obj
-OBJ_EXT=.o
 EXE_EXTENSION=
 # EXE_EXTENSION=.exe
-FGUI_LIB_DIR=$(FGUI_DIR)/lib
+
 
 
 # LINKED LIBRARIES
-# these are the names of the libs you are linking in the example programs
 
 ALLEGRO_LIBS=-lallegro_color -lallegro_font -lallegro_ttf -lallegro_dialog -lallegro_audio -lallegro_acodec -lallegro_primitives -lallegro_image -lallegro_main -lallegro
 ALLEGRO_FLARE_LIB=allegro_flare-0.8.6-clang-7.0.2
 FGUI_LIB=flare_gui-0.6.6-mingw-4.8.1
+# ALLEGRO_LIBS=-lallegro_monolith-debug.dll
+# ALLEGRO_FLARE_LIB=allegro_flare-0.8.6-mingw-4.8.1
+# FGUI_LIB=flare_gui-0.6.6-mingw-4.8.1
 
 
 
@@ -49,8 +52,8 @@ CFLAGS=-c -std=gnu++11
 WIDGET_ITEMS=style_assets button checkbox console dial draggable_region family framed_window image int_spinner labeled_checkbox list_spinner music_notation progress_bar scaled_text scroll_area scrollbar slider spinner surface_area text text_area text_box text_input text_list toggle_button widget gui_screen window xy_controller 
 SURFACE_AREA_ITEMS=bitmap box box_padded circle column row
 
-WIDGET_OBJ_FILES=$(WIDGET_ITEMS:%=obj/%$(OBJ_EXT))
-SURFACE_AREA_OBJ_FILES=$(SURFACE_AREA_ITEMS:%=obj/%$(OBJ_EXT))
+WIDGET_OBJ_FILES=$(WIDGET_ITEMS:%=obj/%.o)
+SURFACE_AREA_OBJ_FILES=$(SURFACE_AREA_ITEMS:%=obj/%.o)
 
 
 
@@ -65,18 +68,18 @@ SURFACE_AREA_OBJ_FILES=$(SURFACE_AREA_ITEMS:%=obj/%$(OBJ_EXT))
 all: $(WIDGET_OBJ_FILES) $(SURFACE_AREA_OBJ_FILES)
 	make lib	
 
-lib: $(OBJ_DIR)/*$(OBJ_EXT)
-	ar rvs $(FGUI_LIB_DIR)/$(FGUI_LIB_NAME) $(OBJ_DIR)/*$(OBJ_EXT)	
+lib: obj/*.o
+	ar rvs lib/$(FGUI_LIB_NAME) obj/*.o
 
 
 
 
 # below are the build targets for the objects
 
-$(WIDGET_OBJ_FILES): obj/%$(OBJ_EXT) : source/%.cpp
+$(WIDGET_OBJ_FILES): obj/%.o : source/%.cpp
 	g++ -c -std=gnu++11 -o obj/$(notdir $@) $< -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
-$(SURFACE_AREA_OBJ_FILES): obj/%$(OBJ_EXT) : source/surface_areas/%.cpp
+$(SURFACE_AREA_OBJ_FILES): obj/%.o : source/surface_areas/%.cpp
 	g++ -c -std=gnu++11 -o obj/$(notdir $@) $< -I$(ALLEGRO_DIR)/include -I$(ALLEGRO_FLARE_DIR)/include -I$(FGUI_DIR)/include
 
 
@@ -85,10 +88,10 @@ $(SURFACE_AREA_OBJ_FILES): obj/%$(OBJ_EXT) : source/surface_areas/%.cpp
 # and the clean
 
 clean_win:
-	del $(OBJ_DIR)\*$(OBJ_EXT)
+	del obj\*.o
 
 clean_linux:
-	rm $(OBJ_DIR)/*$(OBJ_EXT)
+	rm obj/*.o
 
 
 
