@@ -34,6 +34,7 @@ public:
 
 		// spinners
 		new FGUIIntSpinner(this, 400, 200, 140, 40);
+		new FGUIFloatSpinner(this, 400, 300, 140, 40);
 		FGUIListSpinner *list_spinner = new FGUIListSpinner(this, 600, 200, 200, 40);
 			list_spinner->add_item("Kentucky");
 			list_spinner->add_item("Ohio");
