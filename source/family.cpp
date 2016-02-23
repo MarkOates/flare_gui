@@ -167,22 +167,22 @@ int FGUIFamily::_index_count = 0;
 
 
 
-FGUIWidget *FGUIFamily::get_nth_child_d(int n)
+FGUIWidget *FGUIFamily::get_nth_descendant(int n)
 {
 	_index_count = 0;
 	// note: the 0th child is the owner of this FGUIFamily.
 	// TODO: perhaps this function should be promoted up to the Parent that calls it.
-	return __get_nth_child_recursive(*this, n);
+	return __get_nth_descendant_r(*this, n);
 }
 
-FGUIWidget *FGUIFamily::__get_nth_child_recursive(FGUIFamily &children, int n)
+FGUIWidget *FGUIFamily::__get_nth_descendant_r(FGUIFamily &children, int n)
 {
 	FGUIWidget *widget = NULL;
 	for (unsigned i=0; i<children.children.size(); i++)
 	{
 		_index_count++;
 		FGUIWidget *p = children.children[i];
-		widget = FGUIFamily::__get_nth_child_recursive(p->family, n);
+		widget = FGUIFamily::__get_nth_descendant_r(p->family, n);
 		if (widget) return widget;
 	}
 	return NULL;
@@ -192,20 +192,20 @@ FGUIWidget *FGUIFamily::__get_nth_child_recursive(FGUIFamily &children, int n)
 
 
 
-int FGUIFamily::get_num_of_widgets_d()
+int FGUIFamily::get_num_descendants()
 {
 	_index_count = 1;
-	return __get_num_widgets_recursive(*this);
+	return __get_num_descendants_r(*this);
 }
 
-int FGUIFamily::__get_num_widgets_recursive(FGUIFamily &children)
+int FGUIFamily::__get_num_descendants_r(FGUIFamily &children)
 {
 	for (unsigned i=0; i<children.children.size(); i++)
 	{
 		_index_count++;
 
 		FGUIWidget *p = children.children[i];
-		FGUIFamily::__get_num_widgets_recursive(p->family);
+		FGUIFamily::__get_num_descendants_r(p->family);
 	}
 	return _index_count;
 }

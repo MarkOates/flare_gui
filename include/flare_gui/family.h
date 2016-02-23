@@ -44,18 +44,16 @@ public:
 											  // I'm not sure about the appropriate solution to this one.
 
 	// selection:
+	int get_num_descendants();
 	FGUIWidget *get_element_by_id(std::string id);
 	FGUIWidget *get_1st_element_with_attr(std::string key); // not tested
 	FGUIWidget *get_1st_element_with_attr_val(std::string key, std::string val); // not tested
-
-	// deep functions: these select recursively through the children's children
-	FGUIWidget *get_nth_child_d(int n);
-	int get_num_of_widgets_d();
+	FGUIWidget *get_nth_descendant(int n);
 
 private:
 	// these are recursive search functions, they're entirely intended for internal use
-	static FGUIWidget *__get_nth_child_recursive(FGUIFamily &children, int n);
-	static int __get_num_widgets_recursive(FGUIFamily &children);
+	static FGUIWidget *__get_nth_descendant_r(FGUIFamily &children, int n); // todo: eliminate these static functions
+	static int __get_num_descendants_r(FGUIFamily &children);
 };
 
 
