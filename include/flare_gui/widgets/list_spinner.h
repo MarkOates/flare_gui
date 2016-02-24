@@ -20,6 +20,9 @@ public:
    // add a new item to the end of the list
    int add_item(std::string item);
 
+   // add a new item to the end of the list
+   int add_items(std::vector<std::string> new_items);
+
    // sorts the list of elements in alphabetical order
    void sort();
 

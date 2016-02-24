@@ -30,10 +30,20 @@ int FGUIListSpinner::add_item(std::string item)
 
 
 
+int FGUIListSpinner::add_items(std::vector<std::string> new_items)
+{
+   items.insert(items.end(), new_items.begin(), new_items.end());
+   return items.size();
+}
+
+
+
+
 void FGUIListSpinner::sort()
 {
 	std::sort(items.begin(), items.end());
 }
+
 
 
 
@@ -42,6 +52,7 @@ std::string FGUIListSpinner::get_val()
 	if (items.empty()) return "";
 	return (*it);
 }
+
 
 
 
