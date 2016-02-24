@@ -36,16 +36,8 @@ public:
 		new FGUIIntSpinner(this, 400, 200, 140, 40);
 		new FGUIFloatSpinner(this, 400, 300, 140, 40);
 		FGUIListSpinner *list_spinner = new FGUIListSpinner(this, 600, 200, 200, 40);
-			list_spinner->add_item("Kentucky");
-			list_spinner->add_item("Ohio");
-			list_spinner->add_item("Pennsylvania");
-			list_spinner->add_item("Tennessee");
-			list_spinner->add_item("Colorado");
-			list_spinner->add_item("New York");
-			list_spinner->add_item("Washington");
-			list_spinner->add_item("Kansas");
-			list_spinner->add_item("Minnesota");
-			list_spinner->sort();
+      list_spinner->add_items({"Kentucky", "Ohio", "Pennsylvania", "Tennessee", "Colorado", "New York"});
+      list_spinner->sort();
 	}
 };
 
