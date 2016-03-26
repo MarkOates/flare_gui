@@ -13,6 +13,7 @@
 
 FGUIListSpinner::FGUIListSpinner(FGUIWidget *parent, float x, float y, float w, float h)
 	: FGUISpinner(parent, x, y, w, h)
+	, items()
 	, it(items.begin())
 {}
 
@@ -22,6 +23,10 @@ FGUIListSpinner::FGUIListSpinner(FGUIWidget *parent, float x, float y, float w, 
 int FGUIListSpinner::add_item(std::string item)
 {
 	items.push_back(item);
+   // note: whenever an item is added or removed, it's important that
+   // the iterator is refreshed.  Because the container is a vector,
+   // it can potentially reallocate itself in memory when resizing,
+   // potentially leaving the iterator dangling.
 	it = items.begin();
 	text_input->set_text(*it);
 	return items.size();
@@ -33,6 +38,9 @@ int FGUIListSpinner::add_item(std::string item)
 int FGUIListSpinner::add_items(std::vector<std::string> new_items)
 {
    items.insert(items.end(), new_items.begin(), new_items.end());
+   // refresh the iterator (important)
+   it = items.begin();
+      text_input->set_text(*it);
    return items.size();
 }
 
