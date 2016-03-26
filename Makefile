@@ -28,10 +28,10 @@ EXE_EXTENSION=
 
 ALLEGRO_LIBS=-lallegro_color -lallegro_font -lallegro_ttf -lallegro_dialog -lallegro_audio -lallegro_acodec -lallegro_primitives -lallegro_image -lallegro_main -lallegro
 ALLEGRO_FLARE_LIB=allegro_flare-0.8.6-clang-7.0.2
-FGUI_LIB=flare_gui-0.6.6-mingw-4.8.1
+FGUI_LIB=flare_gui-0.6.7wip-mingw-4.8.1
 # ALLEGRO_LIBS=-lallegro_monolith-debug.dll
 # ALLEGRO_FLARE_LIB=allegro_flare-0.8.6-mingw-4.8.1
-# FGUI_LIB=flare_gui-0.6.6-mingw-4.8.1
+# FGUI_LIB=flare_gui-0.6.7wip-mingw-4.8.1
 
 
 
