@@ -1,6 +1,14 @@
 FlareGUI
 ========
 
+
+___
+
+### NOTE: FlareGUI is now depreciated.  This extension was merged into [AllegroFlare](https://github.com/MarkOates/allegro_flare) and is now part of core.  All future development on the GUI components is done on the AllegroFlare repo.
+
+___
+
+
 FlareGUI is a GUI extension for AllegroFlare.
 
 
